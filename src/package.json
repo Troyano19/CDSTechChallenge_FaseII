@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.14.2",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7"
+  },
+  "name": "greenlake-web",
+  "version": "1.0.0",
+  "description": "Proyecto creado para el reto II de CDS ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joseleelsuper/CDSTechChallenge-FaseII.git"
+  },
+  "author": "Javier Troyano Torrado / Jose Gallardo Caballero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joseleelsuper/CDSTechChallenge-FaseII/issues"
+  },
+  "homepage": "https://github.com/Joseleelsuper/CDSTechChallenge-FaseII#readme"
+}
