@@ -12,7 +12,9 @@ const publicDir = path.join(rootDir, 'public');
 const srcDir = path.join(rootDir, 'src');
 
 // Public directory paths
-const utilsDir = path.join(publicDir, 'utils');
+const htmlDir = path.join(publicDir, 'html');
+const pagesDir = path.join(htmlDir, 'pages');
+const utilsDir = path.join(htmlDir, 'utils');
 const imagesDir = path.join(publicDir, 'images');
 const cssDir = path.join(publicDir, 'css');
 const jsDir = path.join(publicDir, 'js');
@@ -22,15 +24,15 @@ const headerPath = path.join(utilsDir, 'header.html');
 const footerPath = path.join(utilsDir, 'footer.html');
 
 // HTML pages
-const homePage = path.join(publicDir, 'home.html');
-const travelPage = path.join(publicDir, 'travel.html');
-const trailsPage = path.join(publicDir, 'trails.html');
-const establishmentsPage = path.join(publicDir, 'establishments.html');
-const activitiesPage = path.join(publicDir, 'activities.html');
-const adminPage = path.join(publicDir, 'admin.html');
+const homePage = path.join(pagesDir, 'home.html');
+const travelPage = path.join(pagesDir, 'travel.html');
+const trailsPage = path.join(pagesDir, 'trails.html');
+const establishmentsPage = path.join(pagesDir, 'establishments.html');
+const activitiesPage = path.join(pagesDir, 'activities.html');
+const adminPage = path.join(pagesDir, 'admin.html');
 
 // Info pages
-const infoDir = path.join(publicDir, 'info');
+const infoDir = path.join(pagesDir, 'info');
 const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
 const activityInfoPage = path.join(infoDir, 'activitie.html');
@@ -44,6 +46,8 @@ const getPaths = () => {
         root: rootDir,
         public: publicDir,
         src: srcDir,
+        html: htmlDir,
+        pages: pagesDir,
         utils: utilsDir,
         images: imagesDir,
         css: cssDir,
