@@ -1,0 +1,77 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2F855A; /* primary color */
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header .register-btn {
+    background-color: #68D391; /* accent color */
+    color: #2D3748; /* dark color */
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+header .register-btn:hover {
+    background-color: #9AE6B4; /* lighter accent color */
+    text-decoration: none;
+}
+
+/* Header animation class */
+.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+    
+    header h1 {
+        margin-bottom: 1rem;
+    }
+    
+    header nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
