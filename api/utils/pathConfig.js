@@ -23,6 +23,17 @@ const footerPath = path.join(utilsDir, 'footer.html');
 
 // HTML pages
 const homePage = path.join(publicDir, 'home.html');
+const travelPage = path.join(publicDir, 'travel.html');
+const trailsPage = path.join(publicDir, 'trails.html');
+const establishmentsPage = path.join(publicDir, 'establishments.html');
+const activitiesPage = path.join(publicDir, 'activities.html');
+const adminPage = path.join(publicDir, 'admin.html');
+
+// Info pages
+const infoDir = path.join(publicDir, 'info');
+const trailInfoPage = path.join(infoDir, 'trail.html');
+const establishmentInfoPage = path.join(infoDir, 'establishment.html');
+const activityInfoPage = path.join(infoDir, 'activitie.html');
 
 /**
  * Get path configuration object
@@ -40,8 +51,17 @@ const getPaths = () => {
         header: headerPath,
         footer: footerPath,
         pages: {
-            home: homePage
-            // Añadir más páginas después
+            home: homePage,
+            travel: travelPage,
+            trails: trailsPage,
+            establishments: establishmentsPage,
+            activities: activitiesPage,
+            admin: adminPage,
+            info: {
+                trail: trailInfoPage,
+                establishment: establishmentInfoPage,
+                activity: activityInfoPage
+            }
         }
     };
 };
@@ -69,6 +89,5 @@ const getPath = (key) => {
 };
 
 module.exports = {
-    getPaths,
     getPath
 };

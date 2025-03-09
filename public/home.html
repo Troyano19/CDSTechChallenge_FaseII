@@ -12,10 +12,12 @@
         <main>
             <img src="#">
             <section id="travel">
-                <input type="text" placeholder="¿De donde vienes?">
-                <input type="date" placeholder="Fecha de ida">
-                <input type="date" placeholder="Fecha de vuelta">
-                <button type="button">Busca ahora</button>
+                <form action="/travel" method="post">
+                    <input type="text" name="origin" placeholder="¿De donde vienes?" required>
+                    <input type="date" name="departureDate" placeholder="Fecha de ida" required>
+                    <input type="date" name="returnDate" placeholder="Fecha de vuelta">
+                    <button type="submit">Busca ahora</button>
+                </form>
             </section>
             <section class="what-to-see">
                 <!--Aqui se generarán los intereses con js-->
