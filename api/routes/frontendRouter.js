@@ -7,11 +7,16 @@
 //We load the express module
 const express = require('express');
 const path = require('path');
-//Define the public directory path
-const publicPath = path.join(__dirname, '../../public/');
+// Import the path configuration and template utility
+const { getPath, getPaths } = require('../utils/pathConfig');
+const { renderWithHeaderFooter } = require('../utils/templateUtils');
 
 //We start the frontend router
 const router = express.Router();
+
+//Define the public directory path
+const publicPath = getPath('public');
+
 /**
  * ENDPOINT: GET /
  * HANDLER: express static
@@ -20,7 +25,7 @@ const router = express.Router();
 router.use(express.static(publicPath));
 
 router.get("/", (req, res) => {
-    res.sendFile(path.join(publicPath, "home.html"));
+    renderWithHeaderFooter(getPath('pages.home'), res);
 });
 
 module.exports = router
