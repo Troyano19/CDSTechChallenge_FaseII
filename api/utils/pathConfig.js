@@ -69,6 +69,5 @@ const getPath = (key) => {
 };
 
 module.exports = {
-    getPaths,
     getPath
 };

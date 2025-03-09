@@ -8,7 +8,7 @@
 const express = require('express');
 const path = require('path');
 // Import the path configuration and template utility
-const { getPath, getPaths } = require('../utils/pathConfig');
+const { getPath } = require('../utils/pathConfig');
 const { renderWithHeaderFooter } = require('../utils/templateUtils');
 
 //We start the frontend router
