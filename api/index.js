@@ -10,11 +10,13 @@ require('dotenv').config();
 //We inicialize the express app
 const app = express();
 const port = process.env.PORT;
+
+// Parse URL-encoded bodies (for form data)
+app.use(express.urlencoded({ extended: true }));
 //Load the middleware that analize the body of the requests
 app.use(express.json());
 //Load the routers
 app.use(frontend);
-
 
 app.listen(port, () => {
     console.log(`Web server listening on port ${port}`);
