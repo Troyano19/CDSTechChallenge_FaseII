@@ -9,20 +9,20 @@
   "name": "greenlake-web",
   "version": "1.0.0",
   "description": "Proyecto creado para el reto II de CDS ",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joseleelsuper/CDSTechChallenge-FaseII.git"
+    "url": "git+https://github.com/Troyano19/CDSTechChallenge_FaseII.git"
   },
   "author": "Javier Troyano Torrado / Jose Gallardo Caballero",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Joseleelsuper/CDSTechChallenge-FaseII/issues"
+    "url": "https://github.com/Troyano19/CDSTechChallenge_FaseII/issues"
   },
-  "homepage": "https://github.com/Joseleelsuper/CDSTechChallenge-FaseII#readme"
+  "homepage": "https://github.com/Troyano19/CDSTechChallenge_FaseII#readme"
 }
