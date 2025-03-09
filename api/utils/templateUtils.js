@@ -16,26 +16,37 @@ const renderWithHeaderFooter = (filePath, res) => {
         const footerContent = fs.readFileSync(footerPath, 'utf8');
         const content = fs.readFileSync(filePath, 'utf8');
         
-        // Insert header and footer
-        const parts = content.split('<body>');
-        if (parts.length < 2) {
-            return res.status(500).send('Invalid HTML template format');
+        // Use regex to find the body tag with any attributes
+        const bodyStartRegex = /<body[^>]*>/i;
+        const bodyEndRegex = /<\/body>/i;
+        
+        const bodyStartMatch = content.match(bodyStartRegex);
+        const bodyEndMatch = content.match(bodyEndRegex);
+        
+        if (!bodyStartMatch || !bodyEndMatch) {
+            return res.status(500).send('Invalid HTML template format: body tags not found');
         }
         
-        const bodyParts = parts[1].split('</body>');
+        // Split content at the found positions
+        const startIndex = content.indexOf(bodyStartMatch[0]) + bodyStartMatch[0].length;
+        const endIndex = content.indexOf(bodyEndMatch[0]);
         
-        const finalHtml = parts[0] + 
-                        '<body>' + 
+        // Extract parts of the document
+        const beforeBody = content.substring(0, startIndex);
+        const bodyContent = content.substring(startIndex, endIndex);
+        const afterBody = content.substring(endIndex);
+        
+        // Combine all parts with header and footer
+        const finalHtml = beforeBody + 
                         headerContent + 
-                        bodyParts[0] + 
+                        bodyContent + 
                         footerContent + 
-                        '</body>' + 
-                        bodyParts[1];
+                        afterBody;
         
         res.send(finalHtml);
     } catch (error) {
         console.error('Error rendering template:', error);
-        res.status(500).send('Error rendering template');
+        res.status(500).send('Error rendering template: ' + error.message);
     }
 };
 

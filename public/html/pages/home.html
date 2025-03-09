@@ -1,30 +1,158 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>GreenLake Village</title>
-        <meta name="description" content="Landing page de GreenLake Portal">
-        <meta name="author" content="Javier Troyano Torrado, Jose Gallardo Caballero">
-    </head>
 
-    <body>
-        <main>
-            <img src="#">
-            <section id="travel">
-                <form action="/travel" method="post">
-                    <input type="text" name="origin" placeholder="¿De donde vienes?" required>
-                    <input type="date" name="departureDate" placeholder="Fecha de ida" required>
-                    <input type="date" name="returnDate" placeholder="Fecha de vuelta">
-                    <button type="submit">Busca ahora</button>
-                </form>
-            </section>
-            <section class="what-to-see">
-                <!--Aqui se generarán los intereses con js-->
-            </section>
-            <section class="traditions">
-                <!--Aqui se generarán las tradiciones de la base de datos-->
-            </section>
-        </main>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GreenLake Village</title>
+    <meta name="description" content="Landing page de GreenLake Portal">
+    <meta name="author" content="Javier Troyano Torrado, Jose Gallardo Caballero">
+    <link rel="stylesheet" href="/css/pages/home.css">
+    <script src="/js/data/countries.js" defer></script>
+    <script src="/js/pages/home.js" defer></script>
+</head>
+
+<body>
+    <!-- Carousel -->
+    <div class="carousel-container">
+        <!-- Placeholder slides - replace with actual images -->
+        <div class="carousel-slide" style="background-image: url('https://source.unsplash.com/1600x900/?nature')">
+            <div class="carousel-content">
+                <h2>Descubre la naturaleza</h2>
+                <p>Explora nuestros senderos naturales</p>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://source.unsplash.com/1600x900/?restaurant')">
+            <div class="carousel-content">
+                <h2>Gastronomía local</h2>
+                <p>Disfruta de los mejores establecimientos</p>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://source.unsplash.com/1600x900/?adventure')">
+            <div class="carousel-content">
+                <h2>Actividades emocionantes</h2>
+                <p>Vive experiencias inolvidables</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Travel Search Form -->
+        <section id="travel" class="travel-section">
+            <h2>Planifica tu viaje</h2>
+            <form action="/travel" method="post" class="travel-form">
+                <div class="form-group">
+                    <label for="origin">Origen</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="origin" name="origin" placeholder="¿De donde vienes?" required autocomplete="off">
+                        <div id="countryDropdown" class="dropdown-content"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="departureDate">Fecha de ida</label>
+                    <input type="date" id="departureDate" name="departureDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="returnDate">Fecha de vuelta</label>
+                    <input type="date" id="returnDate" name="returnDate">
+                </div>
+                <button type="submit" class="submit-btn">Busca ahora</button>
+            </form>
+        </section>
+
+        <!-- Interest Cards Section -->
+        <section class="interests-section">
+            <h2>Lugares de interés</h2>
+            <div class="interests-carousel-container">
+                <button class="carousel-nav carousel-prev" aria-label="Previous">
+                    <span aria-hidden="true">❮</span>
+                </button>
+                
+                <div class="interests-carousel-wrapper">
+                    <div class="interests-carousel what-to-see">
+                        <!-- Cards will be generated dynamically with JS -->
+                        <!-- Placeholder cards for preview -->
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?landmark')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 1</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?nature')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 2</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?food')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 3</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?architecture')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 4</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?mountain')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 5</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?beach')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 6</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-image" style="background-image: url('https://source.unsplash.com/300x200/?forest')"></div>
+                            <div class="interest-content">
+                                <h3>Lugar de interés 7</h3>
+                                <p>Descubre este increíble lugar en GreenLake Village</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav carousel-next" aria-label="Next">
+                    <span aria-hidden="true">❯</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Traditions Section -->
+        <section class="traditions-section traditions">
+            <h2>Tradiciones locales</h2>
+            <div class="traditions-grid">
+                <!-- Traditions will be generated from the database -->
+                <!-- Placeholder for preview -->
+                <div class="tradition-item">
+                    <div class="tradition-icon">🎭</div>
+                    <div class="tradition-content">
+                        <h3>Tradición local</h3>
+                        <p>Descripción de esta tradición ancestral de la región.</p>
+                    </div>
+                </div>
+                <div class="tradition-item">
+                    <div class="tradition-icon">🍲</div>
+                    <div class="tradition-content">
+                        <h3>Gastronomía típica</h3>
+                        <p>Descripción de los platos más representativos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
 </html>
