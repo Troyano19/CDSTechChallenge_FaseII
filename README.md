@@ -1,7 +1,7 @@
 # CDSTechChallenge-FaseII
 
 > [!IMPORTANT]
-> Crear el archivo `.env` en la carpeta `src` con las variables de entorno necesarias para la ejecución del proyecto.
+> Crear el archivo `.env` en la carpeta raíz con las variables de entorno necesarias para la ejecución del proyecto.
 
 ## Configuración inicial
 
@@ -19,8 +19,8 @@
    ```
 
 3. Configura las variables de entorno:
-   - Crea un archivo `.env` dentro de la carpeta `src` del proyecto basándote en `.env.example`
-   - Ajusta las variables según tu entorno local
+   - Crea un archivo `.env` dentro de la carpeta raíz del proyecto basándote en `.env.example`.
+   - Ajusta las variables según tu entorno local.
 
 ## Ejecución del proyecto
 
