@@ -3,7 +3,7 @@ const express = require('express');
 //Used to enroute without exposing the dirnames
 const path = require('path');
 //import the routers
-const frontend = require('./routes/frontendRouter')
+const frontend = require('./routes/frontendRouter');
 //We configure the use of dotenv for variables
 require('dotenv').config();
 
