@@ -58,6 +58,6 @@ userSchema.method.compareHash = async function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-const Users = mongoose.model("Users", userSchema);
+const Users = mongoose.model("User", userSchema);
 
 module.exports = Users;
