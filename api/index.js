@@ -15,6 +15,12 @@ const port = process.env.PORT;
 app.use(express.urlencoded({ extended: true }));
 //Load the middleware that analize the body of the requests
 app.use(express.json());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '../public')));
+// Serve HeroUI from node_modules if needed
+app.use('/heroui', express.static(path.join(__dirname, '../node_modules/heroui/dist')));
+
 //Load the routers
 app.use(frontend);
 
