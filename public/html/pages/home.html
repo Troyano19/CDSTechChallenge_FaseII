@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GreenLake Village</title>
+        <meta name="description" content="Landing page de GreenLake Portal">
+        <meta name="author" content="Javier Troyano Torrado, Jose Gallardo Caballero">
+    </head>
+
+    <body class="hero-bg-light">
+        <main class="hero-container hero-mx-auto hero-py-4">
+            <img src="#" class="hero-img hero-w-full hero-h-64 hero-object-cover hero-rounded">
+            <section id="travel" class="hero-p-4 hero-my-6 hero-rounded hero-shadow hero-bg-white">
+                <form action="/travel" method="post" class="hero-form hero-flex hero-flex-col hero-gap-4 hero-md-flex-row">
+                    <input type="text" name="origin" placeholder="¿De donde vienes?" required class="hero-input hero-flex-1">
+                    <input type="date" name="departureDate" placeholder="Fecha de ida" required class="hero-input hero-flex-1">
+                    <input type="date" name="returnDate" placeholder="Fecha de vuelta" class="hero-input hero-flex-1">
+                    <button type="submit" class="hero-button hero-primary">Busca ahora</button>
+                </form>
+            </section>
+            <section class="what-to-see hero-grid hero-grid-cols-1 hero-md-grid-cols-2 hero-lg-grid-cols-3 hero-gap-4">
+                <!--Aqui se generarán los intereses con js-->
+            </section>
+            <section class="traditions hero-mt-8 hero-p-4">
+                <!--Aqui se generarán las tradiciones de la base de datos-->
+            </section>
+        </main>
+    </body>
+</html>
