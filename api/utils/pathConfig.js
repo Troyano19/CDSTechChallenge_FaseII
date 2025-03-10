@@ -54,6 +54,7 @@ const registerPage = path.join(sessionDir, 'register.html');
 const homeCSS = path.join(cssPagesDir, 'home.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
+const sessionCSS = path.join(cssPagesDir, 'session.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -100,7 +101,8 @@ const getPaths = () => {
         css: {
             home: homeCSS,
             header: headerCSS,
-            footer: footerCSS
+            footer: footerCSS,
+            session: sessionCSS
         },
         js: {
             home: homeJs,
