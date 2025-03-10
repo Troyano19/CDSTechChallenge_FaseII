@@ -45,6 +45,11 @@ const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
 const activityInfoPage = path.join(infoDir, 'activitie.html');
 
+// Session pages
+const sessionDir = path.join(pagesDir, 'session');
+const loginPage = path.join(sessionDir, 'login.html');
+const registerPage = path.join(sessionDir, 'register.html');
+
 // CSS files
 const homeCSS = path.join(cssPagesDir, 'home.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
@@ -86,6 +91,10 @@ const getPaths = () => {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
                 activity: activityInfoPage
+            },
+            session: {
+                login: loginPage,
+                register: registerPage
             }
         },
         css: {
