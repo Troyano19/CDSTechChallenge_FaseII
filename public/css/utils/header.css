@@ -9,6 +9,7 @@ header {
     z-index: 1000;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 header .container {
@@ -68,6 +69,8 @@ header .register-btn:hover {
     
     header h1 {
         margin-bottom: 1rem;
+        text-decoration: none;
+        color: inherit;
     }
     
     header nav {
