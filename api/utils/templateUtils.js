@@ -2,6 +2,33 @@ const fs = require('fs');
 const { getPath } = require('./pathConfig');
 
 /**
+ * Replaces path placeholders in HTML content with actual paths
+ * Placeholder format: {{PATH:key}} where key is the path key in pathConfig
+ * @param {string} content - HTML content with placeholders
+ * @returns {string} - HTML content with resolved paths
+ */
+const replacePaths = (content) => {
+    // Regular expression to find all path placeholders
+    const pathRegex = /\{\{PATH:([^\}]+)\}\}/g;
+    
+    return content.replace(pathRegex, (match, pathKey) => {
+        const resolvedPath = getPath(pathKey);
+        if (resolvedPath === null) {
+            console.warn(`Path key not found: ${pathKey}`);
+            return match; // Keep the placeholder if path not found
+        }
+        
+        // Convert absolute path to relative web path for frontend resources
+        if (resolvedPath.includes('\\public\\')) {
+            const webPath = resolvedPath.split('\\public\\')[1].replace(/\\/g, '/');
+            return `/${webPath}`;
+        }
+        
+        return resolvedPath;
+    });
+};
+
+/**
  * Renders an HTML file with header and footer
  * @param {string} filePath - Path to the HTML file
  * @param {object} res - Express response object
@@ -36,12 +63,19 @@ const renderWithHeaderFooter = (filePath, res) => {
         const bodyContent = content.substring(startIndex, endIndex);
         const afterBody = content.substring(endIndex);
         
+        // Replace path placeholders in all content parts
+        const processedBeforeBody = replacePaths(beforeBody);
+        const processedHeaderContent = replacePaths(headerContent);
+        const processedBodyContent = replacePaths(bodyContent);
+        const processedFooterContent = replacePaths(footerContent);
+        const processedAfterBody = replacePaths(afterBody);
+        
         // Combine all parts with header and footer
-        const finalHtml = beforeBody + 
-                        headerContent + 
-                        bodyContent + 
-                        footerContent + 
-                        afterBody;
+        const finalHtml = processedBeforeBody + 
+                        processedHeaderContent + 
+                        processedBodyContent + 
+                        processedFooterContent + 
+                        processedAfterBody;
         
         res.send(finalHtml);
     } catch (error) {
@@ -51,5 +85,5 @@ const renderWithHeaderFooter = (filePath, res) => {
 };
 
 module.exports = {
-    renderWithHeaderFooter
+    renderWithHeaderFooter,
 };

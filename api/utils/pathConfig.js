@@ -15,9 +15,17 @@ const srcDir = path.join(rootDir, 'src');
 const htmlDir = path.join(publicDir, 'html');
 const pagesDir = path.join(htmlDir, 'pages');
 const utilsDir = path.join(htmlDir, 'utils');
+
 const imagesDir = path.join(publicDir, 'images');
+
 const cssDir = path.join(publicDir, 'css');
+const cssPagesDir = path.join(cssDir, 'pages');
+const cssUtilsDir = path.join(cssDir, 'utils');
+
 const jsDir = path.join(publicDir, 'js');
+const jsPagesDir = path.join(jsDir, 'pages');
+const jsUtilsDir = path.join(jsDir, 'utils');
+const jsDataDir = path.join(jsDir, 'data');
 
 // Template paths
 const headerPath = path.join(utilsDir, 'header.html');
@@ -36,6 +44,19 @@ const infoDir = path.join(pagesDir, 'info');
 const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
 const activityInfoPage = path.join(infoDir, 'activitie.html');
+
+// CSS files
+const homeCSS = path.join(cssPagesDir, 'home.css');
+const headerCSS = path.join(cssUtilsDir, 'header.css');
+const footerCSS = path.join(cssUtilsDir, 'footer.css');
+
+// JS files
+const homeJs = path.join(jsPagesDir, 'home.js');
+const headerJs = path.join(jsUtilsDir, 'header.js');
+const countriesJs = path.join(jsDataDir, 'countries.js');
+
+// Image paths
+const faviconIMG = path.join(imagesDir, 'icon.ico');
 
 /**
  * Get path configuration object
@@ -66,6 +87,19 @@ const getPaths = () => {
                 establishment: establishmentInfoPage,
                 activity: activityInfoPage
             }
+        },
+        css: {
+            home: homeCSS,
+            header: headerCSS,
+            footer: footerCSS
+        },
+        js: {
+            home: homeJs,
+            header: headerJs,
+            countries: countriesJs
+        },
+        images: {
+            favicon: faviconIMG
         }
     };
 };
@@ -75,21 +109,14 @@ const getPaths = () => {
  * 
  * This function retrieves a specific file path by using a key.
  * The key can be a top-level path, such as 'root', or a nested path using dot notation.
- * For example, to obtain the homepage path, use 'pages.home', which returns the full
- * path to the 'home.html' file located within the public directory.
+ * For example, to obtain the homepage path, use 'pages.home'.
  *
- * @param {string} key - The path key to retrieve (supports dot notation for nested paths, e.g., 'pages.home').
+ * @param {string} key - The path key to retrieve (supports dot notation for nested paths).
  * @returns {string|null} The requested path or null if not found.
  */
 const getPath = (key) => {
     const paths = getPaths();
-    
-    if (key.includes('.')) {
-        const [category, item] = key.split('.');
-        return paths[category] && paths[category][item] ? paths[category][item] : null;
-    }
-    
-    return paths[key] || null;
+    return key.split('.').reduce((acc, cur) => acc && acc[cur] !== undefined ? acc[cur] : null, paths);
 };
 
 module.exports = {
