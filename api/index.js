@@ -18,8 +18,6 @@ app.use(express.json());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '../public')));
-// Serve HeroUI from node_modules if needed
-app.use('/heroui', express.static(path.join(__dirname, '../node_modules/heroui/dist')));
 
 //Load the routers
 app.use(frontend);
