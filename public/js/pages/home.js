@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize country autocomplete
     initCountryAutocomplete();
+    
+    // Initialize travel form date validation
+    initTravelFormDates();
 });
 
 /**
@@ -187,5 +190,44 @@ function initCountryAutocomplete() {
         for (let i = 0; i < items.length; i++) {
             items[i].classList.remove('highlighted');
         }
+    }
+}
+
+/**
+ * Initialize travel form date validation
+ * Sets the minimum date for departure date to today
+ * Ensures return date cannot be before departure date
+ */
+function initTravelFormDates() {
+    const departureDateInput = document.getElementById('departureDate');
+    const returnDateInput = document.getElementById('returnDate');
+    
+    if (!departureDateInput || !returnDateInput) return;
+    
+    // Format today's date as YYYY-MM-DD for input[type="date"]
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedToday = `${year}-${month}-${day}`;
+    
+    // Set minimum date for departure to today
+    departureDateInput.min = formattedToday;
+    
+    // Update return date's minimum whenever departure date changes
+    departureDateInput.addEventListener('change', function() {
+        returnDateInput.min = this.value;
+        
+        // If return date is now invalid (before departure), reset it
+        if (returnDateInput.value && returnDateInput.value < this.value) {
+            returnDateInput.value = this.value;
+        }
+    });
+    
+    // Initial setting of return date minimum (if departure date already has a value)
+    if (departureDateInput.value) {
+        returnDateInput.min = departureDateInput.value;
+    } else {
+        returnDateInput.min = formattedToday;
     }
 }
