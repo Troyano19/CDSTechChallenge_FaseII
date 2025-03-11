@@ -55,11 +55,13 @@ const homeCSS = path.join(cssPagesDir, 'home.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
+const mainCSS = path.join(cssDir, 'main.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const headerJs = path.join(jsUtilsDir, 'header.js');
 const countriesJs = path.join(jsDataDir, 'countries.js');
+const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
@@ -99,6 +101,7 @@ const getPaths = () => {
             }
         },
         css: {
+            main: mainCSS,
             home: homeCSS,
             header: headerCSS,
             footer: footerCSS,
@@ -107,7 +110,8 @@ const getPaths = () => {
         js: {
             home: homeJs,
             header: headerJs,
-            countries: countriesJs
+            countries: countriesJs,
+            carousel: carouselJs
         },
         images: {
             favicon: faviconIMG

@@ -13,44 +13,38 @@ body {
     padding: 0 1rem;
 }
 
-/* Carousel styles */
+/* Home page specific styles */
+
+/* Carousel styles (overrides for home page only) */
 .carousel-container {
-    position: relative;
     height: 500px;
-    overflow: hidden;
     margin-bottom: 2rem;
-}
-
-.carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-}
-
-.carousel-slide.active {
-    opacity: 1;
 }
 
 .carousel-content {
     color: white;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
+    width: 600px;
+    height: 150px;
     padding: 2rem;
     border-radius: 4px;
+    margin: 10rem auto 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-content h2 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Space below for the description */
+}
+
+.carousel-content p {
+    font-size: 1rem;
+    margin: 0;
 }
 
 /* Travel form section */
@@ -65,7 +59,7 @@ body {
 }
 
 .travel-section h2 {
-    color: #2F855A; /* primary color */
+    color: var(--color-primary);
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
@@ -174,52 +168,8 @@ body {
     padding: 2rem 0;
 }
 
-.interests-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.interest-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.interest-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-.interest-image {
-    height: 200px;
-    background-color: #A0AEC0; /* gray color placeholder */
-    background-size: cover;
-    background-position: center;
-}
-
-.interest-content {
-    padding: 1.5rem;
-}
-
-.interest-content h3 {
-    margin-top: 0;
-    color: #2D3748; /* dark color */
-}
-
-.interest-content p {
-    color: #4A5568; /* dark gray */
-}
-
-/* Interest cards carousel section */
-.interests-section {
-    padding: 2rem 0;
-}
-
 .interests-section h2 {
-    color: #2F855A; /* primary color */
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -311,11 +261,11 @@ body {
 
 .interest-content h3 {
     margin-top: 0;
-    color: #2D3748; /* dark color */
+    color: var(--color-text-dark);
 }
 
 .interest-content p {
-    color: #4A5568; /* dark gray */
+    color: var(--color-text-gray);
 }
 
 /* Responsive adjustments for interest cards */
@@ -349,7 +299,7 @@ body {
 }
 
 .traditions-section h2 {
-    color: #2F855A; /* primary color */
+    color: var(--color-primary);
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
@@ -368,7 +318,7 @@ body {
 .tradition-icon {
     width: 3rem;
     height: 3rem;
-    background-color: #68D391; /* accent color */
+    background-color: var(--color-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -394,7 +344,7 @@ body {
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #CBD5E0;
+    border: 1px solid var(--color-border);
     border-top: none;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
