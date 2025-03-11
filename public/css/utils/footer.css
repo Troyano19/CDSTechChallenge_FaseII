@@ -1,9 +1,9 @@
+/* Footer specific styles */
 footer {
-    background-color: #2D3748; /* dark color */
+    background-color: var(--color-text-dark);
     color: white;
     padding: 2rem 1rem;
     margin-top: 2rem;
-    font-family: 'Roboto', Arial, sans-serif;
 }
 
 footer .container {

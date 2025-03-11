@@ -1,15 +1,15 @@
+/* Header specific styles */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #2F855A; /* primary color */
+    background-color: var(--color-primary);
     color: white;
     padding: 1rem;
     z-index: 1000;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto', Arial, sans-serif;
 }
 
 header .container {
@@ -40,19 +40,21 @@ header nav a {
 }
 
 header nav a:hover {
+    color: white;
     text-decoration: underline;
 }
 
 header .register-btn {
-    background-color: #68D391; /* accent color */
-    color: #2D3748; /* dark color */
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm);
     font-weight: bold;
 }
 
 header .register-btn:hover {
-    background-color: #9AE6B4; /* lighter accent color */
+    background-color: var(--color-accent-light);
+    color: black;
     text-decoration: none;
 }
 
@@ -69,8 +71,6 @@ header .register-btn:hover {
     
     header h1 {
         margin-bottom: 1rem;
-        text-decoration: none;
-        color: inherit;
     }
     
     header nav {
