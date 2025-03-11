@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(frontend);
 
 app.listen(port, () => {
-    console.log(`Web server listening on port ${port}`);
+    console.log(`Web server listening on http://localhost:${port}`);
 });
 
 module.exports = app;
