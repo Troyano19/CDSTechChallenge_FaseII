@@ -1,0 +1,274 @@
+/* Travel form section */
+.travel-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.travel-section h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Travel page specific styles */
+
+/* Main container spacing */
+.container {
+    padding-top: 2rem;
+}
+
+/* Travel form styling - reuses styles from home.css */
+.travel-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1 1 180px;
+    max-width: calc(33% - 1rem);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4A5568;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #CBD5E0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    height: 38px;
+    line-height: normal;
+    appearance: none;
+}
+
+.submit-btn {
+    background-color: #2F855A; /* primary color */
+    color: white;
+    border: none;
+    padding: 0.65rem 1.5rem; /* Slightly reduced padding */
+    border-radius: 4px;
+    font-size: 0.95rem; /* Slightly smaller font */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1.5rem;
+    align-self: flex-end; /* Align button at the bottom of flex container */
+    flex: 0 0 auto; /* Don't allow button to grow or shrink */
+}
+
+.submit-btn:hover {
+    background-color: #38A169; /* secondary color */
+}
+
+/* Options lists (for mobility and hotels) */
+.mobility-section,
+.hotels-section,
+.events-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.mobility-section h2,
+.hotels-section h2,
+.events-section h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.transport-item,
+.hotel-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.transport-item:hover,
+.hotel-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.company-info h3,
+.hotel-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    color: #F6E05E; /* Yellow color for stars */
+}
+
+.rating-number {
+    color: var(--color-text-gray);
+    font-size: 0.9rem;
+}
+
+.schedule-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.departure,
+.arrival,
+.check-in,
+.check-out {
+    text-align: right;
+}
+
+.label {
+    font-size: 0.85rem;
+    color: var(--color-text-gray);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.time {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Events section */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.event-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    align-items: center;
+}
+
+.event-date {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    padding: 1rem;
+    background-color: #E6F7EF; /* Light green background */
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    min-width: 80px;
+}
+
+.event-details h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.event-details p {
+    margin: 0;
+    color: var(--color-text-gray);
+}
+
+/* Autocomplete dropdown */
+.autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:hover,
+.dropdown-item.highlighted {
+    background-color: #f9f9f9;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-group {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .schedule-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: right;
+    }
+    
+    .transport-item,
+    .hotel-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .schedule-info {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    
+    .departure, .arrival, .check-in, .check-out {
+        text-align: left;
+    }
+}
