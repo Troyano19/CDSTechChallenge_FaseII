@@ -64,6 +64,7 @@ const headerJs = path.join(jsUtilsDir, 'header.js');
 const countriesJs = path.join(jsDataDir, 'countries.js');
 const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
+const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
@@ -115,7 +116,8 @@ const getPaths = () => {
             header: headerJs,
             countries: countriesJs,
             carousel: carouselJs,
-            travel: travelJs
+            travel: travelJs,
+            travelUtils: travelUtilsJs
         },
         images: {
             favicon: faviconIMG
