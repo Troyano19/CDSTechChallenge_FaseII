@@ -3,20 +3,46 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize both carousels on the page
-    initBusinessCarousels();
+    // Detect which page we're on and load the appropriate data
+    initPageCarousels();
     
     // Check if user is logged in and show/hide nearby section accordingly
     checkUserLoginState();
 });
 
 /**
- * Initialize carousels for nearby places and recommendations
+ * Initialize carousel data and functionality based on current page
  */
-function initBusinessCarousels() {
-    // Check if Carousel functionality is available
+function initPageCarousels() {
+    if (!window.CarouselData || !window.CarouselRenderer) return;
+    
+    // Get the current page type
+    const currentPath = window.location.pathname;
+    let pageType, nearbyData, recommendedData;
+    
+    // Determine page type and get appropriate data
+    if (currentPath.includes('activities')) {
+        pageType = 'activity';
+        nearbyData = window.CarouselData.activities.nearby;
+        recommendedData = window.CarouselData.activities.recommended;
+    } else if (currentPath.includes('establishments')) {
+        pageType = 'establishment';
+        nearbyData = window.CarouselData.establishments.nearby;
+        recommendedData = window.CarouselData.establishments.recommended;
+    } else if (currentPath.includes('trails')) {
+        pageType = 'trail';
+        nearbyData = window.CarouselData.trails.nearby;
+        recommendedData = window.CarouselData.trails.recommended;
+    } else {
+        return; // Not a business page
+    }
+    
+    // Render the carousel items
+    window.CarouselRenderer.renderBusinessItems('.nearby-carousel', nearbyData, pageType);
+    window.CarouselRenderer.renderBusinessItems('.recommendations-carousel', recommendedData, pageType);
+    
+    // Initialize carousel functionality
     if (window.Carousel) {
-        // Use the business carousel initialization function for both carousels
         window.Carousel.initBusinessCarousel('.nearby-carousel', '.nearby-prev', '.nearby-next');
         window.Carousel.initBusinessCarousel('.recommendations-carousel', '.recommendations-prev', '.recommendations-next');
     }
