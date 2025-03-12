@@ -54,6 +54,11 @@ function switchLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
     currentLanguage = lang;
     
+    // Refresh the page to apply changes across all components
+    window.location.reload();
+    
+    // The code below will run only if the page refresh fails for some reason
+    
     // Update UI
     updateLanguageUI();
     
