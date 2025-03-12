@@ -10,6 +10,8 @@
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
     <link rel="stylesheet" href="{{PATH:css.main}}">
     <link rel="stylesheet" href="{{PATH:css.travel}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
     <script src="{{PATH:js.pageLoader}}" defer></script>
     <script src="{{PATH:js.countries}}" defer></script>
     <script src="{{PATH:js.travelUtils}}" defer></script>
@@ -20,31 +22,31 @@
     <main class="container">
         <!-- Travel Search Form - Can be modified by user if needed -->
         <section id="travel" class="travel-section">
-            <h2>Modifica tu viaje</h2>
+            <h2 data-translate="travel.title">Modifica tu viaje</h2>
             <form action="/travel" method="post" class="travel-form">
                 <div class="form-group">
-                    <label for="origin">Origen</label>
+                    <label for="origin" data-translate="home.travel.origin">Origen</label>
                     <div class="autocomplete-container">
-                        <input type="text" id="origin" name="origin" placeholder="¿De dónde vienes?" required
+                        <input type="text" id="origin" name="origin" data-translate-placeholder="home.travel.originPlaceholder" placeholder="¿De dónde vienes?" required
                             autocomplete="off">
                         <div id="countryDropdown" class="dropdown-content"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="departureDate">Fecha de ida</label>
+                    <label for="departureDate" data-translate="home.travel.departureDate">Fecha de ida</label>
                     <input type="date" id="departureDate" name="departureDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="returnDate">Fecha de vuelta</label>
+                    <label for="returnDate" data-translate="home.travel.returnDate">Fecha de vuelta</label>
                     <input type="date" id="returnDate" name="returnDate">
                 </div>
-                <button type="submit" class="submit-btn">Actualizar búsqueda</button>
+                <button type="submit" class="submit-btn" data-translate="home.travel.search">Actualizar búsqueda</button>
             </form>
         </section>
 
         <!-- Mobility List Section -->
         <section class="mobility-section">
-            <h2>Opciones de transporte a GreenLake</h2>
+            <h2 data-translate="travel.transport.title">Opciones de transporte a GreenLake</h2>
             <div class="options-list">
                 <!-- Example items - these would be generated dynamically -->
                 <div class="transport-item">
@@ -57,11 +59,11 @@
                     </div>
                     <div class="schedule-info">
                         <div class="departure">
-                            <span class="label">Salida:</span>
+                            <span class="label" data-translate="travel.transport.departure">Salida:</span>
                             <span class="time">08:30</span>
                         </div>
                         <div class="arrival">
-                            <span class="label">Llegada:</span>
+                            <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
                             <span class="time">11:45</span>
                         </div>
                     </div>
@@ -77,11 +79,11 @@
                     </div>
                     <div class="schedule-info">
                         <div class="departure">
-                            <span class="label">Salida:</span>
+                            <span class="label" data-translate="travel.transport.departure">Salida:</span>
                             <span class="time">10:15</span>
                         </div>
                         <div class="arrival">
-                            <span class="label">Llegada:</span>
+                            <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
                             <span class="time">12:30</span>
                         </div>
                     </div>
@@ -91,7 +93,7 @@
 
         <!-- Hotels List Section -->
         <section class="hotels-section">
-            <h2>Alojamientos disponibles</h2>
+            <h2 data-translate="travel.hotels.title">Alojamientos disponibles</h2>
             <div class="options-list">
                 <!-- Example items - these would be generated dynamically -->
                 <div class="hotel-item">
@@ -104,11 +106,11 @@
                     </div>
                     <div class="schedule-info">
                         <div class="check-in">
-                            <span class="label">Check-in:</span>
+                            <span class="label" data-translate="travel.hotels.checkIn">Check-in:</span>
                             <span class="time">14:00</span>
                         </div>
                         <div class="check-out">
-                            <span class="label">Check-out:</span>
+                            <span class="label" data-translate="travel.hotels.checkOut">Check-out:</span>
                             <span class="time">12:00</span>
                         </div>
                     </div>
@@ -124,11 +126,11 @@
                     </div>
                     <div class="schedule-info">
                         <div class="check-in">
-                            <span class="label">Check-in:</span>
+                            <span class="label" data-translate="travel.hotels.checkIn">Check-in:</span>
                             <span class="time">15:00</span>
                         </div>
                         <div class="check-out">
-                            <span class="label">Check-out:</span>
+                            <span class="label" data-translate="travel.hotels.checkOut">Check-out:</span>
                             <span class="time">11:00</span>
                         </div>
                     </div>
@@ -138,7 +140,7 @@
 
         <!-- Events Section -->
         <section class="events-section">
-            <h2>Eventos durante tu visita</h2>
+            <h2 data-translate="travel.events.title">Eventos durante tu visita</h2>
             <div class="events-list">
                 <!-- Will be populated dynamically based on the selected dates -->
                 <div class="event-item">

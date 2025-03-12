@@ -10,6 +10,8 @@
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
     <link rel="stylesheet" href="{{PATH:css.main}}">
     <link rel="stylesheet" href="{{PATH:css.businessPages}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
     <script src="{{PATH:js.pageLoader}}" defer></script>
     <script src="{{PATH:js.carousel}}" defer></script>
     <script src="{{PATH:js.carouselData}}" defer></script>
@@ -19,10 +21,10 @@
 
 <body>
     <main class="container">
-        <h1 class="page-title">Rutas</h1>
+        <h1 class="page-title" data-translate="business.trails.title">Rutas</h1>
         <!-- Nearby Trails Section - Only visible when logged in -->
         <section class="nearby-section carousel-section">
-            <h2>Rutas cercanas a ti</h2>
+            <h2 data-translate="business.trails.nearby">Rutas cercanas a ti</h2>
             <div class="business-carousel-container">
                 <button class="carousel-nav nearby-prev" aria-label="Anterior">
                     <span aria-hidden="true">❮</span>
@@ -42,7 +44,7 @@
 
         <!-- Recommended Trails Section -->
         <section class="recommendations-section carousel-section">
-            <h2>Rutas recomendadas</h2>
+            <h2 data-translate="business.trails.recommended">Rutas recomendadas</h2>
             <div class="business-carousel-container">
                 <button class="carousel-nav recommendations-prev" aria-label="Anterior">
                     <span aria-hidden="true">❮</span>
