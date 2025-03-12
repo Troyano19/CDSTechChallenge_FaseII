@@ -145,7 +145,7 @@ const translations = {
             'terms': 'Terms',
             'privacy': 'Privacy',
             'cookies': 'Cookies',
-            'copyright': '© 2025 GreenLake Portal. Created by Javier Troyano Torrado & José Gallardo Caballero'
+            'created-by': 'Created by'
         },
         // Home page translations
         'home': {
