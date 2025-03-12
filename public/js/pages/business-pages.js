@@ -2,7 +2,18 @@
  * Shared functionality for business pages (activities, establishments, trails)
  */
 
+// Initialize page loader before DOM content is loaded
+if (window.PageLoader) {
+    window.PageLoader.initPageLoader();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Preload carousel images if possible
+    if (window.CarouselData && window.PageLoader) {
+        const imagesToPreload = window.PageLoader.extractCarouselImages(window.CarouselData);
+        window.PageLoader.preloadImages(imagesToPreload);
+    }
+    
     // Detect which page we're on and load the appropriate data
     initPageCarousels();
     
