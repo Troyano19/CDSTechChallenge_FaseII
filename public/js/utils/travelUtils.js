@@ -14,11 +14,68 @@ function initCountryAutocomplete() {
     
     let currentFocus = -1;
     
+    // Get current language
+    const getCurrentLanguage = () => window.LanguageSwitcher ? 
+        window.LanguageSwitcher.currentLanguage : 'es';
+    
+    // Get country name in the current language (or default)
+    const getLocalizedCountryName = (countryName) => {
+        const lang = getCurrentLanguage();
+        
+        // If we're looking at Spanish names (default) and we have countryTranslations for English
+        if (lang === 'es' && typeof countryTranslations !== 'undefined') {
+            // Return the Spanish name as is
+            return countryName;
+        }
+        
+        // For English, we need to find the English name from the countryTranslations
+        if (lang === 'en' && typeof countryTranslations !== 'undefined') {
+            // Try to find the English equivalent by checking all Spanish-to-English translations
+            for (const [englishName, spanishName] of Object.entries(countryTranslations)) {
+                if (spanishName === countryName) {
+                    return englishName;
+                }
+            }
+        }
+        
+        // If no translation is found, return the original name
+        return countryName;
+    };
+    
+    // Get all countries in the current language
+    const getLocalizedCountries = () => {
+        if (!countries) return [];
+        
+        const lang = getCurrentLanguage();
+        
+        // If Spanish, return original list
+        if (lang === 'es') {
+            return [...countries];
+        }
+        
+        // If English and we have translations, translate all countries
+        if (lang === 'en' && typeof countryTranslations !== 'undefined') {
+            // Create a map of Spanish to English country names
+            const spanishToEnglish = {};
+            for (const [englishName, spanishName] of Object.entries(countryTranslations)) {
+                spanishToEnglish[spanishName] = englishName;
+            }
+            
+            // Translate all countries to English
+            return countries.map(country => 
+                spanishToEnglish[country] || country
+            ).sort();
+        }
+        
+        // Default case, return original list
+        return [...countries];
+    };
+    
     // Show dropdown when input receives focus
     originInput.addEventListener('focus', function() {
         if (this.value.length === 0) {
             // Show all countries initially
-            showDropdown(countries);
+            showDropdown(getLocalizedCountries());
         } else {
             // Filter based on current input
             filterCountries(this.value);
@@ -62,6 +119,18 @@ function initCountryAutocomplete() {
         }
     });
     
+    // Handle language change events
+    document.addEventListener('languageChanged', function() {
+        // If dropdown is visible, update it with the new language
+        if (dropdown.classList.contains('show')) {
+            if (originInput.value.length === 0) {
+                showDropdown(getLocalizedCountries());
+            } else {
+                filterCountries(originInput.value);
+            }
+        }
+    });
+    
     // Hide dropdown when clicking outside
     document.addEventListener('click', function(e) {
         if (e.target !== originInput && e.target !== dropdown) {
@@ -72,45 +141,47 @@ function initCountryAutocomplete() {
     // Filter and show matching countries
     function filterCountries(query) {
         query = query.toLowerCase().trim();
+        const lang = getCurrentLanguage();
         
         if (!query) {
-            showDropdown(countries);
+            showDropdown(getLocalizedCountries());
             return;
         }
         
-        // Check if the query exactly matches an English country name
-        const englishMatch = typeof countryTranslations !== 'undefined' && 
-                            countryTranslations[query];
+        let filtered = [];
         
-        if (englishMatch) {
-            // If exact match in English, show only that result
-            showDropdown([englishMatch]);
-            return;
-        }
-        
-        // Filter by Spanish names
-        let filtered = countries.filter(country => {
-            return country.toLowerCase().includes(query);
-        });
-        
-        // Also filter by English names if translations are available
-        if (typeof countryTranslations !== 'undefined') {
-            // Find countries that match by English name
-            const englishMatches = Object.keys(countryTranslations)
-                .filter(engName => engName.includes(query))
-                .map(engName => countryTranslations[engName]);
-            
-            // Add English matches that weren't already found
-            englishMatches.forEach(country => {
-                if (!filtered.includes(country)) {
-                    filtered.push(country);
-                }
+        if (lang === 'es') {
+            // Filter Spanish country names
+            filtered = countries.filter(country => {
+                return country.toLowerCase().includes(query);
             });
             
-            // Sort results alphabetically
-            filtered.sort();
+            // Also check English names if translations available
+            if (typeof countryTranslations !== 'undefined') {
+                // Find Spanish countries that match by their English name
+                const englishMatches = Object.entries(countryTranslations)
+                    .filter(([engName]) => engName.toLowerCase().includes(query))
+                    .map(([, spanishName]) => spanishName);
+                
+                // Add English matches that weren't already found
+                englishMatches.forEach(country => {
+                    if (!filtered.includes(country)) {
+                        filtered.push(country);
+                    }
+                });
+            }
+        } else if (lang === 'en' && typeof countryTranslations !== 'undefined') {
+            // Create English country list
+            const englishCountries = getLocalizedCountries();
+            
+            // Filter English country names
+            filtered = englishCountries.filter(country => {
+                return country.toLowerCase().includes(query);
+            });
         }
         
+        // Sort results alphabetically
+        filtered.sort();
         showDropdown(filtered);
     }
     
@@ -122,7 +193,11 @@ function initCountryAutocomplete() {
         if (countryList.length === 0) {
             const item = document.createElement('div');
             item.classList.add('dropdown-item', 'no-results');
-            item.textContent = 'No se encontraron países';
+            
+            // Show "No countries found" in the current language
+            const lang = getCurrentLanguage();
+            item.textContent = lang === 'en' ? 'No countries found' : 'No se encontraron países';
+            
             dropdown.appendChild(item);
         } else {
             countryList.forEach(country => {
