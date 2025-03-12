@@ -192,6 +192,10 @@ body {
     will-change: transform; /* Optimize for animations */
 }
 
+.interests-carousel > * {
+    cursor: pointer;
+}
+
 .carousel-nav {
     background-color: #2F855A; /* primary color */
     color: white;
