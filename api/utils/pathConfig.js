@@ -57,6 +57,7 @@ const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const travelCSS = path.join(cssPagesDir, 'travel.css');
+const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -65,6 +66,7 @@ const countriesJs = path.join(jsDataDir, 'countries.js');
 const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
+const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
@@ -109,7 +111,8 @@ const getPaths = () => {
             header: headerCSS,
             footer: footerCSS,
             session: sessionCSS,
-            travel: travelCSS
+            travel: travelCSS,
+            businessPages: businessPagesCSS
         },
         js: {
             home: homeJs,
@@ -117,7 +120,8 @@ const getPaths = () => {
             countries: countriesJs,
             carousel: carouselJs,
             travel: travelJs,
-            travelUtils: travelUtilsJs
+            travelUtils: travelUtilsJs,
+            businessPages: businessPagesJs
         },
         images: {
             favicon: faviconIMG

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <title>Establecimientos - GreenLake Village</title>
+    <meta name="description" content="Restaurantes, tiendas y alojamiento en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.businessPages}}">
+    <script src="{{PATH:js.carousel}}" defer></script>
+    <script src="{{PATH:js.businessPages}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+
+        <!-- Nearby Establishments Section - Only visible when logged in -->
+        <section class="nearby-section carousel-section">
+            <h2>Establecimientos cercanos a ti</h2>
+            <div class="business-carousel-container">
+                <button class="carousel-nav nearby-prev" aria-label="Anterior">
+                    <span aria-hidden="true">❮</span>
+                </button>
+
+                <div class="carousel-wrapper business-carousel-wrapper">
+                    <div class="business-carousel nearby-carousel">
+                        <!-- Example items - these would be generated dynamically -->
+                        <div class="business-item" onclick="navigateToDetail('establishment', '1')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp1.jpeg')">
+                                <div class="business-name">Restaurante El Lago</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '2')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp2.jpeg')">
+                                <div class="business-name">Hotel Vista Verde</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '3')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp3.jpeg')">
+                                <div class="business-name">Tienda Local Artesanía</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '4')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp4.jpeg')">
+                                <div class="business-name">Cafetería Montaña</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-nav nearby-next" aria-label="Siguiente">
+                    <span aria-hidden="true">❯</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Recommended Establishments Section -->
+        <section class="recommendations-section carousel-section">
+            <h2>Establecimientos recomendados</h2>
+            <div class="business-carousel-container">
+                <button class="carousel-nav recommendations-prev" aria-label="Anterior">
+                    <span aria-hidden="true">❮</span>
+                </button>
+
+                <div class="carousel-wrapper business-carousel-wrapper">
+                    <div class="business-carousel recommendations-carousel">
+                        <!-- Example items - these would be generated dynamically -->
+                        <div class="business-item" onclick="navigateToDetail('establishment', '5')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp3.jpeg')">
+                                <div class="business-name">Restaurante Tradicional</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '6')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp1.jpeg')">
+                                <div class="business-name">Albergue Rural</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '7')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp4.jpeg')">
+                                <div class="business-name">Tienda de Productos Locales</div>
+                            </div>
+                        </div>
+                        <div class="business-item" onclick="navigateToDetail('establishment', '8')">
+                            <div class="business-image" style="background-image: url('../../images/temp/temp2.jpeg')">
+                                <div class="business-name">Casa Rural</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-nav recommendations-next" aria-label="Siguiente">
+                    <span aria-hidden="true">❯</span>
+                </button>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

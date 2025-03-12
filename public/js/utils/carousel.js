@@ -34,15 +34,17 @@ function initImageCarousel(containerSelector = '.carousel-container') {
 }
 
 /**
- * Initialize the places of interest carousel with infinite scrolling
+ * Initialize a carousel with infinite scrolling
  * @param {string} carouselSelector - CSS selector for the carousel element
  * @param {string} prevBtnSelector - CSS selector for the previous button
  * @param {string} nextBtnSelector - CSS selector for the next button
+ * @param {string} cardSelector - CSS selector for the individual card elements
  */
-function initInterestsCarousel(
-    carouselSelector = '.interests-carousel',
-    prevBtnSelector = '.carousel-prev',
-    nextBtnSelector = '.carousel-next'
+function initGenericCarousel(
+    carouselSelector,
+    prevBtnSelector,
+    nextBtnSelector,
+    cardSelector
 ) {
     const carousel = document.querySelector(carouselSelector);
     const prevButton = document.querySelector(prevBtnSelector);
@@ -50,7 +52,7 @@ function initInterestsCarousel(
     
     if (!carousel || !prevButton || !nextButton) return;
     
-    const originalCards = carousel.querySelectorAll('.interest-card');
+    const originalCards = carousel.querySelectorAll(cardSelector);
     
     // Only enable carousel if we have more than 3 cards
     if (originalCards.length <= 3) {
@@ -63,7 +65,7 @@ function initInterestsCarousel(
     setupInfiniteCards();
     
     // Get all cards including clones
-    const cards = carousel.querySelectorAll('.interest-card');
+    const cards = carousel.querySelectorAll(cardSelector);
     
     let currentPosition = 0;
     let cardWidth = 0;
@@ -104,7 +106,7 @@ function initInterestsCarousel(
     
     // Calculate card width based on container
     function calculateCardWidth() {
-        const carouselWrapper = carousel.closest('.interests-carousel-wrapper');
+        const carouselWrapper = carousel.closest('.carousel-wrapper');
         const wrapperWidth = carouselWrapper ? carouselWrapper.offsetWidth : carousel.parentElement.offsetWidth;
         
         // Calculate gap between cards (from CSS)
@@ -216,8 +218,43 @@ function initInterestsCarousel(
     });
 }
 
+/**
+ * Initialize the places of interest carousel with infinite scrolling
+ * This is a wrapper around initGenericCarousel for backwards compatibility
+ */
+function initInterestsCarousel(
+    carouselSelector = '.interests-carousel',
+    prevBtnSelector = '.carousel-prev',
+    nextBtnSelector = '.carousel-next'
+) {
+    initGenericCarousel(
+        carouselSelector,
+        prevBtnSelector,
+        nextBtnSelector,
+        '.interest-card'
+    );
+}
+
+/**
+ * Initialize a business carousel (for activities, establishments, trails)
+ */
+function initBusinessCarousel(
+    carouselSelector,
+    prevBtnSelector,
+    nextBtnSelector
+) {
+    initGenericCarousel(
+        carouselSelector,
+        prevBtnSelector,
+        nextBtnSelector,
+        '.business-item'
+    );
+}
+
 // Export carousel functions
 window.Carousel = {
     initImageCarousel,
-    initInterestsCarousel
+    initInterestsCarousel,
+    initBusinessCarousel,
+    initGenericCarousel
 };
