@@ -16,8 +16,7 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY || null;
  */
 router.get('/chatbot', (_, res) => {
     res.json({
-        apiKey: GROQ_API_KEY,
-        model: 'llama-3.1-8b-instant'
+        apiKey: GROQ_API_KEY
     });
 });
 
