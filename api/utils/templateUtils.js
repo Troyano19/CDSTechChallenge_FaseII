@@ -35,12 +35,14 @@ const replacePaths = (content) => {
  */
 const renderWithHeaderFooter = (filePath, res) => {
     try {
-        // Read the header, footer, and main content using the path config
+        // Read the header, footer, chatbot, and main content using the path config
         const headerPath = getPath('header');
         const footerPath = getPath('footer');
+        const chatBotPath = getPath('chatBot');
         
         const headerContent = fs.readFileSync(headerPath, 'utf8');
         const footerContent = fs.readFileSync(footerPath, 'utf8');
+        const chatBotContent = fs.readFileSync(chatBotPath, 'utf8');
         const content = fs.readFileSync(filePath, 'utf8');
         
         // Use regex to find the body tag with any attributes
@@ -68,13 +70,15 @@ const renderWithHeaderFooter = (filePath, res) => {
         const processedHeaderContent = replacePaths(headerContent);
         const processedBodyContent = replacePaths(bodyContent);
         const processedFooterContent = replacePaths(footerContent);
+        const processedChatBotContent = replacePaths(chatBotContent);
         const processedAfterBody = replacePaths(afterBody);
         
-        // Combine all parts with header and footer
+        // Combine all parts with header, footer, and chatbot
         const finalHtml = processedBeforeBody + 
                         processedHeaderContent + 
                         processedBodyContent + 
                         processedFooterContent + 
+                        processedChatBotContent +
                         processedAfterBody;
         
         res.send(finalHtml);
