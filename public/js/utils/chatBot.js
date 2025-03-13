@@ -15,6 +15,9 @@ class ChatBot {
         this.isOpen = false;
         this.isWaitingForResponse = false;
         
+        // Add conversation history array
+        this.conversationHistory = [];
+        
         // GROQ API settings - will be populated from config
         this.apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
         this.apiKey = null;
@@ -46,7 +49,8 @@ class ChatBot {
             
             // Add welcome message
             setTimeout(() => {
-                this.addBotMessage("¡Hola! Soy el asistente de GreenLake. ¿En qué puedo ayudarte hoy?");
+                const welcomeMessage = "¡Hola! Soy el asistente de GreenLake. ¿En qué puedo ayudarte hoy?";
+                this.addBotMessage(welcomeMessage);
             }, 500);
         } catch (error) {
             console.error('Failed to initialize chatbot:', error);
@@ -122,10 +126,15 @@ class ChatBot {
      * Add user message to chat
      */
     addUserMessage(text) {
+        // Add to UI
         const message = document.createElement('div');
         message.className = 'message user-message';
         message.textContent = text;
         this.messageArea.appendChild(message);
+        
+        // Add to conversation history
+        this.conversationHistory.push({ role: 'user', content: text });
+        
         this.scrollToBottom();
     }
     
@@ -133,10 +142,15 @@ class ChatBot {
      * Add bot message to chat
      */
     addBotMessage(text) {
+        // Add to UI
         const message = document.createElement('div');
         message.className = 'message bot-message';
         message.textContent = text;
         this.messageArea.appendChild(message);
+        
+        // Add to conversation history
+        this.conversationHistory.push({ role: 'assistant', content: text });
+        
         this.scrollToBottom();
     }
     
@@ -205,6 +219,13 @@ class ChatBot {
                 return;
             }
 
+            // Prepare messages array with system message and conversation history
+            const messages = [
+                { role: 'system', content: systemMessage },
+                // Include previous conversation history (up to a reasonable limit)
+                ...this.conversationHistory.slice(-10) // Limit to last 10 messages to avoid token limits
+            ];
+
             const response = await fetch(this.apiUrl, {
                 method: 'POST',
                 headers: {
@@ -213,10 +234,7 @@ class ChatBot {
                 },
                 body: JSON.stringify({
                     model: this.model,
-                    messages: [
-                        { role: 'system', content: systemMessage },
-                        { role: 'user', content: userMessage.slice(0, 1024) } // Limit user message to 1000 chars
-                    ],
+                    messages: messages,
                     max_tokens: 512,
                     temperature: 0.7
                 })
