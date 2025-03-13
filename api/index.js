@@ -11,7 +11,6 @@ require('dotenv').config();
 //We inicialize the express app
 const app = express();
 const port = process.env.PORT;
-const groq_api_key = process.env.GROQ_API_KEY;
 
 // Parse URL-encoded bodies (for form data)
 app.use(express.urlencoded({ extended: true }));
