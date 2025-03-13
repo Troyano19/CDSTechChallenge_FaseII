@@ -22,6 +22,9 @@ class ChatBot {
         this.apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
         this.apiKey = null;
         this.model =  "llama-3.1-8b-instant";
+        
+        // The auth header will be securely retrieved from DOM data attribute
+        this.headerKey = null;
     }
     
     /**
@@ -39,6 +42,9 @@ class ChatBot {
         if (!this.container) return;
         
         try {
+            // Get auth token from data attribute (securely injected by server)
+            this.headerKey = this.container.dataset.authToken || '';
+            
             // Load API key and configuration from backend
             await this.loadConfig();
             
@@ -62,7 +68,12 @@ class ChatBot {
      */
     async loadConfig() {
         try {
-            const response = await fetch('/api/config/chatbot');
+            const response = await fetch('/api/config/chatbot', {
+                headers: {
+                    'Authorization': this.headerKey
+                }
+            });
+            
             if (!response.ok) {
                 throw new Error(`Failed to load config: ${response.status}`);
             }
