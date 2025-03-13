@@ -3,13 +3,11 @@
  * 
  * @module routes/configRouter
  */
+require('dotenv').config();
 
 const express = require('express');
 const router = express.Router();
-
-// For development - hardcoded API key when environment variable isn't available
-// In production, this should ONLY come from environment variables
-const GROQ_API_KEY = process.env.GROQ_API_KEY || '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';
+const GROQ_API_KEY = process.env.GROQ_API_KEY || null;
 
 /**
  * ENDPOINT: GET /api/config/chatbot
