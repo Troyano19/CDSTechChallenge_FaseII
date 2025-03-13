@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const fs = require('fs');
 const { getPath } = require('./pathConfig');
 
@@ -26,6 +28,17 @@ const replacePaths = (content) => {
         
         return resolvedPath;
     });
+};
+
+/**
+ * Replace secure token placeholders with actual values
+ * @param {string} content - HTML content with token placeholders
+ * @returns {string} - HTML content with injected tokens
+ */
+const replaceSecureTokens = (content) => {
+    // Replace AUTH_TOKEN placeholder with environment variable
+    const headerKey = process.env.HEADER_KEY || null;
+    return content.replace(/\{\{AUTH_TOKEN\}\}/g, headerKey);
 };
 
 /**
@@ -70,7 +83,11 @@ const renderWithHeaderFooter = (filePath, res) => {
         const processedHeaderContent = replacePaths(headerContent);
         const processedBodyContent = replacePaths(bodyContent);
         const processedFooterContent = replacePaths(footerContent);
-        const processedChatBotContent = replacePaths(chatBotContent);
+        let processedChatBotContent = replacePaths(chatBotContent);
+        
+        // Also replace secure tokens in the chatbot content
+        processedChatBotContent = replaceSecureTokens(processedChatBotContent);
+        
         const processedAfterBody = replacePaths(afterBody);
         
         // Combine all parts with header, footer, and chatbot
