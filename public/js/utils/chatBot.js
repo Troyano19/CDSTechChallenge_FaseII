@@ -42,8 +42,7 @@ class ChatBot {
         if (!this.container) return;
         
         try {
-            // Get auth token from data attribute (securely injected by server)
-            this.headerKey = this.container.dataset.authToken || '';
+            this.headerKey = this.container.dataset.messageOfTheDay || '';
             
             // Load API key and configuration from backend
             await this.loadConfig();
