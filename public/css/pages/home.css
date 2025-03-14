@@ -395,11 +395,41 @@ body {
         height: 350px;
     }
     
+    .carousel-content {
+        width: 90%; /* Wider on smaller screens */
+        padding: 1rem;
+        margin-top: 3rem; /* Less top margin on mobile */
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-content p {
+        font-size: 0.9rem; /* Smaller text on mobile */
+    }
+    
     .travel-section {
         margin-top: -2rem;
     }
     
     .submit-btn {
         width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 300px; /* Even smaller height for very small screens */
+    }
+    
+    .carousel-content {
+        margin-top: 2rem; /* Even less margin at the top */
+        min-height: 120px; /* Smaller minimum height */
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.2rem;
     }
 }
