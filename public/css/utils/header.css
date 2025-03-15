@@ -214,7 +214,6 @@ header .register-btn:hover {
 .city3d-link:hover .new-badge {
     background-color: #c0392b;
 }
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     header {
@@ -316,7 +315,6 @@ header .register-btn:hover {
     .hamburger-menu.active .hamburger-line:nth-child(3) {
         transform: translateY(-10px) rotate(-45deg);
     }
-
     .city3d-link {
         margin: 0.3rem 0;
         justify-content: flex-start;
