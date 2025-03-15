@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <title>Registro - GreenLake Portal</title>
+    <meta name="description" content="Crea tu cuenta en GreenLake Portal">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.session}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="session-container">
+        <h1 class="page-title" data-translate="session.register.title">Registro</h1>
+        
+        <div class="form-card">
+            <h2 data-translate="session.register.welcome">Bienvenido a GreenLake</h2>
+            
+            <form id="registerForm" action="/api/auth/register" method="POST">
+                <div class="form-group">
+                    <label for="name" data-translate="session.register.name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="surnames" data-translate="session.register.surnames">Apellidos</label>
+                    <input type="text" id="surnames" name="surnames" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username" data-translate="session.register.username">Nombre de usuario</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-translate="session.register.email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" data-translate="session.register.password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" data-translate="session.register.confirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" data-translate="session.register.submit">Registrarse</button>
+                
+                <p class="alternate-action">
+                    <span data-translate="session.register.hasAccount">¿Ya tienes una cuenta?</span>
+                    <a href="/login" data-translate="session.register.login">Iniciar sesión</a>
+                </p>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

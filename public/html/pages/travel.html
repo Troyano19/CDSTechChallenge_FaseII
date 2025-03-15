@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <title>GreenLake Village - Travel</title>
+    <meta name="description" content="Pantalla de viajes de GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.travel}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+    <script src="{{PATH:js.countries}}" defer></script>
+    <script src="{{PATH:js.travelUtils}}" defer></script>
+    <script src="{{PATH:js.travel}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Travel Search Form - Can be modified by user if needed -->
+        <section id="travel" class="travel-section">
+            <h2 data-translate="travel.title">Modifica tu viaje</h2>
+            <form action="/travel" method="post" class="travel-form">
+                <div class="form-group">
+                    <label for="origin" data-translate="home.travel.origin">Origen</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="origin" name="origin" data-translate-placeholder="home.travel.originPlaceholder" placeholder="¿De dónde vienes?" required
+                            autocomplete="off">
+                        <div id="countryDropdown" class="dropdown-content"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="departureDate" data-translate="home.travel.departureDate">Fecha de ida</label>
+                    <input type="date" id="departureDate" name="departureDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="returnDate" data-translate="home.travel.returnDate">Fecha de vuelta</label>
+                    <input type="date" id="returnDate" name="returnDate">
+                </div>
+                <button type="submit" class="submit-btn" data-translate="home.travel.search">Actualizar búsqueda</button>
+            </form>
+        </section>
+
+        <!-- Mobility List Section -->
+        <section class="mobility-section">
+            <h2 data-translate="travel.transport.title">Opciones de transporte a GreenLake</h2>
+            <div class="options-list">
+                <!-- Example items - these would be generated dynamically -->
+                <div class="transport-item">
+                    <div class="company-info">
+                        <h3>Empresa Bus España</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-number">(4.2)</span>
+                        </div>
+                    </div>
+                    <div class="schedule-info">
+                        <div class="departure">
+                            <span class="label" data-translate="travel.transport.departure">Salida:</span>
+                            <span class="time">08:30</span>
+                        </div>
+                        <div class="arrival">
+                            <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
+                            <span class="time">11:45</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-item">
+                    <div class="company-info">
+                        <h3>Tren Verde</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-number">(4.8)</span>
+                        </div>
+                    </div>
+                    <div class="schedule-info">
+                        <div class="departure">
+                            <span class="label" data-translate="travel.transport.departure">Salida:</span>
+                            <span class="time">10:15</span>
+                        </div>
+                        <div class="arrival">
+                            <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
+                            <span class="time">12:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hotels List Section -->
+        <section class="hotels-section">
+            <h2 data-translate="travel.hotels.title">Alojamientos disponibles</h2>
+            <div class="options-list">
+                <!-- Example items - these would be generated dynamically -->
+                <div class="hotel-item">
+                    <div class="hotel-info">
+                        <h3>Hotel Lago Verde</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-number">(4.3)</span>
+                        </div>
+                    </div>
+                    <div class="schedule-info">
+                        <div class="check-in">
+                            <span class="label" data-translate="travel.hotels.checkIn">Check-in:</span>
+                            <span class="time">14:00</span>
+                        </div>
+                        <div class="check-out">
+                            <span class="label" data-translate="travel.hotels.checkOut">Check-out:</span>
+                            <span class="time">12:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-item">
+                    <div class="hotel-info">
+                        <h3>Albergue Montaña</h3>
+                        <div class="rating">
+                            <span class="stars">★★★☆☆</span>
+                            <span class="rating-number">(3.7)</span>
+                        </div>
+                    </div>
+                    <div class="schedule-info">
+                        <div class="check-in">
+                            <span class="label" data-translate="travel.hotels.checkIn">Check-in:</span>
+                            <span class="time">15:00</span>
+                        </div>
+                        <div class="check-out">
+                            <span class="label" data-translate="travel.hotels.checkOut">Check-out:</span>
+                            <span class="time">11:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events-section">
+            <h2 data-translate="travel.events.title">Eventos durante tu visita</h2>
+            <div class="events-list">
+                <!-- Will be populated dynamically based on the selected dates -->
+                <div class="event-item">
+                    <div class="event-date">15 Jun</div>
+                    <div class="event-details">
+                        <h3>Festival de Primavera</h3>
+                        <p>Celebración anual con música en vivo y gastronomía local</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

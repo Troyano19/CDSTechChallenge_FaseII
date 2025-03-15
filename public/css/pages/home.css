@@ -1,0 +1,435 @@
+/* Main styles for home page */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F7FAFC; /* light color */
+    padding-top: 70px; /* Space for fixed header */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Home page specific styles */
+
+/* Carousel styles (overrides for home page only) */
+.carousel-container {
+    height: 500px;
+    margin-bottom: 2rem;
+}
+
+.carousel-content {
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 600px;
+    height: 150px;
+    padding: 2rem;
+    border-radius: 4px;
+    margin: 10rem auto 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem; /* Space below for the description */
+}
+
+.carousel-content p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Travel form section */
+.travel-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: -4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.travel-section h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.travel-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem; /* Increased gap between form elements */
+    justify-content: space-between; /* Ensure elements are spaced evenly */
+}
+
+.form-group {
+    flex: 1 1 180px; /* Changed flex behavior: grow, shrink, and smaller base width */
+    max-width: calc(33% - 1rem); /* Ensure a maximum width with spacing */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4A5568; /* dark gray */
+    font-size: 0.9rem; /* Slightly smaller label */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.65rem; /* Consistent padding */
+    border: 1px solid #CBD5E0; /* light gray */
+    border-radius: 4px;
+    font-size: 0.95rem; /* Slightly smaller font */
+    box-sizing: border-box; /* Ensure padding doesn't increase width */
+    height: 38px; /* Set explicit height for consistency */
+    line-height: normal; /* Reset line height */
+    appearance: none; /* Remove browser styles */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+}
+
+.form-group input[type="text"] {
+    /* Specifically target text inputs */
+    min-height: 38px; /* Match the height of date inputs */
+    border-radius: 4px 4px 0 0;
+}
+
+.form-group input[type="date"] {
+    /* Specifically target date inputs */
+    padding-right: 10px; /* Add some space for the calendar icon */
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+    .form-group input[type="date"] {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+/* Fix for Edge */
+@supports (-ms-ime-align:auto) {
+    .form-group input[type="date"] {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2F855A; /* primary color */
+    box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.3);
+}
+
+.submit-btn {
+    background-color: #2F855A; /* primary color */
+    color: white;
+    border: none;
+    padding: 0.65rem 1.5rem; /* Slightly reduced padding */
+    border-radius: 4px;
+    font-size: 0.95rem; /* Slightly smaller font */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1.5rem;
+    align-self: flex-end; /* Align button at the bottom of flex container */
+    flex: 0 0 auto; /* Don't allow button to grow or shrink */
+}
+
+.submit-btn:hover {
+    background-color: #38A169; /* secondary color */
+}
+
+/* Responsive adjustments for the form */
+@media (max-width: 768px) {
+    .form-group {
+        flex: 1 1 100%; /* On small screens, each form group takes full width */
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Interest cards section */
+.interests-section {
+    padding: 2rem 0;
+}
+
+.interests-section h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.interests-carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.interests-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.interests-carousel {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Use a smoother easing function */
+    gap: 2rem;
+    will-change: transform; /* Optimize for animations */
+}
+
+.interests-carousel > * {
+    cursor: pointer;
+}
+
+.carousel-nav {
+    background-color: #2F855A; /* primary color */
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.carousel-nav:hover {
+    background-color: #38A169; /* secondary color */
+}
+
+.carousel-nav:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.3);
+}
+
+.carousel-prev {
+    left: -20px;
+}
+
+.carousel-next {
+    right: -20px;
+}
+
+.carousel-nav.hidden {
+    display: none;
+}
+
+.interest-card {
+    flex: 0 0 auto; /* Don't grow or shrink, use specified width */
+    min-width: 0; /* Allow card to shrink below minimum width if needed */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.interest-image {
+    height: 200px;
+    background-color: #A0AEC0; /* gray color placeholder */
+    background-size: cover;
+    background-position: center;
+}
+
+.interest-content {
+    padding: 1.5rem;
+}
+
+.interest-content h3 {
+    margin-top: 0;
+    color: var(--color-text-dark);
+}
+
+.interest-content p {
+    color: var(--color-text-gray);
+}
+
+/* Responsive adjustments for interest cards */
+@media (max-width: 1200px) {
+    .interest-card {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .interest-card {
+        flex: 0 0 calc(100% - 0.5rem);
+    }
+    
+    .carousel-prev {
+        left: -10px;
+    }
+    
+    .carousel-next {
+        right: -10px;
+    }
+}
+
+/* Traditions section */
+.traditions-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.traditions-section h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.traditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.tradition-item {
+    display: flex;
+    gap: 1rem;
+}
+
+.tradition-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tradition-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Autocomplete dropdown */
+.autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:hover,
+.dropdown-item.highlighted {
+    background-color: #f9f9f9;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item.no-results {
+    color: #888;
+    font-style: italic;
+}
+
+/* Ensure form input styling stays consistent */
+.form-group input[type="text"] {
+    border-radius: 4px 4px 0 0;
+    min-height: 38px; /* Match the height of date inputs */
+}
+
+.form-group input[type="text"]:focus + .dropdown-content {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 350px;
+    }
+    
+    .carousel-content {
+        width: 90%; /* Wider on smaller screens */
+        padding: 1rem;
+        margin-top: 3rem; /* Less top margin on mobile */
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-content p {
+        font-size: 0.9rem; /* Smaller text on mobile */
+    }
+    
+    .travel-section {
+        margin-top: -2rem;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 300px; /* Even smaller height for very small screens */
+    }
+    
+    .carousel-content {
+        margin-top: 2rem; /* Even less margin at the top */
+        min-height: 120px; /* Smaller minimum height */
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.2rem;
+    }
+}

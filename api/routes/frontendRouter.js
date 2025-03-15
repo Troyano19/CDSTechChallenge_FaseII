@@ -90,4 +90,12 @@ router.post("/travel", (req, res) => {
     res.redirect(`/travel?origin=${encodeURIComponent(origin)}&departure=${encodeURIComponent(departureDate)}&return=${encodeURIComponent(returnDate)}`);
 });
 
+router.get("/login", (_, res) => {
+    renderWithHeaderFooter(getPath('pages.session.login'), res);
+});
+
+router.get("/register", (_, res) => {
+    renderWithHeaderFooter(getPath('pages.session.register'), res);
+});
+
 module.exports = router;

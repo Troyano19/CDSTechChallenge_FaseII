@@ -15,11 +15,15 @@ const port = process.env.PORT;
 app.use(express.urlencoded({ extended: true }));
 //Load the middleware that analize the body of the requests
 app.use(express.json());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '../public')));
+
 //Load the routers
 app.use(frontend);
 
 app.listen(port, () => {
-    console.log(`Web server listening on port ${port}`);
+    console.log(`Web server listening on http://localhost:${port}`);
 });
 
 module.exports = app;

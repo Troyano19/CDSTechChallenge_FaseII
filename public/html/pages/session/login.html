@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <title>Iniciar sesión - GreenLake Portal</title>
+    <meta name="description" content="Inicia sesión en GreenLake Portal">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.session}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="session-container">
+        <h1 class="page-title" data-translate="session.login.title">Iniciar sesión</h1>
+        
+        <div class="form-card">
+            <h2 data-translate="session.login.welcome">Bienvenido de nuevo</h2>
+            
+            <form id="loginForm" action="/api/auth/login" method="POST">
+                <div class="form-group">
+                    <label for="identifier" data-translate="session.login.identifier">Nombre de usuario / Email</label>
+                    <input type="text" id="identifier" name="identifier" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" data-translate="session.login.password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google-btn">
+                        <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" alt="Google Logo">
+                        <span data-translate="session.login.withGoogle">Iniciar con Google</span>
+                    </button>
+                    <button type="button" class="social-btn discord-btn">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/discord.svg" alt="Discord Logo">
+                        <span data-translate="session.login.withDiscord">Iniciar con Discord</span>
+                    </button>
+                </div>
+                
+                <button type="submit" class="submit-btn" data-translate="session.login.submit">Iniciar sesión</button>
+                
+                <p class="alternate-action">
+                    <span data-translate="session.login.noAccount">¿No tienes cuenta?</span> 
+                    <a href="/register" data-translate="session.login.createAccount">Crear una cuenta</a>
+                </p>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="{{PATH:css.main}}">
+<link rel="stylesheet" href="{{PATH:css.header}}">
+<script src="{{PATH:js.header}}" defer></script>
+<script src="{{PATH:js.translations}}" defer></script>
+<script src="{{PATH:js.languageSwitcher}}" defer></script>
+
+<header>
+    <div class="container">
+        <h1><a href="/" style="text-decoration: none; color: inherit;">GreenLake Portal</a></h1>
+        
+        <!-- Hamburger menu button for mobile -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </div>
+
+        <nav id="mainNav">
+            <a href="/establishments" data-translate="header.establishments">Locales</a>
+            <a href="/trails" data-translate="header.trails">Rutas</a>
+            <a href="/activities" data-translate="header.activities">Ocio</a>
+            <div class="language-selector">
+                <div class="language-dropdown">
+                    <button class="language-current" id="currentLanguage" aria-haspopup="true" aria-expanded="false">
+                        <img src="/images/flags/es.svg" alt="Español" width="20" height="15" id="currentFlag">
+                    </button>
+                    <div class="language-dropdown-content">
+                        <!-- Language options will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+            <a href="/login" data-translate="header.login">Iniciar sesión</a>
+            <a href="/register" class="register-btn" data-translate="header.register">Registrate</a>
+        </nav>
+    </div>
+</header>

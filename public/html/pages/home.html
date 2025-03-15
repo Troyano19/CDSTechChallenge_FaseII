@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <title>GreenLake Village</title>
+    <meta name="description" content="Landing page de GreenLake Portal">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.home}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+    <script src="{{PATH:js.countries}}" defer></script>
+    <script src="{{PATH:js.travelUtils}}" defer></script>
+    <script src="{{PATH:js.carousel}}" defer></script>
+    <script src="{{PATH:js.carouselData}}" defer></script>
+    <script src="{{PATH:js.carouselRenderer}}" defer></script>
+    <script src="{{PATH:js.home}}" defer></script>
+</head>
+
+<body>
+    <!-- Carousel -->
+    <div class="carousel-container">
+        <!-- Placeholder slides - replace with actual images -->
+        <div class="carousel-slide" style="background-image: url('../../images/temp/temp1.jpeg')">
+            <div class="carousel-content">
+                <h2 data-translate="home.carousel.slide1.title">Descubre la naturaleza</h2>
+                <p data-translate="home.carousel.slide1.description">Explora nuestros senderos naturales</p>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('../../images/temp/temp2.jpeg')">
+            <div class="carousel-content">
+                <h2 data-translate="home.carousel.slide2.title">Gastronomía local</h2>
+                <p data-translate="home.carousel.slide2.description">Disfruta de los mejores establecimientos</p>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('../../images/temp/temp3.jpeg')">
+            <div class="carousel-content">
+                <h2 data-translate="home.carousel.slide3.title">Actividades emocionantes</h2>
+                <p data-translate="home.carousel.slide3.description">Vive experiencias inolvidables</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Travel Search Form -->
+        <section id="travel" class="travel-section">
+            <h2 data-translate="home.travel.title">Planifica tu viaje</h2>
+            <form action="/travel" method="post" class="travel-form">
+                <div class="form-group">
+                    <label for="origin" data-translate="home.travel.origin">Origen</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="origin" name="origin" data-translate-placeholder="home.travel.originPlaceholder" placeholder="¿De dónde vienes?" required
+                            autocomplete="off">
+                        <div id="countryDropdown" class="dropdown-content"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="departureDate" data-translate="home.travel.departureDate">Fecha de ida</label>
+                    <input type="date" id="departureDate" name="departureDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="returnDate" data-translate="home.travel.returnDate">Fecha de vuelta</label>
+                    <input type="date" id="returnDate" name="returnDate">
+                </div>
+                <button type="submit" class="submit-btn" data-translate="home.travel.search">Busca ahora</button>
+            </form>
+        </section>
+
+        <!-- Interest Cards Section -->
+        <section class="interests-section">
+            <h2 data-translate="home.interests.title">Lugares de interés</h2>
+            <div class="interests-carousel-container">
+                <button class="carousel-nav carousel-prev" aria-label="Previous">
+                    <span aria-hidden="true">❮</span>
+                </button>
+
+                <div class="carousel-wrapper interests-carousel-wrapper">
+                    <div class="interests-carousel what-to-see">
+                        <!-- Cards will be generated dynamically with JS -->
+                    </div>
+                </div>
+
+                <button class="carousel-nav carousel-next" aria-label="Next">
+                    <span aria-hidden="true">❯</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Traditions Section -->
+        <section class="traditions-section traditions">
+            <h2 data-translate="home.traditions.title">Tradiciones locales</h2>
+            <div class="traditions-grid">
+                <!-- Traditions will be generated from the database -->
+                <!-- Placeholder for preview -->
+                <div class="tradition-item">
+                    <div class="tradition-icon">🎭</div>
+                    <div class="tradition-content">
+                        <h3 data-translate="home.traditions.tradition1.title">Tradición local</h3>
+                        <p data-translate="home.traditions.tradition1.description">Descripción de esta tradición ancestral de la región.</p>
+                    </div>
+                </div>
+                <div class="tradition-item">
+                    <div class="tradition-icon">🍲</div>
+                    <div class="tradition-content">
+                        <h3 data-translate="home.traditions.tradition2.title">Gastronomía típica</h3>
+                        <p data-translate="home.traditions.tradition2.description">Descripción de los platos más representativos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

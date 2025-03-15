@@ -1,0 +1,273 @@
+/* Header specific styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+header nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+header .register-btn {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: bold;
+}
+
+header .register-btn:hover {
+    background-color: var(--color-accent-light);
+    color: black;
+    text-decoration: none;
+}
+
+/* Header animation class */
+.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Language selector styling */
+.language-selector {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.language-dropdown {
+    position: relative;
+    z-index: 1001; /* Higher than header's z-index */
+}
+
+.language-current {
+    background: none;
+    border: 2px solid transparent;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.language-current:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.language-current.open {
+    border-color: white;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.language-current img {
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.language-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    z-index: 1002;
+}
+
+.language-dropdown-content.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: black;
+    text-decoration: none;
+}
+
+.language-option:hover {
+    background-color: green;
+}
+
+.language-option img {
+    margin-right: 0.75rem;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.language-option.active {
+    background-color: var(--color-accent-light);
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+    
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header h1 {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    header nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem; /* Increased horizontal padding */
+        box-sizing: border-box; /* Ensure padding is included in width */
+        gap: 0.8rem;
+        display: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+    
+    header nav.mobile-menu-open {
+        display: flex;
+    }
+    
+    header nav a {
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+    
+    .language-selector {
+        order: 0;
+        margin: 0;
+    }
+    
+    .register-btn {
+        width: 95%; /* Slightly reduced from 100% to prevent overflow */
+        text-align: center;
+        box-sizing: border-box; /* Ensure padding is included in width */
+        margin: 0.5rem 0;
+        display: block; /* Ensure it's a block element */
+    }
+    
+    /* Hamburger menu button */
+    .hamburger-menu {
+        display: block;
+        cursor: pointer;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        margin-left: 0; /* Remove left margin */
+        margin-right: 1rem; /* Add right margin to move it away from edge */
+    }
+    
+    .hamburger-line {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        position: absolute;
+        transition: all 0.3s;
+        border-radius: 3px;
+    }
+    
+    .hamburger-line:nth-child(1) {
+        top: 0;
+    }
+    
+    .hamburger-line:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .hamburger-line:nth-child(3) {
+        bottom: 0;
+    }
+    
+    /* Active state for hamburger menu */
+    .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 360px) {
+    /* Additional styles for very small screens */
+    header h1 {
+        font-size: 1rem; /* Smaller title on very small screens */
+    }
+    
+    .hamburger-menu {
+        margin-right: 0.5rem; /* Less margin on very small screens */
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger-menu {
+        display: none;
+    }
+}

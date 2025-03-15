@@ -1,0 +1,270 @@
+/* Main styles for GreenLake Portal */
+
+/* CSS Variables for consistent theming */
+:root {
+    /* Color Scheme */
+    --color-primary: #2F855A;
+    --color-primary-light: #38A169;
+    --color-primary-dark: #276749;
+    --color-accent: #68D391;
+    --color-accent-light: #9AE6B4;
+    
+    /* Text colors */
+    --color-text-dark: #2D3748;
+    --color-text-gray: #4A5568;
+    --color-text-light: #718096;
+
+    /* UI colors */
+    --color-border: #E2E8F0;
+    --color-background: #F7FAFC;
+    --color-white: #FFFFFF;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* Transitions */
+    --transition-quick: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Base styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    padding-top: 70px; /* Space for fixed header */
+    color: var(--color-text-dark);
+    line-height: 1.6;
+}
+
+/* Page loading styles */
+body.loading {
+    overflow: hidden;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loading-overlay.fade-out {
+    opacity: 0;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-overlay p {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+/* Container class - reused across pages */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all var(--transition-quick);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--color-primary-light);
+}
+
+/* Common button styles */
+.btn, button {
+    cursor: pointer;
+    font-family: 'Roboto', Arial, sans-serif; /* Match the site's font */
+}
+
+.submit-btn, .primary-btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-quick);
+    text-align: center;
+    display: inline-block;
+}
+
+.submit-btn:hover, .primary-btn:hover {
+    background-color: var(--color-primary-light);
+    text-decoration: none;
+}
+
+/* Common form elements */
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-quick);
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-gray);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none;
+    }
+}
+
+/* Common card styles */
+.card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 6px var(--color-shadow);
+    overflow: hidden;
+}
+
+.card-content {
+    padding: var(--spacing-md);
+}
+
+/* Section spacing */
+.section {
+    margin: var(--spacing-lg) 0;
+}
+
+/* Text utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+/* Common carousel styles */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-nav {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px var(--color-shadow);
+    transition: background-color var(--transition-quick);
+}
+
+.carousel-nav:hover {
+    background-color: var(--color-primary-light);
+}
+
+.carousel-prev {
+    left: -20px;
+}
+
+.carousel-next {
+    right: -20px;
+}
+
+/* Carousel placeholders during loading */
+.business-carousel-wrapper, .interests-carousel-wrapper {
+    min-height: 250px;
+}
+
+/* Animation for spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
