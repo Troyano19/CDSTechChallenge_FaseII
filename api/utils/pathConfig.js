@@ -38,6 +38,7 @@ const trailsPage = path.join(pagesDir, 'trails.html');
 const establishmentsPage = path.join(pagesDir, 'establishments.html');
 const activitiesPage = path.join(pagesDir, 'activities.html');
 const adminPage = path.join(pagesDir, 'admin.html');
+const city3DPage = path.join(pagesDir, 'city3D.html');
 
 // Info pages
 const infoDir = path.join(pagesDir, 'info');
@@ -100,6 +101,7 @@ const getPaths = () => {
             establishments: establishmentsPage,
             activities: activitiesPage,
             admin: adminPage,
+            city3D: city3DPage,
             info: {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
