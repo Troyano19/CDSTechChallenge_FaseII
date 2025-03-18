@@ -13,8 +13,6 @@
 
 2. Instala todas las dependencias:
    ```
-   cd ./src
-   npm install express
    npm install
    ```
 
