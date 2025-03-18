@@ -3,7 +3,8 @@ const express = require('express');
 //Used to enroute without exposing the dirnames
 const path = require('path');
 //import the routers
-const frontend = require('./routes/frontendRouter');
+const frontendRouter = require('./routes/frontendRouter');
+const configRouter = require('./routes/configRouter');
 //We configure the use of dotenv for variables
 require('dotenv').config();
 
@@ -20,7 +21,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 //Load the routers
-app.use(frontend);
+app.use('/', frontendRouter);
+app.use('/api/config', configRouter);
 
 app.listen(port, () => {
     console.log(`Web server listening on http://localhost:${port}`);
