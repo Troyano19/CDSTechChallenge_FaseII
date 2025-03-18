@@ -11,6 +11,7 @@ const translations = {
             'establishments': 'Locales',
             'trails': 'Rutas',
             'activities': 'Ocio',
+            'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
             'register': 'Registrate'
         },
@@ -134,6 +135,7 @@ const translations = {
             'establishments': 'Places',
             'trails': 'Trails',
             'activities': 'Activities',
+            'city3D': '3D City',
             'login': 'Log in',
             'register': 'Sign up'
         },
