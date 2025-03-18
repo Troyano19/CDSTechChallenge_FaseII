@@ -3,7 +3,6 @@
  * Organized by language code and component/section
  */
 
-<<<<<<< HEAD
 const translations = {
     // Spanish (default language)
     'es': {
@@ -32,46 +31,6 @@ const translations = {
                 'slide1': {
                     'title': 'Descubre la naturaleza',
                     'description': 'Explora nuestros senderos naturales'
-=======
-// Check if translations are already defined to avoid redeclaration
-if (typeof window.Translations === 'undefined') {
-    const translations = {
-        // Spanish (default language)
-        'es': {
-            // Header translations
-            'header': {
-                'establishments': 'Locales',
-                'trails': 'Rutas',
-                'activities': 'Ocio',
-                'login': 'Iniciar sesión',
-                'register': 'Registrate'
-            },
-            // Footer translations
-            'footer': {
-                'about': 'Tu portal de turismo sostenible',
-                'links': 'Enlaces',
-                'legal': 'Legal',
-                'terms': 'Términos',
-                'privacy': 'Privacidad',
-                'cookies': 'Cookies',
-                'created-by': 'Creado por'
-            },
-            // Home page translations
-            'home': {
-                'carousel': {
-                    'slide1': {
-                        'title': 'Descubre la naturaleza',
-                        'description': 'Explora nuestros senderos naturales'
-                    },
-                    'slide2': {
-                        'title': 'Gastronomía local',
-                        'description': 'Disfruta de los mejores establecimientos'
-                    },
-                    'slide3': {
-                        'title': 'Actividades emocionantes',
-                        'description': 'Vive experiencias inolvidables'
-                    }
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83
                 },
                 'travel': {
                     'title': 'Planifica tu viaje',
@@ -282,12 +241,7 @@ if (typeof window.Translations === 'undefined') {
                 }
             }
         }
-    };
-
-    // Make translations available globally
-    window.Translations = translations;
-    
-<<<<<<< HEAD
+    },   
     // English translations
     'en': {
         // Header translations
@@ -418,8 +372,3 @@ window.Translations = translations;
 
 // Set default language
 window.currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
-=======
-    // Set default language
-    window.currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
-}
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83

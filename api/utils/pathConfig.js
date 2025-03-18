@@ -58,14 +58,11 @@ const mainCSS = path.join(cssDir, 'main.css');
 const homeCSS = path.join(cssPagesDir, 'home.css');
 const travelCSS = path.join(cssPagesDir, 'travel.css');
 const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
-<<<<<<< HEAD
 const city3DCSS = path.join(cssPagesDir, 'city3D.css');
-=======
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const chatBotCSS = path.join(cssUtilsDir, 'chatbot.css');
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -80,11 +77,8 @@ const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
 const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
 const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
-<<<<<<< HEAD
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
-=======
 const chatBotJs = path.join(jsUtilsDir, 'chatbot.js');
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
@@ -133,11 +127,8 @@ const getPaths = () => {
             session: sessionCSS,
             travel: travelCSS,
             businessPages: businessPagesCSS,
-<<<<<<< HEAD
-            city3D: city3DCSS
-=======
+            city3D: city3DCSS,
             chatBot: chatBotCSS
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83
         },
         js: {
             home: homeJs,
@@ -152,11 +143,8 @@ const getPaths = () => {
             pageLoader: pageLoaderJs,
             translations: translationsJs,
             languageSwitcher: languageSwitcherJs,
-<<<<<<< HEAD
-            city3D: city3DJs
-=======
+            city3D: city3DJs,
             chatBot: chatBotJs
->>>>>>> b07000d56628cc26dc08bf043b72b6587a2a5b83
         },
         images: {
             favicon: faviconIMG
