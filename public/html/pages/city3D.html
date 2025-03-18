@@ -2,8 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
     <title>Ciudad 3D - GreenLake Village</title>
     <link rel="stylesheet" href="css/pages/city3D.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js" defer></script>
+    <script type="module" src="js/pages/city3D/main.js" defer></script>
 </head>
 <body>
     <div id="app-loading" class="loading-overlay">
@@ -12,14 +19,5 @@
             <div id="loading-progress">0%</div>
         </div>
     </div>
-    
-    <!-- Cargar librerías -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
-    
-    <!-- Cargar nuestro código usando módulos ES6 -->
-    <script type="module" src="js/pages/city3D/main.js"></script>
 </body>
 </html>
