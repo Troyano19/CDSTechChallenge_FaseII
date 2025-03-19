@@ -18,11 +18,11 @@ const utilsDir = path.join(htmlDir, 'utils');
 
 const imagesDir = path.join(publicDir, 'images');
 
-const cssDir = path.join(publicDir, 'css');
+const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
 
-const jsDir = path.join(publicDir, 'js');
+const jsDir = path.join('js');
 const jsPagesDir = path.join(jsDir, 'pages');
 const jsUtilsDir = path.join(jsDir, 'utils');
 const jsDataDir = path.join(jsDir, 'data');
