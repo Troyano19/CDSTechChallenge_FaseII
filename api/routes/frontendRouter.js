@@ -98,4 +98,8 @@ router.get("/register", (_, res) => {
     renderWithHeaderFooter(getPath('pages.session.register'), res);
 });
 
+router.get("/city3D", (_, res) => {
+    res.sendFile(getPath('pages.city3D'));
+});
+
 module.exports = router;

@@ -26,10 +26,12 @@ const jsDir = path.join(publicDir, 'js');
 const jsPagesDir = path.join(jsDir, 'pages');
 const jsUtilsDir = path.join(jsDir, 'utils');
 const jsDataDir = path.join(jsDir, 'data');
+const jsCity3DDIR = path.join(jsPagesDir, 'city3D');
 
 // Template paths
 const headerPath = path.join(utilsDir, 'header.html');
 const footerPath = path.join(utilsDir, 'footer.html');
+const chatBotPath = path.join(utilsDir, 'chatbot.html');
 
 // HTML pages
 const homePage = path.join(pagesDir, 'home.html');
@@ -38,6 +40,7 @@ const trailsPage = path.join(pagesDir, 'trails.html');
 const establishmentsPage = path.join(pagesDir, 'establishments.html');
 const activitiesPage = path.join(pagesDir, 'activities.html');
 const adminPage = path.join(pagesDir, 'admin.html');
+const city3DPage = path.join(pagesDir, 'city3D.html');
 
 // Info pages
 const infoDir = path.join(pagesDir, 'info');
@@ -53,25 +56,29 @@ const registerPage = path.join(sessionDir, 'register.html');
 // CSS files
 const mainCSS = path.join(cssDir, 'main.css');
 const homeCSS = path.join(cssPagesDir, 'home.css');
-const headerCSS = path.join(cssUtilsDir, 'header.css');
-const footerCSS = path.join(cssUtilsDir, 'footer.css');
-const sessionCSS = path.join(cssPagesDir, 'session.css');
 const travelCSS = path.join(cssPagesDir, 'travel.css');
 const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
+const city3DCSS = path.join(cssPagesDir, 'city3D.css');
+const sessionCSS = path.join(cssPagesDir, 'session.css');
+const headerCSS = path.join(cssUtilsDir, 'header.css');
+const footerCSS = path.join(cssUtilsDir, 'footer.css');
+const chatBotCSS = path.join(cssUtilsDir, 'chatbot.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
-const headerJs = path.join(jsUtilsDir, 'header.js');
-const countriesJs = path.join(jsDataDir, 'countries.js');
-const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
-const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
+const countriesJs = path.join(jsDataDir, 'countries.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
+const translationsJs = path.join(jsDataDir, 'translations.js');
+const headerJs = path.join(jsUtilsDir, 'header.js');
+const carouselJs = path.join(jsUtilsDir, 'carousel.js');
+const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
 const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
 const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
-const translationsJs = path.join(jsDataDir, 'translations.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
+const city3DJs = path.join(jsCity3DDIR, 'main.js');
+const chatBotJs = path.join(jsUtilsDir, 'chatbot.js');
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
@@ -93,6 +100,7 @@ const getPaths = () => {
         js: jsDir,
         header: headerPath,
         footer: footerPath,
+        chatBot: chatBotPath,
         pages: {
             home: homePage,
             travel: travelPage,
@@ -100,6 +108,7 @@ const getPaths = () => {
             establishments: establishmentsPage,
             activities: activitiesPage,
             admin: adminPage,
+            city3D: city3DPage,
             info: {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
@@ -117,7 +126,9 @@ const getPaths = () => {
             footer: footerCSS,
             session: sessionCSS,
             travel: travelCSS,
-            businessPages: businessPagesCSS
+            businessPages: businessPagesCSS,
+            city3D: city3DCSS,
+            chatBot: chatBotCSS
         },
         js: {
             home: homeJs,
@@ -131,7 +142,9 @@ const getPaths = () => {
             carouselRenderer: carouselRendererJs,
             pageLoader: pageLoaderJs,
             translations: translationsJs,
-            languageSwitcher: languageSwitcherJs
+            languageSwitcher: languageSwitcherJs,
+            city3D: city3DJs,
+            chatBot: chatBotJs
         },
         images: {
             favicon: faviconIMG

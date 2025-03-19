@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="{{PATH:css.chatBot}}">
+<script src="{{PATH:js.chatBot}}" defer></script>
+
+<div id="chatbot-container" data-message-of-the-day="{{AUTH_TOKEN}}">
+    <button id="chatbot-toggle" aria-label="Toggle chatbot">
+        <img src="/images/chat-icon.svg" alt="Chat" id="chatbot-icon">
+    </button>
+    
+    <div id="chatbot-window" class="hidden">
+        <div id="chatbot-header">
+            <h3>GreenLake Assistant</h3>
+            <button id="chatbot-close" aria-label="Close chatbot">×</button>
+        </div>
+        
+        <div id="chatbot-messages"></div>
+        
+        <form id="chatbot-form">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+            <button type="submit" id="chatbot-submit">Enviar</button>
+        </form>
+    </div>
+</div>

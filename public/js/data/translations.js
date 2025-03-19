@@ -8,9 +8,10 @@ const translations = {
     'es': {
         // Header translations
         'header': {
-            'establishments': 'Locales',
+            'establishments': 'Establecimientos',
             'trails': 'Rutas',
-            'activities': 'Ocio',
+            'activities': 'Actividades',
+            'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
             'register': 'Registrate'
         },
@@ -31,109 +32,101 @@ const translations = {
                     'title': 'Descubre la naturaleza',
                     'description': 'Explora nuestros senderos naturales'
                 },
-                'slide2': {
-                    'title': 'Gastronomía local',
-                    'description': 'Disfruta de los mejores establecimientos'
+                'travel': {
+                    'title': 'Planifica tu viaje',
+                    'origin': 'Origen',
+                    'originPlaceholder': '¿De dónde vienes?',
+                    'departureDate': 'Fecha de ida',
+                    'returnDate': 'Fecha de vuelta',
+                    'search': 'Busca ahora'
                 },
-                'slide3': {
-                    'title': 'Actividades emocionantes',
-                    'description': 'Vive experiencias inolvidables'
+                'interests': {
+                    'title': 'Lugares de interés'
+                },
+                'traditions': {
+                    'title': 'Tradiciones locales',
+                    'tradition1': {
+                        'title': 'Tradición local',
+                        'description': 'Descripción de esta tradición ancestral de la región.'
+                    },
+                    'tradition2': {
+                        'title': 'Gastronomía típica',
+                        'description': 'Descripción de los platos más representativos.'
+                    }
                 }
             },
+            // Business pages translations
+            'business': {
+                'activities': {
+                    'title': 'Actividades',
+                    'nearby': 'Actividades cercanas a ti',
+                    'recommended': 'Actividades recomendadas'
+                },
+                'establishments': {
+                    'title': 'Establecimientos',
+                    'nearby': 'Establecimientos cercanos a ti',
+                    'recommended': 'Establecimientos recomendados'
+                },
+                'trails': {
+                    'title': 'Rutas',
+                    'nearby': 'Rutas cercanas a ti',
+                    'recommended': 'Rutas recomendadas'
+                }
+            },
+            // Login & Register translations
+            'session': {
+                'login': {
+                    'title': 'Iniciar sesión',
+                    'welcome': 'Bienvenido de nuevo',
+                    'identifier': 'Nombre de usuario / Email',
+                    'password': 'Contraseña',
+                    'submit': 'Iniciar sesión',
+                    'noAccount': '¿No tienes cuenta?',
+                    'createAccount': 'Crear una cuenta',
+                    'withGoogle': 'Iniciar con Google',
+                    'withDiscord': 'Iniciar con Discord'
+                },
+                'register': {
+                    'title': 'Registro',
+                    'welcome': 'Bienvenido a GreenLake',
+                    'name': 'Nombre',
+                    'surnames': 'Apellidos',
+                    'username': 'Nombre de usuario',
+                    'email': 'Email',
+                    'password': 'Contraseña',
+                    'confirmPassword': 'Confirmar contraseña',
+                    'submit': 'Registrarse',
+                    'hasAccount': '¿Ya tienes una cuenta?',
+                    'login': 'Iniciar sesión'
+                }
+            },
+            // Travel page translations
             'travel': {
-                'title': 'Planifica tu viaje',
-                'origin': 'Origen',
-                'originPlaceholder': '¿De dónde vienes?',
-                'departureDate': 'Fecha de ida',
-                'returnDate': 'Fecha de vuelta',
-                'search': 'Busca ahora'
-            },
-            'interests': {
-                'title': 'Lugares de interés'
-            },
-            'traditions': {
-                'title': 'Tradiciones locales',
-                'tradition1': {
-                    'title': 'Tradición local',
-                    'description': 'Descripción de esta tradición ancestral de la región.'
+                'title': 'Modifica tu viaje',
+                'transport': {
+                    'title': 'Opciones de transporte a GreenLake',
+                    'departure': 'Salida:',
+                    'arrival': 'Llegada:'
                 },
-                'tradition2': {
-                    'title': 'Gastronomía típica',
-                    'description': 'Descripción de los platos más representativos.'
+                'hotels': {
+                    'title': 'Alojamientos disponibles',
+                    'checkIn': 'Check-in:',
+                    'checkOut': 'Check-out:'
+                },
+                'events': {
+                    'title': 'Eventos durante tu visita'
                 }
             }
         },
-        // Business pages translations
-        'business': {
-            'activities': {
-                'title': 'Actividades',
-                'nearby': 'Actividades cercanas a ti',
-                'recommended': 'Actividades recomendadas'
-            },
-            'establishments': {
-                'title': 'Establecimientos',
-                'nearby': 'Establecimientos cercanos a ti',
-                'recommended': 'Establecimientos recomendados'
-            },
-            'trails': {
-                'title': 'Rutas',
-                'nearby': 'Rutas cercanas a ti',
-                'recommended': 'Rutas recomendadas'
-            }
-        },
-        // Login & Register translations
-        'session': {
-            'login': {
-                'title': 'Iniciar sesión',
-                'welcome': 'Bienvenido de nuevo',
-                'identifier': 'Nombre de usuario / Email',
-                'password': 'Contraseña',
-                'submit': 'Iniciar sesión',
-                'noAccount': '¿No tienes cuenta?',
-                'createAccount': 'Crear una cuenta',
-                'withGoogle': 'Iniciar con Google',
-                'withDiscord': 'Iniciar con Discord'
-            },
-            'register': {
-                'title': 'Registro',
-                'welcome': 'Bienvenido a GreenLake',
-                'name': 'Nombre',
-                'surnames': 'Apellidos',
-                'username': 'Nombre de usuario',
-                'email': 'Email',
-                'password': 'Contraseña',
-                'confirmPassword': 'Confirmar contraseña',
-                'submit': 'Registrarse',
-                'hasAccount': '¿Ya tienes una cuenta?',
-                'login': 'Iniciar sesión'
-            }
-        },
-        // Travel page translations
-        'travel': {
-            'title': 'Modifica tu viaje',
-            'transport': {
-                'title': 'Opciones de transporte a GreenLake',
-                'departure': 'Salida:',
-                'arrival': 'Llegada:'
-            },
-            'hotels': {
-                'title': 'Alojamientos disponibles',
-                'checkIn': 'Check-in:',
-                'checkOut': 'Check-out:'
-            },
-            'events': {
-                'title': 'Eventos durante tu visita'
-            }
-        }
     },
-    
     // English translations
     'en': {
         // Header translations
         'header': {
-            'establishments': 'Places',
+            'establishments': 'Establishments',
             'trails': 'Trails',
             'activities': 'Activities',
+            'city3D': '3D City',
             'login': 'Log in',
             'register': 'Sign up'
         },
