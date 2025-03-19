@@ -62,7 +62,7 @@ const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
-const chatBotCSS = path.join(cssUtilsDir, 'chatbot.css');
+const chatBotCSS = path.join(cssUtilsDir, 'chatBot.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -78,7 +78,7 @@ const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
 const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
-const chatBotJs = path.join(jsUtilsDir, 'chatbot.js');
+const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 
 // Image paths
 const faviconIMG = path.join(imagesDir, 'icon.ico');
