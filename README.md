@@ -7,8 +7,8 @@
 
 1. Clona este repositorio:
    ```
-   git clone https://github.com/Joseleelsuper/CDSTechChallenge-FaseII.git
-   cd CDSTechChallenge-FaseII
+   git clone https://github.com/Troyano19/CDSTechChallenge_FaseII.git
+   cd CDSTechChallenge_FaseII
    ```
 
 2. Instala todas las dependencias:
