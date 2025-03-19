@@ -8,9 +8,9 @@ const translations = {
     'es': {
         // Header translations
         'header': {
-            'establishments': 'Locales',
+            'establishments': 'Establecimientos',
             'trails': 'Rutas',
-            'activities': 'Ocio',
+            'activities': 'Actividades',
             'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
             'register': 'Registrate'
@@ -118,135 +118,12 @@ const translations = {
                 }
             }
         },
-        
-        // English translations
-        'en': {
-            // Header translations
-            'header': {
-                'establishments': 'Places',
-                'trails': 'Trails',
-                'activities': 'Activities',
-                'login': 'Log in',
-                'register': 'Sign up'
-            },
-            // Footer translations
-            'footer': {
-                'about': 'Your sustainable tourism portal',
-                'links': 'Links',
-                'legal': 'Legal',
-                'terms': 'Terms',
-                'privacy': 'Privacy',
-                'cookies': 'Cookies',
-                'created-by': 'Created by'
-            },
-            // Home page translations
-            'home': {
-                'carousel': {
-                    'slide1': {
-                        'title': 'Discover Nature',
-                        'description': 'Explore our natural trails'
-                    },
-                    'slide2': {
-                        'title': 'Local Gastronomy',
-                        'description': 'Enjoy the best establishments'
-                    },
-                    'slide3': {
-                        'title': 'Exciting Activities',
-                        'description': 'Live unforgettable experiences'
-                    }
-                },
-                'travel': {
-                    'title': 'Plan your trip',
-                    'origin': 'Origin',
-                    'originPlaceholder': 'Where are you coming from?',
-                    'departureDate': 'Departure date',
-                    'returnDate': 'Return date',
-                    'search': 'Search now'
-                },
-                'interests': {
-                    'title': 'Points of interest'
-                },
-                'traditions': {
-                    'title': 'Local traditions',
-                    'tradition1': {
-                        'title': 'Local Tradition',
-                        'description': 'Description of this ancestral tradition of the region.'
-                    },
-                    'tradition2': {
-                        'title': 'Typical Gastronomy',
-                        'description': 'Description of the most representative dishes.'
-                    }
-                }
-            },
-            // Business pages translations
-            'business': {
-                'activities': {
-                    'title': 'Activities',
-                    'nearby': 'Activities near you',
-                    'recommended': 'Recommended activities'
-                },
-                'establishments': {
-                    'title': 'Establishments',
-                    'nearby': 'Establishments near you',
-                    'recommended': 'Recommended establishments'
-                },
-                'trails': {
-                    'title': 'Trails',
-                    'nearby': 'Trails near you',
-                    'recommended': 'Recommended trails'
-                }
-            },
-            // Login & Register translations
-            'session': {
-                'login': {
-                    'title': 'Log in',
-                    'welcome': 'Welcome back',
-                    'identifier': 'Username / Email',
-                    'password': 'Password',
-                    'submit': 'Log in',
-                    'noAccount': 'Don\'t have an account?',
-                    'createAccount': 'Create an account',
-                    'withGoogle': 'Sign in with Google',
-                    'withDiscord': 'Sign in with Discord'
-                },
-                'register': {
-                    'title': 'Register',
-                    'welcome': 'Welcome to GreenLake',
-                    'name': 'Name',
-                    'surnames': 'Surnames',
-                    'username': 'Username',
-                    'email': 'Email',
-                    'password': 'Password',
-                    'confirmPassword': 'Confirm password',
-                    'submit': 'Register',
-                    'hasAccount': 'Already have an account?',
-                    'login': 'Log in'
-                }
-            },
-            // Travel page translations
-            'travel': {
-                'title': 'Modify your trip',
-                'transport': {
-                    'title': 'Transportation options to GreenLake',
-                    'departure': 'Departure:',
-                    'arrival': 'Arrival:'
-                },
-                'hotels': {
-                    'title': 'Available accommodations',
-                    'checkIn': 'Check-in:',
-                    'checkOut': 'Check-out:'
-                },
-                'events': {
-                    'title': 'Events during your visit'
-                }
-            }
-        }
-    },   
+    },
     // English translations
     'en': {
         // Header translations
         'header': {
-            'establishments': 'Places',
+            'establishments': 'Establishments',
             'trails': 'Trails',
             'activities': 'Activities',
             'city3D': '3D City',
