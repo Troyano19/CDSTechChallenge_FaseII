@@ -31,7 +31,7 @@ const jsCity3DDIR = path.join(jsPagesDir, 'city3D');
 // Template paths
 const headerPath = path.join(utilsDir, 'header.html');
 const footerPath = path.join(utilsDir, 'footer.html');
-const chatBotPath = path.join("./public/html/utils/", 'chatbot.html');
+const chatBotPath = path.join(utilsDir, 'chatBot.html');
 
 // HTML pages
 const homePage = path.join(pagesDir, 'home.html');
