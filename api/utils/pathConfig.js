@@ -18,11 +18,11 @@ const utilsDir = path.join(htmlDir, 'utils');
 
 const imagesDir = path.join(publicDir, 'images');
 
-const cssDir = path.join(publicDir, 'css');
+const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
 
-const jsDir = path.join(publicDir, 'js');
+const jsDir = path.join('js');
 const jsPagesDir = path.join(jsDir, 'pages');
 const jsUtilsDir = path.join(jsDir, 'utils');
 const jsDataDir = path.join(jsDir, 'data');
@@ -31,7 +31,7 @@ const jsCity3DDIR = path.join(jsPagesDir, 'city3D');
 // Template paths
 const headerPath = path.join(utilsDir, 'header.html');
 const footerPath = path.join(utilsDir, 'footer.html');
-const chatBotPath = path.join(utilsDir, 'chatBot.html');
+const chatBotPath = path.join(utilsDir, 'chatbot.html');
 
 // HTML pages
 const homePage = path.join(pagesDir, 'home.html');
@@ -72,7 +72,7 @@ const countriesJs = path.join(jsDataDir, 'countries.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
 const headerJs = path.join(jsUtilsDir, 'header.js');
-const carouselJs = path.join("/js/utils/", 'carousel.js');
+const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
 const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
 const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
