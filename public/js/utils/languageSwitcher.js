@@ -180,14 +180,56 @@ if (typeof window.LanguageSwitcher === 'undefined') {
     }
 
     /**
+     * Get a translation value, with fallback to default language or key itself
+     * @param {string} key - The translation key to look up
+     * @param {string} lang - The language code
+     * @returns {string} The translated value or the key itself if not found
+     */
+    function getTranslation(key, lang) {
+        if (!window.Translations || !window.Translations[lang]) {
+            return key;
+        }
+        
+        // Split the key by dots to navigate through the translations object
+        const keyParts = key.split('.');
+        let translation = window.Translations[lang];
+        let fallbackTranslation = null;
+        
+        // Try to get a fallback from the default language (if not already the default)
+        if (lang !== 'es') {
+            fallbackTranslation = window.Translations['es'];
+        }
+        
+        // Traverse the translation object
+        for (const part of keyParts) {
+            if (!translation[part]) {
+                // Key not found in requested language, try fallback if available
+                if (fallbackTranslation) {
+                    for (const fbPart of keyParts) {
+                        if (!fallbackTranslation[fbPart]) {
+                            // Not found in fallback either
+                            // Instead of warning for each missing key, just return the last part of the key
+                            // as it's usually more meaningful than the whole path
+                            return keyParts[keyParts.length - 1];
+                        }
+                        fallbackTranslation = fallbackTranslation[fbPart];
+                    }
+                    return fallbackTranslation;
+                }
+                
+                // No fallback, return last part of the key
+                return keyParts[keyParts.length - 1];
+            }
+            translation = translation[part];
+        }
+        
+        return translation;
+    }
+
+    /**
      * Translate page content based on data-translate attributes
      */
     function translatePage() {
-        if (!window.Translations || !window.Translations[currentLanguage]) {
-            console.error(`Translations for "${currentLanguage}" not found.`);
-            return;
-        }
-        
         // Select all elements with data-translate attribute
         const elements = document.querySelectorAll('[data-translate]');
         
@@ -195,18 +237,8 @@ if (typeof window.LanguageSwitcher === 'undefined') {
             const translationKey = element.getAttribute('data-translate');
             if (!translationKey) return;
             
-            // Split the key by dots to navigate through the translations object
-            const keyParts = translationKey.split('.');
-            let translation = window.Translations[currentLanguage];
-            
-            // Traverse the translation object
-            for (const part of keyParts) {
-                if (!translation[part]) {
-                    console.warn(`Translation key "${translationKey}" not found for language "${currentLanguage}"`);
-                    return;
-                }
-                translation = translation[part];
-            }
+            // Get translated text with fallbacks
+            const translation = getTranslation(translationKey, currentLanguage);
             
             // Apply the translation based on element type
             if (element.tagName === 'INPUT' && element.getAttribute('type') === 'submit') {
@@ -224,17 +256,8 @@ if (typeof window.LanguageSwitcher === 'undefined') {
             const translationKey = element.getAttribute('data-translate-placeholder');
             if (!translationKey) return;
             
-            // Navigate through the translations object
-            const keyParts = translationKey.split('.');
-            let translation = window.Translations[currentLanguage];
-            
-            for (const part of keyParts) {
-                if (!translation[part]) {
-                    console.warn(`Translation key "${translationKey}" not found for language "${currentLanguage}"`);
-                    return;
-                }
-                translation = translation[part];
-            }
+            // Get translated text with fallbacks
+            const translation = getTranslation(translationKey, currentLanguage);
             
             element.placeholder = translation;
         });
@@ -265,12 +288,11 @@ if (typeof window.LanguageSwitcher === 'undefined') {
         
         // Add a listener for page content changes (like loading new sections)
         const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // New content was added to the page
-                    translatePage();
-                }
-            });
+            // Throttle the translate calls to avoid excessive processing
+            clearTimeout(window._translateThrottle);
+            window._translateThrottle = setTimeout(() => {
+                translatePage();
+            }, 100);
         });
         
         // Start observing the document body for changes
@@ -285,12 +307,16 @@ if (typeof window.LanguageSwitcher === 'undefined') {
         languageNames,
         translatePage,
         initLanguageSwitcher,
-        detectBrowserLanguage
+        detectBrowserLanguage,
+        getTranslation
     };
 
     // Initialize on DOM content loaded - only attach once
     if (!window.languageSwitcherInitialized) {
         document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
         window.languageSwitcherInitialized = true;
+        
+        // Make current language globally accessible
+        window.currentLanguage = currentLanguage;
     }
 }

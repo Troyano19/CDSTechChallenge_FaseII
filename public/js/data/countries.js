@@ -228,3 +228,92 @@ const countryTranslations = {
     "Zambia": "Zambia",
     "Zimbabwe": "Zimbabue"
 };
+
+// Create reverse mapping (Spanish to English) for easier lookups
+const reverseCountryTranslations = {};
+for (const [english, spanish] of Object.entries(countryTranslations)) {
+    reverseCountryTranslations[spanish] = english;
+}
+
+/**
+ * Get country name in target language
+ * @param {string} countryName - Country name in any supported language
+ * @param {string} targetLang - Target language code ('es' or 'en')
+ * @returns {string} - Country name in target language
+ */
+function getCountryInLanguage(countryName, targetLang) {
+    if (!countryName) return '';
+    
+    // If target language is Spanish, find the Spanish name
+    if (targetLang === 'es') {
+        // If already Spanish, return as is
+        if (countries.includes(countryName)) {
+            return countryName;
+        }
+        // Try to translate from English to Spanish
+        return countryTranslations[countryName] || countryName;
+    } 
+    // If target language is English, find the English name
+    else if (targetLang === 'en') {
+        // If already English, return as is (check if it exists as key in countryTranslations)
+        if (Object.keys(countryTranslations).includes(countryName)) {
+            return countryName;
+        }
+        // Try to translate from Spanish to English
+        return reverseCountryTranslations[countryName] || countryName;
+    }
+    
+    // Default return the original name
+    return countryName;
+}
+
+/**
+ * Get list of countries in target language
+ * @param {string} targetLang - Target language code ('es' or 'en')
+ * @returns {Array} - List of country names in target language
+ */
+function getCountriesInLanguage(targetLang) {
+    if (targetLang === 'es') {
+        return [...countries];
+    } else if (targetLang === 'en') {
+        return Object.keys(countryTranslations);
+    }
+    return [...countries];
+}
+
+/**
+ * Search countries in all languages
+ * @param {string} query - Search query
+ * @param {string} targetLang - Target language for results
+ * @returns {Array} - Matching country names in target language
+ */
+function searchCountries(query, targetLang) {
+    if (!query) return [];
+    
+    query = query.toLowerCase();
+    const results = new Set();
+    
+    // Search in Spanish names
+    countries.forEach(country => {
+        if (country.toLowerCase().includes(query)) {
+            results.add(getCountryInLanguage(country, targetLang));
+        }
+    });
+    
+    // Search in English names
+    Object.keys(countryTranslations).forEach(english => {
+        if (english.toLowerCase().includes(query)) {
+            const translated = getCountryInLanguage(english, targetLang);
+            results.add(translated);
+        }
+    });
+    
+    return Array.from(results);
+}
+
+// Export utilities through window
+window.CountryUtils = {
+    getCountryInLanguage,
+    getCountriesInLanguage,
+    searchCountries
+};
