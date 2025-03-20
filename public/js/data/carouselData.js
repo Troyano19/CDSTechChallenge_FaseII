@@ -165,22 +165,22 @@ const recommendedTrails = [
     {
         id: "5",
         image: "../../images/temp/trails-temp4.jpeg",
-        name: "Sendero del Bosque"
+        name: "Carril Bici Panorámico 'Senda del Lago Tranquilo'"
     },
     {
         id: "6",
         image: "../../images/temp/trails-temp3.jpeg",
-        name: "Ruta Panorámica"
+        name: "Ruta de Observación de Aves 'Mirador del Bosque Escondido'"
     },
     {
         id: "7",
         image: "../../images/temp/trails-temp2.jpeg",
-        name: "Camino de las Aves"
+        name: "Ruta Urbana Peatonal 'El Corazón Verde'"
     },
     {
         id: "8",
         image: "../../images/temp/trails-temp1.jpeg",
-        name: "Ruta del Valle"
+        name: "Ruta de Senderismo 'Sendero del Colibrí'"
     }
 ];
 
