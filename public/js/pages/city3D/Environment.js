@@ -30,41 +30,9 @@ export class Environment {
     setupLights() {
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         this.scene.add(ambientLight);
-        
+    
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
         directionalLight.position.set(50, 100, 50);
         this.scene.add(directionalLight);
-        
-        // Add a blue-tinted point light near water areas to enhance their appearance
-        this.addWaterEffects();
-    }
-
-    addWaterEffects() {
-        // We'll add this method after the model is loaded in the main class
-    }
-
-    enhanceWaterAreas() {
-        // Function to be called after model is loaded
-        this.scene.traverse((object) => {
-            if (object.isMesh && object.userData.isWater) {
-                // Add a subtle blue light near water
-                const waterLight = new THREE.PointLight(0x3498db, 0.5, 50);
-                waterLight.position.copy(object.position);
-                waterLight.position.y += 2; // Move light slightly above water
-                this.scene.add(waterLight);
-                
-                // Optional: Add simple water animation via shader or material updates
-                object.userData.originalY = object.position.y;
-                
-                // Create shimmer effect with small displacement
-                if (typeof TWEEN !== 'undefined') {
-                    new TWEEN.Tween(object.material)
-                        .to({ opacity: 0.7 }, 2000)
-                        .yoyo(true)
-                        .repeat(Infinity)
-                        .start();
-                }
-            }
-        });
     }
 }
