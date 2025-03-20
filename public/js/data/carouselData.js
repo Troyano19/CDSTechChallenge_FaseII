@@ -100,7 +100,7 @@ const nearbyEstablishments = [
     {
         id: "2",
         image: "../../images/temp/establishment-temp2.jpeg",
-        name: "Hotel Vista Verde"
+        name: "Hotel Ecológico 'Lago Esmeralda'"
     },
     {
         id: "3",
@@ -128,7 +128,7 @@ const recommendedEstablishments = [
     {
         id: "7",
         image: "../../images/temp/establishment-temp2.jpeg",
-        name: "Tienda de Productos Locales"
+        name: "Hotel Ecológico 'Lago Esmeralda'"
     },
     {
         id: "8",
