@@ -10,7 +10,7 @@ require('dotenv').config();
 
 //We inicialize the express app
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // Parse URL-encoded bodies (for form data)
 app.use(express.urlencoded({ extended: true }));
