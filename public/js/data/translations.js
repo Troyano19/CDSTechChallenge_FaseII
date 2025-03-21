@@ -126,6 +126,95 @@ window.Translations = {
                 'hasAccount': '¿Ya tienes una cuenta?',
                 'login': 'Iniciar sesión'
             }
+        },
+        // Legal pages translations
+        'legal': {
+            'cookies': {
+                'title': 'Política de Cookies',
+                'intro': 'Esta Política de Cookies explica cómo GreenLake Village utiliza cookies y tecnologías similares.',
+                'what': {
+                    'title': 'Qué son las cookies',
+                    'content': 'Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita nuestra web.'
+                },
+                'usage': {
+                    'title': 'Cómo utilizamos las cookies',
+                    'content': 'Utilizamos cookies principalmente para mantener su sesión y mejorar su experiencia de navegación.'
+                },
+                'session': {
+                    'title': 'Duración de la sesión',
+                    'content': 'Su sesión conectada dura 30 minutos y puede durar menos si cierra el navegador.'
+                },
+                'types': {
+                    'title': 'Tipos de cookies que utilizamos',
+                    'essential': 'Cookies esenciales: necesarias para el funcionamiento del sitio web',
+                    'preferences': 'Cookies de preferencias: guardan sus preferencias como el idioma seleccionado',
+                    'analytics': 'Cookies analíticas: nos ayudan a entender cómo interactúan los visitantes con nuestra web'
+                },
+                'manage': {
+                    'title': 'Cómo gestionar las cookies',
+                    'content': 'Puede configurar su navegador para rechazar todas las cookies o para que le avise cuando se envía una cookie.'
+                }
+            },
+            'privacy': {
+                'title': 'Política de Privacidad',
+                'intro': 'Esta Política de Privacidad explica cómo GreenLake Village recopila, utiliza y protege su información personal.',
+                'collection': {
+                    'title': 'Recopilación de información',
+                    'content': 'Solo recopilamos la información personal que nos proporciona durante el registro en nuestra plataforma. No recogemos ningún otro tipo de información del usuario más allá de sus datos de registro.'
+                },
+                'usage': {
+                    'title': 'Uso de la información',
+                    'content': 'Utilizamos su información para proporcionar y mejorar nuestros servicios. No vendemos su información personal a terceros ni a nadie.'
+                },
+                'protection': {
+                    'title': 'Protección de datos',
+                    'content': 'Implementamos medidas de seguridad para proteger su información personal contra acceso no autorizado o alteración.'
+                },
+                'session': {
+                    'title': 'Duración de la sesión',
+                    'content': 'Su sesión conectada dura 30 minutos y puede durar menos si cierra el navegador.'
+                },
+                'rights': {
+                    'title': 'Sus derechos',
+                    'content': 'Tiene derecho a acceder, corregir o eliminar sus datos personales. Para ejercer estos derechos, contáctenos a través de los canales proporcionados.'
+                },
+                'changes': {
+                    'title': 'Cambios en esta política',
+                    'content': 'Podemos actualizar esta política de privacidad ocasionalmente. Le notificaremos cualquier cambio significativo.'
+                }
+            },
+            'terms': {
+                'title': 'Términos y Condiciones',
+                'intro': 'Estos términos y condiciones establecen las reglas para el uso de GreenLake Village.',
+                'acceptance': {
+                    'title': 'Aceptación de términos',
+                    'content': 'Al acceder y utilizar este sitio, usted acepta estos términos y condiciones en su totalidad.'
+                },
+                'account': {
+                    'title': 'Su cuenta',
+                    'content': 'Usted es responsable de mantener la confidencialidad de su cuenta y contraseña. Su sesión conectada dura 30 minutos y puede durar menos si cierra el navegador.'
+                },
+                'prohibitions': {
+                    'title': 'Prohibiciones',
+                    'content': 'Está prohibido utilizar este sitio de manera que cause daño, interrupción o limitación en la funcionalidad.'
+                },
+                'intellectual': {
+                    'title': 'Propiedad intelectual',
+                    'content': 'Todo el contenido publicado en este sitio es propiedad de GreenLake Village y está protegido por leyes de propiedad intelectual.'
+                },
+                'liability': {
+                    'title': 'Limitación de responsabilidad',
+                    'content': 'GreenLake Village no será responsable por cualquier daño directo, indirecto o consecuente que resulte del uso de nuestro sitio.'
+                },
+                'changes': {
+                    'title': 'Cambios en los términos',
+                    'content': 'Nos reservamos el derecho de modificar estos términos en cualquier momento. Es su responsabilidad revisar periódicamente cualquier cambio.'
+                },
+                'law': {
+                    'title': 'Ley aplicable',
+                    'content': 'Estos términos se rigen por las leyes de España.'
+                }
+            }
         }
     },
     // English translations
@@ -248,6 +337,95 @@ window.Translations = {
             },
             'events': {
                 'title': 'Events during your visit'
+            }
+        },
+        // Legal pages translations
+        'legal': {
+            'cookies': {
+                'title': 'Cookie Policy',
+                'intro': 'This Cookie Policy explains how GreenLake Village uses cookies and similar technologies.',
+                'what': {
+                    'title': 'What are cookies',
+                    'content': 'Cookies are small text files that are stored on your device when you visit our website.'
+                },
+                'usage': {
+                    'title': 'How we use cookies',
+                    'content': 'We primarily use cookies to maintain your session and improve your browsing experience.'
+                },
+                'session': {
+                    'title': 'Session duration',
+                    'content': 'Your connected session lasts 30 minutes and can be shorter if you close the browser.'
+                },
+                'types': {
+                    'title': 'Types of cookies we use',
+                    'essential': 'Essential cookies: necessary for the website to function',
+                    'preferences': 'Preference cookies: store your preferences such as selected language',
+                    'analytics': 'Analytical cookies: help us understand how visitors interact with our website'
+                },
+                'manage': {
+                    'title': 'How to manage cookies',
+                    'content': 'You can set your browser to refuse all cookies or to alert you when a cookie is sent.'
+                }
+            },
+            'privacy': {
+                'title': 'Privacy Policy',
+                'intro': 'This Privacy Policy explains how GreenLake Village collects, uses, and protects your personal information.',
+                'collection': {
+                    'title': 'Information collection',
+                    'content': 'We only collect personal information that you provide during registration on our platform. We do not collect any other type of user information beyond your registration data.'
+                },
+                'usage': {
+                    'title': 'Use of information',
+                    'content': 'We use your information to provide and improve our services. We do not sell your personal information to third parties or anyone else.'
+                },
+                'protection': {
+                    'title': 'Data protection',
+                    'content': 'We implement security measures to protect your personal information against unauthorized access or alteration.'
+                },
+                'session': {
+                    'title': 'Session duration',
+                    'content': 'Your connected session lasts 30 minutes and can be shorter if you close the browser.'
+                },
+                'rights': {
+                    'title': 'Your rights',
+                    'content': 'You have the right to access, correct or delete your personal data. To exercise these rights, contact us through the provided channels.'
+                },
+                'changes': {
+                    'title': 'Changes to this policy',
+                    'content': 'We may update this privacy policy from time to time. We will notify you of any significant changes.'
+                }
+            },
+            'terms': {
+                'title': 'Terms and Conditions',
+                'intro': 'These terms and conditions establish the rules for using GreenLake Village.',
+                'acceptance': {
+                    'title': 'Acceptance of terms',
+                    'content': 'By accessing and using this site, you accept these terms and conditions in full.'
+                },
+                'account': {
+                    'title': 'Your account',
+                    'content': 'You are responsible for maintaining the confidentiality of your account and password. Your connected session lasts 30 minutes and can be shorter if you close the browser.'
+                },
+                'prohibitions': {
+                    'title': 'Prohibitions',
+                    'content': 'It is prohibited to use this site in a way that causes damage, disruption, or limitation in functionality.'
+                },
+                'intellectual': {
+                    'title': 'Intellectual property',
+                    'content': 'All content published on this site is the property of GreenLake Village and is protected by intellectual property laws.'
+                },
+                'liability': {
+                    'title': 'Limitation of liability',
+                    'content': 'GreenLake Village will not be liable for any direct, indirect, or consequential damages resulting from the use of our site.'
+                },
+                'changes': {
+                    'title': 'Changes to the terms',
+                    'content': 'We reserve the right to modify these terms at any time. It is your responsibility to periodically review any changes.'
+                },
+                'law': {
+                    'title': 'Applicable law',
+                    'content': 'These terms are governed by the laws of Spain.'
+                }
             }
         }
     }
