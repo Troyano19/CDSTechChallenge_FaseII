@@ -16,8 +16,6 @@ const htmlDir = path.join(publicDir, 'html');
 const pagesDir = path.join(htmlDir, 'pages');
 const utilsDir = path.join(htmlDir, 'utils');
 
-const imagesDir = path.join(publicDir, 'images');
-
 const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
@@ -81,7 +79,9 @@ const city3DJs = path.join(jsCity3DDIR, 'main.js');
 const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 
 // Image paths
+const imagesDir = path.join('images');
 const faviconIMG = path.join(imagesDir, 'icon.ico');
+const chatIcon = path.join(imagesDir, 'chat-icon.svg');
 
 /**
  * Get path configuration object
@@ -147,7 +147,8 @@ const getPaths = () => {
             chatBot: chatBotJs
         },
         images: {
-            favicon: faviconIMG
+            favicon: faviconIMG,
+            chatIcon: chatIcon
         }
     };
 };
