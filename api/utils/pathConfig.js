@@ -68,6 +68,11 @@ const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const chatBotCSS = path.join(cssUtilsDir, 'chatBot.css');
 
+const LegalDirCSS = path.join(cssPagesDir, 'legal');
+const cookiesCSS = path.join(LegalDirCSS, 'cookies.css');
+const privacyCSS = path.join(LegalDirCSS, 'privacy.css');
+const termsCSS = path.join(LegalDirCSS, 'terms.css');
+
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
@@ -139,7 +144,12 @@ const getPaths = () => {
             travel: travelCSS,
             businessPages: businessPagesCSS,
             city3D: city3DCSS,
-            chatBot: chatBotCSS
+            chatBot: chatBotCSS,
+            legal: {
+                cookies: cookiesCSS,
+                privacy: privacyCSS,
+                terms: termsCSS
+            }
         },
         js: {
             home: homeJs,

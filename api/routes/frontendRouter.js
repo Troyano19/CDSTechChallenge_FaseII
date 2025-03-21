@@ -103,7 +103,7 @@ router.get("/city3D", (_, res) => {
 });
 
 router.get("/terms", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.legal.cookies'), res);
+    renderWithHeaderFooter(getPath('pages.legal.terms'), res);
 });
 
 router.get("/privacy", (_, res) => {
