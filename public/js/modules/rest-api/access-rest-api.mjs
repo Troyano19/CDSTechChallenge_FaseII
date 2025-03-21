@@ -11,6 +11,8 @@ const baseURL = "api/auth"
 
 /**
  * Inicia sesión en la aplicación
+ * 
+ * Código de aceptación -> 200
  */
 
 const loginUser = (data) => {
