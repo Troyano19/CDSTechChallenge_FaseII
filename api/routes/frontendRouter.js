@@ -102,4 +102,16 @@ router.get("/city3D", (_, res) => {
     res.sendFile(getPath('pages.city3D'));
 });
 
+router.get("/terms", (_, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.cookies'), res);
+});
+
+router.get("/privacy", (_, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.privacy'), res);
+});
+
+router.get("/cookies", (_, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.cookies'), res);
+});
+
 module.exports = router;

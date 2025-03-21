@@ -51,6 +51,12 @@ const sessionDir = path.join(pagesDir, 'session');
 const loginPage = path.join(sessionDir, 'login.html');
 const registerPage = path.join(sessionDir, 'register.html');
 
+// Legal pages
+const legalDir = path.join(pagesDir, 'legal');
+const cookiesPage = path.join(legalDir, 'cookies.html');
+const privacyPage = path.join(legalDir, 'privacy.html');
+const termsPage = path.join(legalDir, 'terms.html');
+
 // CSS files
 const mainCSS = path.join(cssDir, 'main.css');
 const homeCSS = path.join(cssPagesDir, 'home.css');
@@ -117,6 +123,11 @@ const getPaths = () => {
             session: {
                 login: loginPage,
                 register: registerPage
+            },
+            legal: {
+                cookies: cookiesPage,
+                privacy: privacyPage,
+                terms: termsPage
             }
         },
         css: {
