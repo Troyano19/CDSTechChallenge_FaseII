@@ -61,19 +61,19 @@ const register = async (req, res) => {
             return;
         }
         //TODO: Comprobar si comprueba variaciones en mayusculas
-        if(await userDB.findOne({usernameLower: username.toLowerCase()})){
+        if(await userDB.findOne({username})){
             res.status(409).json({message: "El nombre de usuario ya está en uso"});
             return;
         };
 
-        if(await userDB.findOne({email: email.toLowerCase()})){
+        if(await userDB.findOne({email})){
             res.status(409).json({message: "El email ya está en uso"});
             return;;
         };
         //Sanitizamos los datos para evitar codigo malicioso
         const sanitizedData = {
             name: sanitizeHtml(name),
-            surnames: sanitizeHtml(surnames).split(" ")[0],
+            surnames: sanitizeHtml(surnames),
             username: sanitizeHtml(username),
             email: sanitizeHtml(email),
             password: sanitizeHtml(password)
@@ -81,7 +81,7 @@ const register = async (req, res) => {
         //Comprobamos si los datos cumplen con los parametros
         checkParams(sanitizedData);
         
-        const newUser = new userDB({name: sanitizedData.name, usernameLower: sanitizedData.username.toLowerCase(), username: sanitizedData.username,
+        const newUser = new userDB({name: sanitizedData.name, username: sanitizedData.username,
             surnames: sanitizedData.surnames, email: sanitizedData.email.toLowerCase(),});
 
         newUser.password = await newUser.hashPassword(password);
@@ -90,8 +90,19 @@ const register = async (req, res) => {
         res.cookie("loginCookie", token, {httpOnly: true, sameSite: "Strict"});
         res.status(200).json({token: token});
     }catch(err){
-        console.log("Ha ocurrido un error en el proceso de registro:", err.message);
-        res.status(500).json({message: err.message});
+        if (err.code === 11000) {
+            if (err.keyPattern.username) {
+                res.status(409).json({message: "El nombre de usuario ya está en uso"});
+            } else if (err.keyPattern.email) {
+                res.status(409).json({message: "El email ya está en uso"});
+            } else {
+                res.status(409).json({message: "Error de clave duplicada"});
+            }
+        }else{
+            console.log("Ha ocurrido un error en el proceso de registro:", err.message);
+            res.status(500).json({message: err.message});
+        }
+        
     };
 };
 
@@ -130,13 +141,13 @@ const checkParams = (data) => {
      * La longitud de la contraseña deberá ser mayor a 8 caracteres.
      */
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\dñÑ@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\dñÑ@$!_*?&]{8,}$/;
     if(!passwordRegex.test(data.password)){
     throw new Error("La contraseña debe contener lo siguiente: \n" +
                     " - Al menos una letra mayúscula\n" +
                     " - Al menos una letra minúscula\n" +
                     " - Al menos un número\n" +
-                    " - Al menos un símbolo especial (@$!%*?&)\n" +
+                    " - Al menos un símbolo especial (@$!_*?&)\n" +
                     " - Debe tener una longitud mínima de 8 caracteres");
     };
     /**

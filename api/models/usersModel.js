@@ -6,10 +6,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'El nombre de usuario es obligatorio'],
-    },
-    usernameLower: {
-        type: String,
-        unique: true,
+        collation: { locale: "en", strength: 2, caseLevel: false} 
     },
     name: {
         type: String,
@@ -22,6 +19,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        collation: { locale: "en", strength: 2 } 
     },
     registerDate: {
         type: Date,
@@ -63,7 +61,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Indexes - we keep only these and remove any index: true fields above
-userSchema.index({username: 1}, {unique: true});
+userSchema.index({username: 1}, {unique: true, collation: { locale: "en", strength: 2, caseLevel: false }}); // Añadido collation al índice
 userSchema.index({email: 1}, {unique: true});
 userSchema.index({discordId: 1}, {unique: true, sparse: true});
 userSchema.index({googleId: 1}, {unique: true, sparse: true});
