@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'El nombre de usuario es obligatorio'],
-        unique: true,
         validate: {
             validator: function(value) {
                 return !value.includes('@');
@@ -29,7 +28,6 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
         validate: {
             validator: function(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,8 +87,8 @@ const userSchema = new mongoose.Schema({
 });
 
 // Indexes - we keep only these and remove any index: true fields above
-userSchema.index({username: 1}, {unique: true, sparse: true});
-userSchema.index({email: 1}, {unique: true, sparse: true});
+userSchema.index({username: 1}, {unique: true});
+userSchema.index({email: 1}, {unique: true});
 userSchema.index({discordId: 1}, {unique: true, sparse: true});
 userSchema.index({googleId: 1}, {unique: true, sparse: true});
 

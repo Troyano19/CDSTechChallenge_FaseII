@@ -12,7 +12,7 @@ const connectDB = require('./config/database');
 require('dotenv').config();
 
 //Connect to MongoDB
-await connectDB();
+connectDB();
 
 //We inicialize the express app
 const app = express();
