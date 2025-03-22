@@ -89,8 +89,8 @@ const userSchema = new mongoose.Schema({
 });
 
 // Indexes - we keep only these and remove any index: true fields above
-userSchema.index({username: 1}, {unique: true});
-userSchema.index({email: 1}, {unique: true});
+userSchema.index({username: 1}, {unique: true, sparse: true});
+userSchema.index({email: 1}, {unique: true, sparse: true});
 userSchema.index({discordId: 1}, {unique: true, sparse: true});
 userSchema.index({googleId: 1}, {unique: true, sparse: true});
 
