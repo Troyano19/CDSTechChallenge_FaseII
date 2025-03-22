@@ -44,9 +44,9 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Planifica tu viaje',
-                'origin': 'Origen',
+                'origin': 'País de origen *',
                 'originPlaceholder': '¿De dónde vienes?',
-                'departureDate': 'Fecha de ida',
+                'departureDate': 'Fecha de ida *',
                 'returnDate': 'Fecha de vuelta',
                 'search': 'Busca ahora'
             },
@@ -116,12 +116,12 @@ window.Translations = {
             'register': {
                 'title': 'Registro',
                 'welcome': 'Bienvenido a GreenLake',
-                'name': 'Nombre',
-                'surnames': 'Apellidos',
-                'username': 'Nombre de usuario',
-                'email': 'Email',
-                'password': 'Contraseña',
-                'confirmPassword': 'Confirmar contraseña',
+                'name': 'Nombre *',
+                'surnames': 'Apellidos *',
+                'username': 'Nombre de usuario *',
+                'email': 'Email *',
+                'password': 'Contraseña *',
+                'confirmPassword': 'Confirmar contraseña *',
                 'submit': 'Registrarse',
                 'hasAccount': '¿Ya tienes una cuenta?',
                 'login': 'Iniciar sesión'
@@ -256,9 +256,9 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Plan your trip',
-                'origin': 'Origin',
+                'origin': 'Origin country *',
                 'originPlaceholder': 'Where are you coming from?',
-                'departureDate': 'Departure date',
+                'departureDate': 'Departure date *',
                 'returnDate': 'Return date',
                 'search': 'Search now'
             },
@@ -311,12 +311,12 @@ window.Translations = {
             'register': {
                 'title': 'Register',
                 'welcome': 'Welcome to GreenLake',
-                'name': 'Name',
-                'surnames': 'Surnames',
-                'username': 'Username',
-                'email': 'Email',
-                'password': 'Password',
-                'confirmPassword': 'Confirm password',
+                'name': 'Name *',
+                'surnames': 'Surnames *',
+                'username': 'Username *',
+                'email': 'Email *',
+                'password': 'Password *',
+                'confirmPassword': 'Confirm password *',
                 'submit': 'Register',
                 'hasAccount': 'Already have an account?',
                 'login': 'Log in'
