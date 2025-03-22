@@ -29,7 +29,7 @@ const login = async (req, res) => {
         let {identifier, password} = req.body;
         identifier = sanitizeHtml(identifier);
         password = sanitizeHtml(password);
-        const user = identifier.includes('@') ? await userDB.findOne({email: email.toLowercase()}) : await userDB.findOne({username: identifier.toLowercase()});
+        const user = identifier.includes('@') ? await userDB.findOne({email: identifier.toLowercase()}) : await userDB.findOne({username: identifier.toLowercase()});
 
         if(user){
             if(user.comparePassword(password)){
