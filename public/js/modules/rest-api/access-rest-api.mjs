@@ -12,11 +12,10 @@ const baseURL = "/api/auth";
  * Código de aceptación -> 200
  */
 const loginUser = (data) => {
-    const datos = Object.fromEntries(data);
     return fetch(`${baseURL}/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(datos),
+        body: JSON.stringify(data),
         credentials: "include",
     });
 }
