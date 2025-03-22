@@ -6,35 +6,22 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'El nombre de usuario es obligatorio'],
-        validate: {
-            validator: function(value) {
-                return !value.includes('@');
-            },
-            message: 'El nombre de usuario no puede contener @'
-        }
+    },
+    usernameLower: {
+        type: String,
+        unique: true,
     },
     name: {
         type: String,
         required: true,
     },
-    surname1: {
-        type: String,
-        required: true,
-    },
-    surname2: {
+    surnames: {
         type: String,
         required: true,
     },
     email: {
         type: String,
         required: true,
-        validate: {
-            validator: function(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
-            },
-            message: 'Por favor introduce un email válido'
-        }
     },
     registerDate: {
         type: Date,
@@ -64,17 +51,6 @@ const userSchema = new mongoose.Schema({
         required: function() {
             return this.registrationmethod === 'DEFAULT';
         },
-        validate: {
-            validator: function(password) {
-                // Only validate if it's a DEFAULT registration
-                if (this.registrationmethod !== 'DEFAULT') return true;
-                
-                // At least 6 characters, 1 uppercase, 1 lowercase and 1 number
-                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
-                return passwordRegex.test(password);
-            },
-            message: 'La contraseña debe tener al menos 6 caracteres, 1 mayúscula, 1 minúscula y un número'
-        }
     },
     googleId: {
         type: String,
