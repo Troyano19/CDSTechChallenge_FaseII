@@ -88,6 +88,7 @@ const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
 const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
+const accessJs = path.join(jsDir, 'access.js');
 
 // Image paths
 const imagesDir = path.join('images');
@@ -161,6 +162,7 @@ const getPaths = () => {
             businessPages: businessPagesJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,
+            access: accessJs,
             pageLoader: pageLoaderJs,
             translations: translationsJs,
             languageSwitcher: languageSwitcherJs,

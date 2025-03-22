@@ -3,18 +3,14 @@
  * desde las paginas de acceso y salida de la web
  */
 
-import { base } from "../../../../api/models/usersModel";
-
 //URL base de la API REST
-
-const baseURL = "api/auth"
+const baseURL = "/api/auth";
 
 /**
  * Inicia sesión en la aplicación
  * 
  * Código de aceptación -> 200
  */
-
 const loginUser = (data) => {
     const datos = Object.fromEntries(data);
     return fetch(`${baseURL}/login`, {
@@ -25,13 +21,19 @@ const loginUser = (data) => {
     });
 }
 
+/**
+ * Cierra sesión en la aplicación
+ */
 const logoutUser = () => {
     return fetch(`${baseURL}/logout`, {
-        methor: "GET",
+        method: "GET",
         credentials: "include"
     });
 }
 
+/**
+ * Registra un nuevo usuario
+ */
 const registerUser = (data) => {
     const datos = Object.fromEntries(data);
     return fetch(`${baseURL}/register`, {
@@ -42,4 +44,14 @@ const registerUser = (data) => {
     });
 };
 
-export {loginUser, logoutUser, registerUser};
+/**
+ * Verifica si el usuario está autenticado
+ */
+const checkAuthStatus = () => {
+    return fetch(`${baseURL}/status`, {
+        method: "GET",
+        credentials: "include"
+    });
+};
+
+export {loginUser, logoutUser, registerUser, checkAuthStatus};
