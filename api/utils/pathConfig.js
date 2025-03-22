@@ -16,8 +16,6 @@ const htmlDir = path.join(publicDir, 'html');
 const pagesDir = path.join(htmlDir, 'pages');
 const utilsDir = path.join(htmlDir, 'utils');
 
-const imagesDir = path.join(publicDir, 'images');
-
 const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
@@ -53,6 +51,12 @@ const sessionDir = path.join(pagesDir, 'session');
 const loginPage = path.join(sessionDir, 'login.html');
 const registerPage = path.join(sessionDir, 'register.html');
 
+// Legal pages
+const legalDir = path.join(pagesDir, 'legal');
+const cookiesPage = path.join(legalDir, 'cookies.html');
+const privacyPage = path.join(legalDir, 'privacy.html');
+const termsPage = path.join(legalDir, 'terms.html');
+
 // CSS files
 const mainCSS = path.join(cssDir, 'main.css');
 const homeCSS = path.join(cssPagesDir, 'home.css');
@@ -63,6 +67,11 @@ const sessionCSS = path.join(cssPagesDir, 'session.css');
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const chatBotCSS = path.join(cssUtilsDir, 'chatBot.css');
+
+const LegalDirCSS = path.join(cssPagesDir, 'legal');
+const cookiesCSS = path.join(LegalDirCSS, 'cookies.css');
+const privacyCSS = path.join(LegalDirCSS, 'privacy.css');
+const termsCSS = path.join(LegalDirCSS, 'terms.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -79,9 +88,12 @@ const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
 const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
+const accessJs = path.join(jsDir, 'access.js');
 
 // Image paths
+const imagesDir = path.join('images');
 const faviconIMG = path.join(imagesDir, 'icon.ico');
+const chatIcon = path.join(imagesDir, 'chat-icon.svg');
 
 /**
  * Get path configuration object
@@ -117,6 +129,11 @@ const getPaths = () => {
             session: {
                 login: loginPage,
                 register: registerPage
+            },
+            legal: {
+                cookies: cookiesPage,
+                privacy: privacyPage,
+                terms: termsPage
             }
         },
         css: {
@@ -128,7 +145,12 @@ const getPaths = () => {
             travel: travelCSS,
             businessPages: businessPagesCSS,
             city3D: city3DCSS,
-            chatBot: chatBotCSS
+            chatBot: chatBotCSS,
+            legal: {
+                cookies: cookiesCSS,
+                privacy: privacyCSS,
+                terms: termsCSS
+            }
         },
         js: {
             home: homeJs,
@@ -140,6 +162,7 @@ const getPaths = () => {
             businessPages: businessPagesJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,
+            access: accessJs,
             pageLoader: pageLoaderJs,
             translations: translationsJs,
             languageSwitcher: languageSwitcherJs,
@@ -147,7 +170,8 @@ const getPaths = () => {
             chatBot: chatBotJs
         },
         images: {
-            favicon: faviconIMG
+            favicon: faviconIMG,
+            chatIcon: chatIcon
         }
     };
 };

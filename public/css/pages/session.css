@@ -32,6 +32,17 @@
     font-size: 1.5rem;
 }
 
+/* Error message styling */
+.error-message {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    border-left: 4px solid #DC2626;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
 /* Form group styling */
 .form-group {
     margin-bottom: 1.2rem;

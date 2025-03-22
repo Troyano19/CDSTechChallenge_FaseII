@@ -1,0 +1,16 @@
+@import url("./common-legal.css");
+
+/* Specific styles for privacy page */
+.important-notice {
+    background-color: rgba(47, 133, 90, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.data-protection-section {
+    border-top: 2px dashed var(--color-border);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+}

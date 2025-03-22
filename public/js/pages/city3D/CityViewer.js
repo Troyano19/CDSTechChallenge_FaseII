@@ -6,56 +6,61 @@ import { BuildingInteraction } from './Buildings.js';
 
 export class CityViewer {
     constructor() {
+        // Add a property to track estimated file size if not provided by server
+        this.estimatedObjSize = 5 * 1024 * 1024; // 5MB is a reasonable guess for a city model
         this.init();
     }
 
     init() {
         // Configuración inicial de Three.js
         this.scene = new THREE.Scene();
-        
+
         // Crear y configurar el renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         document.body.appendChild(this.renderer.domElement);
-        
+
         // Inicializar manejador de cámara
         this.cameraManager = new CameraManager(this.scene);
         this.camera = this.cameraManager.getCamera();
-        
+
         // Configurar el entorno (cielo y luces)
         this.environment = new Environment(this.scene);
-        
+
         // Inicializar la interacción con edificios
         this.buildingInteraction = new BuildingInteraction(this.scene, this.camera);
-        
+
         // Configurar controles
         this.controls = new Controls(this.cameraManager, this.buildingInteraction);
-        
+
         // Configurar UI
         this.ui = new UI(this.cameraManager);
-        
-        // Cargar modelo
+
+        // Cargar modelo desde la nube
         this.loadCityModel();
     }
 
     loadCityModel() {
         const loadingManager = new THREE.LoadingManager(
             () => {
-                // Corregir la forma de ocultar la pantalla de carga
+                // Loading complete callback
                 const loadingElement = document.getElementById('app-loading');
                 if (loadingElement) {
                     loadingElement.style.display = 'none';
                 } else {
                     console.warn('No se encontró elemento de carga con ID "app-loading"');
                 }
+                
+                // Make sure percentage shows 100% when complete
+                const percentageElement = document.getElementById('loading-percentage');
+                if (percentageElement) {
+                    percentageElement.textContent = '100%';
+                }
             },
             (itemUrl, itemsLoaded, itemsTotal) => {
-                const progress = (itemsLoaded / itemsTotal) * 100;
-                const progressElement = document.getElementById('loading-progress');
-                if (progressElement) {
-                    progressElement.textContent = `${Math.round(progress)}%`;
-                }
+                // This manager progress might not work well with external URLs
+                // We'll rely on the direct XHR progress event instead
             }
         );
 
@@ -65,55 +70,99 @@ export class CityViewer {
             roughness: 0.7,
             metalness: 0.2
         });
+        const modelBaseUrl = 'https://dl.dropboxusercontent.com/s/msv577k8ijwbsz30w8a7u/city.obj?rlkey=01awy98doc0fzcqhp3zefbuvj&st=rh1628m5&dl=0/';
 
         // Check if MTLLoader is available
         if (typeof THREE.MTLLoader === 'function') {
             // Use MTLLoader to load materials first
             const mtlLoader = new THREE.MTLLoader(loadingManager);
             mtlLoader.setPath('data/');
-            
-            mtlLoader.load('city.mtl', 
+            mtlLoader.load(
+                `city.mtl`,
                 (mtlMaterials) => {
                     mtlMaterials.preload();
-                    
+
                     const loader = new THREE.OBJLoader(loadingManager);
                     loader.setMaterials(mtlMaterials);
-                    this.loadOBJModel(loader);
-                }, 
-                undefined, 
+                    loader.setPath(modelBaseUrl);
+                    this.loadOBJModel(loader, `${modelBaseUrl}city.obj`);
+                },
+                undefined,
                 // If MTL fails, just load OBJ with default materials
                 (error) => {
                     console.warn('MTL loading failed, using default materials:', error);
                     const loader = new THREE.OBJLoader(loadingManager);
-                    this.loadOBJModel(loader);
+                    loader.setPath(modelBaseUrl);
+                    this.loadOBJModel(loader, `${modelBaseUrl}city.obj`);
                 }
             );
         } else {
             // MTLLoader not available, proceed with OBJLoader only
             console.warn('MTLLoader not available, using default materials');
             const loader = new THREE.OBJLoader(loadingManager);
-            this.loadOBJModel(loader);
+            loader.setPath(modelBaseUrl);
+            this.loadOBJModel(loader, `${modelBaseUrl}city.obj`);
         }
     }
 
     // Helper method to load the OBJ model
-    loadOBJModel(loader) {
+    loadOBJModel(loader, modelUrl) {
+        // Keep track of the max bytes loaded to help with percentage calculation
+        let maxBytesLoaded = 0;
+        
         loader.load(
-            'data/city.obj',
+            modelUrl || 'city.obj',
             (object) => {
                 this.cityModel = object;
                 this.scene.add(this.cityModel);
-                
+
                 // Process the model (apply materials, etc.)
                 this.processCityModel();
             },
             (xhr) => {
-                const progress = (xhr.loaded / xhr.total) * 100;
-                document.getElementById('loading-progress').textContent = `${Math.round(progress)}%`;
+                // Track the maximum bytes we've seen
+                if (xhr.loaded > maxBytesLoaded) {
+                    maxBytesLoaded = xhr.loaded;
+                }
+                
+                // Calculate and display both percentage and downloaded size
+                const downloadedMB = (xhr.loaded / (1024 * 1024)).toFixed(2);
+                let progress = 0;
+                
+                if (xhr.lengthComputable && xhr.total > 0) {
+                    // If the server provides content length, use it
+                    progress = (xhr.loaded / xhr.total) * 100;
+                    const totalMB = (xhr.total / (1024 * 1024)).toFixed(2);
+                    
+                    // Update size element with total
+                    const sizeElement = document.getElementById('loading-size');
+                    if (sizeElement) {
+                        sizeElement.textContent = `${downloadedMB} MB / ${totalMB} MB`;
+                    }
+                } else {
+                    // If length is not provided, use our estimate or try to make a good guess
+                    // This will at least show increasing percentages
+                    progress = Math.min(95, (xhr.loaded / this.estimatedObjSize) * 100);
+                    
+                    // Update size element without total
+                    const sizeElement = document.getElementById('loading-size');
+                    if (sizeElement) {
+                        sizeElement.textContent = `Descargado: ${downloadedMB} MB`;
+                    }
+                }
+                
+                // Always update the percentage, rounded to nearest integer
+                const percentageElement = document.getElementById('loading-percentage');
+                if (percentageElement) {
+                    percentageElement.textContent = `${Math.round(progress)}%`;
+                }
             },
             (error) => {
                 console.error('Error loading the model:', error);
-                document.getElementById('loading-progress').textContent = 'Error loading the model';
+                const percentageElement = document.getElementById('loading-percentage');
+                if (percentageElement) {
+                    percentageElement.textContent = 'Error loading the model';
+                }
             }
         );
     }
@@ -131,7 +180,7 @@ export class CityViewer {
                             metalness: 0.2
                         });
                     }
-                    
+
                     // Identify trees and apply green material - use more specific criteria
                     // to avoid misclassifying buildings as trees
                     const bbox = new THREE.Box3().setFromObject(child);
@@ -139,15 +188,15 @@ export class CityViewer {
                     const height = size.y;
                     const width = size.x;
                     const depth = size.z;
-                    
+
                     // Only classify thin, tall, and small objects as trees
                     // Making this condition more strict to avoid misclassifying buildings
-                    if (height > 2 && 
+                    if (height > 2 &&
                         height < 8 && // Trees shouldn't be too tall
-                        height/(Math.max(width, depth)) > 3 && // Very thin aspect ratio
+                        height / (Math.max(width, depth)) > 3 && // Very thin aspect ratio
                         Math.max(width, depth) < 2 && // Small footprint 
                         (child.material.name?.includes('Tree_Spruce_tiny_01') || // If material name hints at tree
-                         child.material.color?.g > 0.5 && child.material.color?.r < 0.3)) // Or if it's already green
+                            child.material.color?.g > 0.5 && child.material.color?.r < 0.3)) // Or if it's already green
                     {
                         child.material = new THREE.MeshStandardMaterial({
                             color: 0x2D9B27, // Green for trees
@@ -162,13 +211,13 @@ export class CityViewer {
                 }
             }
         });
-        
+
         // Add CSS for building info panel
         this.addInfoPanelStyles();
-        
+
         // Configure buildings for interaction
         this.buildingInteraction.setCityModel(this.cityModel);
-        
+
         // Start the animation loop
         this.animate();
     }
@@ -235,18 +284,18 @@ export class CityViewer {
 
     animate() {
         requestAnimationFrame(this.animate.bind(this));
-        
+
         // Actualizar TWEEN si está disponible
         if (typeof TWEEN !== 'undefined') {
             TWEEN.update();
         }
-        
+
         // Actualizar controles para movimiento de cámara
         this.controls.update();
-        
+
         // Actualizar panel de posición
         this.ui.updatePositionPanel(this.camera.position);
-        
+
         // Renderizar la escena
         this.renderer.render(this.scene, this.camera);
     }

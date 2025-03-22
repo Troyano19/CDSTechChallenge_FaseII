@@ -1,0 +1,14 @@
+@import url("./common-legal.css");
+
+/* Specific styles for cookies page */
+.cookie-icon {
+    color: var(--color-primary);
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+}
+
+.cookie-management-section {
+    border-top: 2px dashed var(--color-border);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+}
