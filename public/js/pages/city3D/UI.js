@@ -1,17 +1,37 @@
 export class UI {
     constructor(cameraManager) {
         this.cameraManager = cameraManager;
+        this.isMobileDevice = this.checkIfMobile();
         this.createResetButton();
         this.createPositionPanel();
+    }
+
+    // Detectar si estamos en un dispositivo móvil
+    checkIfMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
     createResetButton() {
         const resetButton = document.createElement('button');
         resetButton.id = 'reset-camera';
         resetButton.textContent = 'Resetear Cámara';
+        
+        // Usar touchend para dispositivos táctiles para mejor respuesta
+        if (this.isMobileDevice) {
+            resetButton.addEventListener('touchend', (e) => {
+                e.preventDefault(); // Prevenir comportamientos predeterminados
+                this.cameraManager.resetCamera();
+            }, { passive: false });
+            
+            // Eliminar delay de clics
+            resetButton.style.touchAction = 'manipulation';
+        }
+        
+        // Mantener clic para compatibilidad con escritorio
         resetButton.addEventListener('click', () => {
             this.cameraManager.resetCamera();
         });
+        
         document.body.appendChild(resetButton);
     }
 

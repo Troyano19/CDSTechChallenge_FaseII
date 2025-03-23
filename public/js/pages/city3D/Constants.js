@@ -30,5 +30,8 @@ export const KEYS = {
 // Cantidad mínima de movimiento para considerar un arrastre vs clic
 export const MIN_DRAG_THRESHOLD = 5;
 
+// Umbral para detectar arrastres táctiles
+export const TOUCH_DRAG_THRESHOLD = 10;
+
 // Tiempo de espera después de cerrar el panel de info (ms)
 export const INFO_PANEL_COOLDOWN = 1000;
