@@ -1,4 +1,4 @@
-import { KEYS } from './Constants.js';
+import { KEYS, MIN_DRAG_THRESHOLD, TOUCH_DRAG_THRESHOLD } from './Constants.js';
 
 export class Controls {
     constructor(cameraManager, buildingInteraction) {
@@ -6,10 +6,12 @@ export class Controls {
         this.buildingInteraction = buildingInteraction;
         this.keys = { ...KEYS };
         this.isDragging = false;
+        this.isTouchDragging = false; // Nueva propiedad para seguimiento de arrastre táctil
         this.previousMousePosition = { x: 0, y: 0 };
         this.mouse = new THREE.Vector2();
         this.mouseDownTime = 0; // Añadir variable para registrar el timestamp del clic
         this.isMobileDevice = this.checkIfMobile();
+        this.touchStartPosition = { x: 0, y: 0 }; // Guardar posición inicial del toque
         
         this.setupEventListeners();
         this.createMobileControls();
@@ -137,7 +139,9 @@ export class Controls {
 
     // Nuevos métodos para manejar eventos táctiles
     onTouchMove(event) {
+        // Siempre prevenir el desplazamiento de página
         event.preventDefault();
+        
         if (event.touches.length === 1) {
             const touch = event.touches[0];
             
@@ -145,32 +149,66 @@ export class Controls {
             this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
             
-            // Si estamos arrastrando, manejar como drag
-            if (this.isDragging) {
-                const deltaMove = {
-                    x: touch.clientX - this.previousMousePosition.x,
-                    y: touch.clientY - this.previousMousePosition.y
-                };
+            // Calcular la distancia desde el inicio del toque
+            const moveX = touch.clientX - this.touchStartPosition.x;
+            const moveY = touch.clientY - this.touchStartPosition.y;
+            const totalMove = Math.sqrt(moveX * moveX + moveY * moveY);
+            
+            // Solo iniciar arrastre si superamos el umbral de movimiento
+            if (totalMove > TOUCH_DRAG_THRESHOLD && !this.isTouchDragging) {
+                this.isTouchDragging = true;
+                document.body.style.cursor = 'grabbing';
                 
-                this.cameraManager.handleDrag(deltaMove, this.isDragging, this.previousMousePosition);
-                
+                // Actualizar posición previa para calcular movimiento delta
                 this.previousMousePosition = {
                     x: touch.clientX,
                     y: touch.clientY
                 };
             }
             
-            // Comprobar intersección para hover
-            this.buildingInteraction.checkIntersection(this.mouse);
+            // Si estamos en modo arrastre, manejar la rotación de la cámara
+            if (this.isTouchDragging) {
+                const deltaMove = {
+                    x: touch.clientX - this.previousMousePosition.x,
+                    y: touch.clientY - this.previousMousePosition.y
+                };
+                
+                // Llamar al método handleDrag para girar la cámara
+                this.cameraManager.handleDrag(deltaMove, true, this.previousMousePosition);
+                
+                // Actualizar posición para el siguiente movimiento
+                this.previousMousePosition = {
+                    x: touch.clientX,
+                    y: touch.clientY
+                };
+            } else {
+                // Si no estamos arrastrando, check para hover de edificios
+                this.buildingInteraction.checkIntersection(this.mouse);
+            }
         }
     }
 
     onTouchStart(event) {
-        event.preventDefault();
+        // Solo prevenir el comportamiento predeterminado si no estamos en un control
+        if (!event.target.closest('#mobile-controls')) {
+            event.preventDefault();
+        }
+        
         if (event.touches.length === 1) {
             const touch = event.touches[0];
+            
+            // Guardar el punto inicial del toque
+            this.touchStartPosition = {
+                x: touch.clientX,
+                y: touch.clientY
+            };
+            
+            // Inicializar estado del arrastre
+            this.isTouchDragging = false;
             this.isDragging = true;
             this.mouseDownTime = Date.now();
+            
+            // Guardar también como posición previa para cálculos de delta
             this.previousMousePosition = {
                 x: touch.clientX,
                 y: touch.clientY
@@ -179,29 +217,40 @@ export class Controls {
     }
 
     onTouchEnd(event) {
-        event.preventDefault();
+        // No prevenir el comportamiento predeterminado si estamos en un control
+        if (!event.target.closest('#mobile-controls')) {
+            event.preventDefault();
+        }
+        
         const clickDuration = Date.now() - this.mouseDownTime;
         
         if (event.changedTouches.length === 1) {
             const touch = event.changedTouches[0];
             
             // Restaurar cursor según corresponda
-            if (this.buildingInteraction.isHoveringBuilding()) {
-                document.body.style.cursor = 'pointer';
-            } else {
-                document.body.style.cursor = 'auto';
-            }
+            document.body.style.cursor = this.buildingInteraction.isHoveringBuilding() 
+                ? 'pointer' 
+                : 'auto';
             
             // Actualizar coordenadas del mouse para el clic
             this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
             
-            // Solo procesar como clic si la duración fue menor a 500ms
-            if (clickDuration < 500) {
+            // Solo procesar como clic si:
+            // 1. No estamos en modo arrastre
+            // 2. La duración fue menor a 500ms
+            // 3. El movimiento total fue menor que el umbral
+            const moveX = touch.clientX - this.touchStartPosition.x;
+            const moveY = touch.clientY - this.touchStartPosition.y;
+            const totalMove = Math.sqrt(moveX * moveX + moveY * moveY);
+            
+            if (!this.isTouchDragging && clickDuration < 500 && totalMove < TOUCH_DRAG_THRESHOLD) {
                 this.buildingInteraction.handleClick(this.mouse);
             }
             
+            // Restablecer estados de arrastre
             this.isDragging = false;
+            this.isTouchDragging = false;
         }
     }
 
@@ -253,11 +302,13 @@ export class Controls {
     }
     
     setupButtonEventListeners(button, keyCode) {
-        // Touch events - con manejo específico para iOS/
+        // Touch events - con manejo específico para iOS
         if (this.isMobileDevice) {
             button.addEventListener('touchstart', (e) => { 
                 e.preventDefault(); 
-                this.keys[keyCode] = true; 
+                this.keys[keyCode] = true;
+                // Evitar que se active el modo de arrastre cuando se presiona un botón
+                this.isTouchDragging = false;
             }, { passive: false });
             
             button.addEventListener('touchend', (e) => { 
