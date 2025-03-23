@@ -46,15 +46,15 @@ const replaceSecureTokens = (content) => {
  * @param {string} filePath - Path to the HTML file
  * @param {object} res - Express response object
  */
-const renderWithHeaderFooter = (filePath, res) => {
+const renderWithHeaderFooter = (filePath, req, res) => {
     try {
         // Read the header, footer, chatbot, and main content using the path config
         const headerPath = getPath('header');
         const footerPath = getPath('footer');
         const chatBotPath = getPath('chatBot');
         
-        const headerContent = fs.readFileSync(headerPath, 'utf8');
-        const footerContent = fs.readFileSync(footerPath, 'utf8');
+        let headerContent = fs.readFileSync(headerPath, 'utf8');
+        let footerContent = fs.readFileSync(footerPath, 'utf8');
         const chatBotContent = fs.readFileSync(chatBotPath, 'utf8');
         const content = fs.readFileSync(filePath, 'utf8');
         
@@ -80,9 +80,9 @@ const renderWithHeaderFooter = (filePath, res) => {
         
         // Replace path placeholders in all content parts
         const processedBeforeBody = replacePaths(beforeBody);
-        const processedHeaderContent = replacePaths(headerContent);
+        let processedHeaderContent = replacePaths(headerContent);
         const processedBodyContent = replacePaths(bodyContent);
-        const processedFooterContent = replacePaths(footerContent);
+        let processedFooterContent = replacePaths(footerContent);
         let processedChatBotContent = replacePaths(chatBotContent);
         
         // Also replace secure tokens in the chatbot content
@@ -90,6 +90,11 @@ const renderWithHeaderFooter = (filePath, res) => {
         
         const processedAfterBody = replacePaths(afterBody);
         
+        // Eliminar los elementos de login y register si el usuario está logueado
+        if (isLoggedIn(req)) {
+            processedHeaderContent = processedHeaderContent.replace('<a id = "login" href="/login" data-translate="header.login">Iniciar sesión</a>', '');
+            processedHeaderContent = processedHeaderContent.replace('<a id = "register" href="/register" class="register-btn" data-translate="header.register">Registrate</a>', '');        }
+
         // Combine all parts with header, footer, and chatbot
         const finalHtml = processedBeforeBody + 
                         processedHeaderContent + 
@@ -103,6 +108,12 @@ const renderWithHeaderFooter = (filePath, res) => {
         console.error('Error rendering template:', error);
         res.status(500).send('Error rendering template: ' + error.message);
     }
+};
+
+// Verificar si el usuario está logueado
+const isLoggedIn = (req) => {
+    // Verificar si la cookie de inicio de sesión existe
+    return req.cookies && req.cookies.loginCookie;
 };
 
 module.exports = {

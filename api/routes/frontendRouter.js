@@ -24,28 +24,28 @@ const publicPath = getPath('public');
  */
 router.use(express.static(publicPath));
 
-router.get("/", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.home'), res);
+router.get("/", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.home'), req, res);
 });
 
 router.get("/admin", (req, res) => {
     if (!req.session || !req.session.user) {
         return res.redirect('/');
     }
-    renderWithHeaderFooter(getPath('pages.admin'), res);
+    renderWithHeaderFooter(getPath('pages.admin'), req, res);
 });
 
-router.get("/activities", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.activities'), res);
+router.get("/activities", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.activities'), req, res);
 });
 
 router.get("/activitys/activity/:id", (req, res) => {
     const activityId = req.params.id;
-    renderWithHeaderFooter(getPath('pages.info.activity'), res);
+    renderWithHeaderFooter(getPath('pages.info.activity'), req, res);
 });
 
-router.get("/trails", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.trails'), res);
+router.get("/trails", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.trails'), req, res);
 });
 
 // Handle requests for detailed information pages
@@ -53,16 +53,16 @@ router.get("trails/trail/:id", (req, res) => {
     // Get the trail ID from route parameters
     const trailId = req.params.id;
     // Here you would fetch trail details from the database
-    renderWithHeaderFooter(getPath('pages.info.trail'), res);
+    renderWithHeaderFooter(getPath('pages.info.trail'), req, res);
 });
 
-router.get("/establishments", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.establishments'), res);
+router.get("/establishments", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.establishments'), req, res);
 });
 
 router.get("/establishments/establishment/:id", (req, res) => {
     const establishmentId = req.params.id;
-    renderWithHeaderFooter(getPath('pages.info.establishment'), res);
+    renderWithHeaderFooter(getPath('pages.info.establishment'), req, res);
 });
 
 // Handle direct visits to travel page
@@ -76,7 +76,7 @@ router.get("/travel", (req, res) => {
     // for flights, hotels, businesses, etc.
     // For now, we just render the travel page
     
-    renderWithHeaderFooter(getPath('pages.travel'), res);
+    renderWithHeaderFooter(getPath('pages.travel'), req, res);
 });
 
 // Handle form submissions from the home page
@@ -90,28 +90,28 @@ router.post("/travel", (req, res) => {
     res.redirect(`/travel?origin=${encodeURIComponent(origin)}&departure=${encodeURIComponent(departureDate)}&return=${encodeURIComponent(returnDate)}`);
 });
 
-router.get("/login", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.session.login'), res);
+router.get("/login", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.session.login'), req, res);
 });
 
-router.get("/register", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.session.register'), res);
+router.get("/register", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.session.register'), req, res);
 });
 
 router.get("/city3D", (_, res) => {
     res.sendFile(getPath('pages.city3D'));
 });
 
-router.get("/terms", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.legal.terms'), res);
+router.get("/terms", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.terms'), req, res);
 });
 
-router.get("/privacy", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.legal.privacy'), res);
+router.get("/privacy", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.privacy'), req, res);
 });
 
-router.get("/cookies", (_, res) => {
-    renderWithHeaderFooter(getPath('pages.legal.cookies'), res);
+router.get("/cookies", (req, res) => {
+    renderWithHeaderFooter(getPath('pages.legal.cookies'), req, res);
 });
 
 module.exports = router;
