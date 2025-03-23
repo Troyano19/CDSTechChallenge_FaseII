@@ -3,6 +3,7 @@ const express = require('express');
 //Used to enroute without exposing the dirnames
 const path = require('path');
 //import the routers
+const cookieParser = require('cookie-parser');
 const frontendRouter = require('./routes/frontendRouter');
 const configRouter = require('./routes/configRouter');
 const authRouter = require('./routes/authRoutes');
@@ -22,6 +23,8 @@ const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 //Load the middleware that analize the body of the requests
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '../public')));
