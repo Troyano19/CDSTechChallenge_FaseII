@@ -18,7 +18,6 @@
   "scripts": {
     "start": "node ./api/index.js",
     "dev": "nodemon ./api/index.js",
-    "build:css": "heroui build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
