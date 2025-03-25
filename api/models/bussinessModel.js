@@ -10,7 +10,7 @@ const localModel = mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ["Hotel", "Restaurant/Bar", "Store", "Culture"],
+        enum: ["Hotel", "Restaurante/Bar", "Tienda", "Cultura"],
         required: true,
     },
     open_hours: {
