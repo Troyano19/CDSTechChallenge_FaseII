@@ -48,6 +48,7 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+
     try{
         const {name, surnames, username, email, password, confirmPassword} = req.body
 
@@ -96,6 +97,7 @@ const register = async (req, res) => {
             } else if (err.keyPattern.email) {
                 res.status(409).json({message: "El email ya está en uso"});
             } else {
+                console.log(err);
                 res.status(409).json({message: "Error de clave duplicada"});
             }
         }else{
