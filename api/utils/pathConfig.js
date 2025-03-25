@@ -39,12 +39,14 @@ const establishmentsPage = path.join(pagesDir, 'establishments.html');
 const activitiesPage = path.join(pagesDir, 'activities.html');
 const adminPage = path.join(pagesDir, 'admin.html');
 const city3DPage = path.join(pagesDir, 'city3D.html');
+const profilePage = path.join(pagesDir, 'profile.html');
 
 // Info pages
 const infoDir = path.join(pagesDir, 'info');
 const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
 const activityInfoPage = path.join(infoDir, 'activitie.html');
+const myTripsPage = path.join(infoDir, 'myTrips.html');
 
 // Session pages
 const sessionDir = path.join(pagesDir, 'session');
@@ -64,6 +66,8 @@ const travelCSS = path.join(cssPagesDir, 'travel.css');
 const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
 const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
+const profileCSS = path.join(cssPagesDir, 'profile.css');
+
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const chatBotCSS = path.join(cssUtilsDir, 'chatBot.css');
@@ -72,6 +76,9 @@ const LegalDirCSS = path.join(cssPagesDir, 'legal');
 const cookiesCSS = path.join(LegalDirCSS, 'cookies.css');
 const privacyCSS = path.join(LegalDirCSS, 'privacy.css');
 const termsCSS = path.join(LegalDirCSS, 'terms.css');
+
+const infoDirCSS = path.join(cssPagesDir, 'info');
+const myTripsCSS = path.join(cssPagesDir, 'myTrips.css');
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
@@ -122,10 +129,12 @@ const getPaths = () => {
             activities: activitiesPage,
             admin: adminPage,
             city3D: city3DPage,
+            profile: profilePage,
             info: {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
-                activity: activityInfoPage
+                activity: activityInfoPage,
+                myTrips: myTripsPage
             },
             session: {
                 login: loginPage,
@@ -147,10 +156,14 @@ const getPaths = () => {
             businessPages: businessPagesCSS,
             city3D: city3DCSS,
             chatBot: chatBotCSS,
+            profile: profileCSS,
             legal: {
                 cookies: cookiesCSS,
                 privacy: privacyCSS,
                 terms: termsCSS
+            },
+            info: {
+                myTrips: myTripsCSS
             }
         },
         js: {
