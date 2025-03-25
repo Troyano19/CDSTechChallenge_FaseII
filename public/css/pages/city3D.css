@@ -83,7 +83,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 250px); /* Increased space at bottom to avoid overlapping controls */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch; /* Mejorar desplazamiento en iOS */
 }
@@ -96,9 +96,9 @@ body {
 }
 
 #building-info h4 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #2c5282;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #4890e9;
     font-size: 1.2em;
 }
 
@@ -166,7 +166,7 @@ body {
 .review-comment {
     font-size: 0.9em;
     line-height: 1.5;
-    max-height: 200px;
+    max-height: 100px; /* Limiting height of individual comments */
     overflow-y: auto;
     color: #1f2937; /* Gris muy oscuro para el texto del comentario */
 }
@@ -278,6 +278,7 @@ body {
         width: auto; /* Ancho automático para cubrir el espacio disponible */
         max-width: none;
         font-size: 16px; /* Texto más grande */
+        max-height: calc(100vh - 200px); /* Even more space for mobile controls */
     }
     
     #building-info h3 {
@@ -337,6 +338,11 @@ body {
     
     .review-rating, .review-date, .review-comment {
         font-size: 1.1em; /* Texto más grande */
+    }
+    
+    .review-comment {
+        font-size: 1.1em; /* Texto más grande */
+        max-height: 120px; /* Slightly larger for mobile but still limited */
     }
 }
 
