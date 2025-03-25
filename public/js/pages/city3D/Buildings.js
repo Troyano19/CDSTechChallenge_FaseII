@@ -57,8 +57,7 @@ export class BuildingInteraction {
             const serviciosFormateados = servicios.map(servicio => ({
                 name: servicio.nombre,
                 type: servicio.tipo,
-                height: "35m", // Altura estimada para servicios
-                description: `Servicio con valoraciones entre ${servicio.peor.puntuacion} y ${servicio.mejor.puntuacion} estrellas`,
+                height: `${Math.floor(Math.random() * 31) + 20}m`, // Altura aleatoria entre 20m y 50m
                 yearBuilt: new Date(Math.max(new Date(servicio.mejor.fecha), new Date(servicio.peor.fecha))).getFullYear(),
                 floors: Math.floor(Math.random() * 5) + 1,
                 style: "Moderno",
@@ -744,14 +743,12 @@ export class BuildingInteraction {
         
         if (info.type === 'Comercial' || info.type === 'Servicio') {
             additionalInfo = `
-                <p><strong>Arquitecto:</strong> ${info.architect || 'Desconocido'}</p>
                 <p><strong>Año de construcción:</strong> ${info.yearBuilt || 'N/A'}</p>
                 <p><strong>Plantas:</strong> ${info.floors || 'N/A'}</p>
                 <p>${info.description || ''}</p>
             `;
         } else if (info.type === 'Residencial' || info.type === 'Hotel') {
             additionalInfo = `
-                <p><strong>Apartamentos:</strong> ${info.apartments || 'N/A'}</p>
                 <p><strong>Año de construcción:</strong> ${info.yearBuilt || 'N/A'}</p>
                 <p>${info.description || ''}</p>
                 ${info.amenities ? '<p><strong>Servicios:</strong> ' + info.amenities.join(', ') + '</p>' : ''}
