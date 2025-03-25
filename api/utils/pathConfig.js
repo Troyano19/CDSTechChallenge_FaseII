@@ -89,6 +89,7 @@ const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
 const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 const accessJs = path.join(jsDir, 'access.js');
+const logoutJs = path.join(jsUtilsDir, 'logout.js');
 
 // Image paths
 const imagesDir = path.join('images');
@@ -167,7 +168,8 @@ const getPaths = () => {
             translations: translationsJs,
             languageSwitcher: languageSwitcherJs,
             city3D: city3DJs,
-            chatBot: chatBotJs
+            chatBot: chatBotJs,
+            logout: logoutJs
         },
         images: {
             favicon: faviconIMG,

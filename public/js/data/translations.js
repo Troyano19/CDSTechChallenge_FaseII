@@ -13,7 +13,10 @@ window.Translations = {
             'activities': 'Actividades',
             'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
-            'register': 'Registrate'
+            'register': 'Registrate',
+            'profile': 'Perfil',
+            'myTrips': 'Mis viajes',
+            'logout': 'Cerrar sesión'
         },
         // Footer translations
         'footer': {
@@ -226,7 +229,10 @@ window.Translations = {
             'activities': 'Activities',
             'city3D': '3D City',
             'login': 'Log in',
-            'register': 'Sign up'
+            'register': 'Sign up',
+            'profile': 'Profile',
+            'myTrips': 'My Trips',
+            'logout': 'Log out'
         },
         // Footer translations
         'footer': {

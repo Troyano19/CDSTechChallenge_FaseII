@@ -218,6 +218,88 @@ header .register-btn:hover {
 .city3d-link:hover .new-badge {
     background-color: #c0392b;
 }
+
+/* Profile selector styling */
+.profile-selector {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.profile-dropdown {
+    position: relative;
+    z-index: 1001; /* Higher than header's z-index */
+}
+
+.profile-current {
+    background: none;
+    border: 2px solid transparent;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-current:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.profile-current.open {
+    border-color: white;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.profile-image {
+    display: block;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+}
+
+.profile-dropdown-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1002;
+    overflow: hidden;
+}
+
+.profile-dropdown-content.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.profile-option {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-option:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    text-decoration: none;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     header {
@@ -343,6 +425,27 @@ header .register-btn:hover {
         left: 0;
         width: 100%;
         max-width: 200px;
+    }
+
+    /* Responsive adjustments for profile */
+    .profile-selector {
+        order: 1;
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    .profile-dropdown {
+        width: 100%;
+    }
+    
+    .profile-current {
+        margin: 0.5rem 0;
+    }
+    
+    .profile-dropdown-content {
+        left: 0;
+        right: auto;
+        width: 100%;
     }
 }
 

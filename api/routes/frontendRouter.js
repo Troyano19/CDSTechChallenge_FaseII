@@ -98,6 +98,20 @@ router.get("/register", (req, res) => {
     renderWithHeaderFooter(getPath('pages.session.register'), req, res);
 });
 
+router.get("/profile", (req, res) => {
+    if (!req.session || !req.cookies.loginCookie) {
+        return res.redirect('/login');
+    }
+    renderWithHeaderFooter(getPath('pages.profile'), req, res);
+});
+
+router.get("/my-trips", (req, res) => {
+    if (!req.session || !req.cookies.loginCookie) {
+        return res.redirect('/login');
+    }
+    renderWithHeaderFooter(getPath('pages.myTrips'), req, res);
+});
+
 router.get("/city3D", (_, res) => {
     res.sendFile(getPath('pages.city3D'));
 });

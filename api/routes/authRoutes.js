@@ -8,7 +8,7 @@ router.post('/register', register);
 // Login route
 router.post('/login', login);
 
-// Logout route
-router.get('/logout', logout);
+// Logout route - changed from GET to POST
+router.post('/logout', logout);
 
 module.exports = router;
