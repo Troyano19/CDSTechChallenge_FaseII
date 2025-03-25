@@ -1,19 +1,41 @@
 const mongoose = require('mongoose');
 
-const localModel = mongoose.Schema({
+const activitySchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
     },
     description: {
-        type:String,
+        type: String,
+        required: true,
     },
     type: {
         type: String,
-        enum: ["Hotel", "Restaurante/Bar", "Tienda", "Cultura"],
+        enum: ["Aire libre", "Cultura", "Deportes", "Gastronomía", "Relax"],
         required: true,
     },
-    open_hours: {
+    location: {
+        type: [Number],
+        index: '2dsphere',
+        required: true,
+    },
+    images: {
+        banner: {
+            type: String,
+        },
+        gallery: {
+            type: [String],
+        },
+    },
+    created_at: {
+        type: Date,
+        default: Date.now,
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now,
+    },
+    schedule: {
         monday: [{
             open: { type: String, required: true },
             close: { type: String, required: true }
@@ -42,27 +64,5 @@ const localModel = mongoose.Schema({
             open: { type: String, required: true },
             close: { type: String, required: true }
         }],
-    },
-    location: {
-        type: [Number],
-        index: '2dsphere',
-        required: true,
-    },
-    images: {
-        banner: {
-            type: String,
-        },
-        gallery: {
-            type: [String],
-        },
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    registerDate: {
-        type: Date,
-        default: Date.now(),
     },
 });
