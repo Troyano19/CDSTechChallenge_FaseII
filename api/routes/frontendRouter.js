@@ -9,7 +9,7 @@ const express = require('express');
 const path = require('path');
 // Import the path configuration and template utility
 const { getPath } = require('../utils/pathConfig');
-const { renderWithHeaderFooter } = require('../utils/templateUtils');
+const { renderWithHeaderFooter, isLoggedIn } = require('../utils/templateUtils');
 
 //We start the frontend router
 const router = express.Router();
@@ -99,15 +99,15 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/profile", (req, res) => {
-    if (!req.session || !req.cookies.loginCookie) {
+    if (!isLoggedIn(req)) {
         return res.redirect('/login');
     }
     renderWithHeaderFooter(getPath('pages.profile'), req, res);
 });
 
 router.get("/my-trips", (req, res) => {
-    if (!req.session || !req.cookies.loginCookie) {
-        return res.redirect('/login');
+    if (!isLoggedIn(req)) {
+      return res.redirect("/login");
     }
     renderWithHeaderFooter(getPath('pages.myTrips'), req, res);
 });

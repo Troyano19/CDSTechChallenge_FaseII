@@ -121,4 +121,5 @@ const isLoggedIn = (req) => {
 
 module.exports = {
   renderWithHeaderFooter,
+  isLoggedIn
 };
