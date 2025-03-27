@@ -30,26 +30,56 @@
                 
                 <div class="form-group">
                     <label for="name" data-translate="session.register.name">Nombre</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.name">El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                    </span>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="surnames" data-translate="session.register.surnames">Apellidos</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.surnames">Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                    </span>
                     <input type="text" id="surnames" name="surnames" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="username" data-translate="session.register.username">Nombre de usuario</label>
+                    <span class="info-icon">i
+                        <div class="tooltip">
+                            <span data-translate="session.register.tooltips.username.intro">El nombre de usuario debe:</span>
+                            <ul>
+                                <li data-translate="session.register.tooltips.username.item1">Tener entre 4 y 20 caracteres</li>
+                                <li data-translate="session.register.tooltips.username.item2">Solo contener letras y números</li>
+                            </ul>
+                        </div>
+                    </span>
                     <input type="text" id="username" name="username" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="email" data-translate="session.register.email">Email</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.email">Introduce una dirección de email válida (ejemplo: usuario@dominio.com).</div>
+                    </span>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="password" data-translate="session.register.password">Contraseña</label>
+                    <span class="info-icon">i
+                        <div class="tooltip">
+                            <span data-translate="session.register.tooltips.password.intro">La contraseña debe contener al menos:</span>
+                            <ul>
+                                <li data-translate="session.register.tooltips.password.item1">Una letra mayúscula</li>
+                                <li data-translate="session.register.tooltips.password.item2">Una letra minúscula</li>
+                                <li data-translate="session.register.tooltips.password.item3">Un número</li>
+                                <li data-translate="session.register.tooltips.password.item4">Un símbolo especial (@$!_*?&)</li>
+                                <li data-translate="session.register.tooltips.password.item5">Longitud mínima de 8 caracteres</li>
+                            </ul>
+                        </div>
+                    </span>
                     <input type="password" id="password" name="password" required>
                 </div>
                 

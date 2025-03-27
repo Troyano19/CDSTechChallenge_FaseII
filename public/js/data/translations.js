@@ -47,9 +47,9 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Planifica tu viaje',
-                'origin': 'País de origen *',
+                'origin': 'País de origen',
                 'originPlaceholder': '¿De dónde vienes?',
-                'departureDate': 'Fecha de ida *',
+                'departureDate': 'Fecha de ida',
                 'returnDate': 'Fecha de vuelta',
                 'search': 'Busca ahora'
             },
@@ -119,15 +119,34 @@ window.Translations = {
             'register': {
                 'title': 'Registro',
                 'welcome': 'Bienvenido a GreenLake',
-                'name': 'Nombre *',
-                'surnames': 'Apellidos *',
-                'username': 'Nombre de usuario *',
-                'email': 'Email *',
-                'password': 'Contraseña *',
-                'confirmPassword': 'Confirmar contraseña *',
+                'name': 'Nombre',
+                'surnames': 'Apellidos',
+                'username': 'Nombre de usuario',
+                'email': 'Email',
+                'password': 'Contraseña',
+                'confirmPassword': 'Confirmar contraseña',
                 'submit': 'Registrarse',
                 'hasAccount': '¿Ya tienes una cuenta?',
-                'login': 'Iniciar sesión'
+                'login': 'Iniciar sesión',
+                // Updated tooltip translations with structured items
+                'tooltips': {
+                    'name': 'El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                    'surnames': 'Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                    'username': {
+                        'intro': 'El nombre de usuario debe:',
+                        'item1': 'Tener entre 4 y 20 caracteres',
+                        'item2': 'Solo contener letras y números'
+                    },
+                    'email': 'Introduce una dirección de email válida (ejemplo: usuario@dominio.com).',
+                    'password': {
+                        'intro': 'La contraseña debe contener al menos:',
+                        'item1': 'Una letra mayúscula',
+                        'item2': 'Una letra minúscula',
+                        'item3': 'Un número',
+                        'item4': 'Un símbolo especial (@$!_*?&)',
+                        'item5': 'Longitud mínima de 8 caracteres'
+                    }
+                }
             }
         },
         // Legal pages translations
@@ -262,9 +281,9 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Plan your trip',
-                'origin': 'Origin country *',
+                'origin': 'Origin country',
                 'originPlaceholder': 'Where are you coming from?',
-                'departureDate': 'Departure date *',
+                'departureDate': 'Departure date',
                 'returnDate': 'Return date',
                 'search': 'Search now'
             },
@@ -317,15 +336,34 @@ window.Translations = {
             'register': {
                 'title': 'Register',
                 'welcome': 'Welcome to GreenLake',
-                'name': 'Name *',
-                'surnames': 'Surnames *',
-                'username': 'Username *',
-                'email': 'Email *',
-                'password': 'Password *',
-                'confirmPassword': 'Confirm password *',
+                'name': 'Name',
+                'surnames': 'Surnames',
+                'username': 'Username',
+                'email': 'Email',
+                'password': 'Password',
+                'confirmPassword': 'Confirm password',
                 'submit': 'Register',
                 'hasAccount': 'Already have an account?',
-                'login': 'Log in'
+                'login': 'Log in',
+                // Updated tooltip translations with structured items
+                'tooltips': {
+                    'name': 'Name can only contain letters (including accented letters and special Spanish characters).',
+                    'surnames': 'Surnames can only contain letters (including accented letters and special Spanish characters).',
+                    'username': {
+                        'intro': 'Username must:',
+                        'item1': 'Be between 4 and 20 characters long',
+                        'item2': 'Only contain letters and numbers'
+                    },
+                    'email': 'Enter a valid email address (example: user@domain.com).',
+                    'password': {
+                        'intro': 'Password must contain at least:',
+                        'item1': 'One uppercase letter',
+                        'item2': 'One lowercase letter',
+                        'item3': 'One number',
+                        'item4': 'One special symbol (@$!_*?&)',
+                        'item5': 'Be at least 8 characters long'
+                    }
+                }
             }
         },
         // Travel page translations
