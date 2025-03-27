@@ -47,7 +47,7 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Planifica tu viaje',
-                'origin': 'País de origen',
+                'origin': 'Ciudad y país',
                 'originPlaceholder': '¿De dónde vienes?',
                 'departureDate': 'Fecha de ida',
                 'returnDate': 'Fecha de vuelta',
@@ -83,6 +83,11 @@ window.Translations = {
             },
             'events': {
                 'title': 'Eventos durante tu visita'
+            },
+            'search': {
+                'loading': 'Buscando...',
+                'noResults': 'No se encontraron resultados',
+                'error': 'Error al buscar ciudades'
             }
         },
         // Business pages translations
@@ -281,7 +286,7 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Plan your trip',
-                'origin': 'Origin country',
+                'origin': 'City and country',
                 'originPlaceholder': 'Where are you coming from?',
                 'departureDate': 'Departure date',
                 'returnDate': 'Return date',
@@ -381,6 +386,11 @@ window.Translations = {
             },
             'events': {
                 'title': 'Events during your visit'
+            },
+            'search': {
+                'loading': 'Searching...',
+                'noResults': 'No results found',
+                'error': 'Error searching cities'
             }
         },
         // Legal pages translations

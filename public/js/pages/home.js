@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize travel form utilities
     if (window.TravelUtils) {
-        window.TravelUtils.initCountryAutocomplete();
+        window.TravelUtils.initCityCountryAutocomplete();
         window.TravelUtils.initTravelFormDates();
     }
 });
