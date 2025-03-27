@@ -19,6 +19,7 @@ const utilsDir = path.join(htmlDir, 'utils');
 const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
+const cssComponentsDir = path.join(cssDir, 'components'); // Add components directory
 
 const jsDir = path.join('js');
 const jsPagesDir = path.join(jsDir, 'pages');
@@ -67,6 +68,7 @@ const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
 const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const profileCSS = path.join(cssPagesDir, 'profile.css');
+const autocompleteCSS = path.join(cssComponentsDir, 'autocomplete.css'); // Add autocomplete CSS
 
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
@@ -84,12 +86,12 @@ const myTripsCSS = path.join(cssPagesDir, 'myTrips.css');
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
-const countriesJs = path.join(jsDataDir, 'countries.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
 const headerJs = path.join(jsUtilsDir, 'header.js');
 const carouselJs = path.join(jsUtilsDir, 'carousel.js');
 const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
+const geoNameUtilsJs = path.join(jsUtilsDir, 'geoNameUtils.js'); // Add geoNameUtils JS
 const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
 const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
 const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
@@ -157,6 +159,7 @@ const getPaths = () => {
             city3D: city3DCSS,
             chatBot: chatBotCSS,
             profile: profileCSS,
+            autocomplete: autocompleteCSS, // Add autocomplete CSS path
             legal: {
                 cookies: cookiesCSS,
                 privacy: privacyCSS,
@@ -169,10 +172,10 @@ const getPaths = () => {
         js: {
             home: homeJs,
             header: headerJs,
-            countries: countriesJs,
             carousel: carouselJs,
             travel: travelJs,
             travelUtils: travelUtilsJs,
+            geoNameUtils: geoNameUtilsJs, // Add geoNameUtils JS path
             businessPages: businessPagesJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,

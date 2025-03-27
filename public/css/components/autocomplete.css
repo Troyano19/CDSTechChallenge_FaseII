@@ -1,0 +1,129 @@
+/* City and Country dropdown styling */
+.dropdown-item.city-country-item,
+.dropdown-item.country-item {
+    display: grid;
+    grid-template-areas:
+        "city country-code"
+        "country country-code";
+    grid-template-columns: 1fr auto;
+    grid-gap: 2px;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+/* Special styling for exact city,country matches */
+.dropdown-item.exact-city-country-match {
+    background-color: rgba(56, 161, 105, 0.1);
+    border-left: 3px solid var(--color-primary-dark);
+}
+
+.exact-match-label {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-primary-dark);
+    margin-bottom: 3px;
+    letter-spacing: 0.05em;
+}
+
+/* Special layout for country-only items */
+.dropdown-item.country-item {
+    grid-template-areas: "country-name country-code";
+    grid-template-columns: 1fr auto;
+    background-color: #f8f9fa;
+    border-left: 3px solid var(--color-primary);
+}
+
+.dropdown-item.city-country-item:hover,
+.dropdown-item.country-item:hover {
+    background-color: #f0f9f4;
+}
+
+.dropdown-item .city-name,
+.dropdown-item .country-name-primary {
+    grid-area: city;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}
+
+.dropdown-item .country-name-primary {
+    grid-area: country-name;
+}
+
+/* Highlight exact matches with a distinct background */
+.dropdown-item .city-name.exact-match,
+.dropdown-item .country-name-primary.exact-match {
+    color: var(--color-primary-dark);
+    background-color: rgba(56, 161, 105, 0.15);
+    border-radius: 3px;
+    padding: 2px 4px;
+    margin: -2px -4px;
+}
+
+/* Highlight for names that start with the query */
+.dropdown-item .city-name.starts-with-match,
+.dropdown-item .country-name-primary.starts-with-match {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 1px;
+}
+
+/* Subtle highlight for normalized matches (without accents) */
+.dropdown-item .city-name.normalized-match,
+.dropdown-item .country-name-primary.normalized-match {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.dropdown-item .country-name {
+    grid-area: country;
+    font-size: 0.85rem;
+    color: var(--color-text-gray);
+}
+
+.dropdown-item .country-code {
+    grid-area: country-code;
+    font-size: 0.85rem;
+    color: var(--color-text-gray);
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.dropdown-item.loading,
+.dropdown-item.error,
+.dropdown-item.no-results {
+    padding: 12px;
+    text-align: center;
+    color: var(--color-text-gray);
+    font-style: italic;
+}
+
+.dropdown-item.error {
+    color: #e53e3e;
+}
+
+/* Section headings within dropdown */
+.dropdown-heading {
+    background-color: #f7f7f7;
+    color: var(--color-text-gray);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    letter-spacing: 0.05em;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Ensure dropdown is visible when needed */
+.dropdown-content.show {
+    display: block;
+}

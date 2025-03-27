@@ -11,10 +11,11 @@
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
     <link rel="stylesheet" href="{{PATH:css.main}}">
     <link rel="stylesheet" href="{{PATH:css.travel}}">
+    <link rel="stylesheet" href="{{PATH:css.autocomplete}}">
     <script src="{{PATH:js.translations}}" defer></script>
     <script src="{{PATH:js.languageSwitcher}}" defer></script>
     <script src="{{PATH:js.pageLoader}}" defer></script>
-    <script src="{{PATH:js.countries}}" defer></script>
+    <script src="{{PATH:js.geoNameUtils}}" defer></script>
     <script src="{{PATH:js.travelUtils}}" defer></script>
     <script src="{{PATH:js.travel}}" defer></script>
 </head>
@@ -26,7 +27,7 @@
             <h2 data-translate="travel.title">Modifica tu viaje</h2>
             <form action="/travel" method="post" class="travel-form">
                 <div class="form-group">
-                    <label for="origin" data-translate="home.travel.origin">Origen</label>
+                    <label for="origin" data-translate="home.travel.origin">Ciudad y país</label>
                     <div class="autocomplete-container">
                         <input type="text" id="origin" name="origin" data-translate-placeholder="home.travel.originPlaceholder" placeholder="¿De dónde vienes?" required
                             autocomplete="off">
