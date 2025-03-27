@@ -19,7 +19,7 @@
     <script src="{{PATH:js.carousel}}" defer></script>
     <script src="{{PATH:js.carouselData}}" defer></script>
     <script src="{{PATH:js.carouselRenderer}}" defer></script>
-    <script src="{{PATH:js.home}}" defer></script>
+    <script src="{{PATH:js.home}}" type="module" defer></script>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
         <!-- Travel Search Form -->
         <section id="travel" class="travel-section">
             <h2 data-translate="home.travel.title">Planifica tu viaje</h2>
-            <form action="/travel" method="post" class="travel-form">
+            <form id="travelForm" action="/travel" method="post" class="travel-form">
                 <div class="form-group">
                     <label for="origin" data-translate="home.travel.origin">Origen</label>
                     <div class="autocomplete-container">
