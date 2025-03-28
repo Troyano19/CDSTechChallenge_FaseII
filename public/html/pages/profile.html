@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GreenLake Village - Profile</title>
+    <meta name="description" content="Página de perfil de GreenLake Village, portal de turismo sostenible.">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://greenlake-portal.vercel.app/profile">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GreenLake Village">
+    <meta property="og:description" content="Página de perfil de GreenLake Village, portal de turismo sostenible.">
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="greenlake-portal.vercel.app">
+    <meta property="twitter:url" content="https://greenlake-portal.vercel.app/profile">
+    <meta name="twitter:title" content="GreenLake Village">
+    <meta name="twitter:description" content="Página de perfil de GreenLake Village, portal de turismo sostenible.">
+    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.profile}}">
+    <link rel="stylesheet" href="{{PATH:css.toast}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.profile}}" type="module" defer></script>
+</head>
+
+<body>
+    <main class="container profile-container">
+        <h1 class="page-title">Mi Perfil</h1>
+        
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="/images/default-profile.png" alt="Profile" id="profile-image">
+                    <label for="profile-image-upload" class="upload-btn" title="Cambiar imagen de perfil">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.5 2.207 3.293 8.414a1 1 0 0 0-.293.707V12a1 1 0 0 0 1 1h3.879a1 1 0 0 0 .707-.293L13.5 6.207a.5.5 0 0 0-.146-.353zM2 12a2 2 0 0 1 2-2h3.879a2 2 0 0 1 1.414.586L13 14.5V15H2v-3z"/>
+                        </svg>
+                    </label>
+                    <input type="file" id="profile-image-upload" accept="image/*" style="display: none;">
+                </div>
+                <div class="profile-info">
+                    <h2 id="user-display-name">Nombre de usuario</h2>
+                    <p id="user-email">usuario@ejemplo.com</p>
+                    <p id="registration-method" class="registration-method"></p>
+                </div>
+            </div>
+            
+            <!-- Error message placeholder -->
+            <div id="profile-error" class="error-message" style="display: none;"></div>
+            <div id="profile-success" class="success-message" style="display: none;"></div>
+            
+            <form id="profile-form">
+                <div class="form-section">
+                    <h3>Información personal</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <span class="info-icon">i
+                            <div class="tooltip">El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                        </span>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="surnames">Apellidos</label>
+                        <span class="info-icon">i
+                            <div class="tooltip">Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                        </span>
+                        <input type="text" id="surnames" name="surnames" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username">Nombre de usuario</label>
+                        <span class="info-icon">i
+                            <div class="tooltip">
+                                <span>El nombre de usuario debe:</span>
+                                <ul>
+                                    <li>Tener entre 4 y 20 caracteres</li>
+                                    <li>Solo contener letras y números</li>
+                                </ul>
+                            </div>
+                        </span>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <span class="info-icon">i
+                            <div class="tooltip">Introduce una dirección de email válida (ejemplo: usuario@dominio.com).</div>
+                        </span>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Cambiar contraseña</h3>
+                    
+                    <div class="form-group">
+                        <label for="current-password">Contraseña actual</label>
+                        <input type="password" id="current-password" name="currentPassword">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-password">Nueva contraseña</label>
+                        <span class="info-icon">i
+                            <div class="tooltip">
+                                <span>La contraseña debe contener al menos:</span>
+                                <ul>
+                                    <li>Una letra mayúscula</li>
+                                    <li>Una letra minúscula</li>
+                                    <li>Un número</li>
+                                    <li>Un símbolo especial (@$!_*?&)</li>
+                                    <li>Longitud mínima de 8 caracteres</li>
+                                </ul>
+                            </div>
+                        </span>
+                        <input type="password" id="new-password" name="newPassword">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar nueva contraseña</label>
+                        <input type="password" id="confirm-password" name="confirmPassword">
+                    </div>
+                </div>
+                
+                <div class="button-row">
+                    <button type="submit" class="save-btn">Guardar cambios</button>
+                </div>
+            </form>
+            
+            <div class="danger-zone">
+                <h3>Zona de peligro</h3>
+                <p>Borrar tu cuenta eliminará permanentemente todos tus datos. Esta acción no se puede deshacer.</p>
+                <button type="button" id="delete-account" class="delete-btn">Eliminar cuenta</button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Account deletion confirmation modal -->
+    <div id="delete-account-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Eliminar cuenta</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="warning-text">Esta acción eliminará permanentemente tu cuenta y todos los datos asociados. No podrás recuperarlos.</p>
+                
+                <div class="form-group">
+                    <label for="delete-account-password">Introduce tu contraseña para confirmar</label>
+                    <input type="password" id="delete-account-password" placeholder="Contraseña" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="confirm-deletion" required>
+                    <label for="confirm-deletion">Entiendo que esta acción no se puede deshacer y todos mis datos serán eliminados permanentemente.</label>
+                </div>
+                
+                <div class="error-message" id="delete-account-error" style="display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn" id="cancel-delete">Cancelar</button>
+                <button type="button" class="delete-btn" id="confirm-delete">Eliminar cuenta</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
