@@ -242,6 +242,21 @@ window.Translations = {
                     'content': 'Estos términos se rigen por las leyes de España.'
                 }
             }
+        },
+        // My Trips page translations
+        'myTrips': {
+            'title': 'Mis Viajes',
+            'subtitle': 'Consulta a continuación el resumen de tus viajes pasados y próximos planes.',
+            'date': 'Fecha:',
+            'statuss': 'Estado:',
+            'description': 'Descripción:',
+            'status': {
+                'completed': 'Completado',
+                'upcoming': 'Próximo'
+            },
+            'trip1': {
+                'title': 'GreenLake Village'
+            },
         }
     },
     // English translations
@@ -480,6 +495,34 @@ window.Translations = {
                     'title': 'Applicable law',
                     'content': 'These terms are governed by the laws of Spain.'
                 }
+            }
+        },
+        // My Trips page translations
+        'myTrips': {
+            'title': 'My Trips',
+            'subtitle': 'Check below the summary of your past trips and upcoming plans.',
+            'date': 'Date:',
+            'status': 'Status:',
+            'description': 'Description:',
+            'status': {
+                'completed': 'Completed',
+                'upcoming': 'Upcoming'
+            },
+            'trip1': {
+                'title': 'GreenLake Village',
+                'description': 'Relax in a unique natural setting, enjoy scenic walks and discover the local culture.'
+            },
+            'trip2': {
+                'title': 'Gateway to Aruba Central',
+                'description': 'An unforgettable experience touring the emblematic points of Aruba.'
+            },
+            'trip3': {
+                'title': 'Adventure in Nimble Peak',
+                'description': 'A challenging tour with impressive panoramic views.'
+            },
+            'trip4': {
+                'title': 'Trip to ProLiant Village',
+                'description': 'Discover sustainable architecture and local gastronomy.'
             }
         }
     }

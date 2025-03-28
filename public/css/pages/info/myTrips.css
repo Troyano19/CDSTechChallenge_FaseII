@@ -1,0 +1,68 @@
+/* My Trips Section Styles */
+.my-trips-section {
+    margin-top: 2rem;
+}
+
+.my-trips-section h1 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Trips List Styles */
+.trips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Trip Item Styles */
+.trip-item {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trip-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.trip-item h2 {
+    margin-top: 0;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+.trip-item p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.trip-item p:last-child {
+    margin-bottom: 0;
+}
+
+/* Status Styles */
+.trip-item.completed strong:last-of-type + span {
+    color: #2c7a7b; /* Teal color for completed trips */
+    font-weight: 500;
+}
+
+.trip-item.upcoming strong:last-of-type + span {
+    color: #6b46c1; /* Purple color for upcoming trips */
+    font-weight: 500;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .trips-list {
+        gap: 1rem;
+    }
+    
+    .trip-item {
+        padding: 1rem;
+    }
+}
