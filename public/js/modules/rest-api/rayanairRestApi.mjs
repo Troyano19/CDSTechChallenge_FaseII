@@ -1,9 +1,17 @@
-const ryanairURL = "https://www.ryanair.com/api/views/locate/5/airports/en/active";
+const ryanairURL = "https://www.ryanair.com/api/views/locate";
 const baseURL = "/api/transports/ryanair"; 
 
 const getActiveAirports = async () => {
-    return fetch(ryanairURL);
+    return fetch(`${ryanairURL}/5/airports/es/active`);
 };
+
+const getAirportsFromCountry = async () => {
+    return fetch(`${ryanairURL}/5/airports/es`);
+}
+
+const getAirportsFromCity = async () => {
+    
+}
 
 const saveAirports = async () => {
     const aeropuertos = await getActiveAirports();
@@ -15,6 +23,12 @@ const saveAirports = async () => {
         credentials: "include",
     });
 };
+
+const getAvailableFlights = async (data) => {
+    
+}
+
+
 
 const searchFlights = async (origin, outboundDate, inboundDate, adults = 1, teens = 0, children = 0, infants = 0) => {
     //Buscar el aeropuerto de murcia

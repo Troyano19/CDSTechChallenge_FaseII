@@ -17,7 +17,7 @@ const loginHandler = async (event) => {
             throw new Error(error.message);
         }else{
 
-            window.location.replace("/city=Madrid");
+            window.location.replace("/");
         }
     }catch(err){
         console.log(err);

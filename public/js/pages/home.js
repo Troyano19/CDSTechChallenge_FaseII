@@ -9,10 +9,13 @@ const searchHandler = async (event) => {
     event.preventDefault();
 
     const form = new FormData(document.forms["travelForm"]);
-    const origin = form.get("origin");
-    const dateFrom = form.get("departureDate");
-    const dateTo = form.get("returnDate");
-
+    const originInput = document.getElementById("origin");
+    const countryCode = originInput.dataset.countryCode; // Get the country code from the data attribute
+    const datos = {
+        ...Object.fromEntries(form),
+        countryCode: countryCode
+    };
+    
     // try {
     //     const flights = await searchFlights(origin, destination, dateFrom, dateTo);
 
