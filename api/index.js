@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const frontendRouter = require('./routes/frontendRouter');
 const configRouter = require('./routes/configRouter');
 const authRouter = require('./routes/authRoutes');
+const transportsRouter = require('./routes/transportsRoutes');
 //Import database connection
 const connectDB = require('./config/database');
 //We configure the use of dotenv for variables
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', frontendRouter);
 app.use('/api/config', configRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/transports', transportsRouter);
 
 app.listen(port, () => {
     console.log(`Web server listening on http://localhost:${port}`);

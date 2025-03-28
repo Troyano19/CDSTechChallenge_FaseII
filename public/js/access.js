@@ -1,4 +1,4 @@
-import * as access_api from "./modules/rest-api/access-rest-api.mjs"
+import * as access_api from "./modules/rest-api/accessRestApi.mjs"
 
 const loginHandler = async (event) => {
     event.preventDefault();
@@ -17,7 +17,7 @@ const loginHandler = async (event) => {
             throw new Error(error.message);
         }else{
 
-            window.location.replace("/");
+            window.location.replace("/city=Madrid");
         }
     }catch(err){
         console.log(err);

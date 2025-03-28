@@ -1,7 +1,31 @@
+import { searchFlights,saveAirports } from "../modules/rest-api/rayanairRestApi.mjs";
+
 // Initialize page loader before DOM content is loaded
 if (window.PageLoader) {
     window.PageLoader.initPageLoader();
 }
+
+const searchHandler = async (event) => {
+    event.preventDefault();
+
+    const form = new FormData(document.forms["travelForm"]);
+    const origin = form.get("origin");
+    const dateFrom = form.get("departureDate");
+    const dateTo = form.get("returnDate");
+
+    // try {
+    //     const flights = await searchFlights(origin, destination, dateFrom, dateTo);
+
+    //     // Guardar los resultados en el almacenamiento local para usarlos en travel.html
+    //     localStorage.setItem("flights", JSON.stringify(flights));
+
+    //     // Redirigir a la página travel.html
+    //     window.location.href = "/travel.html";
+    // } catch (error) {
+    //     console.error("Error searching flights:", error);
+    //     alert("Hubo un error al buscar vuelos. Por favor, inténtalo de nuevo.");
+    // }
+};
 
 document.addEventListener('DOMContentLoaded', function() {
     // Preload carousel images if possible
@@ -30,4 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.TravelUtils.initCityCountryAutocomplete();
         window.TravelUtils.initTravelFormDates();
     }
+
+    // Add event listener to the travel form
+    document.getElementById("travelForm").addEventListener("submit", searchHandler);
 });
