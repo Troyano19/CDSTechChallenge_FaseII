@@ -404,6 +404,113 @@ function initTravelFormDates() {
 }
 
 /**
+ * Initialize travelers selector functionality for travel forms
+ */
+function initTravelersSelector() {
+    const travelersButton = document.getElementById('travelersSelector');
+    const travelersDropdown = document.getElementById('travelersDropdown');
+    const travelersDisplay = document.getElementById('travelersDisplay');
+    const adultsCount = document.getElementById('adultsCount');
+    const childrenCount = document.getElementById('childrenCount');
+    const adultsInput = document.getElementById('adults');
+    const childrenInput = document.getElementById('children');
+    
+    if (!travelersButton || !travelersDropdown) return;
+    
+    // Toggle dropdown visibility when clicking the button
+    travelersButton.addEventListener('click', () => {
+        travelersDropdown.classList.toggle('show');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!travelersButton.contains(event.target) && !travelersDropdown.contains(event.target)) {
+            travelersDropdown.classList.remove('show');
+        }
+    });
+    
+    // Initialize counters
+    let adults = 1; // Default to 1 adult
+    let children = 0; // Default to 0 children
+    
+    // Update display and inputs with formatted text
+    function updateTravelers() {
+        // Update hidden inputs
+        adultsInput.value = adults;
+        childrenInput.value = children;
+        
+        // Update counter displays
+        adultsCount.textContent = adults;
+        childrenCount.textContent = children;
+        
+        // Get current language for determining text
+        const currentLang = window.currentLanguage || 'es';
+        
+        // Format text
+        let adultText = currentLang === 'es' ? 
+            (adults === 1 ? 'adulto' : 'adultos') : 
+            (adults === 1 ? 'adult' : 'adults');
+            
+        let childText = currentLang === 'es' ? 
+            (children === 1 ? 'niño' : 'niños') : 
+            (children === 1 ? 'child' : 'children');
+        
+        // Update the display text
+        travelersDisplay.textContent = `${adults} ${adultText}, ${children} ${childText}`;
+        
+        // Disable decrement button for adults if value is 1
+        const adultDecBtn = travelersDropdown.querySelector('.decrement[data-target="adults"]');
+        if (adultDecBtn) {
+            adultDecBtn.disabled = adults <= 1;
+        }
+        
+        // Disable decrement button for children if value is 0
+        const childDecBtn = travelersDropdown.querySelector('.decrement[data-target="children"]');
+        if (childDecBtn) {
+            childDecBtn.disabled = children <= 0;
+        }
+        
+        // Disable increment buttons if the total number of travelers is 20
+        const totalTravelers = adults + children;
+        const incrementBtns = travelersDropdown.querySelectorAll('.increment');
+        incrementBtns.forEach(btn => {
+            btn.disabled = totalTravelers >= 20;
+        });
+    }
+    
+    // Add event listeners to increment and decrement buttons
+    const incrementBtns = travelersDropdown.querySelectorAll('.increment');
+    const decrementBtns = travelersDropdown.querySelectorAll('.decrement');
+    
+    incrementBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+            if (target === 'adults' && adults < 20) {
+                adults++;
+            } else if (target === 'children' && (adults + children) < 20) {
+                children++;
+            }
+            updateTravelers();
+        });
+    });
+    
+    decrementBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+            if (target === 'adults' && adults > 1) {
+                adults--;
+            } else if (target === 'children' && children > 0) {
+                children--;
+            }
+            updateTravelers();
+        });
+    });
+    
+    // Initialize the display
+    updateTravelers();
+}
+
+/**
  * Initialize form with data from URL query parameters
  */
 function initFormFromQueryParams() {
@@ -412,10 +519,14 @@ function initFormFromQueryParams() {
     const origin = urlParams.get('origin');
     const departureDate = urlParams.get('departureDate');
     const returnDate = urlParams.get('returnDate');
+    const adults = urlParams.get('adults');
+    const children = urlParams.get('children');
     
     const originInput = document.getElementById('origin');
     const departureDateInput = document.getElementById('departureDate');
     const returnDateInput = document.getElementById('returnDate');
+    const adultsSelect = document.getElementById('adults');
+    const childrenSelect = document.getElementById('children');
     
     if (origin && originInput) {
         originInput.value = origin;
@@ -428,12 +539,53 @@ function initFormFromQueryParams() {
     if (returnDate && returnDateInput) {
         returnDateInput.value = returnDate;
     }
+    
+    if (adults && adultsSelect) {
+        adultsSelect.value = adults;
+    }
+    
+    if (children && childrenSelect) {
+        childrenSelect.value = children;
+    }
+    
+    // Set values for travelers if present in URL
+    const adultsInput = document.getElementById('adults');
+    const childrenInput = document.getElementById('children');
+    const adultsCount = document.getElementById('adultsCount');
+    const childrenCount = document.getElementById('childrenCount');
+    const travelersDisplay = document.getElementById('travelersDisplay');
+    
+    if (adultsInput && adults) {
+        adultsInput.value = adults;
+        if (adultsCount) adultsCount.textContent = adults;
+    }
+    
+    if (childrenInput && children) {
+        childrenInput.value = children;
+        if (childrenCount) childrenCount.textContent = children;
+    }
+    
+    // Update travelers display if both values are present
+    if (travelersDisplay && adults && children) {
+        const currentLang = window.currentLanguage || 'es';
+        
+        let adultText = currentLang === 'es' ? 
+            (Number(adults) === 1 ? 'adulto' : 'adultos') : 
+            (Number(adults) === 1 ? 'adult' : 'adults');
+            
+        let childText = currentLang === 'es' ? 
+            (Number(children) === 1 ? 'niño' : 'niños') : 
+            (Number(children) === 1 ? 'child' : 'children');
+        
+        travelersDisplay.textContent = `${adults} ${adultText}, ${children} ${childText}`;
+    }
 }
 
 // Initialize functionality on page load
 document.addEventListener('DOMContentLoaded', () => {
     initCityCountryAutocomplete();
     initTravelFormDates();
+    initTravelersSelector();
     initFormFromQueryParams();
 });
 
@@ -442,5 +594,6 @@ window.TravelUtils = {
     initCityCountryAutocomplete,
     initCountryAutocomplete,
     initTravelFormDates,
+    initTravelersSelector,
     initFormFromQueryParams
 };

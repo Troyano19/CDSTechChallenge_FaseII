@@ -81,6 +81,38 @@
                     <label for="returnDate" data-translate="home.travel.returnDate">Fecha de vuelta</label>
                     <input type="date" id="returnDate" name="returnDate">
                 </div>
+                
+                <!-- Reemplazar los selectores individuales con un selector de pasajeros tipo ALSA -->
+                <div class="form-group travelers-group">
+                    <label for="travelersSelector" data-translate="home.travel.travelers">Viajeros</label>
+                    <div class="travelers-selector-container">
+                        <button type="button" id="travelersSelector" class="travelers-selector-btn">
+                            <span id="travelersDisplay">1 adulto, 0 niños</span>
+                            <span class="arrow-down">&#9662;</span>
+                        </button>
+                        <div id="travelersDropdown" class="travelers-dropdown">
+                            <div class="traveler-type">
+                                <div class="traveler-label" data-translate="home.travel.adults">Adultos</div>
+                                <div class="counter-controls">
+                                    <button type="button" class="counter-btn decrement" data-target="adults">−</button>
+                                    <span id="adultsCount" class="counter-value">1</span>
+                                    <button type="button" class="counter-btn increment" data-target="adults">+</button>
+                                </div>
+                                <input type="hidden" id="adults" name="adults" value="1">
+                            </div>
+                            <div class="traveler-type">
+                                <div class="traveler-label" data-translate="home.travel.children">Niños</div>
+                                <div class="counter-controls">
+                                    <button type="button" class="counter-btn decrement" data-target="children">−</button>
+                                    <span id="childrenCount" class="counter-value">0</span>
+                                    <button type="button" class="counter-btn increment" data-target="children">+</button>
+                                </div>
+                                <input type="hidden" id="children" name="children" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <button type="submit" class="submit-btn" data-translate="home.travel.search">Busca ahora</button>
             </form>
         </section>

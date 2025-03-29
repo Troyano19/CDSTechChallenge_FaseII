@@ -51,6 +51,9 @@ window.Translations = {
                 'originPlaceholder': '¿De dónde vienes?',
                 'departureDate': 'Fecha de ida',
                 'returnDate': 'Fecha de vuelta',
+                'travelers': 'Viajeros',
+                'adults': 'Adultos',
+                'children': 'Niños',
                 'search': 'Busca ahora'
             },
             'interests': {
@@ -359,6 +362,9 @@ window.Translations = {
                 'originPlaceholder': 'Where are you coming from?',
                 'departureDate': 'Departure date',
                 'returnDate': 'Return date',
+                'travelers': 'Travelers',
+                'adults': 'Adults',
+                'children': 'Children',
                 'search': 'Search now'
             },
             'interests': {

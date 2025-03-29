@@ -149,6 +149,117 @@ body {
     background-color: #38A169; /* secondary color */
 }
 
+/* Travelers selector styles */
+.travelers-selector-container {
+    position: relative;
+    width: 100%;
+}
+
+.travelers-selector-btn {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #CBD5E0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background-color: white;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.travelers-selector-btn:hover {
+    border-color: #A0AEC0;
+}
+
+.travelers-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #CBD5E0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    padding: 12px;
+}
+
+.travelers-dropdown.show {
+    display: block;
+}
+
+.traveler-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.traveler-type:last-child {
+    border-bottom: none;
+}
+
+.traveler-label {
+    font-weight: 500;
+}
+
+.counter-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #CBD5E0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+}
+
+.counter-btn:hover {
+    background-color: #E6F7EF;
+    border-color: #2F855A;
+    color: #2F855A;
+}
+
+.counter-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f7f7f7;
+    border-color: #CBD5E0;
+    color: #A0AEC0;
+}
+
+.counter-value {
+    font-weight: 500;
+    min-width: 25px;
+    text-align: center;
+}
+
+.arrow-down {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+/* Travelers group specific styling */
+.travelers-group {
+    flex: 1 1 140px;
+    max-width: calc(25% - 1rem);
+}
+
 /* Responsive adjustments for the form */
 @media (max-width: 768px) {
     .form-group {
@@ -160,6 +271,11 @@ body {
     .submit-btn {
         width: 100%;
         margin-top: 0.5rem;
+    }
+    
+    .travelers-group {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 }
 
