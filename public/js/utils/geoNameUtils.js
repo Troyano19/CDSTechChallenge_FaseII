@@ -63,8 +63,8 @@ async function searchExactCityCountryMatch(city, country, lang) {
             return null; // Country not found
         }
         
-        // Search for city in the specific country
-        const url = `http://api.geonames.org/searchJSON?name=${encodeURIComponent(city)}&country=${countryInfo.countryCode}&featureClass=P&maxRows=5&username=${GEONAME_USERNAME}&lang=${lang}`;
+        // Search for city in the specific country using our proxy
+        const url = `/proxy/geonames?endpoint=searchJSON&name=${encodeURIComponent(city)}&country=${countryInfo.countryCode}&featureClass=P&maxRows=5&lang=${lang}`;
         
         const response = await fetch(url);
         
@@ -93,6 +93,7 @@ async function searchExactCityCountryMatch(city, country, lang) {
                 featureClass: exactMatch.fcl,
                 featureCode: exactMatch.fcode,
                 population: exactMatch.population || 0,
+                geonameId: exactMatch.geonameId,
                 isExactMatch: true
             };
         }
@@ -114,8 +115,8 @@ async function matchesCountry(query, lang) {
     if (!query || query.length < 2) return null;
     
     try {
-        // Search specifically for countries (featureClass=A, featureCode=PCLI)
-        const url = `http://api.geonames.org/searchJSON?name=${encodeURIComponent(query)}&featureClass=A&featureCode=PCLI&maxRows=5&username=${GEONAME_USERNAME}&lang=${lang}`;
+        // Search specifically for countries using our proxy
+        const url = `/proxy/geonames?endpoint=searchJSON&name=${encodeURIComponent(query)}&featureClass=A&featureCode=PCLI&maxRows=5&lang=${lang}`;
         
         const response = await fetch(url);
         
@@ -138,7 +139,8 @@ async function matchesCountry(query, lang) {
         
         return countryMatch ? {
             countryCode: countryMatch.countryCode,
-            name: countryMatch.name
+            name: countryMatch.name,
+            geonameId: countryMatch.geonameId
         } : null;
     } catch (error) {
         console.error('Error checking if query matches country:', error);
@@ -149,13 +151,14 @@ async function matchesCountry(query, lang) {
 /**
  * Get cities for a specific country, sorted alphabetically
  * @param {string} countryCode - ISO country code
+ * @param {string} countryName - Country name
  * @param {string} lang - Language code
  * @returns {Promise<Array>} - Array of cities
  */
 async function getCitiesInCountry(countryCode, countryName, lang) {
     try {
-        // Get cities for the specified country, sorted by name
-        const url = `http://api.geonames.org/searchJSON?country=${countryCode}&featureClass=P&maxRows=30&orderby=name&username=${GEONAME_USERNAME}&lang=${lang}`;
+        // Get cities for the specified country using our proxy
+        const url = `/proxy/geonames?endpoint=searchJSON&country=${countryCode}&featureClass=P&maxRows=30&orderby=name&lang=${lang}`;
         
         const response = await fetch(url);
         
@@ -177,6 +180,7 @@ async function getCitiesInCountry(countryCode, countryName, lang) {
             featureClass: city.fcl,
             featureCode: city.fcode,
             population: city.population || 0,
+            geonameId: city.geonameId,
             isCountryCitySearch: true // Flag that this is from a country-specific search
         }));
         
@@ -255,7 +259,7 @@ async function getEnglishVersion(geonameId) {
     if (!geonameId) return null;
     
     try {
-        const url = `http://api.geonames.org/getJSON?geonameId=${geonameId}&username=${GEONAME_USERNAME}&lang=en`;
+        const url = `/proxy/geonames?endpoint=getJSON&geonameId=${geonameId}&lang=en`;
         
         const response = await fetch(url);
         
@@ -292,8 +296,8 @@ async function getEnglishVersion(geonameId) {
  */
 async function searchGeonames(query, lang, featureClass, featureCode, maxRows) {
     try {
-        // Build the URL with the appropriate parameters
-        let url = `http://api.geonames.org/searchJSON?name_startsWith=${encodeURIComponent(query)}&featureClass=${featureClass}`;
+        // Build the URL with the appropriate parameters using our proxy
+        let url = `/proxy/geonames?endpoint=searchJSON&name_startsWith=${encodeURIComponent(query)}&featureClass=${featureClass}`;
         
         // Add featureCode if specified
         if (featureCode) {
@@ -301,21 +305,13 @@ async function searchGeonames(query, lang, featureClass, featureCode, maxRows) {
         }
         
         // Complete the URL with other parameters
-        url += `&maxRows=${maxRows}&orderby=relevance&username=${GEONAME_USERNAME}&lang=${lang}`;
+        url += `&maxRows=${maxRows}&orderby=relevance&lang=${lang}`;
         
         let response = await fetch(url);
         
         if (!response.ok) {
-            console.error('GeoName API error with username:', response.statusText);
-            
-            // Fallback to default username
-            url = url.replace(GEONAME_USERNAME, "yourusername");
-            response = await fetch(url);
-            
-            if (!response.ok) {
-                console.error('GeoName API error with default username:', response.statusText);
-                return [];
-            }
+            console.error('GeoName API error with proxy:', response.statusText);
+            return [];
         }
         
         const data = await response.json();
