@@ -1,13 +1,10 @@
-/* My Trips Section Styles */
-.my-trips-section {
-    margin-top: 2rem;
-}
-
 .my-trips-section h1 {
     color: var(--color-primary);
-    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
-
 /* Trips List Styles */
 .trips-list {
     display: flex;

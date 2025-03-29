@@ -4,6 +4,7 @@ footer {
     color: white;
     padding: 2rem 1rem;
     margin-top: 2rem;
+    justify-content: end;
 }
 
 footer .container {

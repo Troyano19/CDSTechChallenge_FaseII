@@ -13,7 +13,7 @@ window.Translations = {
             'activities': 'Actividades',
             'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
-            'register': 'Registrate',
+            'register': 'Regístrate',
             'profile': 'Perfil',
             'myTrips': 'Mis viajes',
             'logout': 'Cerrar sesión'
@@ -246,7 +246,6 @@ window.Translations = {
         // My Trips page translations
         'myTrips': {
             'title': 'Mis Viajes',
-            'subtitle': 'Consulta a continuación el resumen de tus viajes pasados y próximos planes.',
             'date': 'Fecha:',
             'statuss': 'Estado:',
             'description': 'Descripción:',
@@ -500,7 +499,6 @@ window.Translations = {
         // My Trips page translations
         'myTrips': {
             'title': 'My Trips',
-            'subtitle': 'Check below the summary of your past trips and upcoming plans.',
             'date': 'Date:',
             'status': 'Status:',
             'description': 'Description:',
