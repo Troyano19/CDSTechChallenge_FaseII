@@ -37,6 +37,8 @@ app.use('/api/config', configRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/transports', transportsRouter);
 app.use('/api/user', userRouter); // Register user routes
+
+// Proxy for Ryanair API
 app.get('/proxy/ryanair', async (req, res) => {
     const ryanairUrl = req.query.url; // La URL de Ryanair se pasa como parámetro de consulta
     try {
@@ -48,6 +50,52 @@ app.get('/proxy/ryanair', async (req, res) => {
         res.status(500).json({ error: 'Error al hacer la solicitud a Ryanair' });
     }
 });
+
+// New proxy for GeoNames API
+app.get('/proxy/geonames', async (req, res) => {
+    try {
+        // Get parameters from query string
+        const { endpoint, ...params } = req.query;
+        
+        if (!endpoint) {
+            return res.status(400).json({ error: 'Endpoint parameter is required' });
+        }
+        
+        // Build the GeoNames URL
+        let geonamesUrl = `http://api.geonames.org/${endpoint}?`;
+        
+        // Add all other parameters to the URL
+        const queryParams = [];
+        for (const [key, value] of Object.entries(params)) {
+            if (value) {
+                queryParams.push(`${key}=${encodeURIComponent(value)}`);
+            }
+        }
+        
+        // Always add the username
+        queryParams.push('username=Joseleelsuper');
+        
+        geonamesUrl += queryParams.join('&');
+        
+        // Make the request to GeoNames
+        const response = await fetch(geonamesUrl);
+        
+        if (!response.ok) {
+            return res.status(response.status).json({ 
+                error: 'Error in GeoNames request',
+                status: response.status,
+                statusText: response.statusText
+            });
+        }
+        
+        const data = await response.json();
+        res.json(data); // Return the data to the client
+    } catch (error) {
+        console.error('Error making request to GeoNames:', error);
+        res.status(500).json({ error: 'Error making request to GeoNames' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Web server listening on http://localhost:${port}`);
 });
