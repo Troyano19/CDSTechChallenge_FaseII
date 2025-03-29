@@ -156,7 +156,6 @@ function initCityCountryAutocomplete() {
             englishData = await geoNameUtils.getEnglishVersion(place.geonameId);
             
             // Log the English data to verify it's working
-            console.log('English location data for backend:', englishData);
         }
         
         // Store both localized and English versions of the data

@@ -42,10 +42,25 @@ const getAirportsFromCity = async (req, res) => {
     };
 };
 
+const getAirportsFromCountry = async (req, res) => {
+    const { country } = req.params;
+    try{
+        const airports = await airportsDB.find({ "country.name": country });
+        if (airports.length === 0) {
+            return res.status(404).json({ message: "No se encontraron aeropuertos para el pais especificado." });
+        }
+        res.status(200).json(airports);
+    }catch(error) {
+        console.error("Error al obtener aeropuertos:", error);
+        res.status(500).json({ error: "Error al obtener aeropuertos." });
+    };
+};
+
 
 
 module.exports = {
     saveAirports,
     getAvailableFlights,
     getAirportsFromCity,
+    getAirportsFromCountry
 };
