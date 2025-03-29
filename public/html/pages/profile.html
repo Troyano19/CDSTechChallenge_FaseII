@@ -32,7 +32,7 @@
 
 <body>
     <main class="container profile-container">
-        <h1 class="page-title">Mi Perfil</h1>
+        <h1 class="page-title" data-translate="profile.title">Mi Perfil</h1>
         
         <div class="profile-card">
             <div class="profile-header">
@@ -58,32 +58,32 @@
             
             <form id="profile-form">
                 <div class="form-section">
-                    <h3>Información personal</h3>
+                    <h3 data-translate="profile.personalInfo">Información personal</h3>
                     
                     <div class="form-group">
-                        <label for="name">Nombre</label>
+                        <label for="name" data-translate="profile.name">Nombre</label>
                         <span class="info-icon">i
-                            <div class="tooltip">El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                            <div class="tooltip" data-translate="profile.tooltips.name">El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
                         </span>
                         <input type="text" id="name" name="name" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="surnames">Apellidos</label>
+                        <label for="surnames" data-translate="profile.surnames">Apellidos</label>
                         <span class="info-icon">i
-                            <div class="tooltip">Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                            <div class="tooltip" data-translate="profile.tooltips.surnames">Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
                         </span>
                         <input type="text" id="surnames" name="surnames" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="username">Nombre de usuario</label>
+                        <label for="username" data-translate="profile.username">Nombre de usuario</label>
                         <span class="info-icon">i
                             <div class="tooltip">
-                                <span>El nombre de usuario debe:</span>
+                                <span data-translate="profile.tooltips.username.intro">El nombre de usuario debe:</span>
                                 <ul>
-                                    <li>Tener entre 4 y 20 caracteres</li>
-                                    <li>Solo contener letras y números</li>
+                                    <li data-translate="profile.tooltips.username.item1">Tener entre 4 y 20 caracteres</li>
+                                    <li data-translate="profile.tooltips.username.item2">Solo contener letras y números</li>
                                 </ul>
                             </div>
                         </span>
@@ -91,33 +91,33 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" data-translate="profile.email">Email</label>
                         <span class="info-icon">i
-                            <div class="tooltip">Introduce una dirección de email válida (ejemplo: usuario@dominio.com).</div>
+                            <div class="tooltip" data-translate="profile.tooltips.email">Introduce una dirección de email válida (ejemplo: usuario@dominio.com).</div>
                         </span>
                         <input type="email" id="email" name="email" required>
                     </div>
                 </div>
                 
                 <div class="form-section">
-                    <h3>Cambiar contraseña</h3>
+                    <h3 data-translate="profile.changePassword">Cambiar contraseña</h3>
                     
                     <div class="form-group">
-                        <label for="current-password">Contraseña actual</label>
+                        <label for="current-password" data-translate="profile.currentPassword">Contraseña actual</label>
                         <input type="password" id="current-password" name="currentPassword">
                     </div>
                     
                     <div class="form-group">
-                        <label for="new-password">Nueva contraseña</label>
+                        <label for="new-password" data-translate="profile.newPassword">Nueva contraseña</label>
                         <span class="info-icon">i
                             <div class="tooltip">
-                                <span>La contraseña debe contener al menos:</span>
+                                <span data-translate="profile.tooltips.password.intro">La contraseña debe contener al menos:</span>
                                 <ul>
-                                    <li>Una letra mayúscula</li>
-                                    <li>Una letra minúscula</li>
-                                    <li>Un número</li>
-                                    <li>Un símbolo especial (@$!_*?&)</li>
-                                    <li>Longitud mínima de 8 caracteres</li>
+                                    <li data-translate="profile.tooltips.password.item1">Una letra mayúscula</li>
+                                    <li data-translate="profile.tooltips.password.item2">Una letra minúscula</li>
+                                    <li data-translate="profile.tooltips.password.item3">Un número</li>
+                                    <li data-translate="profile.tooltips.password.item4">Un símbolo especial (@$!_*?&)</li>
+                                    <li data-translate="profile.tooltips.password.item5">Longitud mínima de 8 caracteres</li>
                                 </ul>
                             </div>
                         </span>
@@ -125,20 +125,20 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="confirm-password">Confirmar nueva contraseña</label>
+                        <label for="confirm-password" data-translate="profile.confirmPassword">Confirmar nueva contraseña</label>
                         <input type="password" id="confirm-password" name="confirmPassword">
                     </div>
                 </div>
                 
                 <div class="button-row">
-                    <button type="submit" class="save-btn">Guardar cambios</button>
+                    <button type="submit" class="save-btn" data-translate="profile.saveChanges">Guardar cambios</button>
                 </div>
             </form>
             
             <div class="danger-zone">
-                <h3>Zona de peligro</h3>
-                <p>Borrar tu cuenta eliminará permanentemente todos tus datos. Esta acción no se puede deshacer.</p>
-                <button type="button" id="delete-account" class="delete-btn">Eliminar cuenta</button>
+                <h3 data-translate="profile.dangerZone">Zona de peligro</h3>
+                <p data-translate="profile.deleteWarning">Borrar tu cuenta eliminará permanentemente todos tus datos. Esta acción no se puede deshacer.</p>
+                <button type="button" id="delete-account" class="delete-btn" data-translate="profile.deleteAccount">Eliminar cuenta</button>
             </div>
         </div>
     </main>
@@ -147,27 +147,27 @@
     <div id="delete-account-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Eliminar cuenta</h3>
+                <h3 data-translate="profile.deleteModal.title">Eliminar cuenta</h3>
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <p class="warning-text">Esta acción eliminará permanentemente tu cuenta y todos los datos asociados. No podrás recuperarlos.</p>
+                <p class="warning-text" data-translate="profile.deleteModal.warning">Esta acción eliminará permanentemente tu cuenta y todos los datos asociados. No podrás recuperarlos.</p>
                 
                 <div class="form-group">
-                    <label for="delete-account-password">Introduce tu contraseña para confirmar</label>
-                    <input type="password" id="delete-account-password" placeholder="Contraseña" required>
+                    <label for="delete-account-password" data-translate="profile.deleteModal.passwordConfirm">Introduce tu contraseña para confirmar</label>
+                    <input type="password" id="delete-account-password" data-translate-placeholder="profile.deleteModal.passwordPlaceholder" placeholder="Contraseña" required>
                 </div>
                 
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="confirm-deletion" required>
-                    <label for="confirm-deletion">Entiendo que esta acción no se puede deshacer y todos mis datos serán eliminados permanentemente.</label>
+                    <label for="confirm-deletion" data-translate="profile.deleteModal.confirmCheck">Entiendo que esta acción no se puede deshacer y todos mis datos serán eliminados permanentemente.</label>
                 </div>
                 
                 <div class="error-message" id="delete-account-error" style="display: none;"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="cancel-btn" id="cancel-delete">Cancelar</button>
-                <button type="button" class="delete-btn" id="confirm-delete">Eliminar cuenta</button>
+                <button type="button" class="cancel-btn" id="cancel-delete" data-translate="profile.deleteModal.cancel">Cancelar</button>
+                <button type="button" class="delete-btn" id="confirm-delete" data-translate="profile.deleteModal.confirm">Eliminar cuenta</button>
             </div>
         </div>
     </div>
