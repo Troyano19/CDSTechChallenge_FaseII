@@ -33,8 +33,8 @@ const getAvailableFlights = async (data) => {
         codesOrigin.push(airport.code);
     });
     //TODO: Modificar la URL para cuando haya adultos y niños
-    const adults = 1;
-    const childs = 0;
+    const adults = data.adultsCount;
+    const childs = data.childrenCount;
     const RoundTrip = returnDate ? true : false;
     const responses = [];
     for (const origin of codesOrigin) {

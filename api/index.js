@@ -48,6 +48,7 @@ app.get('/proxy/ryanair', async (req, res) => {
         res.status(500).json({ error: 'Error al hacer la solicitud a Ryanair' });
     }
 });
+
 app.listen(port, () => {
     console.log(`Web server listening on http://localhost:${port}`);
 });

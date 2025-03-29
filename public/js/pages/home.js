@@ -1,4 +1,5 @@
 import { searchFlights,saveAirports, getAvailableFlights } from "../modules/rest-api/rayanairRestApi.mjs";
+
 // Initialize page loader before DOM content is loaded
 if (window.PageLoader) {
     window.PageLoader.initPageLoader();
@@ -16,22 +17,11 @@ const searchHandler = async (event) => {
         country,
         departureDate: form.get('departureDate'),
         returnDate: form.get('returnDate'),
+        adults: form.get('adultsCount'),
+        children: form.get('childrenCount'),
         countryCode: countryCode
     };
-    const req = getAvailableFlights(datos);
-
-    // try {
-    //     const flights = await searchFlights(origin, destination, dateFrom, dateTo);
-
-    //     // Guardar los resultados en el almacenamiento local para usarlos en travel.html
-    //     localStorage.setItem("flights", JSON.stringify(flights));
-
-    //     // Redirigir a la página travel.html
-    //     window.location.href = "/travel.html";
-    // } catch (error) {
-    //     console.error("Error searching flights:", error);
-    //     alert("Hubo un error al buscar vuelos. Por favor, inténtalo de nuevo.");
-    // }
+    
 };
 
 document.addEventListener('DOMContentLoaded', function() {
