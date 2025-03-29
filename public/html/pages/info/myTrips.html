@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GreenLake Village - Mis Viajes</title>
+    <meta name="description" content="Consulta el historial de viajes y próximas aventuras de tus viajes en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://greenlake-portal.vercel.app/info/myTrips">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GreenLake Village - Mis Viajes">
+    <meta property="og:description" content="Consulta el historial de viajes y próximas aventuras de tus viajes en GreenLake Village">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://greenlake-portal.vercel.app/info/myTrips">
+    <meta name="twitter:title" content="GreenLake Village - Mis Viajes">
+    <meta name="twitter:description" content="Consulta el historial de viajes y próximas aventuras de tus viajes en GreenLake Village">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.info.myTrips}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <section class="my-trips-section">
+            <h1 data-translate="myTrips.title">Mis Viajes</h1>
+            
+            <!-- Trips List -->
+            <div class="trips-list">
+                <!-- Trip Item -->
+                <div class="trip-item upcoming">
+                    <h2 data-translate="myTrips.trip1.title">GreenLake Village</h2>
+                    <p><strong data-translate="myTrips.date">Fecha:</strong> 05 Sep 2024 - 09 Sep 2024</p>
+                    <p><strong data-translate="myTrips.statuss">Estado:</strong> <span data-translate="myTrips.status.upcoming">Próximo</span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

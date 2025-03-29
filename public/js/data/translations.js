@@ -13,7 +13,10 @@ window.Translations = {
             'activities': 'Actividades',
             'city3D': 'Ciudad 3D',
             'login': 'Iniciar sesión',
-            'register': 'Registrate'
+            'register': 'Regístrate',
+            'profile': 'Perfil',
+            'myTrips': 'Mis viajes',
+            'logout': 'Cerrar sesión'
         },
         // Footer translations
         'footer': {
@@ -44,10 +47,13 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Planifica tu viaje',
-                'origin': 'País de origen *',
+                'origin': 'Ciudad y país',
                 'originPlaceholder': '¿De dónde vienes?',
-                'departureDate': 'Fecha de ida *',
+                'departureDate': 'Fecha de ida',
                 'returnDate': 'Fecha de vuelta',
+                'travelers': 'Viajeros',
+                'adults': 'Adultos',
+                'children': 'Niños',
                 'search': 'Busca ahora'
             },
             'interests': {
@@ -80,6 +86,11 @@ window.Translations = {
             },
             'events': {
                 'title': 'Eventos durante tu visita'
+            },
+            'search': {
+                'loading': 'Buscando...',
+                'noResults': 'No se encontraron resultados',
+                'error': 'Error al buscar ciudades'
             }
         },
         // Business pages translations
@@ -116,15 +127,89 @@ window.Translations = {
             'register': {
                 'title': 'Registro',
                 'welcome': 'Bienvenido a GreenLake',
-                'name': 'Nombre *',
-                'surnames': 'Apellidos *',
-                'username': 'Nombre de usuario *',
-                'email': 'Email *',
-                'password': 'Contraseña *',
-                'confirmPassword': 'Confirmar contraseña *',
+                'name': 'Nombre',
+                'surnames': 'Apellidos',
+                'username': 'Nombre de usuario',
+                'email': 'Email',
+                'password': 'Contraseña',
+                'confirmPassword': 'Confirmar contraseña',
                 'submit': 'Registrarse',
                 'hasAccount': '¿Ya tienes una cuenta?',
-                'login': 'Iniciar sesión'
+                'login': 'Iniciar sesión',
+                // Updated tooltip translations with structured items
+                'tooltips': {
+                    'name': 'El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                    'surnames': 'Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                    'username': {
+                        'intro': 'El nombre de usuario debe:',
+                        'item1': 'Tener entre 4 y 20 caracteres',
+                        'item2': 'Solo contener letras y números'
+                    },
+                    'email': 'Introduce una dirección de email válida (ejemplo: usuario@dominio.com).',
+                    'password': {
+                        'intro': 'La contraseña debe contener al menos:',
+                        'item1': 'Una letra mayúscula',
+                        'item2': 'Una letra minúscula',
+                        'item3': 'Un número',
+                        'item4': 'Un símbolo especial (@$!_*?&)',
+                        'item5': 'Longitud mínima de 8 caracteres'
+                    }
+                }
+            }
+        },
+        // Profile page translations
+        'profile': {
+            'title': 'Mi Perfil',
+            'personalInfo': 'Información personal',
+            'name': 'Nombre',
+            'surnames': 'Apellidos',
+            'username': 'Nombre de usuario',
+            'email': 'Email',
+            'changePassword': 'Cambiar contraseña',
+            'currentPassword': 'Contraseña actual',
+            'newPassword': 'Nueva contraseña',
+            'confirmPassword': 'Confirmar nueva contraseña',
+            'saveChanges': 'Guardar cambios',
+            'dangerZone': 'Zona de peligro',
+            'deleteWarning': 'Borrar tu cuenta eliminará permanentemente todos tus datos. Esta acción no se puede deshacer.',
+            'deleteAccount': 'Eliminar cuenta',
+            'registrationMethod': 'Método de registro:',
+            'tooltips': {
+                'name': 'El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                'surnames': 'Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).',
+                'username': {
+                    'intro': 'El nombre de usuario debe:',
+                    'item1': 'Tener entre 4 y 20 caracteres',
+                    'item2': 'Solo contener letras y números'
+                },
+                'email': 'Introduce una dirección de email válida (ejemplo: usuario@dominio.com).',
+                'password': {
+                    'intro': 'La contraseña debe contener al menos:',
+                    'item1': 'Una letra mayúscula',
+                    'item2': 'Una letra minúscula',
+                    'item3': 'Un número',
+                    'item4': 'Un símbolo especial (@$!_*?&)',
+                    'item5': 'Longitud mínima de 8 caracteres'
+                }
+            },
+            'deleteModal': {
+                'title': 'Eliminar cuenta',
+                'warning': 'Esta acción eliminará permanentemente tu cuenta y todos los datos asociados. No podrás recuperarlos.',
+                'passwordConfirm': 'Introduce tu contraseña para confirmar',
+                'passwordPlaceholder': 'Contraseña',
+                'confirmCheck': 'Entiendo que esta acción no se puede deshacer y todos mis datos serán eliminados permanentemente.',
+                'cancel': 'Cancelar',
+                'confirm': 'Eliminar cuenta'
+            },
+            'messages': {
+                'updateSuccess': 'Perfil actualizado correctamente',
+                'updateError': 'Error al actualizar el perfil',
+                'passwordSuccess': 'Contraseña cambiada correctamente',
+                'passwordError': 'Error al cambiar la contraseña',
+                'deleteError': 'Error al eliminar la cuenta',
+                'passwordMismatch': 'Las contraseñas no coinciden',
+                'currentPasswordRequired': 'Se requiere la contraseña actual',
+                'fieldsRequired': 'Todos los campos son obligatorios'
             }
         },
         // Legal pages translations
@@ -215,6 +300,20 @@ window.Translations = {
                     'content': 'Estos términos se rigen por las leyes de España.'
                 }
             }
+        },
+        // My Trips page translations
+        'myTrips': {
+            'title': 'Mis Viajes',
+            'date': 'Fecha:',
+            'statuss': 'Estado:',
+            'description': 'Descripción:',
+            'status': {
+                'completed': 'Completado',
+                'upcoming': 'Próximo'
+            },
+            'trip1': {
+                'title': 'GreenLake Village'
+            },
         }
     },
     // English translations
@@ -226,7 +325,10 @@ window.Translations = {
             'activities': 'Activities',
             'city3D': '3D City',
             'login': 'Log in',
-            'register': 'Sign up'
+            'register': 'Sign up',
+            'profile': 'Profile',
+            'myTrips': 'My Trips',
+            'logout': 'Log out'
         },
         // Footer translations
         'footer': {
@@ -256,10 +358,13 @@ window.Translations = {
             },
             'travel': {
                 'title': 'Plan your trip',
-                'origin': 'Origin country *',
+                'origin': 'City and country',
                 'originPlaceholder': 'Where are you coming from?',
-                'departureDate': 'Departure date *',
+                'departureDate': 'Departure date',
                 'returnDate': 'Return date',
+                'travelers': 'Travelers',
+                'adults': 'Adults',
+                'children': 'Children',
                 'search': 'Search now'
             },
             'interests': {
@@ -311,15 +416,34 @@ window.Translations = {
             'register': {
                 'title': 'Register',
                 'welcome': 'Welcome to GreenLake',
-                'name': 'Name *',
-                'surnames': 'Surnames *',
-                'username': 'Username *',
-                'email': 'Email *',
-                'password': 'Password *',
-                'confirmPassword': 'Confirm password *',
+                'name': 'Name',
+                'surnames': 'Surnames',
+                'username': 'Username',
+                'email': 'Email',
+                'password': 'Password',
+                'confirmPassword': 'Confirm password',
                 'submit': 'Register',
                 'hasAccount': 'Already have an account?',
-                'login': 'Log in'
+                'login': 'Log in',
+                // Updated tooltip translations with structured items
+                'tooltips': {
+                    'name': 'Name can only contain letters (including accented letters and special Spanish characters).',
+                    'surnames': 'Surnames can only contain letters (including accented letters and special Spanish characters).',
+                    'username': {
+                        'intro': 'Username must:',
+                        'item1': 'Be between 4 and 20 characters long',
+                        'item2': 'Only contain letters and numbers'
+                    },
+                    'email': 'Enter a valid email address (example: user@domain.com).',
+                    'password': {
+                        'intro': 'Password must contain at least:',
+                        'item1': 'One uppercase letter',
+                        'item2': 'One lowercase letter',
+                        'item3': 'One number',
+                        'item4': 'One special symbol (@$!_*?&)',
+                        'item5': 'Be at least 8 characters long'
+                    }
+                }
             }
         },
         // Travel page translations
@@ -337,6 +461,66 @@ window.Translations = {
             },
             'events': {
                 'title': 'Events during your visit'
+            },
+            'search': {
+                'loading': 'Searching...',
+                'noResults': 'No results found',
+                'error': 'Error searching cities'
+            }
+        },
+        // Profile page translations
+        'profile': {
+            'title': 'My Profile',
+            'personalInfo': 'Personal Information',
+            'name': 'Name',
+            'surnames': 'Surnames',
+            'username': 'Username',
+            'email': 'Email',
+            'changePassword': 'Change Password',
+            'currentPassword': 'Current Password',
+            'newPassword': 'New Password',
+            'confirmPassword': 'Confirm New Password',
+            'saveChanges': 'Save Changes',
+            'dangerZone': 'Danger Zone',
+            'deleteWarning': 'Deleting your account will permanently remove all your data. This action cannot be undone.',
+            'deleteAccount': 'Delete Account',
+            'registrationMethod': 'Registration method:',
+            'tooltips': {
+                'name': 'Name can only contain letters (including accented letters and special Spanish characters).',
+                'surnames': 'Surnames can only contain letters (including accented letters and special Spanish characters).',
+                'username': {
+                    'intro': 'Username must:',
+                    'item1': 'Be between 4 and 20 characters long',
+                    'item2': 'Only contain letters and numbers'
+                },
+                'email': 'Enter a valid email address (example: user@domain.com).',
+                'password': {
+                    'intro': 'Password must contain at least:',
+                    'item1': 'One uppercase letter',
+                    'item2': 'One lowercase letter',
+                    'item3': 'One number',
+                    'item4': 'One special symbol (@$!_*?&)',
+                    'item5': 'Be at least 8 characters long'
+                }
+            },
+            'deleteModal': {
+                'title': 'Delete Account',
+                'warning': 'This action will permanently delete your account and all associated data. You cannot recover them.',
+                'passwordConfirm': 'Enter your password to confirm',
+                'passwordPlaceholder': 'Password',
+                'confirmCheck': 'I understand that this action cannot be undone and all my data will be permanently deleted.',
+                'cancel': 'Cancel',
+                'confirm': 'Delete Account'
+            },
+            'messages': {
+                'updateSuccess': 'Profile updated successfully',
+                'updateError': 'Error updating profile',
+                'passwordSuccess': 'Password changed successfully',
+                'passwordError': 'Error changing password',
+                'deleteError': 'Error deleting account',
+                'passwordMismatch': 'Passwords do not match',
+                'currentPasswordRequired': 'Current password is required',
+                'fieldsRequired': 'All fields are required'
             }
         },
         // Legal pages translations
@@ -426,6 +610,33 @@ window.Translations = {
                     'title': 'Applicable law',
                     'content': 'These terms are governed by the laws of Spain.'
                 }
+            }
+        },
+        // My Trips page translations
+        'myTrips': {
+            'title': 'My Trips',
+            'date': 'Date:',
+            'status': 'Status:',
+            'description': 'Description:',
+            'status': {
+                'completed': 'Completed',
+                'upcoming': 'Upcoming'
+            },
+            'trip1': {
+                'title': 'GreenLake Village',
+                'description': 'Relax in a unique natural setting, enjoy scenic walks and discover the local culture.'
+            },
+            'trip2': {
+                'title': 'Gateway to Aruba Central',
+                'description': 'An unforgettable experience touring the emblematic points of Aruba.'
+            },
+            'trip3': {
+                'title': 'Adventure in Nimble Peak',
+                'description': 'A challenging tour with impressive panoramic views.'
+            },
+            'trip4': {
+                'title': 'Trip to ProLiant Village',
+                'description': 'Discover sustainable architecture and local gastronomy.'
             }
         }
     }

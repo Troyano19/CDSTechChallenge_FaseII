@@ -1,4 +1,4 @@
-import * as access_api from "./modules/rest-api/access-rest-api.mjs"
+import * as access_api from "./modules/rest-api/accessRestApi.mjs"
 
 const loginHandler = async (event) => {
     event.preventDefault();

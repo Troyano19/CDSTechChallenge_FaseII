@@ -4,11 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
-    <meta name="language" content="es, en">
-    <title>Registro - GreenLake Portal</title>
+    <title>GreenLake Village - Register</title>
     <meta name="description" content="Crea tu cuenta en GreenLake Portal">
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://greenlake-portal.vercel.app/register">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GreenLake Village - Registro">
+    <meta property="og:description" content="Crea tu cuenta y únete a la comunidad de GreenLake Village">
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="greenlake-portal.vercel.app">
+    <meta property="twitter:url" content="https://greenlake-portal.vercel.app/register">
+    <meta name="twitter:title" content="GreenLake Village - Registro">
+    <meta name="twitter:description" content="Crea tu cuenta y únete a la comunidad de GreenLake Village">
+    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
     <link rel="stylesheet" href="{{PATH:css.main}}">
     <link rel="stylesheet" href="{{PATH:css.session}}">
     <script src="{{PATH:js.translations}}" defer></script>
@@ -30,26 +43,56 @@
                 
                 <div class="form-group">
                     <label for="name" data-translate="session.register.name">Nombre</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.name">El nombre solo puede contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                    </span>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="surnames" data-translate="session.register.surnames">Apellidos</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.surnames">Los apellidos solo pueden contener letras (incluidas letras con acentos y caracteres especiales del español).</div>
+                    </span>
                     <input type="text" id="surnames" name="surnames" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="username" data-translate="session.register.username">Nombre de usuario</label>
+                    <span class="info-icon">i
+                        <div class="tooltip">
+                            <span data-translate="session.register.tooltips.username.intro">El nombre de usuario debe:</span>
+                            <ul>
+                                <li data-translate="session.register.tooltips.username.item1">Tener entre 4 y 20 caracteres</li>
+                                <li data-translate="session.register.tooltips.username.item2">Solo contener letras y números</li>
+                            </ul>
+                        </div>
+                    </span>
                     <input type="text" id="username" name="username" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="email" data-translate="session.register.email">Email</label>
+                    <span class="info-icon">i
+                        <div class="tooltip" data-translate="session.register.tooltips.email">Introduce una dirección de email válida (ejemplo: usuario@dominio.com).</div>
+                    </span>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="password" data-translate="session.register.password">Contraseña</label>
+                    <span class="info-icon">i
+                        <div class="tooltip">
+                            <span data-translate="session.register.tooltips.password.intro">La contraseña debe contener al menos:</span>
+                            <ul>
+                                <li data-translate="session.register.tooltips.password.item1">Una letra mayúscula</li>
+                                <li data-translate="session.register.tooltips.password.item2">Una letra minúscula</li>
+                                <li data-translate="session.register.tooltips.password.item3">Un número</li>
+                                <li data-translate="session.register.tooltips.password.item4">Un símbolo especial (@$!_*?&)</li>
+                                <li data-translate="session.register.tooltips.password.item5">Longitud mínima de 8 caracteres</li>
+                            </ul>
+                        </div>
+                    </span>
                     <input type="password" id="password" name="password" required>
                 </div>
                 

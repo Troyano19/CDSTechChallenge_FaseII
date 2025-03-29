@@ -4,6 +4,7 @@
  * @module utils/pathConfig
  */
 
+const { profile } = require('console');
 const path = require('path');
 
 // Base paths
@@ -19,6 +20,7 @@ const utilsDir = path.join(htmlDir, 'utils');
 const cssDir = path.join('css');
 const cssPagesDir = path.join(cssDir, 'pages');
 const cssUtilsDir = path.join(cssDir, 'utils');
+const cssComponentsDir = path.join(cssDir, 'components'); // Add components directory
 
 const jsDir = path.join('js');
 const jsPagesDir = path.join(jsDir, 'pages');
@@ -39,12 +41,14 @@ const establishmentsPage = path.join(pagesDir, 'establishments.html');
 const activitiesPage = path.join(pagesDir, 'activities.html');
 const adminPage = path.join(pagesDir, 'admin.html');
 const city3DPage = path.join(pagesDir, 'city3D.html');
+const profilePage = path.join(pagesDir, 'profile.html');
 
 // Info pages
 const infoDir = path.join(pagesDir, 'info');
 const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
 const activityInfoPage = path.join(infoDir, 'activitie.html');
+const myTripsPage = path.join(infoDir, 'myTrips.html');
 
 // Session pages
 const sessionDir = path.join(pagesDir, 'session');
@@ -64,6 +68,10 @@ const travelCSS = path.join(cssPagesDir, 'travel.css');
 const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
 const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
+const profileCSS = path.join(cssPagesDir, 'profile.css');
+const autocompleteCSS = path.join(cssComponentsDir, 'autocomplete.css'); // Add autocomplete CSS
+const toastCSS = path.join(cssComponentsDir, 'toast.css'); // Add toast CSS
+
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
 const chatBotCSS = path.join(cssUtilsDir, 'chatBot.css');
@@ -73,22 +81,30 @@ const cookiesCSS = path.join(LegalDirCSS, 'cookies.css');
 const privacyCSS = path.join(LegalDirCSS, 'privacy.css');
 const termsCSS = path.join(LegalDirCSS, 'terms.css');
 
+const infoDirCSS = path.join(cssPagesDir, 'info');
+const myTripsCSS = path.join(infoDirCSS, "myTrips.css");
+
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
-const countriesJs = path.join(jsDataDir, 'countries.js');
+const profileJs = path.join(jsPagesDir, 'profile.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
-const headerJs = path.join(jsUtilsDir, 'header.js');
-const carouselJs = path.join(jsUtilsDir, 'carousel.js');
-const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
-const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
-const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
-const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
-const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 const accessJs = path.join(jsDir, 'access.js');
+
+const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
+const logoutJs = path.join(jsUtilsDir, 'logout.js');
+const headerJs = path.join(jsUtilsDir, "header.js");
+const carouselJs = path.join(jsUtilsDir, "carousel.js");
+const travelUtilsJs = path.join(jsUtilsDir, "travelUtils.js");
+const geoNameUtilsJs = path.join(jsUtilsDir, "geoNameUtils.js"); // Add geoNameUtils JS
+const carouselRendererJs = path.join(jsUtilsDir, "carouselRenderer.js");
+const pageLoaderJs = path.join(jsUtilsDir, "pageLoader.js");
+const languageSwitcherJs = path.join(jsUtilsDir, "languageSwitcher.js");
+const sessionJs = path.join(jsUtilsDir, "session.js");
+const toastJS = path.join(jsUtilsDir, 'toastUtils.js'); // Add toast utils
 
 // Image paths
 const imagesDir = path.join('images');
@@ -121,10 +137,12 @@ const getPaths = () => {
             activities: activitiesPage,
             admin: adminPage,
             city3D: city3DPage,
+            profile: profilePage,
             info: {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
-                activity: activityInfoPage
+                activity: activityInfoPage,
+                myTrips: myTripsPage
             },
             session: {
                 login: loginPage,
@@ -146,19 +164,25 @@ const getPaths = () => {
             businessPages: businessPagesCSS,
             city3D: city3DCSS,
             chatBot: chatBotCSS,
+            profile: profileCSS,
+            autocomplete: autocompleteCSS, // Add autocomplete CSS path
+            toast: toastCSS, // Add toast CSS
             legal: {
                 cookies: cookiesCSS,
                 privacy: privacyCSS,
                 terms: termsCSS
+            },
+            info: {
+                myTrips: myTripsCSS
             }
         },
         js: {
             home: homeJs,
             header: headerJs,
-            countries: countriesJs,
             carousel: carouselJs,
             travel: travelJs,
             travelUtils: travelUtilsJs,
+            geoNameUtils: geoNameUtilsJs, // Add geoNameUtils JS path
             businessPages: businessPagesJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,
@@ -167,7 +191,11 @@ const getPaths = () => {
             translations: translationsJs,
             languageSwitcher: languageSwitcherJs,
             city3D: city3DJs,
-            chatBot: chatBotJs
+            chatBot: chatBotJs,
+            logout: logoutJs,
+            profile: profileJs,
+            session: sessionJs,
+            toastUtils: toastJS, // Add toast utils
         },
         images: {
             favicon: faviconIMG,

@@ -4,22 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
-    <meta name="language" content="es, en">
-    <title>GreenLake Village</title>
+    <title>GreenLake Village - Portal</title>
     <meta name="description" content="Landing page de GreenLake Portal">
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://greenlake-portal.vercel.app">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GreenLake Village">
+    <meta property="og:description" content="Landing page de GreenLake Village, portal de turismo sostenible.">
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="greenlake-portal.vercel.app">
+    <meta property="twitter:url" content="https://greenlake-portal.vercel.app">
+    <meta name="twitter:title" content="GreenLake Village">
+    <meta name="twitter:description" content="Landing page de GreenLake Village, portal de turismo sostenible.">
+    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/001a7d3a-7836-4902-adb9-6b9493d607a3.png?token=YkaEdllpb2SCHGqDOgfOvh4jtM3IQcpQxXC_J7Z3HsM&height=686&width=1200&expires=33279147262">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
     <link rel="stylesheet" href="{{PATH:css.main}}">
     <link rel="stylesheet" href="{{PATH:css.home}}">
+    <link rel="stylesheet" href="{{PATH:css.autocomplete}}">
     <script src="{{PATH:js.translations}}" defer></script>
     <script src="{{PATH:js.languageSwitcher}}" defer></script>
     <script src="{{PATH:js.pageLoader}}" defer></script>
-    <script src="{{PATH:js.countries}}" defer></script>
+    <script src="{{PATH:js.geoNameUtils}}" defer></script>
     <script src="{{PATH:js.travelUtils}}" defer></script>
     <script src="{{PATH:js.carousel}}" defer></script>
     <script src="{{PATH:js.carouselData}}" defer></script>
     <script src="{{PATH:js.carouselRenderer}}" defer></script>
-    <script src="{{PATH:js.home}}" defer></script>
+    <script src="{{PATH:js.home}}" type="module" defer></script>
 </head>
 
 <body>
@@ -50,7 +64,7 @@
         <!-- Travel Search Form -->
         <section id="travel" class="travel-section">
             <h2 data-translate="home.travel.title">Planifica tu viaje</h2>
-            <form action="/travel" method="post" class="travel-form">
+            <form id="travelForm" action="/travel" method="post" class="travel-form">
                 <div class="form-group">
                     <label for="origin" data-translate="home.travel.origin">Origen</label>
                     <div class="autocomplete-container">
@@ -67,6 +81,38 @@
                     <label for="returnDate" data-translate="home.travel.returnDate">Fecha de vuelta</label>
                     <input type="date" id="returnDate" name="returnDate">
                 </div>
+                
+                <!-- Reemplazar los selectores individuales con un selector de pasajeros tipo ALSA -->
+                <div class="form-group travelers-group">
+                    <label for="travelersSelector" data-translate="home.travel.travelers">Viajeros</label>
+                    <div class="travelers-selector-container">
+                        <button type="button" id="travelersSelector" class="travelers-selector-btn">
+                            <span id="travelersDisplay">1 adulto, 0 niños</span>
+                            <span class="arrow-down">&#9662;</span>
+                        </button>
+                        <div id="travelersDropdown" class="travelers-dropdown">
+                            <div class="traveler-type">
+                                <div class="traveler-label" data-translate="home.travel.adults">Adultos</div>
+                                <div class="counter-controls">
+                                    <button type="button" class="counter-btn decrement" data-target="adults">−</button>
+                                    <span id="adultsCount" class="counter-value">1</span>
+                                    <button type="button" class="counter-btn increment" data-target="adults">+</button>
+                                </div>
+                                <input type="hidden" id="adults" name="adults" value="1">
+                            </div>
+                            <div class="traveler-type">
+                                <div class="traveler-label" data-translate="home.travel.children">Niños</div>
+                                <div class="counter-controls">
+                                    <button type="button" class="counter-btn decrement" data-target="children">−</button>
+                                    <span id="childrenCount" class="counter-value">0</span>
+                                    <button type="button" class="counter-btn increment" data-target="children">+</button>
+                                </div>
+                                <input type="hidden" id="children" name="children" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <button type="submit" class="submit-btn" data-translate="home.travel.search">Busca ahora</button>
             </form>
         </section>

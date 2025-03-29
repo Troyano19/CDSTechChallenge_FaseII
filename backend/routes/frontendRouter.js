@@ -9,7 +9,7 @@ const express = require('express');
 const path = require('path');
 // Import the path configuration and template utility
 const { getPath } = require('../utils/pathConfig');
-const { renderWithHeaderFooter } = require('../utils/templateUtils');
+const { renderWithHeaderFooter, isLoggedIn } = require('../utils/templateUtils');
 
 //We start the frontend router
 const router = express.Router();
@@ -96,6 +96,20 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
     renderWithHeaderFooter(getPath('pages.session.register'), req, res);
+});
+
+router.get("/profile", (req, res) => {
+    if (!isLoggedIn(req)) {
+        return res.redirect('/login');
+    }
+    renderWithHeaderFooter(getPath('pages.profile'), req, res);
+});
+
+router.get("/my-trips", (req, res) => {
+    if (!isLoggedIn(req)) {
+      return res.redirect("/login");
+    }
+    renderWithHeaderFooter(getPath('pages.info.myTrips'), req, res);
 });
 
 router.get("/city3D", (_, res) => {
