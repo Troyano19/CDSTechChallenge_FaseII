@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
 
 const airportsSchema = new mongoose.Schema({
-    code: {
-        type: String,
-        required: true,
-        unique: true
-    },
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     seoName: {
         type: String,
@@ -22,6 +16,25 @@ const airportsSchema = new mongoose.Schema({
     base: {
         type: Boolean,
         required: true
+    },
+    coordinates: {
+        latitude: {
+            type: Number,
+            required: true
+        },
+        longitude: {
+            type: Number,
+            required: true
+        }
+    },
+    timeZone: {
+        type: String,
+        required: true
+    },
+    code: {
+        type: String,
+        required: true,
+        unique: true
     },
     city: {
         name: {
@@ -44,15 +57,11 @@ const airportsSchema = new mongoose.Schema({
         }
     },
     country: {
-        code: {
-            type: String,
-            required: true
-        },
-        iso3code: {
-            type: String,
-            required: true
-        },
         name: {
+            type: String,
+            required: true
+        },
+        code: {
             type: String,
             required: true
         },
@@ -63,25 +72,7 @@ const airportsSchema = new mongoose.Schema({
         defaultAirportCode: {
             type: String,
             required: true
-        },
-        schengen: {
-            type: Boolean,
-            required: true
         }
-    },
-    coordinates: {
-        latitude: {
-            type: Number,
-            required: true
-        },
-        longitude: {
-            type: Number,
-            required: true
-        }
-    },
-    timeZone: {
-        type: String,
-        required: true
     }
 });
 

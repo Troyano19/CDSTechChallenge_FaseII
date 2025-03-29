@@ -35,7 +35,17 @@ app.use('/', frontendRouter);
 app.use('/api/config', configRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/transports', transportsRouter);
-
+app.get('/proxy/ryanair', async (req, res) => {
+    const ryanairUrl = req.query.url; // La URL de Ryanair se pasa como parámetro de consulta
+    try {
+        const response = await fetch(ryanairUrl);
+        const data = await response.json();
+        res.json(data); // Devuelve los datos al cliente
+    } catch (error) {
+        console.error('Error al hacer la solicitud a Ryanair:', error);
+        res.status(500).json({ error: 'Error al hacer la solicitud a Ryanair' });
+    }
+});
 app.listen(port, () => {
     console.log(`Web server listening on http://localhost:${port}`);
 });

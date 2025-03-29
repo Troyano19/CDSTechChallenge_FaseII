@@ -1,5 +1,4 @@
-import { searchFlights,saveAirports } from "../modules/rest-api/rayanairRestApi.mjs";
-
+import { searchFlights,saveAirports, getAvailableFlights } from "../modules/rest-api/rayanairRestApi.mjs";
 // Initialize page loader before DOM content is loaded
 if (window.PageLoader) {
     window.PageLoader.initPageLoader();
@@ -10,12 +9,17 @@ const searchHandler = async (event) => {
 
     const form = new FormData(document.forms["travelForm"]);
     const originInput = document.getElementById("origin");
-    const countryCode = originInput.dataset.countryCode; // Get the country code from the data attribute
+    const countryCode = originInput.dataset.countryCode;
+    const [city, country] = form.get('origin').split(",").map(value => value.trim());
     const datos = {
-        ...Object.fromEntries(form),
+        city,
+        country,
+        departureDate: form.get('departureDate'),
+        returnDate: form.get('returnDate'),
         countryCode: countryCode
     };
-    
+    const req = getAvailableFlights(datos);
+
     // try {
     //     const flights = await searchFlights(origin, destination, dateFrom, dateTo);
 

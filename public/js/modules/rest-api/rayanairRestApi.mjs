@@ -1,38 +1,62 @@
 const ryanairURL = "https://www.ryanair.com/api/views/locate";
 const baseURL = "/api/transports/ryanair"; 
 
-const getActiveAirports = async () => {
-    return fetch(`${ryanairURL}/5/airports/es/active`);
-};
-
 const getAirportsFromCountry = async () => {
     return fetch(`${ryanairURL}/5/airports/es`);
-}
+};
 
-const getAirportsFromCity = async () => {
-    
-}
+const getAirportsFromCity = async (city) => {
+    return fetch(`${baseURL}/getAirportsFromCity/${city}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include",
+    })
+};
 
 const saveAirports = async () => {
-    const aeropuertos = await getActiveAirports();
-    const datos = await aeropuertos.json();
+    console.log("llega");
     return fetch(`${baseURL}/saveAirports`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(datos),
+        body: "",
         credentials: "include",
     });
 };
 
 const getAvailableFlights = async (data) => {
-    
-}
+    console.log(data);
+    const { city, country, departureDate, returnDate, countryCode } = data;
+    const airportsOriginReq = await getAirportsFromCity(city);
+    const airportsOrigin = await airportsOriginReq.json();
+    const codesOrigin = [];
+    airportsOrigin.forEach(airport => {
+        codesOrigin.push(airport.code);
+    });
+    //TODO: Modificar la URL para cuando haya adultos y niños
+    const adults = 1;
+    const childs = 0;
+    const RoundTrip = returnDate ? true : false;
+    const responses = [];
+    for (const origin of codesOrigin) {
+        const ryanairUrl = `https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=${adults}&CHD=${childs}` +
+            `&DateIn=${returnDate}&DateOut=${departureDate}&Destination=MAD&Disc=0&FlexDaysBeforeIn=2` +
+            `&FlexDaysBeforeOut=4&FlexDaysIn=2&FlexDaysOut=2&IncludeConnectingFlights=false&INF=0&Origin=${origin}` +
+            `&promoCode=&RoundTrip=${RoundTrip}&TEEN=0&ToUs=AGREED`;
+
+        // Realizar la solicitud para cada origen
+        const response = await fetch(`http://localhost:3001/proxy/ryanair?url=${encodeURIComponent(ryanairUrl)}`);
+        const data = await response.json();
+        responses.push(data); // Almacenar la respuesta en el array
+    }
+    return responses; // Devolver todas las respuestas
+};
+
 
 
 
 const searchFlights = async (origin, outboundDate, inboundDate, adults = 1, teens = 0, children = 0, infants = 0) => {
     //Buscar el aeropuerto de murcia
-    const url = `${ryanairURL}/searchFlights?origin=${encodeURIComponent(origin)}&destination=&outboundDate=${encodeURIComponent(outboundDate)}&inboundDate=${encodeURIComponent(inboundDate)}&adults=${encodeURIComponent(adults)}&teens=${encodeURIComponent(teens)}&children=${encodeURIComponent(children)}&infants=${encodeURIComponent(infants)}`;
+    const url = `https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=1&CHD=0&DateIn=&DateOut={{departDate}}&Destination={{destination}}&Disc=0&INF=0&Origin={{origin}}&TEEN=0&promoCode=&IncludeConnectingFlights=false&FlexDaysBeforeOut=4&FlexDaysOut=2&FlexDaysBeforeIn=2&FlexDaysIn=2&RoundTrip=false&ToUs=AGREED`;
 
     return fetch(url, {
         method: "GET",
@@ -43,4 +67,4 @@ const searchFlights = async (origin, outboundDate, inboundDate, adults = 1, teen
     });
 };
 
-export {getActiveAirports, searchFlights, saveAirports };
+export { searchFlights, saveAirports, getAvailableFlights };
