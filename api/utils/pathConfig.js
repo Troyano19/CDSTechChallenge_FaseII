@@ -4,6 +4,7 @@
  * @module utils/pathConfig
  */
 
+const { profile } = require('console');
 const path = require('path');
 
 // Base paths
@@ -69,6 +70,7 @@ const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const profileCSS = path.join(cssPagesDir, 'profile.css');
 const autocompleteCSS = path.join(cssComponentsDir, 'autocomplete.css'); // Add autocomplete CSS
+const toastCSS = path.join(cssComponentsDir, 'toast.css'); // Add toast CSS
 
 const headerCSS = path.join(cssUtilsDir, 'header.css');
 const footerCSS = path.join(cssUtilsDir, 'footer.css');
@@ -80,25 +82,29 @@ const privacyCSS = path.join(LegalDirCSS, 'privacy.css');
 const termsCSS = path.join(LegalDirCSS, 'terms.css');
 
 const infoDirCSS = path.join(cssPagesDir, 'info');
-const myTripsCSS = path.join(cssPagesDir, 'myTrips.css');
+const myTripsCSS = path.join(infoDirCSS, "myTrips.css");
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
+const profileJs = path.join(jsPagesDir, 'profile.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
-const headerJs = path.join(jsUtilsDir, 'header.js');
-const carouselJs = path.join(jsUtilsDir, 'carousel.js');
-const travelUtilsJs = path.join(jsUtilsDir, 'travelUtils.js');
-const geoNameUtilsJs = path.join(jsUtilsDir, 'geoNameUtils.js'); // Add geoNameUtils JS
-const carouselRendererJs = path.join(jsUtilsDir, 'carouselRenderer.js');
-const pageLoaderJs = path.join(jsUtilsDir, 'pageLoader.js');
-const languageSwitcherJs = path.join(jsUtilsDir, 'languageSwitcher.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
-const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 const accessJs = path.join(jsDir, 'access.js');
+
+const chatBotJs = path.join(jsUtilsDir, 'chatBot.js');
 const logoutJs = path.join(jsUtilsDir, 'logout.js');
+const headerJs = path.join(jsUtilsDir, "header.js");
+const carouselJs = path.join(jsUtilsDir, "carousel.js");
+const travelUtilsJs = path.join(jsUtilsDir, "travelUtils.js");
+const geoNameUtilsJs = path.join(jsUtilsDir, "geoNameUtils.js"); // Add geoNameUtils JS
+const carouselRendererJs = path.join(jsUtilsDir, "carouselRenderer.js");
+const pageLoaderJs = path.join(jsUtilsDir, "pageLoader.js");
+const languageSwitcherJs = path.join(jsUtilsDir, "languageSwitcher.js");
+const sessionJs = path.join(jsUtilsDir, "session.js");
+const toastJS = path.join(jsUtilsDir, 'toastUtils.js'); // Add toast utils
 
 // Image paths
 const imagesDir = path.join('images');
@@ -160,6 +166,7 @@ const getPaths = () => {
             chatBot: chatBotCSS,
             profile: profileCSS,
             autocomplete: autocompleteCSS, // Add autocomplete CSS path
+            toast: toastCSS, // Add toast CSS
             legal: {
                 cookies: cookiesCSS,
                 privacy: privacyCSS,
@@ -185,7 +192,10 @@ const getPaths = () => {
             languageSwitcher: languageSwitcherJs,
             city3D: city3DJs,
             chatBot: chatBotJs,
-            logout: logoutJs
+            logout: logoutJs,
+            profile: profileJs,
+            session: sessionJs,
+            toastUtils: toastJS, // Add toast utils
         },
         images: {
             favicon: faviconIMG,

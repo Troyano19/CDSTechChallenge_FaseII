@@ -136,6 +136,48 @@ const logout = (req, res) => {
     }
 }
 
+const userData = async (req, res) => {
+  try {
+    // Recuperamos todas las cookies del usuario
+    const cookies = req.cookies;
+
+    // Comprobamos que se encuentre la cookie de inicio de sesión
+    if (!cookies.loginCookie) {
+      throw new Error("No hay sesión activa");
+    }
+
+    // Verificamos el token y extraemos los datos
+    const token = jwt.verify(cookies.loginCookie, process.env.JWT_TOKEN_SECRET);
+
+    // Buscar el usuario en la base de datos usando el ID del token
+    const user = await userDB.findById(token.user);
+
+    if (!user) {
+      throw new Error("Usuario no encontrado");
+    }
+
+    // Devolver la información completa del usuario (sin la contraseña)
+    const userData = {
+      _id: user._id,
+      username: user.username,
+      name: user.name,
+      surnames: user.surnames,
+      email: user.email,
+      registerDate: user.registerDate,
+      role: user.role,
+      accountActivated: user.accountActivated,
+      pfp: user.pfp,
+      registrationmethod: user.registrationmethod,
+      // No incluimos password por seguridad
+    };
+
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: err.message });
+  }
+};
+
 const checkParams = (data) => {
     /**
      * La contraseña debera contener al menos una mayuscula y una minuscula asi como un simbolo
@@ -179,5 +221,6 @@ const checkParams = (data) => {
 module.exports = {
     login,
     register,
-    logout
+    logout,
+    userData,
 }

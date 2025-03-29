@@ -43,14 +43,4 @@ const registerUser = (data) => {
     });
 };
 
-/**
- * Verifica si el usuario está autenticado
- */
-const checkAuthStatus = () => {
-    return fetch(`${baseURL}/status`, {
-        method: "GET",
-        credentials: "include"
-    });
-};
-
-export {loginUser, logoutUser, registerUser, checkAuthStatus};
+export {loginUser, logoutUser, registerUser};

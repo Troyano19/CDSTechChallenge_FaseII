@@ -109,7 +109,7 @@ router.get("/my-trips", (req, res) => {
     if (!isLoggedIn(req)) {
       return res.redirect("/login");
     }
-    renderWithHeaderFooter(getPath('pages.myTrips'), req, res);
+    renderWithHeaderFooter(getPath('pages.info.myTrips'), req, res);
 });
 
 router.get("/city3D", (_, res) => {
