@@ -144,19 +144,31 @@ function initCityCountryAutocomplete() {
     }
     
     // Function to select a place and update the input
-    function selectPlace(place) {
+    async function selectPlace(place) {
         // Create a formatted display for "city, country"
         const formattedName = place.isCountry ? place.name : `${place.name}, ${place.country}`;
         
         originInput.value = formattedName;
         
+        // Get the English version of this location for backend
+        let englishData = null;
+        if (place.geonameId) {
+            englishData = await geoNameUtils.getEnglishVersion(place.geonameId);
+            
+            // Log the English data to verify it's working
+            console.log('English location data for backend:', englishData);
+        }
+        
+        // Store both localized and English versions of the data
         if (place.isCountry) {
             originInput.dataset.countryName = place.name;
             originInput.dataset.countryCode = place.countryCode;
+            originInput.dataset.englishData = englishData ? JSON.stringify(englishData) : '';
         } else {
             originInput.dataset.cityName = place.name;
             originInput.dataset.countryName = place.country;
             originInput.dataset.countryCode = place.countryCode;
+            originInput.dataset.englishData = englishData ? JSON.stringify(englishData) : '';
         }
     }
     

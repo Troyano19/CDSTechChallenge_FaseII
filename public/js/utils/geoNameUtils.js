@@ -247,6 +247,41 @@ async function searchCitiesAndCountries(query, lang) {
 }
 
 /**
+ * Get English version of a location by its geonameId
+ * @param {number} geonameId - The geonameId to look up
+ * @returns {Promise<Object|null>} - Location data in English
+ */
+async function getEnglishVersion(geonameId) {
+    if (!geonameId) return null;
+    
+    try {
+        const url = `http://api.geonames.org/getJSON?geonameId=${geonameId}&username=${GEONAME_USERNAME}&lang=en`;
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            console.error('GeoName API error when getting English version:', response.statusText);
+            return null;
+        }
+        
+        const data = await response.json();
+        
+        return {
+            name: data.name,
+            country: data.countryName,
+            countryCode: data.countryCode,
+            featureClass: data.fcl,
+            featureCode: data.fcode,
+            population: data.population || 0,
+            geonameId: data.geonameId
+        };
+    } catch (error) {
+        console.error('Error getting English version:', error);
+        return null;
+    }
+}
+
+/**
  * Search GeoName API with specific parameters
  * @param {string} query - Search query
  * @param {string} lang - Language code
@@ -292,7 +327,8 @@ async function searchGeonames(query, lang, featureClass, featureCode, maxRows) {
                 countryCode: item.countryCode,
                 featureClass: item.fcl,
                 featureCode: item.fcode,
-                population: item.population || 0
+                population: item.population || 0,
+                geonameId: item.geonameId // Store the geonameId for English lookup
             }));
         }
         
@@ -381,5 +417,6 @@ window.GeoNameUtils = {
     debounce,
     normalizeText,
     startsWithIgnoreAccents,
-    parseCityCountryFormat
+    parseCityCountryFormat,
+    getEnglishVersion // Export the new function
 };
