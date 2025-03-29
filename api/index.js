@@ -4,13 +4,13 @@ const express = require('express');
 const path = require('path');
 //import the routers
 const cookieParser = require('cookie-parser');
-const frontendRouter = require('./routes/frontendRouter');
-const configRouter = require('./routes/configRouter');
-const authRouter = require('./routes/authRoutes');
-const transportsRouter = require('./routes/transportsRoutes');
-const userRouter = require('./routes/userRoutes'); // Add user router
+const frontendRouter = require('../backend/routes/frontendRouter');
+const configRouter = require('../backend/routes/configRouter');
+const authRouter = require('../backend/routes/authRoutes');
+const transportsRouter = require('../backend/routes/transportsRoutes');
+const userRouter = require('../backend/routes/userRoutes'); // Add user router
 //Import database connection
-const connectDB = require('./config/database');
+const connectDB = require('../backend/config/database');
 //We configure the use of dotenv for variables
 require('dotenv').config();
 
