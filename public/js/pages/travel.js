@@ -1,3 +1,4 @@
+import { renderFlights } from "../modules/components/travelComponents.mjs";
 /**
  * JavaScript functionality for the travel page
  */
@@ -9,6 +10,7 @@ if (window.PageLoader) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize travel form utilities
+    renderFlights();
     if (window.TravelUtils) {
         window.TravelUtils.initCityCountryAutocomplete();
         window.TravelUtils.initTravelFormDates();

@@ -1,5 +1,0 @@
-const renderFlights = () => {
-
-}
-
-export { renderFlights }
