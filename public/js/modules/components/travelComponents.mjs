@@ -17,6 +17,7 @@ const renderFlights = async () => {
             const departure = flight.time[0];
             const arrival = flight.time[1];
             const price = flight.regularFare.fares[0].amount;
+            
         });
     });
 
