@@ -22,6 +22,42 @@ export class BuildingInteraction {
         
         // Cargamos los datos del CSV
         this.loadBuildingDataFromCSV();
+
+        // Añadir mapas de nombres por categoría para generar nombres únicos
+        this.buildingNameBases = {
+            commercial: [
+                "Plaza", "Centro", "Tower", "Office", "Business", "Corporate", 
+                "Commerce", "Trade", "Market", "Skyline", "Enterprise", "Global",
+                "Diamond", "Crystal", "Horizon", "Pinnacle", "Summit", "Vertex",
+                "Zenith", "Empire", "Exchange", "Nova", "Quantum", "Meridian"
+            ],
+            residential: [
+                "Residencial", "Apartments", "Residence", "Living", "Habitat", "Dwellings",
+                "Suites", "Lofts", "Condos", "Villas", "Gardens", "Heights", "Terraces",
+                "Vista", "Mirador", "Oasis", "Paradise", "Haven", "Retreat", "Sanctuary"
+            ],
+            historic: [
+                "Heritage", "Legacy", "Historic", "Monument", "Landmark", "Memorial",
+                "Archive", "Museum", "Gallery", "Relic", "Vintage", "Antique", "Classic",
+                "Cultural", "Traditional", "Timeless", "Ancient", "Colonial", "Palace"
+            ]
+        };
+        
+        this.buildingAdjectives = [
+            "Grand", "Noble", "Elegant", "Premier", "Prime", "Elite", "Supreme",
+            "Royal", "Majestic", "Iconic", "Luxurious", "Splendid", "Pristine",
+            "Golden", "Silver", "Platinum", "Azure", "Emerald", "Ruby", "Sapphire",
+            "Central", "Northern", "Southern", "Eastern", "Western"
+        ];
+        
+        this.buildingNameSuffixes = {
+            commercial: ["Complex", "Center", "Hub", "Park", "Square", "Plaza", "Avenue"],
+            residential: ["Garden", "Park", "Court", "Place", "Estate", "Terrace", "View"],
+            historic: ["Hall", "House", "Court", "Manor", "Palace", "Castle", "Citadel"]
+        };
+        
+        // Conjunto para rastrear nombres ya usados y evitar duplicados
+        this.usedBuildingNames = new Set();
     }
     
     // Método para cargar y procesar los datos del CSV
@@ -555,6 +591,70 @@ export class BuildingInteraction {
         return null; // No se encontró ninguna coincidencia
     }
     
+    // Nuevo método para generar nombres únicos de edificios
+    generateUniqueBuildingName(building, category, index) {
+        // Seleccionar aleatoriamente un nombre base según la categoría
+        const nameBase = this.buildingNameBases[category][
+            index % this.buildingNameBases[category].length
+        ];
+        
+        // Usar la posición del edificio para agregar singularidad
+        const positionHash = Math.abs(
+            Math.round(building.center.x * 1000) + 
+            Math.round(building.center.z * 200)
+        ) % 1000;
+        
+        // Usar la altura como característica descriptiva
+        let heightDescription = "";
+        const height = building.height;
+        
+        if (height > 30) {
+            heightDescription = "Sky";
+        } else if (height > 20) {
+            heightDescription = "High";
+        } else if (height < 5) {
+            heightDescription = "Low";
+        }
+        
+        // Seleccionar un adjetivo basado en el índice y posición
+        const adjectiveIndex = (index + Math.floor(positionHash / 100)) % this.buildingAdjectives.length;
+        const adjective = this.buildingAdjectives[adjectiveIndex];
+        
+        // Seleccionar un sufijo según la categoría
+        const suffixIndex = (index + positionHash) % this.buildingNameSuffixes[category].length;
+        const suffix = this.buildingNameSuffixes[category][suffixIndex];
+        
+        // Generar nombres candidatos en diferentes formatos hasta encontrar uno único
+        let attempts = 0;
+        let nameOptions = [
+            `${adjective} ${nameBase}`,
+            `${nameBase} ${suffix}`,
+            `${heightDescription}${nameBase}`,
+            `${adjective} ${nameBase} ${suffix}`,
+            `${nameBase} ${positionHash}`,
+            `${nameBase} ${String.fromCharCode(65 + (index % 26))}`,
+            `${nameBase} ${adjective} ${String.fromCharCode(65 + (index % 26))}`
+        ];
+        
+        // Filtrar opciones vacías (por si heightDescription está vacío)
+        nameOptions = nameOptions.filter(name => !name.includes("undefined") && !name.startsWith(" "));
+        
+        // Intentar con diferentes combinaciones hasta encontrar un nombre único
+        while (attempts < nameOptions.length) {
+            const candidateName = nameOptions[attempts];
+            if (!this.usedBuildingNames.has(candidateName)) {
+                this.usedBuildingNames.add(candidateName);
+                return candidateName;
+            }
+            attempts++;
+        }
+        
+        // Si todas las opciones están usadas, crear un nombre con un número único
+        const fallbackName = `${nameBase} #${positionHash}-${index}`;
+        this.usedBuildingNames.add(fallbackName);
+        return fallbackName;
+    }
+
     assignBuildingInfo(buildingGroups) {
         let buildingIndex = 0;
         
@@ -603,9 +703,12 @@ export class BuildingInteraction {
                 const categoryData = this.buildingData[category];
                 const infoTemplate = categoryData[buildingIndex % categoryData.length];
                 
+                // Generar un nombre único para este edificio
+                const uniqueName = this.generateUniqueBuildingName(building, category, buildingIndex);
+                
                 buildingInfo = {
                     ...infoTemplate,
-                    name: infoTemplate.name.replace(/\d+$/, '') + ` ${buildingIndex + 1}`,
+                    name: uniqueName,
                     height: infoTemplate.height || `${Math.round(building.height * 10)}m`,
                     category: category,
                     matchType: "auto",

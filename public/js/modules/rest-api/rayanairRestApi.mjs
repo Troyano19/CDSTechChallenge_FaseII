@@ -1,8 +1,12 @@
 const ryanairURL = "https://www.ryanair.com/api/views/locate";
 const baseURL = "/api/transports/ryanair"; 
 
-const getAirportsFromCountry = async () => {
-    return fetch(`${ryanairURL}/5/airports/es`);
+const getAirportsFromCountry = async (country) => {
+    return fetch(`${baseURL}/getAirportsFromCountry/${country}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include",
+    });
 };
 
 const getAirportsFromCity = async (city) => {
@@ -24,26 +28,27 @@ const saveAirports = async () => {
 };
 
 const getAvailableFlights = async (data) => {
-    console.log(data);
-    const { city, country, departureDate, returnDate, countryCode } = data;
-    const airportsOriginReq = await getAirportsFromCity(city);
+    const { city, country, departureDate, returnDate, countryCode, adults, children } = data;
+    let airportsOriginReq = await getAirportsFromCity(city);
+
+    if (airportsOriginReq.status !== 200) {
+        airportsOriginReq = await getAirportsFromCountry(country);
+    }
     const airportsOrigin = await airportsOriginReq.json();
     const codesOrigin = [];
     airportsOrigin.forEach(airport => {
         codesOrigin.push(airport.code);
     });
-    //TODO: Modificar la URL para cuando haya adultos y niños
-    const adults = 1;
-    const childs = 0;
+    
     const RoundTrip = returnDate ? true : false;
     const responses = [];
     for (const origin of codesOrigin) {
-        const ryanairUrl = `https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=${adults}&CHD=${childs}` +
-            `&DateIn=${returnDate}&DateOut=${departureDate}&Destination=MAD&Disc=0&FlexDaysBeforeIn=2` +
-            `&FlexDaysBeforeOut=4&FlexDaysIn=2&FlexDaysOut=2&IncludeConnectingFlights=false&INF=0&Origin=${origin}` +
-            `&promoCode=&RoundTrip=${RoundTrip}&TEEN=0&ToUs=AGREED`;
+        const ryanairUrl = `https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=${adults}&CHD=${children}` +
+            `&DateIn=${returnDate}&DateOut=${departureDate}&Destination=MAD&Disc=0&FlexDaysBeforeIn=0` +
+            `&FlexDaysBeforeOut=0&FlexDaysIn=0&FlexDaysOut=0&IncludeConnectingFlights=false&INF=0&Origin=${origin}` +
+            `&promoCode=&RoundTrip=${RoundTrip}&TEEN=0&ToUs=AGREED`;    
 
-        // Realizar la solicitud para cada origen
+        //TODO: Especificar la baseURL
         const response = await fetch(`http://localhost:3001/proxy/ryanair?url=${encodeURIComponent(ryanairUrl)}`);
         const data = await response.json();
         responses.push(data); // Almacenar la respuesta en el array

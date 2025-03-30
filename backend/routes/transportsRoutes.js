@@ -6,4 +6,5 @@ router.post('/ryanair/saveAirports', airportsController.saveAirports);
 router.post('/ryanair/getAvailableFlights', airportsController.getAvailableFlights);
 
 router.get('/ryanair/getAirportsFromCity/:city', airportsController.getAirportsFromCity);
+router.get('/ryanair/getAirportsFromCountry/:country', airportsController.getAirportsFromCountry);
 module.exports = router;
