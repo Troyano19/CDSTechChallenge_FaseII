@@ -40,6 +40,7 @@ app.use('/api/user', userRouter); // Register user routes
 
 // Proxy for Ryanair API
 app.get('/proxy/ryanair', async (req, res) => {
+    console.log("hola");
     const ryanairUrl = req.query.url; // La URL de Ryanair se pasa como parámetro de consulta
     try {
         const response = await fetch(ryanairUrl);
