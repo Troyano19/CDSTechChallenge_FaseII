@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const findOrCreate = require('mongoose-findorcreate');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -10,11 +12,11 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true,
+        required: function(){ return this.registrationmethod === 'DEFAULT'; },
     },
     surnames: {
         type: String,
-        required: true,
+        required: function(){ return this.registrationmethod === 'DEFAULT'; },
     },
     email: {
         type: String,
@@ -33,7 +35,9 @@ const userSchema = new mongoose.Schema({
     },
     accountActivated: {
         type: Boolean,
-        default: false,
+        default: function() {
+            return this.registrationmethod === 'GOOGLE';
+        }
     },
     pfp: {
         type: String,
@@ -41,13 +45,13 @@ const userSchema = new mongoose.Schema({
     },
     registrationmethod: {
         type: String,
-        enum: ["GOOGLE", "DISCORD", "DEFAULT"],
+        enum: ["GOOGLE", "DEFAULT"],
         default: "DEFAULT" 
     },
     password: {
         type: String,
         required: function() {
-            return this.registrationmethod === 'DEFAULT';
+            return this.registrationmethod === 'DEFAULT' && !!this.password;
         },
     },
     googleId: {
@@ -84,6 +88,8 @@ userSchema.pre('save', function(next) {
     }
     next();
 });
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const Users = mongoose.model("User", userSchema);
 
