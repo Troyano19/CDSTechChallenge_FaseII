@@ -116,16 +116,6 @@
     text-decoration: none;
 }
 
-.discord-btn {
-    background-color: #5865F2;
-    color: white;
-    border-color: #5865F2;
-}
-
-.discord-btn:hover {
-    background-color: #4752c4;
-}
-
 /* Submit button */
 .submit-btn {
     width: 100%;
