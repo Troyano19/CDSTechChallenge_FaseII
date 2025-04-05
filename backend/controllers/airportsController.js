@@ -7,7 +7,6 @@ const saveAirports = async (req, res) => {
     try {
         const aeropuertos = await airports.getActive();
         // Guardar los aeropuertos en la base de datos
-        console.log(aeropuertos); // Para depuración
         const savedAirports = await airportsDB.insertMany(aeropuertos);
         res.status(201).json({ message: "Aeropuertos guardados exitosamente.", data: savedAirports });
     } catch (error) {
@@ -19,7 +18,6 @@ const saveAirports = async (req, res) => {
 const getAvailableFlights = async (req, res) => {
     try{
         const req = await fetch('https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=1&CHD=0&DateIn=&DateOut=2025-04-01&Destination=BRU&Disc=0&FlexDaysBeforeIn=2&FlexDaysBeforeOut=4&FlexDaysIn=2&FlexDaysOut=2&IncludeConnectingFlights=false&INF=0&Origin=MAD&promoCode=&RoundTrip=false&TEEN=0&ToUs=AGREED');        fetch('https://www.ryanair.com/api/booking/v4/en-gb/availability?ADT=1&CHD=0&DateIn=&DateOut=2025-04-01&Destination=BRU&Disc=0&FlexDaysBeforeIn=2&FlexDaysBeforeOut=4&FlexDaysIn=2&FlexDaysOut=2&IncludeConnectingFlights=false&INF=0&Origin=MAD&promoCode=&RoundTrip=false&TEEN=0&ToUs=AGREED')
-        console.log(await req.json());
     
         res.status(200).json({ message: "Vuelos disponibles obtenidos exitosamente." });
     }catch(error) {

@@ -20,7 +20,6 @@ const loginHandler = async (event) => {
             window.location.replace("/");
         }
     }catch(err){
-        console.log(err);
         alert(err.message);
     };
 };

@@ -7,7 +7,7 @@ import { BuildingInteraction } from './Buildings.js';
 export class CityViewer {
     constructor() {
         // Add a property to track estimated file size if not provided by server
-        this.estimatedObjSize = 5 * 1024 * 1024; // 5MB is a reasonable guess for a city model
+        this.estimatedObjSize = 144 * 1024 * 1024; // 5MB is a reasonable guess for a city model
         this.init();
     }
 
@@ -142,7 +142,7 @@ export class CityViewer {
                 } else {
                     // If length is not provided, use our estimate or try to make a good guess
                     // This will at least show increasing percentages
-                    progress = Math.min(95, (xhr.loaded / this.estimatedObjSize) * 100);
+                    progress = Math.min(99, (xhr.loaded / this.estimatedObjSize) * 100);
                     
                     // Update size element without total
                     const sizeElement = document.getElementById('loading-size');

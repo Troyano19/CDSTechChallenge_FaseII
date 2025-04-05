@@ -56,7 +56,6 @@ app.get('/proxy/ryanair', async (req, res) => {
     try {
         const response = await fetch(ryanairUrl);
         const data = await response.json();
-        console.log(response);
         res.json(data); // Devuelve los datos al cliente
     } catch (error) {
         console.error('Error al hacer la solicitud a Ryanair:', error);
