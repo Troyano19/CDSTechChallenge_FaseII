@@ -103,15 +103,17 @@
     cursor: pointer;
     transition: background-color var(--transition-quick);
     box-sizing: border-box;
+    color: black;
 }
 
 .social-btn img {
     width: 18px;
     height: 18px;
 }
-
 .google-btn:hover {
     background-color: #f8f9fa;
+    color: black;
+    text-decoration: none;
 }
 
 .discord-btn {
