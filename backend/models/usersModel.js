@@ -54,16 +54,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    discordId: {
-        type: String,
-        default: null
-    }
 });
 
 // Indexes - we keep only these and remove any index: true fields above
-userSchema.index({username: 1}, {unique: true, collation: { locale: "en", strength: 2, caseLevel: false }}); // Añadido collation al índice
+userSchema.index({username: 1}, {unique: true, collation: { locale: "en", strength: 2, caseLevel: false }});
 userSchema.index({email: 1}, {unique: true});
-userSchema.index({discordId: 1}, {unique: true, partialFilterExpression: { discordId: { $exists: true, $ne: null } }});
 userSchema.index({googleId: 1}, {unique: true, partialFilterExpression: { googleId: { $exists: true, $ne: null } }});
 
 // Hash password with SHA-256
