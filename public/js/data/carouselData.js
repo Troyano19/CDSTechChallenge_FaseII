@@ -5,42 +5,48 @@
 
 // Example data for interest carousel
 const interestItems = [
-    {
-        id: "interest1",
-        image: "../../images/temp/trails-temp1.jpeg",
-        title: "Ruta de Senderismo 'Sendero del Colibrí'",
-        description: "Un pintoresco sendero bien mantenido que serpentea a través de un bosque exuberante cerca de la ciudad. Se ven señales informativas sobre la flora y fauna local, bancos hechos con materiales reciclados y personas disfrutando de una caminata en la naturaleza. El sendero ofrece vistas panorámicas del lago y la ciudad."
-    },
-    {
-        id: "interest2",
-        image: "../../images/temp/establishment-temp1.jpeg",
-        title: "Mercado Ecológico Local",
-        description: "Una plaza animada donde productores locales venden frutas, verduras orgánicas, artesanías y productos sostenibles. Se ven puestos coloridos, toldos hechos con materiales naturales y gente comprando y socializando. El ambiente es festivo y promueve la economía local y la alimentación saludable."
-    },
-    {
-        id: "interest3",
-        image: "../../images/temp/activity-temp1.jpeg",
-        title: "Espacio público junto al lago",
-        description: "Un área vibrante cerca del lago con personas disfrutando de actividades al aire libre. Se ven parques con áreas de picnic, senderos para caminar y andar en bicicleta, y quizás algún embarcadero con pequeñas embarcaciones eléctricas. La calidad del agua es prístina y la biodiversidad local está protegida."
-    },
-    {
-        id: "interest4",
-        image: "../../images/temp/trails-temp2.jpeg",
-        title: "Ruta Urbana Peatonal 'El Corazón Verde'",
-        description: "Una calle peatonal adoquinada y llena de vegetación que conecta parques y plazas importantes de la ciudad. Se ven bancos para descansar, fuentes de agua potable y señalización que indica puntos de interés histórico y cultural. La gente pasea, disfruta de las tiendas locales y se relaja en un ambiente tranquilo."
-    },
-    {
-        id: "interest5",
-        image: "../../images/temp/establishment-temp2.jpeg",
-        title: "Hotel Ecológico 'Lago Esmeralda'",
-        description: "Un hotel de diseño moderno y sostenible, construido con materiales de bajo impacto ambiental y rodeado de jardines nativos. Se observan paneles solares en el techo, grandes ventanales que maximizan la luz natural y quizás una entrada con cargadores para vehículos eléctricos. El ambiente transmite tranquilidad y conexión con la naturaleza."
-    },
-    {
-        id: "interest6",
-        image: "../../images/temp/activity-temp2.jpeg",
-        title: "Centro de Actividades Acuáticas Sostenibles",
-        description: "Un centro ubicado a orillas del lago que ofrece alquiler de kayaks, paddleboards y pequeñas embarcaciones eléctricas. El edificio está integrado con el entorno natural y promueve el disfrute responsable del lago. Se ven personas preparándose para salir a remar en aguas cristalinas."
-    }
+  {
+    id: "interest1",
+    image: "../../images/temp/trails-temp1.jpeg",
+    title: "Ruta de Senderismo 'Ezmeral Valley'",
+    description:
+      "Un pintoresco sendero bien mantenido que serpentea a través de un bosque exuberante cerca de la ciudad. Se ven señales informativas sobre la flora y fauna local, bancos hechos con materiales reciclados y personas disfrutando de una caminata en la naturaleza. El sendero ofrece vistas panorámicas del lago y la ciudad.",
+  },
+  {
+    id: "interest2",
+    image: "../../images/temp/establishment-temp1.jpeg",
+    title: "Mercado Ecológico Local",
+    description:
+      "Una plaza animada donde productores locales venden frutas, verduras orgánicas, artesanías y productos sostenibles. Se ven puestos coloridos, toldos hechos con materiales naturales y gente comprando y socializando. El ambiente es festivo y promueve la economía local y la alimentación saludable.",
+  },
+  {
+    id: "interest3",
+    image: "../../images/temp/activity-temp1.jpeg",
+    title: "Espacio público junto al lago",
+    description:
+      "Un área vibrante cerca del lago con personas disfrutando de actividades al aire libre. Se ven parques con áreas de picnic, senderos para caminar y andar en bicicleta, y quizás algún embarcadero con pequeñas embarcaciones eléctricas. La calidad del agua es prístina y la biodiversidad local está protegida.",
+  },
+  {
+    id: "interest4",
+    image: "../../images/temp/trails-temp2.jpeg",
+    title: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
+    description:
+      "Una calle peatonal adoquinada y llena de vegetación que conecta parques y plazas importantes de la ciudad. Se ven bancos para descansar, fuentes de agua potable y señalización que indica puntos de interés histórico y cultural. La gente pasea, disfruta de las tiendas locales y se relaja en un ambiente tranquilo.",
+  },
+  {
+    id: "interest5",
+    image: "../../images/temp/establishment-temp2.jpeg",
+    title: "Hotel Ecológico 'GreenLake Platinum Heritage'",
+    description:
+      "Un hotel de diseño moderno y sostenible, construido con materiales de bajo impacto ambiental y rodeado de jardines nativos. Se observan paneles solares en el techo, grandes ventanales que maximizan la luz natural y quizás una entrada con cargadores para vehículos eléctricos. El ambiente transmite tranquilidad y conexión con la naturaleza.",
+  },
+  {
+    id: "interest6",
+    image: "../../images/temp/activity-temp2.jpeg",
+    title: "Centro de Actividades Acuáticas Sostenibles",
+    description:
+      "Un centro ubicado a orillas del lago que ofrece alquiler de kayaks, paddleboards y pequeñas embarcaciones eléctricas. El edificio está integrado con el entorno natural y promueve el disfrute responsable del lago. Se ven personas preparándose para salir a remar en aguas cristalinas.",
+  },
 ];
 
 // Example data for activities carousels

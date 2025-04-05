@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const findOrCreate = require('mongoose-findorcreate');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -10,11 +12,11 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true,
+        required: function(){ return this.registrationmethod === 'DEFAULT'; },
     },
     surnames: {
         type: String,
-        required: true,
+        required: function(){ return this.registrationmethod === 'DEFAULT'; },
     },
     email: {
         type: String,
@@ -33,7 +35,9 @@ const userSchema = new mongoose.Schema({
     },
     accountActivated: {
         type: Boolean,
-        default: false,
+        default: function() {
+            return this.registrationmethod === 'GOOGLE';
+        }
     },
     pfp: {
         type: String,
@@ -41,29 +45,24 @@ const userSchema = new mongoose.Schema({
     },
     registrationmethod: {
         type: String,
-        enum: ["GOOGLE", "DISCORD", "DEFAULT"],
+        enum: ["GOOGLE", "DEFAULT"],
         default: "DEFAULT" 
     },
     password: {
         type: String,
         required: function() {
-            return this.registrationmethod === 'DEFAULT';
+            return this.registrationmethod === 'DEFAULT' && !!this.password;
         },
     },
     googleId: {
         type: String,
         default: null
     },
-    discordId: {
-        type: String,
-        default: null
-    }
 });
 
 // Indexes - we keep only these and remove any index: true fields above
-userSchema.index({username: 1}, {unique: true, collation: { locale: "en", strength: 2, caseLevel: false }}); // Añadido collation al índice
+userSchema.index({username: 1}, {unique: true, collation: { locale: "en", strength: 2, caseLevel: false }});
 userSchema.index({email: 1}, {unique: true});
-userSchema.index({discordId: 1}, {unique: true, partialFilterExpression: { discordId: { $exists: true, $ne: null } }});
 userSchema.index({googleId: 1}, {unique: true, partialFilterExpression: { googleId: { $exists: true, $ne: null } }});
 
 // Hash password with SHA-256
@@ -84,6 +83,8 @@ userSchema.pre('save', function(next) {
     }
     next();
 });
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const Users = mongoose.model("User", userSchema);
 
