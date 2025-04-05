@@ -1,7 +1,10 @@
 //Used to build the app
 const express = require('express');
+const session = require("express-session");
 //Used to enroute without exposing the dirnames
 const path = require('path');
+const passport = require('passport');
+
 //import the routers
 const cookieParser = require('cookie-parser');
 const frontendRouter = require('../backend/routes/frontendRouter');
@@ -13,13 +16,22 @@ const userRouter = require('../backend/routes/userRoutes'); // Add user router
 const connectDB = require('../backend/config/database');
 //We configure the use of dotenv for variables
 require('dotenv').config();
-
 //Connect to MongoDB
 connectDB();
 
 //We inicialize the express app
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 3600000 }
+  }));
+require('../backend/config/passport'); 
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Parse URL-encoded bodies (for form data)
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +52,6 @@ app.use('/api/user', userRouter); // Register user routes
 
 // Proxy for Ryanair API
 app.get('/proxy/ryanair', async (req, res) => {
-    console.log("hola");
     const ryanairUrl = req.query.url; // La URL de Ryanair se pasa como parámetro de consulta
     try {
         const response = await fetch(ryanairUrl);

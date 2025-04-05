@@ -116,7 +116,8 @@ const renderWithHeaderFooter = (filePath, req, res) => {
 // Verificar si el usuario está logueado
 const isLoggedIn = (req) => {
   // Verificar si la cookie de inicio de sesión existe
-  return req.cookies && req.cookies.loginCookie;
+  console.log(req.isAuthenticated());
+  return req.isAuthenticated();
 };
 
 module.exports = {

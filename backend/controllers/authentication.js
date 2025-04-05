@@ -1,7 +1,6 @@
-const jwt = require('jsonwebtoken');
 const userDB = require("../models/usersModel");
 const sanitizeHtml = require('sanitize-html');
-
+const passport = require('passport');
 /**
  * Genera un token para un usuario especifico.
  */
@@ -24,159 +23,158 @@ const createToken = (data) => {
  * -Si la petición falla, devuelve el codigo 400 y un JSON con el mensaje de error.
  */
 
-const login = async (req, res) => {
-    try{
-        let {identifier, password} = req.body;
-        identifier = sanitizeHtml(identifier);
-        password = sanitizeHtml(password);
-        const user = identifier.includes('@') ? await userDB.findOne({email: identifier.toLowerCase()}) : await userDB.findOne({username: identifier.toLowerCase()});
-
-        if(user){
-            if(user.comparePassword(password)){
-                throw new Error("Nombre de usuario o contraseña incorrectos, intentalo de nuevo");
-            }
-        }else{
-            throw new Error("Nombre de usuario o contraseña incorrectos, intentalo de nuevo");        }
-
-        const token = createToken({user: user._id});
-        res.cookie("loginCookie", token, {httpOnly: true, sameSite: "Strict", maxAge: 3600000});
-        res.status(200).json({token: token});
-    }catch(err){
-        console.log("Ha ocurrido un error en el proceso de login", err)
-        res.status(400).json({message: err.message});
-    };
+const login = (req, res, next) => {
+  // Se utiliza la estrategia "local" (ya definida en passport.js)
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      console.error("Error en el proceso de login:", err);
+      return next(err);
+    }
+    if (!user) {
+      // info.message lo envía la estrategia si las credenciales no son válidas
+      return res.status(400).json({ message: info && info.message ? info.message : "Credenciales incorrectas" });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        console.error("Error al iniciar la sesión:", err);
+        return next(err);
+      }
+      // Se puede devolver algunos datos del usuario (sin la contraseña)
+      const userData = {
+        _id: user._id,
+        username: user.username,
+        name: user.name,
+        surnames: user.surnames,
+        email: user.email,
+        registrationmethod: user.registrationmethod,
+        accountActivated: user.accountActivated,
+        pfp: user.pfp,
+        role: user.role
+      };
+      return res.status(200).json({ message: "Login exitoso", user: userData });
+    });
+  })(req, res, next);
 };
 
-const register = async (req, res) => {
-
-    try{
-        const {name, surnames, username, email, password, confirmPassword} = req.body
-
-        if(name === undefined || surnames === undefined || username === undefined || email === undefined || password === undefined || confirmPassword === undefined){
-            res.status(400).json({message: "Faltan campos por rellenar"});
-        return;
-        };
-
-        if(password !== confirmPassword){
-            res.status(400).json({message: "Las contraseñas no coinciden"});
-            return;
+const register = (req, res, next) => {
+    try {
+        console.log(req.body);
+        const { name, surnames, username, email, password, confirmPassword } = req.body;
+  
+        if (!name || !surnames || !username || !email || !password || !confirmPassword) {
+            return res.status(400).json({ message: "Faltan campos por rellenar" });
         }
-        //TODO: Comprobar si comprueba variaciones en mayusculas
-        if(await userDB.findOne({username})){
-            res.status(409).json({message: "El nombre de usuario ya está en uso"});
-            return;
-        };
-
-        if(await userDB.findOne({email})){
-            res.status(409).json({message: "El email ya está en uso"});
-            return;;
-        };
-        //Sanitizamos los datos para evitar codigo malicioso
+    
+        if (password !== confirmPassword) {
+            return res.status(400).json({ message: "Las contraseñas no coinciden" });
+        }
+    
+        // Sanitizamos los datos para evitar código malicioso
         const sanitizedData = {
             name: sanitizeHtml(name),
             surnames: sanitizeHtml(surnames),
             username: sanitizeHtml(username),
-            email: sanitizeHtml(email),
-            password: sanitizeHtml(password)
+            email: sanitizeHtml(email)
         };
-        //Comprobamos si los datos cumplen con los parametros
-        checkParams(sanitizedData);
-        
-        const newUser = new userDB({name: sanitizedData.name, username: sanitizedData.username,
-            surnames: sanitizedData.surnames, email: sanitizedData.email.toLowerCase(),});
-
-        newUser.password = await newUser.hashPassword(password);
-        await newUser.save();
-        const token = createToken({user: newUser._id});
-        res.cookie("loginCookie", token, {httpOnly: true, sameSite: "Strict"});
-        res.status(200).json({token: token});
-    }catch(err){
-        if (err.code === 11000) {
-            if (err.keyPattern.username) {
-                res.status(409).json({message: "El nombre de usuario ya está en uso"});
-            } else if (err.keyPattern.email) {
-                res.status(409).json({message: "El email ya está en uso"});
-            } else {
-                console.log(err);
-                res.status(409).json({message: "Error de clave duplicada"});
+    
+        // Aquí se puede llamar a una función para comprobar parámetros válidos
+        checkParams({ 
+            name: sanitizedData.name, 
+            surnames: sanitizedData.surnames, 
+            username: sanitizedData.username, 
+            email: sanitizedData.email, 
+            password 
+        });
+    
+        // Creamos un nuevo usuario. Se asume que el modelo userDB tiene integrado passport-local-mongoose.
+        const newUser = new userDB({
+            name: sanitizedData.name,
+            surnames: sanitizedData.surnames,
+            username: sanitizedData.username,
+            email: sanitizedData.email.toLowerCase()
+        });
+    
+        // El método register se encarga de hashear la contraseña y guardar el usuario
+        userDB.register(newUser, password, (err, user) => {
+            if (err) {
+            if (err.code === 11000) {
+                if (err.keyPattern && err.keyPattern.username) {
+                return res.status(409).json({ message: "El nombre de usuario ya está en uso" });
+                } else if (err.keyPattern && err.keyPattern.email) {
+                return res.status(409).json({ message: "El email ya está en uso" });
+                }
+                return res.status(409).json({ message: "Error de clave duplicada" });
             }
-        }else{
-            console.log("Ha ocurrido un error en el proceso de registro:", err.message);
-            res.status(500).json({message: err.message});
-        }
-        
-    };
+            return res.status(400).json({ message: err.message });
+            }
+            // Una vez registrado, se inicia sesión en el nuevo usuario
+            req.logIn(user, (err) => {
+            if (err) return next(err);
+            const userData = {
+                _id: user._id,
+                username: user.username,
+                name: user.name,
+                surnames: user.surnames,
+                email: user.email,
+                registrationmethod: user.registrationmethod,
+                accountActivated: user.accountActivated,
+                pfp: user.pfp,
+                role: user.role
+            };
+            return res.status(200).json({ message: "Registro y login exitoso", user: userData });
+            });
+        });
+        } catch (err) {
+        console.error("Ha ocurrido un error en el proceso de registro:", err.message);
+        res.status(500).json({ message: err.message });
+    }
 };
 
-const logout = (req, res) => {
-    try{
-        //Recuperamos todas las cookies del usuario
-        const cookies = req.cookies;
-        //Comprobamos que se encuentre la cookie de inicio de sesión
-        if(!cookies.loginCookie){
-            if(req.isAuthenticated()){
-                req.logout((err) => {
-                    if(err){
-                        throw new Error("No puede cerrarse la sesión ya que no hay ninguna abierta");
-                    }
-                });
-                return res.status(204).send();
-            }
-            throw new Error("No puede cerrarse la sesión ya que no hay ninguna abierta");
-        }
-        //Comprobamos que el token de la cookie existe para evitar falsificaciones
-        //y extraer los datos del usuario.
-        jwt.verify(cookies.loginCookie, process.env.JWT_TOKEN_SECRET);
-        //Borramos la cookie de sesión
-        res.clearCookie("loginCookie", {httpOnly: true, sameSite: "Strict"});
-        res.status(204).send();
-    }catch(err){
-        console.log(err);
-        res.status(404).json({message: err.message});
+  const logout = (req, res) => {
+    try {
+      if (req.isAuthenticated()) {
+        req.logout((err) => {
+          if (err) {
+            throw new Error("Error al cerrar sesión");
+          }
+          return res.status(204).send();
+        });
+      } else {
+        return res.status(400).json({ message: "No hay sesión activa" });
+      }
+    } catch (err) {
+      console.error(err);
+      return res.status(404).json({ message: err.message });
     }
-}
+  };
 
-const userData = async (req, res) => {
-  try {
-    // Recuperamos todas las cookies del usuario
-    const cookies = req.cookies;
-
-    // Comprobamos que se encuentre la cookie de inicio de sesión
-    if (!cookies.loginCookie) {
-      throw new Error("No hay sesión activa");
+  const userData = async (req, res) => {
+    try {
+      if (!req.isAuthenticated()) {
+        throw new Error("No hay sesión activa");
+      }
+      const user = await userDB.findById(req.user._id);
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+      const data = {
+        _id: user._id,
+        username: user.username,
+        name: user.name,
+        surnames: user.surnames,
+        email: user.email,
+        registerDate: user.registerDate,
+        role: user.role,
+        accountActivated: user.accountActivated,
+        pfp: user.pfp,
+        registrationmethod: user.registrationmethod
+      };
+      return res.status(200).json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(404).json({ message: err.message });
     }
-
-    // Verificamos el token y extraemos los datos
-    const token = jwt.verify(cookies.loginCookie, process.env.JWT_TOKEN_SECRET);
-
-    // Buscar el usuario en la base de datos usando el ID del token
-    const user = await userDB.findById(token.user);
-
-    if (!user) {
-      throw new Error("Usuario no encontrado");
-    }
-
-    // Devolver la información completa del usuario (sin la contraseña)
-    const userData = {
-      _id: user._id,
-      username: user.username,
-      name: user.name,
-      surnames: user.surnames,
-      email: user.email,
-      registerDate: user.registerDate,
-      role: user.role,
-      accountActivated: user.accountActivated,
-      pfp: user.pfp,
-      registrationmethod: user.registrationmethod,
-      // No incluimos password por seguridad
-    };
-
-    res.status(200).json(userData);
-  } catch (err) {
-    console.log(err);
-    res.status(404).json({ message: err.message });
-  }
-};
+  };
 
 const checkParams = (data) => {
     /**
