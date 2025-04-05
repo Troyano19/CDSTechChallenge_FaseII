@@ -79,6 +79,12 @@ window.Translations = {
         title: "Opciones de transporte a GreenLake",
         departure: "Salida:",
         arrival: "Llegada:",
+        duration: "Duración:",
+        origin: "Origen:",
+        destination: "Destino:",
+        outboundFlights: "Vuelos de ida",
+        returnFlights: "Vuelos de vuelta",
+        noOutboundFlights: "No hay vuelos de ida disponibles."
       },
       hotels: {
         title: "Alojamientos disponibles",
@@ -487,6 +493,12 @@ window.Translations = {
         title: "Transportation options to GreenLake",
         departure: "Departure:",
         arrival: "Arrival:",
+        duration: "Duration:",
+        origin: "Origin:",
+        destination: "Destination:",
+        outboundFlights: "Outbound Flights",
+        returnFlights: "Return Flights",
+        noOutboundFlights: "No outbound flights available."
       },
       hotels: {
         title: "Available accommodations",
