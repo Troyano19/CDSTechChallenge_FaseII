@@ -62,6 +62,8 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     const chatBotContent = fs.readFileSync(chatBotPath, "utf8");
     const content = fs.readFileSync(filePath, "utf8");
 
+    
+
     // Use regex to find the body tag with any attributes
     const bodyStartRegex = /<body[^>]*>/i;
     const bodyEndRegex = /<\/body>/i;
@@ -85,13 +87,22 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     const bodyContent = content.substring(startIndex, endIndex);
     const afterBody = content.substring(endIndex);
 
+    const processedHeaderContent = replacePaths(headerContent);
+    // Si el usuario está autenticado, sustituye {{USER_PFP}} por el valor de la base de datos
+    let finalHeaderContent = processedHeaderContent;
+    if (req.isAuthenticated() && req.user && req.user.pfp) {
+      finalHeaderContent = processedHeaderContent.replace("{{USER_PFP}}", req.user.pfp);
+    } else {
+      // Si no está autenticado, puedes reemplazarlo por un valor por defecto
+      finalHeaderContent = processedHeaderContent.replace("{{USER_PFP}}", "/images/default-profile.png");
+    }
+
     // Replace path placeholders in all content parts
     const processedBeforeBody = replacePaths(beforeBody);
-    const processedHeaderContent = replacePaths(headerContent);
     const processedBodyContent = replacePaths(bodyContent);
     const processedFooterContent = replacePaths(footerContent);
     let processedChatBotContent = replacePaths(chatBotContent);
-
+    
     // Also replace secure tokens in the chatbot content
     processedChatBotContent = replaceSecureTokens(processedChatBotContent);
 
@@ -100,7 +111,7 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     // Combine all parts with header, footer, and chatbot
     const finalHtml =
       processedBeforeBody +
-      processedHeaderContent +
+      finalHeaderContent +
       processedBodyContent +
       processedFooterContent +
       processedChatBotContent +
