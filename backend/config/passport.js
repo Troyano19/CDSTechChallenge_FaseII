@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
-    UserDB.findOrCreate({pfp: profile.photos[0].value, registrationmethod:"GOOGLE", googleId: profile.id, username: profile.displayName, email: profile.emails[0].value }, function (err, user) {
+    UserDB.findOrCreate({username: profile.displayName}, {pfp: profile.photos[0].value, registrationmethod:"GOOGLE", googleId: profile.id, username: profile.displayName, email: profile.emails[0].value }, function (err, user) {
       return cb(err, user);
     });
   }
