@@ -79,6 +79,12 @@ window.Translations = {
         title: "Opciones de transporte a GreenLake",
         departure: "Salida:",
         arrival: "Llegada:",
+        duration: "Duración:",
+        origin: "Origen:",
+        destination: "Destino:",
+        outboundFlights: "Vuelos de ida",
+        returnFlights: "Vuelos de vuelta",
+        noOutboundFlights: "No hay vuelos de ida disponibles."
       },
       hotels: {
         title: "Alojamientos disponibles",
@@ -87,6 +93,10 @@ window.Translations = {
       },
       events: {
         title: "Eventos durante tu visita",
+        festival: {
+          title: "Festival de comida y vino",
+          description: "Celebración anual con música en vivo y gastronomía local"
+        }
       },
       search: {
         loading: "Buscando...",
@@ -487,6 +497,12 @@ window.Translations = {
         title: "Transportation options to GreenLake",
         departure: "Departure:",
         arrival: "Arrival:",
+        duration: "Duration:",
+        origin: "Origin:",
+        destination: "Destination:",
+        outboundFlights: "Outbound Flights",
+        returnFlights: "Return Flights",
+        noOutboundFlights: "No outbound flights available."
       },
       hotels: {
         title: "Available accommodations",
@@ -495,6 +511,10 @@ window.Translations = {
       },
       events: {
         title: "Events during your visit",
+        festival: {
+          title: "Food and Wine Festival",
+          description: "Annual celebration with live music and local gastronomy"
+        }
       },
       search: {
         loading: "Searching...",

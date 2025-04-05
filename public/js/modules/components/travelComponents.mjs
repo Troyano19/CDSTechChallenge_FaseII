@@ -16,11 +16,14 @@ const renderFlights = async () => {
     //Recuperamos los vuelos disponibles
     const airports = await getAvailableFlights(queryParams);
     const transports = document.getElementById("transports");
-    transports.insertAdjacentHTML("beforebegin", "<h2>Vuelos de ida</h2>");
+    
+    const translations = window.Translations[window.currentLanguage].travel.transport;
+    transports.insertAdjacentHTML("beforebegin", `<h2>${translations.outboundFlights}</h2>`);
+    
     airports.forEach((airport) => {
         console.log(airport)
         if(airport.trips[0].dates[0].flights.length === 0 && transports.innerHTML.length === 0){
-            transports.innerHTML = "<p>No hay vuelos de ida disponibles.</p>";
+            transports.innerHTML = `<p>${translations.noOutboundFlights}</p>`;
             return;
         };
         const currency = airport.currency;
@@ -44,25 +47,25 @@ const renderFlights = async () => {
                     </div>
                     <div class="route-info">
                         <div class="origin">
-                            <span class="label" data-translate="travel.transport.origin">Origen:</span>
+                            <span class="label" data-translate="travel.transport.origin">${translations.origin}</span>
                             <span class="location">${origin}</span>
                         </div>
                         <div class="destination">
-                            <span class="label" data-translate="travel.transport.destination">Destino:</span>
+                            <span class="label" data-translate="travel.transport.destination">${translations.destination}</span>
                             <span class="location">${destination}</span>
                         </div>
                     </div>
                     <div class="schedule-info">
                         <div class="departure">
-                            <span class="label" data-translate="travel.transport.departure">Salida:</span>
+                            <span class="label" data-translate="travel.transport.departure">${translations.departure}</span>
                             <span class="time">${departure}</span>
                         </div>
                         <div class="arrival">
-                            <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
+                            <span class="label" data-translate="travel.transport.arrival">${translations.arrival}</span>
                             <span class="time">${arrival}</span>
                         </div>
                         <div class="duration">
-                            <span class="label" data-translate="travel.transport.duration">Duración:</span>
+                            <span class="label" data-translate="travel.transport.duration">${translations.duration}</span>
                             <span class="time">${duration}</span>
                         </div>
                     </div>
@@ -71,7 +74,7 @@ const renderFlights = async () => {
 
         if(airport.trips.length > 1){
             airport.trips[1].dates[0].flights.forEach((flight) =>{
-                transports.insertAdjacentHTML("beforeend", "<h2>Vuelos de vuelta</h2>");
+                transports.insertAdjacentHTML("beforeend", `<h2>${translations.returnFlights}</h2>`);
                 const destination = airport.trips[1].destinationName;
                 const origin = airport.trips[1].originName;
                 const duration = flight.duration;
@@ -90,25 +93,25 @@ const renderFlights = async () => {
                         </div>
                         <div class="route-info">
                             <div class="origin">
-                                <span class="label" data-translate="travel.transport.origin">Origen:</span>
+                                <span class="label" data-translate="travel.transport.origin">${translations.origin}</span>
                                 <span class="location">${origin}</span>
                             </div>
                             <div class="destination">
-                                <span class="label" data-translate="travel.transport.destination">Destino:</span>
+                                <span class="label" data-translate="travel.transport.destination">${translations.destination}</span>
                                 <span class="location">${destination}</span>
                             </div>
                         </div>
                         <div class="schedule-info">
                             <div class="departure">
-                                <span class="label" data-translate="travel.transport.departure">Salida:</span>
+                                <span class="label" data-translate="travel.transport.departure">${translations.departure}</span>
                                 <span class="time">${departure}</span>
                             </div>
                             <div class="arrival">
-                                <span class="label" data-translate="travel.transport.arrival">Llegada:</span>
+                                <span class="label" data-translate="travel.transport.arrival">${translations.arrival}</span>
                                 <span class="time">${arrival}</span>
                             </div>
                             <div class="duration">
-                                <span class="label" data-translate="travel.transport.duration">Duración:</span>
+                                <span class="label" data-translate="travel.transport.duration">${translations.duration}</span>
                                 <span class="time">${duration}</span>
                             </div>
                         </div>
