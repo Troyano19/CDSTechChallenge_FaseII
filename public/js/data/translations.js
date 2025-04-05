@@ -93,6 +93,10 @@ window.Translations = {
       },
       events: {
         title: "Eventos durante tu visita",
+        festival: {
+          title: "Festival de comida y vino",
+          description: "Celebración anual con música en vivo y gastronomía local"
+        }
       },
       search: {
         loading: "Buscando...",
@@ -507,6 +511,10 @@ window.Translations = {
       },
       events: {
         title: "Events during your visit",
+        festival: {
+          title: "Food and Wine Festival",
+          description: "Annual celebration with live music and local gastronomy"
+        }
       },
       search: {
         loading: "Searching...",
