@@ -133,7 +133,6 @@ window.Translations = {
         noAccount: "¿No tienes cuenta?",
         createAccount: "Crear una cuenta",
         withGoogle: "Iniciar con Google",
-        withDiscord: "Iniciar con Discord",
       },
       register: {
         title: "Registro",
@@ -454,7 +453,6 @@ window.Translations = {
         noAccount: "Don't have an account?",
         createAccount: "Create an account",
         withGoogle: "Sign in with Google",
-        withDiscord: "Sign in with Discord",
       },
       register: {
         title: "Register",

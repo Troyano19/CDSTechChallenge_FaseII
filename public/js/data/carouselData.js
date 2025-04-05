@@ -98,96 +98,96 @@ const recommendedActivities = [
 
 // Example data for establishments carousels
 const nearbyEstablishments = [
-    {
-        id: "1",
-        image: "../../images/temp/establishment-temp1.jpeg",
-        name: "Mercado Ecológico Local"
-    },
-    {
-        id: "2",
-        image: "../../images/temp/establishment-temp2.jpeg",
-        name: "Hotel Ecológico 'Lago Esmeralda'"
-    },
-    {
-        id: "3",
-        image: "../../images/temp/establishment-temp3.jpeg",
-        name: "Tienda de Productos Sostenibles 'EcoVida'"
-    },
-    {
-        id: "4",
-        image: "../../images/temp/establishment-temp4.jpeg",
-        name: "Cafetería Ecológica 'Aroma Natural'"
-    }
+  {
+    id: "1",
+    image: "../../images/temp/establishment-temp1.jpeg",
+    name: "Mercado Ecológico Local",
+  },
+  {
+    id: "2",
+    image: "../../images/temp/establishment-temp2.jpeg",
+    name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
+  },
+  {
+    id: "3",
+    image: "../../images/temp/establishment-temp3.jpeg",
+    name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
+  },
+  {
+    id: "4",
+    image: "../../images/temp/establishment-temp4.jpeg",
+    name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
+  },
 ];
 
 const recommendedEstablishments = [
-    {
-        id: "5",
-        image: "../../images/temp/establishment-temp4.jpeg",
-        name: "Cafetería Ecológica 'Aroma Natural'"
-    },
-    {
-        id: "6",
-        image: "../../images/temp/establishment-temp3.jpeg",
-        name: "Tienda de Productos Sostenibles 'EcoVida'"
-    },
-    {
-        id: "7",
-        image: "../../images/temp/establishment-temp2.jpeg",
-        name: "Hotel Ecológico 'Lago Esmeralda'"
-    },
-    {
-        id: "8",
-        image: "../../images/temp/establishment-temp1.jpeg",
-        name: "Mercado Ecológico Local"
-    }
+  {
+    id: "5",
+    image: "../../images/temp/establishment-temp4.jpeg",
+    name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
+  },
+  {
+    id: "6",
+    image: "../../images/temp/establishment-temp3.jpeg",
+    name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
+  },
+  {
+    id: "7",
+    image: "../../images/temp/establishment-temp2.jpeg",
+    name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
+  },
+  {
+    id: "8",
+    image: "../../images/temp/establishment-temp1.jpeg",
+    name: "Mercado Ecológico Local",
+  },
 ];
 
 // Example data for trails carousels
 const nearbyTrails = [
-    {
-        id: "1",
-        image: "../../images/temp/trails-temp1.jpeg",
-        name: "Ruta de Senderismo 'Sendero del Colibrí'"
-    },
-    {
-        id: "2",
-        image: "../../images/temp/trails-temp2.jpeg",
-        name: "Ruta Urbana Peatonal 'El Corazón Verde'"
-    },
-    {
-        id: "3",
-        image: "../../images/temp/trails-temp3.jpeg",
-        name: "Ruta de Observación de Aves 'Mirador del Bosque Escondido'"
-    },
-    {
-        id: "4",
-        image: "../../images/temp/trails-temp4.jpeg",
-        name: "Carril Bici Panorámico 'Senda del Lago Tranquilo'"
-    }
+  {
+    id: "1",
+    image: "../../images/temp/trails-temp1.jpeg",
+    name: "Ruta de Senderismo 'Ezmeral Valley'",
+  },
+  {
+    id: "2",
+    image: "../../images/temp/trails-temp2.jpeg",
+    name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
+  },
+  {
+    id: "3",
+    image: "../../images/temp/trails-temp3.jpeg",
+    name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
+  },
+  {
+    id: "4",
+    image: "../../images/temp/trails-temp4.jpeg",
+    name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
+  },
 ];
 
 const recommendedTrails = [
-    {
-        id: "5",
-        image: "../../images/temp/trails-temp4.jpeg",
-        name: "Carril Bici Panorámico 'Senda del Lago Tranquilo'"
-    },
-    {
-        id: "6",
-        image: "../../images/temp/trails-temp3.jpeg",
-        name: "Ruta de Observación de Aves 'Mirador del Bosque Escondido'"
-    },
-    {
-        id: "7",
-        image: "../../images/temp/trails-temp2.jpeg",
-        name: "Ruta Urbana Peatonal 'El Corazón Verde'"
-    },
-    {
-        id: "8",
-        image: "../../images/temp/trails-temp1.jpeg",
-        name: "Ruta de Senderismo 'Sendero del Colibrí'"
-    }
+  {
+    id: "5",
+    image: "../../images/temp/trails-temp4.jpeg",
+    name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
+  },
+  {
+    id: "6",
+    image: "../../images/temp/trails-temp3.jpeg",
+    name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
+  },
+  {
+    id: "7",
+    image: "../../images/temp/trails-temp2.jpeg",
+    name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
+  },
+  {
+    id: "8",
+    image: "../../images/temp/trails-temp1.jpeg",
+    name: "Ruta de Senderismo 'Ezmeral Valley'",
+  },
 ];
 
 // Export data through window object

@@ -93,9 +93,6 @@ function populateUserProfile(userData) {
             case 'GOOGLE':
                 methodText = 'Cuenta vinculada con Google';
                 break;
-            case 'DISCORD':
-                methodText = 'Cuenta vinculada con Discord';
-                break;
             default:
                 methodText = 'Cuenta estándar';
         }
