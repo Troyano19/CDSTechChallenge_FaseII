@@ -16,7 +16,6 @@ const loginHandler = async (event) => {
             const error = await req.json();
             throw new Error(error.message);
         }else{
-
             window.location.replace("/");
         }
     }catch(err){
