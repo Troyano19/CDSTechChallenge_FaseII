@@ -9,7 +9,6 @@ passport.use(new GoogleStrategy({
     callbackURL: `${process.env.APP_URL}/api/auth/google/callback`
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
     UserDB.findOrCreate({username: profile.displayName}, {pfp: profile.photos[0].value, registrationmethod:"GOOGLE", googleId: profile.id, username: profile.displayName, email: profile.emails[0].value }, function (err, user) {
       return cb(err, user);
     });
@@ -34,7 +33,6 @@ async function(identifier, password, done) {
 
     // Depura el resultado de la autenticación
     const authResult = await user.authenticate(password);
-    console.log("Resultado de user.authenticate:", authResult);
 
     if (!authResult.user) {
       return done(null, false, { message: "Credenciales incorrectas" });

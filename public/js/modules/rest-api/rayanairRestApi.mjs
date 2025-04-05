@@ -18,7 +18,6 @@ const getAirportsFromCity = async (city) => {
 };
 
 const saveAirports = async () => {
-    console.log("llega");
     return fetch(`${baseURL}/saveAirports`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},

@@ -21,14 +21,13 @@ const renderFlights = async () => {
     transports.insertAdjacentHTML("beforebegin", `<h2>${translations.outboundFlights}</h2>`);
     
     airports.forEach((airport) => {
-        console.log(airport)
         if(airport.trips[0].dates[0].flights.length === 0 && transports.innerHTML.length === 0){
             transports.innerHTML = `<p>${translations.noOutboundFlights}</p>`;
             return;
         };
         const currency = airport.currency;
         airport.trips[0].dates[0].flights.forEach((flight) => {
-            console.log("vuelo", flight);
+            
             const destination = airport.trips[0].destinationName;
             const origin = airport.trips[0].originName;
             const duration = flight.duration;
@@ -81,7 +80,6 @@ const renderFlights = async () => {
                 const departure = formatTime(flight.time[0]); 
                 const arrival = formatTime(flight.time[1]); 
                 const price = flight.regularFare.fares[0].amount;
-                console.log("vueloVuelta", flight)
                 transports.insertAdjacentHTML("beforeend", `
                     <div class="transport-item">
                         <div class="company-info">
