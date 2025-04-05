@@ -83,11 +83,13 @@ const termsCSS = path.join(LegalDirCSS, 'terms.css');
 
 const infoDirCSS = path.join(cssPagesDir, 'info');
 const myTripsCSS = path.join(infoDirCSS, "myTrips.css");
+const businessDetailsCSS = path.join(infoDirCSS, "business-details.css");
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
+const businessDetailsJs = path.join(jsPagesDir, 'business-details.js');
 const profileJs = path.join(jsPagesDir, 'profile.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
@@ -173,7 +175,8 @@ const getPaths = () => {
                 terms: termsCSS
             },
             info: {
-                myTrips: myTripsCSS
+                myTrips: myTripsCSS,
+                businessDetails: businessDetailsCSS
             }
         },
         js: {
@@ -184,6 +187,7 @@ const getPaths = () => {
             travelUtils: travelUtilsJs,
             geoNameUtils: geoNameUtilsJs, // Add geoNameUtils JS path
             businessPages: businessPagesJs,
+            businessDetails: businessDetailsJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,
             access: accessJs,

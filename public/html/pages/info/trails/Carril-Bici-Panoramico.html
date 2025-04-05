@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Carril Bici Panorámico</title>
+    <meta name="description" content="Carril bici panorámico en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.info.businessDetails}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('../../images/temp/trails-temp4.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name">Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'</h1>
+                        <div class="business-difficulty-tag">Dificultad: Media</div>
+                        <div class="business-tags">
+                            <span class="tag">bike</span>
+                            <span class="tag">City</span>
+                        </div>
+                        <div class="business-description">
+                            Un carril bici bien señalizado que recorre los puntos más emblemáticos de la ciudad, ofreciendo vistas
+                            panorámicas impresionantes. La ruta está adaptada para ciclistas de todos los niveles, con áreas de 
+                            descanso y estaciones de reparación de bicicletas a lo largo del trayecto. Una forma fantástica de
+                            conocer la ciudad de manera sostenible y saludable.
+                        </div>
+                        <button class="book-button">Iniciar Ruta</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Trail Info (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="trail-info">
+                        <h2>Información de la Ruta</h2>
+                        <div class="trail-info-container">
+                            <div class="trail-info-item">
+                                <span class="info-label">Distancia:</span>
+                                <span class="info-value">12.5 km</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Duración estimada:</span>
+                                <span class="info-value">1 hora</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Elevación:</span>
+                                <span class="info-value">85 m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2>Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script>
+        function initMap() {
+            // Bike lane route around Madrid Rio
+            const trailCoordinates = [
+                { lat: 40.407651, lng: -3.720264 },
+                { lat: 40.409205, lng: -3.722324 },
+                { lat: 40.411878, lng: -3.723654 },
+                { lat: 40.414551, lng: -3.721337 },
+                { lat: 40.417892, lng: -3.720264 },
+                { lat: 40.420789, lng: -3.718762 },
+                { lat: 40.422567, lng: -3.716874 },
+                { lat: 40.421683, lng: -3.714299 },
+                { lat: 40.418775, lng: -3.712282 },
+                { lat: 40.415544, lng: -3.713269 },
+                { lat: 40.412648, lng: -3.715587 },
+                { lat: 40.409971, lng: -3.718419 },
+                { lat: 40.407651, lng: -3.720264 }
+            ];
+            
+            // Create map centered on start point
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: trailCoordinates[0],
+                zoom: 14,
+            });
+            
+            // Create a polyline for the trail
+            const trailPath = new google.maps.Polyline({
+                path: trailCoordinates,
+                geodesic: true,
+                strokeColor: '#17a2b8',
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+            
+            // Add trail to map
+            trailPath.setMap(map);
+            
+            // Add start/end marker (same point as it's a loop)
+            new google.maps.Marker({
+                position: trailCoordinates[0],
+                map: map,
+                title: 'Inicio/Fin',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#28a745',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10
+                }
+            });
+            
+            // Add bike rental points
+            const bikeRentalPoints = [
+                { lat: 40.414551, lng: -3.721337 },
+                { lat: 40.420789, lng: -3.718762 },
+                { lat: 40.415544, lng: -3.713269 }
+            ];
+            
+            bikeRentalPoints.forEach((point, index) => {
+                new google.maps.Marker({
+                    position: point,
+                    map: map,
+                    title: `Alquiler de bicicletas ${index + 1}`,
+                    icon: {
+                        url: 'https://maps.google.com/mapfiles/ms/icons/cycling.png'
+                    }
+                });
+            });
+            
+            // Fit map to trail bounds
+            const bounds = new google.maps.LatLngBounds();
+            trailCoordinates.forEach(point => bounds.extend(point));
+            map.fitBounds(bounds);
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
+    </script>
+</body>
+
+</html>

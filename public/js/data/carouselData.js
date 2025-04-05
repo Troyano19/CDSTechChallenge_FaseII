@@ -7,42 +7,42 @@
 const interestItems = [
   {
     id: "interest1",
-    image: "../../images/temp/trails-temp1.jpeg",
+    image: "/images/temp/trails-temp1.jpeg",
     title: "Ruta de Senderismo 'Ezmeral Valley'",
     description:
       "Un pintoresco sendero bien mantenido que serpentea a través de un bosque exuberante cerca de la ciudad. Se ven señales informativas sobre la flora y fauna local, bancos hechos con materiales reciclados y personas disfrutando de una caminata en la naturaleza. El sendero ofrece vistas panorámicas del lago y la ciudad.",
   },
   {
     id: "interest2",
-    image: "../../images/temp/establishment-temp1.jpeg",
+    image: "/images/temp/establishment-temp1.jpeg",
     title: "Mercado Ecológico Local",
     description:
       "Una plaza animada donde productores locales venden frutas, verduras orgánicas, artesanías y productos sostenibles. Se ven puestos coloridos, toldos hechos con materiales naturales y gente comprando y socializando. El ambiente es festivo y promueve la economía local y la alimentación saludable.",
   },
   {
     id: "interest3",
-    image: "../../images/temp/activity-temp1.jpeg",
+    image: "/images/temp/activity-temp1.jpeg",
     title: "Espacio público junto al lago",
     description:
       "Un área vibrante cerca del lago con personas disfrutando de actividades al aire libre. Se ven parques con áreas de picnic, senderos para caminar y andar en bicicleta, y quizás algún embarcadero con pequeñas embarcaciones eléctricas. La calidad del agua es prístina y la biodiversidad local está protegida.",
   },
   {
     id: "interest4",
-    image: "../../images/temp/trails-temp2.jpeg",
+    image: "/images/temp/trails-temp2.jpeg",
     title: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
     description:
       "Una calle peatonal adoquinada y llena de vegetación que conecta parques y plazas importantes de la ciudad. Se ven bancos para descansar, fuentes de agua potable y señalización que indica puntos de interés histórico y cultural. La gente pasea, disfruta de las tiendas locales y se relaja en un ambiente tranquilo.",
   },
   {
     id: "interest5",
-    image: "../../images/temp/establishment-temp2.jpeg",
+    image: "/images/temp/establishment-temp2.jpeg",
     title: "Hotel Ecológico 'GreenLake Platinum Heritage'",
     description:
       "Un hotel de diseño moderno y sostenible, construido con materiales de bajo impacto ambiental y rodeado de jardines nativos. Se observan paneles solares en el techo, grandes ventanales que maximizan la luz natural y quizás una entrada con cargadores para vehículos eléctricos. El ambiente transmite tranquilidad y conexión con la naturaleza.",
   },
   {
     id: "interest6",
-    image: "../../images/temp/activity-temp2.jpeg",
+    image: "/images/temp/activity-temp2.jpeg",
     title: "Centro de Actividades Acuáticas Sostenibles",
     description:
       "Un centro ubicado a orillas del lago que ofrece alquiler de kayaks, paddleboards y pequeñas embarcaciones eléctricas. El edificio está integrado con el entorno natural y promueve el disfrute responsable del lago. Se ven personas preparándose para salir a remar en aguas cristalinas.",
@@ -52,46 +52,46 @@ const interestItems = [
 // Example data for activities carousels
 const nearbyActivities = [
     {
-        id: "1",
-        image: "../../images/temp/activity-temp1.jpeg",
+        id: "Espacio-publico-junto-al-lago",
+        image: "/images/temp/activity-temp1.jpeg",
         name: "Espacio público junto al lago"
     },
     {
-        id: "2",
-        image: "../../images/temp/activity-temp2.jpeg",
+        id: "Centro-de-Actividades-Acuaticas-Sostenibles",
+        image: "/images/temp/activity-temp2.jpeg",
         name: "Centro de Actividades Acuáticas Sostenibles"
     },
     {
-        id: "3",
-        image: "../../images/temp/activity-temp3.jpeg",
+        id: "Jardin-Botanico-Comunitario",
+        image: "/images/temp/activity-temp3.jpeg",
         name: "Jardín Botánico Comunitario"
     },
     {
-        id: "4",
-        image: "../../images/temp/activity-temp4.jpeg",
+        id: "Clase-de-Yoga-al-Aire-Libre",
+        image: "/images/temp/activity-temp4.jpeg",
         name: "Clase de Yoga al Aire Libre en un Parque"
     }
 ];
 
 const recommendedActivities = [
     {
-        id: "5",
-        image: "../../images/temp/activity-temp4.jpeg",
+        id: "Clase-de-Yoga-al-Aire-Libre",
+        image: "/images/temp/activity-temp4.jpeg",
         name: "Clase de Yoga al Aire Libre en un Parque"
     },
     {
-        id: "6",
-        image: "../../images/temp/activity-temp3.jpeg",
+        id: "Jardin-Botanico-Comunitario",
+        image: "/images/temp/activity-temp3.jpeg",
         name: "Jardín Botánico Comunitario"
     },
     {
-        id: "7",
-        image: "../../images/temp/activity-temp2.jpeg",
+        id: "Centro-de-Actividades-Acuaticas-Sostenibles",
+        image: "/images/temp/activity-temp2.jpeg",
         name: "Centro de Actividades Acuáticas Sostenibles"
     },
     {
-        id: "8",
-        image: "../../images/temp/activity-temp1.jpeg",
+        id: "Espacio-publico-junto-al-lago",
+        image: "/images/temp/activity-temp1.jpeg",
         name: "Espacio público junto al lago"
     }
 ];
@@ -99,46 +99,46 @@ const recommendedActivities = [
 // Example data for establishments carousels
 const nearbyEstablishments = [
   {
-    id: "1",
-    image: "../../images/temp/establishment-temp1.jpeg",
+    id: "Mercado-Ecologico-Local",
+    image: "/images/temp/establishment-temp1.jpeg",
     name: "Mercado Ecológico Local",
   },
   {
-    id: "2",
-    image: "../../images/temp/establishment-temp2.jpeg",
+    id: "Hotel-Ecologico-GreenLake",
+    image: "/images/temp/establishment-temp2.jpeg",
     name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
   },
   {
-    id: "3",
-    image: "../../images/temp/establishment-temp3.jpeg",
+    id: "Tienda-de-Productos-Sostenibles",
+    image: "/images/temp/establishment-temp3.jpeg",
     name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
   },
   {
-    id: "4",
-    image: "../../images/temp/establishment-temp4.jpeg",
+    id: "Cafeteria-Ecologica",
+    image: "/images/temp/establishment-temp4.jpeg",
     name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
   },
 ];
 
 const recommendedEstablishments = [
   {
-    id: "5",
-    image: "../../images/temp/establishment-temp4.jpeg",
+    id: "Cafeteria-Ecologica",
+    image: "/images/temp/establishment-temp4.jpeg",
     name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
   },
   {
-    id: "6",
-    image: "../../images/temp/establishment-temp3.jpeg",
+    id: "Tienda-de-Productos-Sostenibles",
+    image: "/images/temp/establishment-temp3.jpeg",
     name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
   },
   {
-    id: "7",
-    image: "../../images/temp/establishment-temp2.jpeg",
+    id: "Hotel-Ecologico-GreenLake",
+    image: "/images/temp/establishment-temp2.jpeg",
     name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
   },
   {
-    id: "8",
-    image: "../../images/temp/establishment-temp1.jpeg",
+    id: "Mercado-Ecologico-Local",
+    image: "/images/temp/establishment-temp1.jpeg",
     name: "Mercado Ecológico Local",
   },
 ];
@@ -146,46 +146,46 @@ const recommendedEstablishments = [
 // Example data for trails carousels
 const nearbyTrails = [
   {
-    id: "1",
-    image: "../../images/temp/trails-temp1.jpeg",
+    id: "Ruta-de-Senderismo-Ezmeral-Valley",
+    image: "/images/temp/trails-temp1.jpeg",
     name: "Ruta de Senderismo 'Ezmeral Valley'",
   },
   {
-    id: "2",
-    image: "../../images/temp/trails-temp2.jpeg",
+    id: "Ruta-Urbana-Peatonal-Nimble-Peak",
+    image: "/images/temp/trails-temp2.jpeg",
     name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
   },
   {
-    id: "3",
-    image: "../../images/temp/trails-temp3.jpeg",
+    id: "Ruta-de-Observacion-de-Aves",
+    image: "/images/temp/trails-temp3.jpeg",
     name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
   },
   {
-    id: "4",
-    image: "../../images/temp/trails-temp4.jpeg",
+    id: "Carril-Bici-Panoramico",
+    image: "/images/temp/trails-temp4.jpeg",
     name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
   },
 ];
 
 const recommendedTrails = [
   {
-    id: "5",
-    image: "../../images/temp/trails-temp4.jpeg",
+    id: "Carril-Bici-Panoramico",
+    image: "/images/temp/trails-temp4.jpeg",
     name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
   },
   {
-    id: "6",
-    image: "../../images/temp/trails-temp3.jpeg",
+    id: "Ruta-de-Observacion-de-Aves",
+    image: "/images/temp/trails-temp3.jpeg",
     name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
   },
   {
-    id: "7",
-    image: "../../images/temp/trails-temp2.jpeg",
+    id: "Ruta-Urbana-Peatonal-Nimble-Peak",
+    image: "/images/temp/trails-temp2.jpeg",
     name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
   },
   {
-    id: "8",
-    image: "../../images/temp/trails-temp1.jpeg",
+    id: "Ruta-de-Senderismo-Ezmeral-Valley",
+    image: "/images/temp/trails-temp1.jpeg",
     name: "Ruta de Senderismo 'Ezmeral Valley'",
   },
 ];

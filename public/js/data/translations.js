@@ -121,6 +121,20 @@ window.Translations = {
         nearby: "Rutas cercanas a ti",
         recommended: "Rutas recomendadas",
       },
+      details: {
+        bookButton: "Reservar",
+        startTrailButton: "Iniciar Ruta",
+        hoursTitle: "Horario",
+        reviewsTitle: "Reseñas",
+        locationTitle: "Ubicación",
+        routeTitle: "Recorrido de la Ruta",
+        trailInfoTitle: "Información de la Ruta",
+        distance: "Distancia:",
+        duration: "Duración estimada:",
+        elevation: "Elevación:",
+        reviews: "reseñas",
+        noReviews: "No hay reseñas disponibles"
+      }
     },
     // Login & Register translations
     session: {
@@ -441,6 +455,20 @@ window.Translations = {
         nearby: "Trails near you",
         recommended: "Recommended trails",
       },
+      details: {
+        bookButton: "Book Now",
+        startTrailButton: "Start Trail",
+        hoursTitle: "Hours",
+        reviewsTitle: "Reviews",
+        locationTitle: "Location",
+        routeTitle: "Trail Route",
+        trailInfoTitle: "Trail Information",
+        distance: "Distance:",
+        duration: "Estimated duration:",
+        elevation: "Elevation:",
+        reviews: "reviews",
+        noReviews: "No reviews available"
+      }
     },
     // Login & Register translations
     session: {

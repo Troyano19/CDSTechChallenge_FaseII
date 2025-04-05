@@ -35,34 +35,70 @@ router.get("/admin", (req, res) => {
     renderWithHeaderFooter(getPath('pages.admin'), req, res);
 });
 
+// Activities list page
 router.get("/activities", (req, res) => {
     renderWithHeaderFooter(getPath('pages.activities'), req, res);
 });
 
-router.get("/activitys/activity/:id", (req, res) => {
-    const activityId = req.params.id;
-    renderWithHeaderFooter(getPath('pages.info.activity'), req, res);
+// Specific activity pages - 4 routes with specific names
+router.get("/activities/activity/Espacio-publico-junto-al-lago", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'activities', 'Espacio-publico-junto-al-lago.html'), req, res);
 });
 
+router.get("/activities/activity/Centro-de-Actividades-Acuaticas-Sostenibles", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'activities', 'Centro-de-Actividades-Acuaticas-Sostenibles.html'), req, res);
+});
+
+router.get("/activities/activity/Jardin-Botanico-Comunitario", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'activities', 'Jardin-Botanico-Comunitario.html'), req, res);
+});
+
+router.get("/activities/activity/Clase-de-Yoga-al-Aire-Libre", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'activities', 'Clase-de-Yoga-al-Aire-Libre.html'), req, res);
+});
+
+// Trails list page
 router.get("/trails", (req, res) => {
     renderWithHeaderFooter(getPath('pages.trails'), req, res);
 });
 
-// Handle requests for detailed information pages
-router.get("trails/trail/:id", (req, res) => {
-    // Get the trail ID from route parameters
-    const trailId = req.params.id;
-    // Here you would fetch trail details from the database
-    renderWithHeaderFooter(getPath('pages.info.trail'), req, res);
+// Specific trail pages - 4 routes with specific names
+router.get("/trails/trail/Ruta-de-Senderismo-Ezmeral-Valley", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'trails', 'Ruta-de-Senderismo-Ezmeral-Valley.html'), req, res);
 });
 
+router.get("/trails/trail/Ruta-Urbana-Peatonal-Nimble-Peak", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'trails', 'Ruta-Urbana-Peatonal-Nimble-Peak.html'), req, res);
+});
+
+router.get("/trails/trail/Ruta-de-Observacion-de-Aves", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'trails', 'Ruta-de-Observacion-de-Aves.html'), req, res);
+});
+
+router.get("/trails/trail/Carril-Bici-Panoramico", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'trails', 'Carril-Bici-Panoramico.html'), req, res);
+});
+
+// Establishments list page
 router.get("/establishments", (req, res) => {
     renderWithHeaderFooter(getPath('pages.establishments'), req, res);
 });
 
-router.get("/establishments/establishment/:id", (req, res) => {
-    const establishmentId = req.params.id;
-    renderWithHeaderFooter(getPath('pages.info.establishment'), req, res);
+// Specific establishment pages - 4 routes with specific names
+router.get("/establishments/establishment/Mercado-Ecologico-Local", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'establishments', 'Mercado-Ecologico-Local.html'), req, res);
+});
+
+router.get("/establishments/establishment/Hotel-Ecologico-GreenLake", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'establishments', 'Hotel-Ecologico-GreenLake.html'), req, res);
+});
+
+router.get("/establishments/establishment/Tienda-de-Productos-Sostenibles", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'establishments', 'Tienda-de-Productos-Sostenibles.html'), req, res);
+});
+
+router.get("/establishments/establishment/Cafeteria-Ecologica", (req, res) => {
+    renderWithHeaderFooter(path.join(getPath('public'), 'html', 'pages', 'info', 'establishments', 'Cafeteria-Ecologica.html'), req, res);
 });
 
 // Handle direct visits to travel page

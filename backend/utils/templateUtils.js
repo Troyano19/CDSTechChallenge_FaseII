@@ -113,13 +113,50 @@ const renderWithHeaderFooter = (filePath, req, res) => {
   }
 };
 
-// Verificar si el usuario está logueado
-const isLoggedIn = (req) => {
-  // Verificar si la cookie de inicio de sesión existe
-  return req.isAuthenticated();
-};
+/**
+ * Check if a user is logged in
+ * @param {Object} req - Express request object
+ * @returns {boolean} True if user is logged in
+ */
+function isLoggedIn(req) {
+  return !!(req.session && req.session.user);
+}
+
+/**
+ * Replace path placeholders in HTML with real paths
+ * @param {string} content - HTML content
+ * @returns {string} HTML content with replaced paths
+ */
+function replacePathPlaceholders(content) {
+  // Get all path matches
+  const pathMatches = content.match(/{{PATH:[^}]+}}/g) || [];
+
+  // For each match, replace with the actual path
+  pathMatches.forEach((match) => {
+    const pathKey = match.substring(7, match.length - 2); // Extract the path key
+    const realPath = "/" + getPath(pathKey); // Convert to absolute path
+    content = content.replace(
+      new RegExp(match.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+      realPath
+    );
+  });
+
+  return content;
+}
+
+/**
+ * Enforce absolute URLs in HTML content
+ * @param {string} content - HTML content
+ * @returns {string} HTML content with absolute URLs
+ */
+function enforceAbsoluteUrls(content) {
+  // Replace relative URLs in href and src attributes with absolute URLs
+  content = content.replace(/(href|src)="(?!http|\/|#|mailto:|tel:)([^"]+)"/g, '$1="/$2"');
+
+  return content;
+}
 
 module.exports = {
   renderWithHeaderFooter,
-  isLoggedIn
+  isLoggedIn,
 };

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Ruta de Senderismo 'Ezmeral Valley'</title>
+    <meta name="description" content="Ruta de senderismo por el valle Ezmeral en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('/images/temp/trails-temp1.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name">Ruta de Senderismo 'Ezmeral Valley'</h1>
+                        <div class="business-difficulty-tag">Dificultad: Media</div>
+                        <div class="business-tags">
+                            <span class="tag">Mountain</span>
+                            <span class="tag">walk</span>
+                        </div>
+                        <div class="business-description">
+                            Un pintoresco sendero bien mantenido que serpentea a través de un bosque exuberante cerca de la ciudad. 
+                            A lo largo del camino encontrarás señales informativas sobre la flora y fauna local, bancos hechos con 
+                            materiales reciclados para descansar y disfrutar de vistas panorámicas del valle y el lago. 
+                            Una experiencia perfecta para conectar con la naturaleza.
+                        </div>
+                        <button class="book-button">Iniciar Ruta</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Trail Info (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="trail-info">
+                        <h2>Información de la Ruta</h2>
+                        <div class="trail-info-container">
+                            <div class="trail-info-item">
+                                <span class="info-label">Distancia:</span>
+                                <span class="info-value">5.4 km</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Duración estimada:</span>
+                                <span class="info-value">2 horas 15 minutos</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Elevación:</span>
+                                <span class="info-value">120 m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2>Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script>
+        function initMap() {
+            // Trail path in Casa de Campo, Madrid
+            const trailCoordinates = [
+                { lat: 40.423398, lng: -3.756510 },
+                { lat: 40.425981, lng: -3.759343 },
+                { lat: 40.428026, lng: -3.764064 },
+                { lat: 40.427924, lng: -3.769686 },
+                { lat: 40.425064, lng: -3.773034 }
+            ];
+            
+            // Create map centered on start point
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: trailCoordinates[0],
+                zoom: 14,
+                mapTypeId: 'terrain'
+            });
+            
+            // Create a polyline for the trail
+            const trailPath = new google.maps.Polyline({
+                path: trailCoordinates,
+                geodesic: true,
+                strokeColor: '#28a745',
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+            
+            // Add trail to map
+            trailPath.setMap(map);
+            
+            // Add start marker
+            new google.maps.Marker({
+                position: trailCoordinates[0],
+                map: map,
+                title: 'Inicio',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#28a745',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10
+                }
+            });
+            
+            // Add end marker
+            new google.maps.Marker({
+                position: trailCoordinates[trailCoordinates.length - 1],
+                map: map,
+                title: 'Fin',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#dc3545',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10
+                }
+            });
+            
+            // Fit map to trail bounds
+            const bounds = new google.maps.LatLngBounds();
+            trailCoordinates.forEach(point => bounds.extend(point));
+            map.fitBounds(bounds);
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
+    </script>
+</body>
+
+</html>

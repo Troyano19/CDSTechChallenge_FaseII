@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Cafetería Ecológica</title>
+    <meta name="description" content="Cafetería con productos ecológicos y sostenibles en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('/images/temp/establishment-temp4.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name">Cafetería Ecológica 'Grupo Pascual S.Com.'</h1>
+                        <div class="business-type-tag">Restaurante/Bar</div>
+                        <div class="business-description">
+                            Una acogedora cafetería que sirve bebidas y alimentos producidos de forma sostenible y orgánica. 
+                            Ofrecemos café de comercio justo, tés orgánicos, pasteles caseros y opciones de comida vegetariana y vegana. 
+                            Nuestro espacio utiliza muebles reciclados y reducimos al mínimo los desperdicios con prácticas de compostaje 
+                            y envases compostables.
+                        </div>
+                        <button class="book-button">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Business Hours (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="business-hours">
+                        <h2>Horario</h2>
+                        <div class="hours-container">
+                            <div class="day-hours">
+                                <span class="day-name">Lunes</span>
+                                <span class="day-time">8:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Martes</span>
+                                <span class="day-time">8:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Miércoles</span>
+                                <span class="day-time">8:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Jueves</span>
+                                <span class="day-time">8:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Viernes</span>
+                                <span class="day-time">8:00 - 22:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Sábado</span>
+                                <span class="day-time">9:00 - 22:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Domingo</span>
+                                <span class="day-time">9:00 - 15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2>Ubicación</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script>
+        function initMap() {
+            const location = { lat: 40.418688, lng: -3.701873 }; // Cafetería en Madrid
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 16,
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'Cafetería Ecológica'
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
+    </script>
+</body>
+
+</html>

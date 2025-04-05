@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Ruta Urbana Peatonal 'Nimble Peak'</title>
+    <meta name="description" content="Ruta peatonal urbana en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.info.businessDetails}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('../../images/temp/trails-temp2.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name">Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'</h1>
+                        <div class="business-difficulty-tag">Dificultad: Fácil</div>
+                        <div class="business-tags">
+                            <span class="tag">City</span>
+                            <span class="tag">walk</span>
+                            <span class="tag">family</span>
+                        </div>
+                        <div class="business-description">
+                            Una calle peatonal adoquinada y llena de vegetación que conecta parques y plazas importantes de la ciudad. 
+                            A lo largo del recorrido encontrarás bancos para descansar, fuentes de agua potable y señalización que indica 
+                            puntos de interés histórico y cultural. Perfecta para pasear, conocer tiendas locales y relajarse en un ambiente 
+                            urbano tranquilo.
+                        </div>
+                        <button class="book-button">Iniciar Ruta</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Trail Info (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="trail-info">
+                        <h2>Información de la Ruta</h2>
+                        <div class="trail-info-container">
+                            <div class="trail-info-item">
+                                <span class="info-label">Distancia:</span>
+                                <span class="info-value">2.8 km</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Duración estimada:</span>
+                                <span class="info-value">45 minutos</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label">Elevación:</span>
+                                <span class="info-value">30 m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2>Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script>
+        function initMap() {
+            // Urban trail path in Madrid center
+            const trailCoordinates = [
+                { lat: 40.415363, lng: -3.707398 },
+                { lat: 40.417213, lng: -3.704523 },
+                { lat: 40.418994, lng: -3.700918 },
+                { lat: 40.421195, lng: -3.698515 },
+                { lat: 40.422828, lng: -3.696928 }
+            ];
+            
+            // Create map centered on start point
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: trailCoordinates[0],
+                zoom: 15,
+            });
+            
+            // Create a polyline for the trail
+            const trailPath = new google.maps.Polyline({
+                path: trailCoordinates,
+                geodesic: true,
+                strokeColor: '#007bff',
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+            
+            // Add trail to map
+            trailPath.setMap(map);
+            
+            // Add start marker
+            new google.maps.Marker({
+                position: trailCoordinates[0],
+                map: map,
+                title: 'Inicio',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#28a745',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10
+                }
+            });
+            
+            // Add end marker
+            new google.maps.Marker({
+                position: trailCoordinates[trailCoordinates.length - 1],
+                map: map,
+                title: 'Fin',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#dc3545',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10
+                }
+            });
+            
+            // Fit map to trail bounds
+            const bounds = new google.maps.LatLngBounds();
+            trailCoordinates.forEach(point => bounds.extend(point));
+            map.fitBounds(bounds);
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
+    </script>
+</body>
+
+</html>

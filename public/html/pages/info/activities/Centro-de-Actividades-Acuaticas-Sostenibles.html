@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Centro de Actividades Acuáticas Sostenibles</title>
+    <meta name="description" content="Centro de actividades acuáticas ecológicas en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{PATH:css.main}}">
+    <link rel="stylesheet" href="{{PATH:css.info.businessDetails}}">
+    <script src="{{PATH:js.translations}}" defer></script>
+    <script src="{{PATH:js.languageSwitcher}}" defer></script>
+    <script src="{{PATH:js.pageLoader}}" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('../../images/temp/activity-temp2.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name">Centro de Actividades Acuáticas Sostenibles</h1>
+                        <div class="business-type-tag">Deportes</div>
+                        <div class="business-description">
+                            Un centro ubicado a orillas del lago que ofrece alquiler de kayaks, paddleboards y pequeñas 
+                            embarcaciones eléctricas. El edificio está construido con materiales sostenibles e integrado con el 
+                            entorno natural. Ofrecemos clases de iniciación y rutas guiadas para promover el disfrute responsable 
+                            del lago. Todo nuestro equipamiento es ecológico y de bajo impacto ambiental.
+                        </div>
+                        <button class="book-button">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Business Hours (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="business-hours">
+                        <h2>Horario</h2>
+                        <div class="hours-container">
+                            <div class="day-hours">
+                                <span class="day-name">Lunes</span>
+                                <span class="day-time">10:00 - 19:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Martes</span>
+                                <span class="day-time">10:00 - 19:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Miércoles</span>
+                                <span class="day-time">10:00 - 19:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Jueves</span>
+                                <span class="day-time">10:00 - 19:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Viernes</span>
+                                <span class="day-time">10:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Sábado</span>
+                                <span class="day-time">9:00 - 20:00</span>
+                            </div>
+                            <div class="day-hours">
+                                <span class="day-name">Domingo</span>
+                                <span class="day-time">9:00 - 19:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2>Ubicación</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script>
+        function initMap() {
+            const location = { lat: 40.413982, lng: -3.681138 }; // Madrid water activity location
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 16,
+                mapTypeId: 'hybrid'
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'Centro de Actividades Acuáticas Sostenibles'
+            });
+            
+            // Add kayak rental points
+            const kayakPoints = [
+                { lat: 40.414282, lng: -3.681438 },
+                { lat: 40.413782, lng: -3.680838 }
+            ];
+            
+            kayakPoints.forEach((point, index) => {
+                new google.maps.Marker({
+                    position: point,
+                    map: map,
+                    title: `Punto de alquiler ${index + 1}`,
+                    icon: {
+                        url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                    }
+                });
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
+    </script>
+</body>
+
+</html>
