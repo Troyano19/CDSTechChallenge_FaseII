@@ -43,11 +43,12 @@ const replaceSecureTokens = (content) => {
 };
 
 /**
- * Renders an HTML file with header and footer
+ * Render an HTML file with header and footer
  * @param {string} filePath - Path to the HTML file
- * @param {object} res - Express response object
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
  */
-const renderWithHeaderFooter = (filePath, req, res) => {
+function renderWithHeaderFooter(filePath, req, res) {
   try {
     // Determine which header to use based on login status
     const headerPath = isLoggedIn(req)
@@ -62,7 +63,8 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     const chatBotContent = fs.readFileSync(chatBotPath, "utf8");
     const content = fs.readFileSync(filePath, "utf8");
 
-    
+    // Check for chatbot script in the content
+    const hasChatBotScript = content.includes('chatBot.js');
 
     // Use regex to find the body tag with any attributes
     const bodyStartRegex = /<body[^>]*>/i;
@@ -101,10 +103,11 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     const processedBeforeBody = replacePaths(beforeBody);
     const processedBodyContent = replacePaths(bodyContent);
     const processedFooterContent = replacePaths(footerContent);
-    let processedChatBotContent = replacePaths(chatBotContent);
-    
-    // Also replace secure tokens in the chatbot content
-    processedChatBotContent = replaceSecureTokens(processedChatBotContent);
+    let processedChatBotContent = '';
+    if (!hasChatBotScript) {
+      processedChatBotContent = replacePaths(chatBotContent);
+      processedChatBotContent = replaceSecureTokens(processedChatBotContent);
+    }
 
     const processedAfterBody = replacePaths(afterBody);
 
@@ -122,7 +125,7 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     console.error("Error rendering template:", error);
     res.status(500).send("Error rendering template: " + error.message);
   }
-};
+}
 
 /**
  * Check if a user is logged in

@@ -3,251 +3,254 @@
  * Powered by GROQ API
  */
 
-class ChatBot {
-  constructor() {
-    this.container = null;
-    this.toggleButton = null;
-    this.chatWindow = null;
-    this.messageArea = null;
-    this.form = null;
-    this.input = null;
-    this.closeButton = null;
-    this.isOpen = false;
-    this.isWaitingForResponse = false;
+// Use a conditional declaration to prevent redefinition
+if (typeof window.ChatBotClass === 'undefined') {
+  // Define the class in a namespace to avoid global redeclaration
+  window.ChatBotClass = class ChatBot {
+    constructor() {
+      this.container = null;
+      this.toggleButton = null;
+      this.chatWindow = null;
+      this.messageArea = null;
+      this.form = null;
+      this.input = null;
+      this.closeButton = null;
+      this.isOpen = false;
+      this.isWaitingForResponse = false;
 
-    // Add conversation history array
-    this.conversationHistory = [];
+      // Add conversation history array
+      this.conversationHistory = [];
 
-    // GROQ API settings - will be populated from config
-    this.apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-    this.apiKey = null;
-    this.model = "llama-3.1-8b-instant";
+      // GROQ API settings - will be populated from config
+      this.apiUrl = "https://api.groq.com/openai/v1/chat/completions";
+      this.apiKey = null;
+      this.model = "llama-3.1-8b-instant";
 
-    // The auth header will be securely retrieved from DOM data attribute
-    this.headerKey = null;
-  }
-
-  /**
-   * Initialize the chatbot
-   */
-  async init() {
-    this.container = document.getElementById("chatbot-container");
-    this.toggleButton = document.getElementById("chatbot-toggle");
-    this.chatWindow = document.getElementById("chatbot-window");
-    this.messageArea = document.getElementById("chatbot-messages");
-    this.form = document.getElementById("chatbot-form");
-    this.input = document.getElementById("chatbot-input");
-    this.closeButton = document.getElementById("chatbot-close");
-
-    if (!this.container) return;
-
-    try {
-      this.headerKey = this.container.dataset.messageOfTheDay || "";
-
-      // Load API key and configuration from backend
-      await this.loadConfig();
-
-      // Add event listeners
-      this.toggleButton.addEventListener("click", () => this.toggleChat());
-      this.closeButton.addEventListener("click", () => this.closeChat());
-      this.form.addEventListener("submit", (e) => this.handleSubmit(e));
-
-      // Add welcome message
-      setTimeout(() => {
-        const welcomeMessage =
-          "¡Hola! Soy el asistente de GreenLake. ¿En qué puedo ayudarte hoy?";
-        this.addBotMessage(welcomeMessage);
-      }, 500);
-    } catch (error) {
-      console.error("Failed to initialize chatbot:", error);
+      // The auth header will be securely retrieved from DOM data attribute
+      this.headerKey = null;
     }
-  }
 
-  /**
-   * Load API configuration from backend
-   */
-  async loadConfig() {
-    try {
-      const response = await fetch("/api/config/chatbot", {
-        headers: {
-          Authorization: this.headerKey,
-        },
-      });
+    /**
+     * Initialize the chatbot
+     */
+    async init() {
+      this.container = document.getElementById("chatbot-container");
+      this.toggleButton = document.getElementById("chatbot-toggle");
+      this.chatWindow = document.getElementById("chatbot-window");
+      this.messageArea = document.getElementById("chatbot-messages");
+      this.form = document.getElementById("chatbot-form");
+      this.input = document.getElementById("chatbot-input");
+      this.closeButton = document.getElementById("chatbot-close");
 
-      if (!response.ok) {
-        throw new Error(`Failed to load config: ${response.status}`);
+      if (!this.container) return;
+
+      try {
+        this.headerKey = this.container.dataset.messageOfTheDay || "";
+
+        // Load API key and configuration from backend
+        await this.loadConfig();
+
+        // Add event listeners
+        this.toggleButton.addEventListener("click", () => this.toggleChat());
+        this.closeButton.addEventListener("click", () => this.closeChat());
+        this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+
+        // Add welcome message
+        setTimeout(() => {
+          const welcomeMessage =
+            "¡Hola! Soy el asistente de GreenLake. ¿En qué puedo ayudarte hoy?";
+          this.addBotMessage(welcomeMessage);
+        }, 500);
+      } catch (error) {
+        console.error("Failed to initialize chatbot:", error);
       }
-      const config = await response.json();
+    }
 
-      // Update configuration if we have valid values
-      if (config.apiKey && config.apiKey !== "null") {
-        this.apiKey = config.apiKey;
-      } else {
-        console.warn("No valid API key received from server");
+    /**
+     * Load API configuration from backend
+     */
+    async loadConfig() {
+      try {
+        const response = await fetch("/api/config/chatbot", {
+          headers: {
+            Authorization: this.headerKey,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load config: ${response.status}`);
+        }
+        const config = await response.json();
+
+        // Update configuration if we have valid values
+        if (config.apiKey && config.apiKey !== "null") {
+          this.apiKey = config.apiKey;
+        } else {
+          console.warn("No valid API key received from server");
+        }
+      } catch (error) {
+        console.error("Error loading chatbot configuration:", error);
       }
-    } catch (error) {
-      console.error("Error loading chatbot configuration:", error);
     }
-  }
 
-  /**
-   * Toggle chatbot window
-   */
-  toggleChat() {
-    this.isOpen = !this.isOpen;
-    this.chatWindow.classList.toggle("hidden", !this.isOpen);
+    /**
+     * Toggle chatbot window
+     */
+    toggleChat() {
+      this.isOpen = !this.isOpen;
+      this.chatWindow.classList.toggle("hidden", !this.isOpen);
 
-    if (this.isOpen) {
-      this.input.focus();
+      if (this.isOpen) {
+        this.input.focus();
+      }
     }
-  }
 
-  /**
-   * Close chatbot window
-   */
-  closeChat() {
-    this.isOpen = false;
-    this.chatWindow.classList.add("hidden");
-  }
+    /**
+     * Close chatbot window
+     */
+    closeChat() {
+      this.isOpen = false;
+      this.chatWindow.classList.add("hidden");
+    }
 
-  /**
-   * Handle form submission
-   */
-  async handleSubmit(e) {
-    e.preventDefault();
+    /**
+     * Handle form submission
+     */
+    async handleSubmit(e) {
+      e.preventDefault();
 
-    const message = this.input.value.trim();
-    if (!message || this.isWaitingForResponse) return;
+      const message = this.input.value.trim();
+      if (!message || this.isWaitingForResponse) return;
 
-    // Add user message to chat
-    this.addUserMessage(message);
+      // Add user message to chat
+      this.addUserMessage(message);
 
-    // Clear input
-    this.input.value = "";
+      // Clear input
+      this.input.value = "";
 
-    // Show typing indicator
-    this.showTypingIndicator();
+      // Show typing indicator
+      this.showTypingIndicator();
 
-    // Get response from GROQ API
-    await this.getAIResponse(message);
-  }
+      // Get response from GROQ API
+      await this.getAIResponse(message);
+    }
 
-  /**
-   * Add user message to chat
-   */
-  addUserMessage(text) {
-    // Add to UI
-    const message = document.createElement("div");
-    message.className = "message user-message";
-    message.textContent = text;
-    this.messageArea.appendChild(message);
+    /**
+     * Add user message to chat
+     */
+    addUserMessage(text) {
+      // Add to UI
+      const message = document.createElement("div");
+      message.className = "message user-message";
+      message.textContent = text;
+      this.messageArea.appendChild(message);
 
-    // Add to conversation history
-    this.conversationHistory.push({ role: "user", content: text });
+      // Add to conversation history
+      this.conversationHistory.push({ role: "user", content: text });
 
-    this.scrollToBottom();
-  }
+      this.scrollToBottom();
+    }
 
-  /**
-   * Add bot message to chat
-   */
-  addBotMessage(text) {
-    // Add to UI
-    const message = document.createElement("div");
-    message.className = "message bot-message";
-    
-    // Parse markdown and set HTML
-    message.innerHTML = this.parseMarkdown(text);
-    
-    this.messageArea.appendChild(message);
+    /**
+     * Add bot message to chat
+     */
+    addBotMessage(text) {
+      // Add to UI
+      const message = document.createElement("div");
+      message.className = "message bot-message";
+      
+      // Parse markdown and set HTML
+      message.innerHTML = this.parseMarkdown(text);
+      
+      this.messageArea.appendChild(message);
 
-    // Add to conversation history
-    this.conversationHistory.push({ role: "assistant", content: text });
+      // Add to conversation history
+      this.conversationHistory.push({ role: "assistant", content: text });
 
-    this.scrollToBottom();
-  }
+      this.scrollToBottom();
+    }
 
-  /**
-   * Parse simple Markdown to HTML
-   */
-  parseMarkdown(text) {
-    // Sanitize the text first to prevent XSS
-    text = this.escapeHTML(text);
-    
-    // Process lists (both * and - bullet points)
-    text = text.replace(/^\s*[\*\-]\s+(.+)$/gm, '<li>$1</li>');
-    text = text.replace(/<li>(.+)<\/li>\n<li>/g, '<li>$1</li>\n<li>');
-    
-    // Wrap consecutive list items in <ul> tags
-    let hasLists = text.includes('<li>');
-    if (hasLists) {
-      text = text.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
-      // Fix nested lists
-      text = text.replace(/<\/ul>\n<ul>/g, '');
+    /**
+     * Parse simple Markdown to HTML
+     */
+    parseMarkdown(text) {
+      // Sanitize the text first to prevent XSS
+      text = this.escapeHTML(text);
+      
+      // Process lists (both * and - bullet points)
+      text = text.replace(/^\s*[\*\-]\s+(.+)$/gm, '<li>$1</li>');
+      text = text.replace(/<li>(.+)<\/li>\n<li>/g, '<li>$1</li>\n<li>');
+      
+      // Wrap consecutive list items in <ul> tags
+      let hasLists = text.includes('<li>');
+      if (hasLists) {
+        text = text.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
+        // Fix nested lists
+        text = text.replace(/<\/ul>\n<ul>/g, '');
+      }
+      
+      // Bold text
+      text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      
+      // Italic text
+      text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      text = text.replace(/_(.*?)_/g, '<em>$1</em>');
+      
+      // Links
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+      
+      // Auto-link URLs
+      text = text.replace(/(\s|^)(https?:\/\/[^\s]+)/g, '$1<a href="$2" target="_blank">$2</a>');
+      
+      // Convert line breaks
+      text = text.replace(/\n/g, '<br>');
+      
+      return text;
     }
     
-    // Bold text
-    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
-    // Italic text
-    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    text = text.replace(/_(.*?)_/g, '<em>$1</em>');
-    
-    // Links
-    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-    
-    // Auto-link URLs
-    text = text.replace(/(\s|^)(https?:\/\/[^\s]+)/g, '$1<a href="$2" target="_blank">$2</a>');
-    
-    // Convert line breaks
-    text = text.replace(/\n/g, '<br>');
-    
-    return text;
-  }
-  
-  /**
-   * Escape HTML special characters to prevent XSS
-   */
-  escapeHTML(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
+    /**
+     * Escape HTML special characters to prevent XSS
+     */
+    escapeHTML(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
 
-  /**
-   * Show typing indicator
-   */
-  showTypingIndicator() {
-    this.isWaitingForResponse = true;
-    const indicator = document.createElement("div");
-    indicator.className = "typing-indicator";
-    indicator.innerHTML = "<span></span><span></span><span></span>";
-    indicator.id = "typing-indicator";
-    this.messageArea.appendChild(indicator);
-    this.scrollToBottom();
-  }
+    /**
+     * Show typing indicator
+     */
+    showTypingIndicator() {
+      this.isWaitingForResponse = true;
+      const indicator = document.createElement("div");
+      indicator.className = "typing-indicator";
+      indicator.innerHTML = "<span></span><span></span><span></span>";
+      indicator.id = "typing-indicator";
+      this.messageArea.appendChild(indicator);
+      this.scrollToBottom();
+    }
 
-  /**
-   * Hide typing indicator
-   */
-  hideTypingIndicator() {
-    this.isWaitingForResponse = false;
-    const indicator = document.getElementById("typing-indicator");
-    if (indicator) indicator.remove();
-  }
+    /**
+     * Hide typing indicator
+     */
+    hideTypingIndicator() {
+      this.isWaitingForResponse = false;
+      const indicator = document.getElementById("typing-indicator");
+      if (indicator) indicator.remove();
+    }
 
-  /**
-   * Get response from GROQ API
-   */
-  async getAIResponse(userMessage) {
-    try {
-      // Create a simplified system message with minimal context
-      const pageTitle = document.title;
-      const pagePath = window.location.pathname;
-      const pageContent = this.getPageContent();
+    /**
+     * Get response from GROQ API
+     */
+    async getAIResponse(userMessage) {
+      try {
+        // Create a simplified system message with minimal context
+        const pageTitle = document.title;
+        const pagePath = window.location.pathname;
+        const pageContent = this.getPageContent();
 
-      // Hotel prices data (extracted from precio_hoteles.xlsx)
-      const hotelPricesData = `
+        // Hotel prices data (extracted from precio_hoteles.xlsx)
+        const hotelPricesData = `
 		hotel_nombre	fecha	tasa_ocupacion	reservas_confirmadas	cancelaciones	precio_promedio_noche(x/100 = €)
 		Synergy Golden Grand Hotel	2024-12-31 55	243	41	13134
 		InfoSight Boutique Hotel	2024-12-31 32	129	13	11313
@@ -275,8 +278,8 @@ class ChatBot {
 		ProLiant Haven	2024-12-31 56	139	15	14023
 		GreenLake Digital Business Suites	2024-12-31 59	147	12	17124`;
 
-      // Tourist routes data (extracted from rutas_turisticas.csv)
-      const touristRoutesData = `
+        // Tourist routes data (extracted from rutas_turisticas.csv)
+        const touristRoutesData = `
 		ruta_nombre;tipo_ruta;longitud_km;duracion_hr;popularidad
 		Aruba Central - 1.9;Cultural;26.7;1.9;4.7
 		Nimble Peak - 3.2;Aventura;31.5;3.2;4.1
@@ -329,8 +332,8 @@ class ChatBot {
 		Aruba Central - 14.8;Aventura;92.2;14.8;3.3
 		Apollo Heights - 4.2;Ecológica;61.6;4.2;4.8`;
 
-      // Reviews data (extracted from opiniones_turisticas.csv)
-      const reviewsData = `
+        // Reviews data (extracted from opiniones_turisticas.csv)
+        const reviewsData = `
 		fecha,tipo_servicio,nombre_servicio,puntuacion,comentario,idioma
 		2022-12-26,Servicio,Industrias Llabrés y asociados S.Com. Parque,4,Experiencia agradable. instalaciones impecables. Recomendable.,es
 		2019-01-29,Ruta,Nimble Peak - HPE Innovation Hub,1,Ruta decepcionante. puntos de interés cerrados. No la recomiendo.,es
@@ -364,8 +367,8 @@ class ChatBot {
 		2024-07-27,Servicio,Restauración del Sur S.Com. Tour Guiado,5,[Error: Could not generate text due to API failure],unknown
 		2020-08-18,Hotel,Alletra Haven,3,"Experiencia promedio. desayuno delicioso, pero desayuno de baja calidad.",es`;
 
-      // Prepare system message with limited context
-      const systemMessage = `You are GreenLake Assistant, a helpful AI assistant for the GreenLake Village sustainable tourism website. 
+        // Prepare system message with limited context
+        const systemMessage = `You are GreenLake Assistant, a helpful AI assistant for the GreenLake Village sustainable tourism website. 
             The user is currently on the page "${pageTitle}" at path "${pagePath}".
 
             Here is the content of the page: "${pageContent}".
@@ -391,111 +394,115 @@ class ChatBot {
             
             Think two times before sending a message, and always be respectful.`;
 
-      // For development purposes, provide a fallback response if API key is not set
-      if (!this.apiKey || this.apiKey === "null") {
-        console.warn("No API key available for GROQ API call");
-        this.hideTypingIndicator();
+        // For development purposes, provide a fallback response if API key is not set
+        if (!this.apiKey || this.apiKey === "null") {
+          console.warn("No API key available for GROQ API call");
+          this.hideTypingIndicator();
 
-        // Generate a simple response based on user query keywords
-        let response =
-          "Lo siento, actualmente estoy en modo de desarrollo y no puedo procesar tu consulta. ";
+          // Generate a simple response based on user query keywords
+          let response =
+            "Lo siento, actualmente estoy en modo de desarrollo y no puedo procesar tu consulta. ";
 
-        if (
-          userMessage.toLowerCase().includes("hotel") ||
-          userMessage.toLowerCase().includes("alojamiento")
-        ) {
-          response +=
-            "Para información sobre alojamiento, te recomiendo visitar nuestra página de establecimientos o contactar con recepción.";
-        } else if (
-          userMessage.toLowerCase().includes("actividad") ||
-          userMessage.toLowerCase().includes("hacer")
-        ) {
-          response +=
-            "Tenemos muchas actividades disponibles en GreenLake Village. Puedes explorarlas en la sección de Actividades.";
-        } else if (
-          userMessage.toLowerCase().includes("restaurante") ||
-          userMessage.toLowerCase().includes("comer")
-        ) {
-          response +=
-            "Hay varios restaurantes en GreenLake Village que ofrecen cocina local e internacional.";
-        } else {
-          response +=
-            "Para más información sobre GreenLake Village, te invito a explorar nuestro sitio web o contactar con nuestro servicio al cliente.";
+          if (
+            userMessage.toLowerCase().includes("hotel") ||
+            userMessage.toLowerCase().includes("alojamiento")
+          ) {
+            response +=
+              "Para información sobre alojamiento, te recomiendo visitar nuestra página de establecimientos o contactar con recepción.";
+          } else if (
+            userMessage.toLowerCase().includes("actividad") ||
+            userMessage.toLowerCase().includes("hacer")
+          ) {
+            response +=
+              "Tenemos muchas actividades disponibles en GreenLake Village. Puedes explorarlas en la sección de Actividades.";
+          } else if (
+            userMessage.toLowerCase().includes("restaurante") ||
+            userMessage.toLowerCase().includes("comer")
+          ) {
+            response +=
+              "Hay varios restaurantes en GreenLake Village que ofrecen cocina local e internacional.";
+          } else {
+            response +=
+              "Para más información sobre GreenLake Village, te invito a explorar nuestro sitio web o contactar con nuestro servicio al cliente.";
+          }
+
+          this.addBotMessage(response);
+          return;
         }
 
-        this.addBotMessage(response);
-        return;
+        // Prepare messages array with system message and conversation history
+        const messages = [
+          { role: "system", content: systemMessage },
+          // Include previous conversation history (up to a reasonable limit)
+          ...this.conversationHistory.slice(-10), // Limit to last 10 messages to avoid token limits
+        ];
+
+        const response = await fetch(this.apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.apiKey}`,
+          },
+          body: JSON.stringify({
+            model: this.model,
+            messages: messages,
+            max_tokens: 512,
+            temperature: 0.7,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        const botResponse = data.choices[0].message.content;
+
+        // Hide typing indicator
+        this.hideTypingIndicator();
+
+        // Add bot message to chat
+        this.addBotMessage(botResponse);
+      } catch (error) {
+        console.error("Error getting AI response:", error);
+        this.hideTypingIndicator();
+
+        // More specific error message based on error type
+        if (error.message.includes("413")) {
+          this.addBotMessage(
+            "Lo siento, la consulta es demasiado larga para procesarla. Por favor, intenta con una pregunta más corta."
+          );
+        } else {
+          this.addBotMessage(
+            "Lo siento, ha ocurrido un error al procesar tu consulta. Por favor, inténtalo de nuevo más tarde."
+          );
+        }
       }
+    }
 
-      // Prepare messages array with system message and conversation history
-      const messages = [
-        { role: "system", content: systemMessage },
-        // Include previous conversation history (up to a reasonable limit)
-        ...this.conversationHistory.slice(-10), // Limit to last 10 messages to avoid token limits
-      ];
+    /**
+     * Get relevant content from current page - simplified to reduce payload size
+     */
+    getPageContent() {
+      // Extract just the page title as context to reduce payload size
+      const pageTitle = document.title;
+      return `Page: ${pageTitle}`;
+    }
 
-      const response = await fetch(this.apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.apiKey}`,
-        },
-        body: JSON.stringify({
-          model: this.model,
-          messages: messages,
-          max_tokens: 512,
-          temperature: 0.7,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
-      }
-
-      const data = await response.json();
-      const botResponse = data.choices[0].message.content;
-
-      // Hide typing indicator
-      this.hideTypingIndicator();
-
-      // Add bot message to chat
-      this.addBotMessage(botResponse);
-    } catch (error) {
-      console.error("Error getting AI response:", error);
-      this.hideTypingIndicator();
-
-      // More specific error message based on error type
-      if (error.message.includes("413")) {
-        this.addBotMessage(
-          "Lo siento, la consulta es demasiado larga para procesarla. Por favor, intenta con una pregunta más corta."
-        );
-      } else {
-        this.addBotMessage(
-          "Lo siento, ha ocurrido un error al procesar tu consulta. Por favor, inténtalo de nuevo más tarde."
-        );
-      }
+    /**
+     * Scroll messages area to bottom
+     */
+    scrollToBottom() {
+      this.messageArea.scrollTop = this.messageArea.scrollHeight;
     }
   }
 
-  /**
-   * Get relevant content from current page - simplified to reduce payload size
-   */
-  getPageContent() {
-    // Extract just the page title as context to reduce payload size
-    const pageTitle = document.title;
-    return `Page: ${pageTitle}`;
-  }
-
-  /**
-   * Scroll messages area to bottom
-   */
-  scrollToBottom() {
-    this.messageArea.scrollTop = this.messageArea.scrollHeight;
-  }
+  // Initialize the chatbot only once when the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if chatbot is already initialized
+    if (!window.chatbotInstance) {
+      window.chatbotInstance = new window.ChatBotClass();
+      window.chatbotInstance.init();
+    }
+  });
 }
-
-// Initialize the chatbot when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const chatbot = new ChatBot();
-  chatbot.init();
-});

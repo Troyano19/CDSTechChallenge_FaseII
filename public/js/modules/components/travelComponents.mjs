@@ -15,7 +15,6 @@ const renderFlights = async () => {
     });
     //Recuperamos los vuelos disponibles
     const airports = await getAvailableFlights(queryParams);
-    console.log(airports);
     const transports = document.getElementById("transports");
     
     const translations = window.Translations[window.currentLanguage].travel.transport;
@@ -76,7 +75,7 @@ const renderFlights = async () => {
             `);
         });
         if(outboundFlights.length > 2){
-            transports.insertAdjacentHTML("beforeend", `<button class="show-more-outbound" data-airport-index="${airportIndex}">${translations.showMoreOutbound || "Ver más vuelos de ida"}</button>`);
+            transports.insertAdjacentHTML("beforeend", `<button class="show-more-outbound" data-airport-index="${airportIndex}">${translations.showMoreOutbound || "..."}</button>`);
         };
 
         if(airport.trips.length > 1){
@@ -132,7 +131,7 @@ const renderFlights = async () => {
                 });
                 // Si hay más de 3 vuelos de vuelta, mostramos botón "Ver más"
                 if(returnFlights.length > 2){
-                    transports.insertAdjacentHTML("beforeend", `<button class="show-more-return" data-airport-index="${airportIndex}">${translations.showMoreReturn || "Ver más vuelos de vuelta"}</button>`);
+                    transports.insertAdjacentHTML("beforeend", `<button class="show-more-return" data-airport-index="${airportIndex}">${translations.showMoreReturn || "..."}</button>`);
                 }
             }
         }

@@ -134,6 +134,29 @@
     gap: 1rem;
 }
 
+.show-more-outbound,
+.show-more-return {
+    background-color: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    padding: 0.65rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1.5rem;
+    margin: 1.5rem auto 0;
+    display: block;
+    text-align: center;
+    transform: scale(1);
+}
+
+.show-more-outbound:hover,
+.show-more-return:hover {
+    transform: scale(1.05);
+}
+
 .transport-item,
 .hotel-item {
     display: flex;
