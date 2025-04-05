@@ -48,7 +48,7 @@ const getAvailableFlights = async (data) => {
             `&FlexDaysBeforeOut=0&FlexDaysIn=0&FlexDaysOut=0&IncludeConnectingFlights=false&INF=0&Origin=${origin}` +
             `&promoCode=&RoundTrip=${RoundTrip}&TEEN=0&ToUs=AGREED`;    
 
-        // Realizar la solicitud para cada origen
+        //TODO: Especificar la baseURL
         const response = await fetch(`http://localhost:3001/proxy/ryanair?url=${encodeURIComponent(ryanairUrl)}`);
         const data = await response.json();
         responses.push(data); // Almacenar la respuesta en el array
