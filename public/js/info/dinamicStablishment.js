@@ -6,7 +6,6 @@ const getBussinessData = async () => {
     const businessId = pathParts[2];
     const req = await bussinessApi.getBussinessById(businessId);
     const res = await req.json();
-    console.log(res);
     renderStablishment(res);
 }
 
