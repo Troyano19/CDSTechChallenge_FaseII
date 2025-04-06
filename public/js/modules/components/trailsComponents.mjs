@@ -24,28 +24,4 @@ const renderTrails = async (trail) => {
         });
     }
 }
-const renderOpenHours = (open_hours) => {
-    // Definir el orden de los días
-    const daysOrder = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
-    let html = '';
-
-    daysOrder.forEach(day => {
-        if (open_hours[day] && open_hours[day].length > 0) {
-            // Capitalizar el nombre del día
-            const dayName = day.charAt(0).toUpperCase() + day.slice(1);
-            // Crear una cadena con cada intervalo "open - close", separados por comas si hay varios
-            const intervals = open_hours[day]
-                .map(interval => `${interval.open} - ${interval.close}`)
-                .join(', ');
-            html += `
-                <div class="day-hours">
-                    <span class="day-name">${dayName}</span>
-                    <span class="day-time">${intervals}</span>
-                </div>
-            `;
-        }
-    });
-    return html;
-};
-
 export {renderTrails};
