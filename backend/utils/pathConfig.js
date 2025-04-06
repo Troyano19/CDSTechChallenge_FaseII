@@ -70,6 +70,9 @@ const mercadoEcologicoPage = path.join(establishmentsInfoDir, 'Mercado-Ecologico
 const hotelEcologicoPage = path.join(establishmentsInfoDir, 'Hotel-Ecologico-GreenLake.html');
 const tiendaProductosPage = path.join(establishmentsInfoDir, 'Tienda-de-Productos-Sostenibles.html');
 const cafeteriaEcologicaPage = path.join(establishmentsInfoDir, 'Cafeteria-Ecologica.html');
+const dinamicEstablishmentPage = path.join(establishmentsInfoDir, 'dinamicStablishment.html');
+const dinamicActivityPage = path.join(establishmentsInfoDir, 'dinamicActivity.html');
+const dinamicTrailPage = path.join(establishmentsInfoDir, 'dinamicTrail.html');
 
 // Session pages
 const sessionDir = path.join(pagesDir, 'session');
@@ -184,7 +187,10 @@ const getPaths = () => {
                     mercadoEcologico: mercadoEcologicoPage,
                     hotelEcologico: hotelEcologicoPage,
                     tiendaProductos: tiendaProductosPage,
-                    cafeteriaEcologica: cafeteriaEcologicaPage
+                    cafeteriaEcologica: cafeteriaEcologicaPage,
+                    dinamicEstablishment: dinamicEstablishmentPage,
+                    dinamicActivity: dinamicActivityPage,
+                    dinamicTrail: dinamicTrailPage
                 }
             },
             session: {
