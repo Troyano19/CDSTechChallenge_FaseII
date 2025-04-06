@@ -4,6 +4,7 @@ const session = require("express-session");
 //Used to enroute without exposing the dirnames
 const path = require('path');
 const passport = require('passport');
+const MongoStore = require("connect-mongo");
 
 //import the routers
 const cookieParser = require('cookie-parser');
@@ -27,6 +28,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: { maxAge: 3600000 }
   }));
 require('../backend/config/passport'); 
