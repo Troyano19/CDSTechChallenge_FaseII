@@ -70,6 +70,22 @@ window.Translations = {
           title: "Gastronomía típica",
           description: "Descripción de los platos más representativos.",
         },
+        tradition3: {
+          title: "Festival de la Cosecha",
+          description: "Celebración anual de la cosecha con mercados de productos locales y ecológicos.",
+        },
+        tradition4: {
+          title: "Artesanía Sostenible",
+          description: "Elaboración tradicional de artesanías con materiales naturales y reciclados.",
+        },
+        tradition5: {
+          title: "Música Verde",
+          description: "Festivales de música que promueven la conciencia ecológica con instrumentos tradicionales.",
+        },
+        tradition6: {
+          title: "Ceremonia del Agua",
+          description: "Ritual ancestral que celebra la importancia del agua como recurso vital en el ecosistema.",
+        },
       },
     },
     // Travel page translations
@@ -541,6 +557,22 @@ window.Translations = {
         tradition2: {
           title: "Typical Gastronomy",
           description: "Description of the most representative dishes.",
+        },
+        tradition3: {
+          title: "Harvest Festival",
+          description: "Annual harvest celebration with markets featuring local and organic products.",
+        },
+        tradition4: {
+          title: "Sustainable Craftsmanship",
+          description: "Traditional crafting using natural and recycled materials.",
+        },
+        tradition5: {
+          title: "Green Music",
+          description: "Music festivals that promote ecological awareness with traditional instruments.",
+        },
+        tradition6: {
+          title: "Water Ceremony",
+          description: "Ancestral ritual that celebrates the importance of water as a vital resource in the ecosystem.",
         },
       },
     },
