@@ -8,7 +8,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: `${process.env.APP_URL}/api/auth/google/callback`
   },
-  async function(accessToken, refreshToken, profile, cb) {
+  async function(profile, cb) {
     try {
       // Utilizamos el email como identificador único
       const query = { email: profile.emails[0].value };
