@@ -133,7 +133,7 @@ function renderWithHeaderFooter(filePath, req, res) {
  * @returns {boolean} True if user is logged in
  */
 function isLoggedIn(req) {
-  return !!(req.session && req.session.user);
+  return req.isAuthenticated();
 }
 
 /**
