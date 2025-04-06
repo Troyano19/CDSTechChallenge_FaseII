@@ -37,7 +37,8 @@ const searchHandler = async (event) => {
     console.log(datos);
     const url = `/travel?city=${datos.city}&country=${datos.country}&departureDate=${datos.departureDate}` +
     `&returnDate=${datos.returnDate}&adults=${datos.adults}&children=${datos.children}`;
-    window.location = url;
+    window.history.replaceState({}, '', url);
+    renderFlights();
 };
 
 document.addEventListener('DOMContentLoaded', function() {
