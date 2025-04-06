@@ -16,10 +16,8 @@ const renderFlights = async () => {
     //Recuperamos los vuelos disponibles
     const airports = await getAvailableFlights(queryParams);
     const transports = document.getElementById("transports");
-    console.log(airports);
-    console.log(queryParams);
     const translations = window.Translations[window.currentLanguage].travel.transport;
-    transports.insertAdjacentHTML("beforebegin", `<h2>${translations.outboundFlights}</h2>`);
+    transports.insertAdjacentHTML("beforebegin", `<h2 id="idaParrafo">${translations.outboundFlights}</h2>`);
     
     airports.forEach((airport, airportIndex) => {
         if(airport.trips[0].dates[0].flights.length === 0 && transports.innerHTML.length === 0){
@@ -27,8 +25,12 @@ const renderFlights = async () => {
             return;
         };
         const currency = airport.currency;
-        const outboundFlights = airport.trips[0].dates[0].flights;
-
+        const outboundFlights = airport.trips[1].dates[0].flights.filter(flight => 
+            flight.regularFare && flight.regularFare.fares && flight.regularFare.fares.length > 0
+        );
+        if(outboundFlights.length === 0 && transports.innerHTML.length === 0){
+            document.document.getElementById("idaParrafo").remove();
+        }
         outboundFlights.slice(0, 2).forEach((flight) => {
             
             const destination = airport.trips[0].destinationName;
@@ -39,10 +41,10 @@ const renderFlights = async () => {
             
             const price = flight.faresLeft !== 0 ? flight.regularFare.fares[0].amount : flight.regularFare.fares[0].amount + " " + translations.soldOut;
             const ryanAirUrl = `https://www.ryanair.com/es/es/trip/flights/select?adults=${queryParams.adults}&teens=0&`+
-                `children=${queryParams.children}&infants=0&dateOut=${queryParams.departureDate}&dateIn=${queryParams.returnDate}`+
-                `&isConnectedFlight=false&discount=0&promoCode=&isReturn=true&originIata=${flight.segments[0].origin}&`+
+                `children=${queryParams.children}&infants=0&dateOut=${queryParams.departureDate}&dateIn=`+
+                `&isConnectedFlight=false&discount=0&promoCode=&isReturn=false&originIata=${flight.segments[0].origin}&`+
                 `destinationIata=${flight.segments[0].destination}&tpAdults=${queryParams.adults}&tpTeens=0&tpChildren=${queryParams.children}`+
-                `&tpInfants=0&tpStartDate=${queryParams.departureDate}&tpEndDate=${queryParams.returnDate}&tpDiscount=0&tpPromoCode=&`+
+                `&tpInfants=0&tpStartDate=${queryParams.departureDate}&tpEndDate=&tpDiscount=0&tpPromoCode=&`+
                 `tpOriginIata=${flight.segments[0].origin}&tpDestinationIata=${flight.segments[0].destination}`;
 
             transports.insertAdjacentHTML("beforeend", `
@@ -104,40 +106,50 @@ const renderFlights = async () => {
                     const departure = formatTime(flight.time[0]);
                     const arrival = formatTime(flight.time[1]);
                     const price = flight.regularFare.fares[0].amount;
+
+                    const ryanAirUrl = `https://www.ryanair.com/es/es/trip/flights/select?adults=${queryParams.adults}&teens=0&`+
+                `children=${queryParams.children}&infants=0&dateOut=${queryParams.departureDate}&dateIn=`+
+                `&isConnectedFlight=false&discount=0&promoCode=&isReturn=false&originIata=${flight.segments[0].origin}&`+
+                `destinationIata=${flight.segments[0].destination}&tpAdults=${queryParams.adults}&tpTeens=0&tpChildren=${queryParams.children}`+
+                `&tpInfants=0&tpStartDate=${queryParams.departureDate}&tpEndDate=&tpDiscount=0&tpPromoCode=&`+
+                `tpOriginIata=${flight.segments[0].origin}&tpDestinationIata=${flight.segments[0].destination}`;
+
                     transports.insertAdjacentHTML("beforeend", `
-                        <div class="transport-item">
-                            <div class="company-info">
-                                <h3>Ryanair</h3>
-                                <div class="price">
-                                    <span class="count">${price}</span>
-                                    <span class="badge">${currency}</span>
+                        <a href="${ryanAirUrl}" target="_blank" class="link">
+                            <div class="transport-item">
+                                <div class="company-info">
+                                    <h3>Ryanair</h3>
+                                    <div class="price">
+                                        <span class="count">${price}</span>
+                                        <span class="badge">${currency}</span>
+                                    </div>
+                                </div>
+                                <div class="route-info">
+                                    <div class="origin">
+                                        <span class="label" data-translate="travel.transport.origin">${translations.origin}</span>
+                                        <span class="location">${origin}</span>
+                                    </div>
+                                    <div class="destination">
+                                        <span class="label" data-translate="travel.transport.destination">${translations.destination}</span>
+                                        <span class="location">${destination}</span>
+                                    </div>
+                                </div>
+                                <div class="schedule-info">
+                                    <div class="departure">
+                                        <span class="label" data-translate="travel.transport.departure">${translations.departure}</span>
+                                        <span class="time">${departure}</span>
+                                    </div>
+                                    <div class="arrival">
+                                        <span class="label" data-translate="travel.transport.arrival">${translations.arrival}</span>
+                                        <span class="time">${arrival}</span>
+                                    </div>
+                                    <div class="duration">
+                                        <span class="label" data-translate="travel.transport.duration">${translations.duration}</span>
+                                        <span class="time">${duration}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="route-info">
-                                <div class="origin">
-                                    <span class="label" data-translate="travel.transport.origin">${translations.origin}</span>
-                                    <span class="location">${origin}</span>
-                                </div>
-                                <div class="destination">
-                                    <span class="label" data-translate="travel.transport.destination">${translations.destination}</span>
-                                    <span class="location">${destination}</span>
-                                </div>
-                            </div>
-                            <div class="schedule-info">
-                                <div class="departure">
-                                    <span class="label" data-translate="travel.transport.departure">${translations.departure}</span>
-                                    <span class="time">${departure}</span>
-                                </div>
-                                <div class="arrival">
-                                    <span class="label" data-translate="travel.transport.arrival">${translations.arrival}</span>
-                                    <span class="time">${arrival}</span>
-                                </div>
-                                <div class="duration">
-                                    <span class="label" data-translate="travel.transport.duration">${translations.duration}</span>
-                                    <span class="time">${duration}</span>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     `);
                 });
                 // Si hay más de 3 vuelos de vuelta, mostramos botón "Ver más"

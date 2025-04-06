@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCityCountryAutocomplete();
     initTravelFormDates();
     initTravelersSelector();
-    initFormFromQueryParams();
+
 });
 
 // Export utilities through window object
@@ -606,5 +606,5 @@ window.TravelUtils = {
     initCountryAutocomplete,
     initTravelFormDates,
     initTravelersSelector,
-    initFormFromQueryParams
+
 };
