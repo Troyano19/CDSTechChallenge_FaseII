@@ -48,7 +48,7 @@ const getAvailableFlights = async (data) => {
             `&promoCode=&RoundTrip=${RoundTrip}&TEEN=0&ToUs=AGREED`;    
 
         //TODO: Especificar la baseURL
-        const response = await fetch(`https://greenlake-portal.vercel.app/proxy/ryanair?url=${encodeURIComponent(ryanairUrl)}`);
+        const response = await fetch(`https://localhost:3001/proxy/ryanair?url=${encodeURIComponent(ryanairUrl)}`);
         const data = await response.json();
         responses.push(data); // Almacenar la respuesta en el array
     }
