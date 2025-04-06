@@ -44,15 +44,14 @@ function renderBusinessCarousels() {
  */
 function renderBusinessItems(container, items) {
     container.innerHTML = ''; // Clear existing items
-    
     items.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.classList.add('business-item');
-        itemElement.dataset.id = item.id;
+        itemElement.dataset.id = item._id;
         itemElement.setAttribute('aria-label', item.name);
         
         // Use the image directly (no longer an array)
-        const imageUrl = item.image || 'images/placeholder.jpg';
+        const imageUrl = item.images.banner || 'images/placeholder.jpg';
         
         itemElement.innerHTML = `
             <div class="business-image" style="background-image: url('${imageUrl}')">
