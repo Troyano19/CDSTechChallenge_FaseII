@@ -246,9 +246,6 @@ function initMap() {
 function updateLocationCoordinates(lat, lng) {
     // You could store these in hidden form fields or directly in a variable
     window.businessLocation = [lat, lng];
-    
-    // For debugging
-    console.log('Business location updated:', lat, lng);
 }
 
 /**
