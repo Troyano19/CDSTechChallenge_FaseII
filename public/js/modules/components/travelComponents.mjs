@@ -16,14 +16,13 @@ const renderFlights = async () => {
     //Recuperamos los vuelos disponibles
     const airports = await getAvailableFlights(queryParams);
     const transports = document.getElementById("transports");
+    while(transports.firstChild) {
+        transports.removeChild(transports.firstChild);
+    }
     const translations = window.Translations[window.currentLanguage].travel.transport;
-    transports.insertAdjacentHTML("beforebegin", `<h2 id="idaParrafo">${translations.outboundFlights}</h2>`);
-    
+    transports.insertAdjacentHTML("afterbegin", `<h2 id="idaParrafo">${translations.outboundFlights}</h2>`);
+    console.log(airports)
     airports.forEach((airport, airportIndex) => {
-        if(airport.trips[0].dates[0].flights.length === 0 && transports.innerHTML.length === 0){
-            transports.innerHTML = `<p>${translations.noOutboundFlights}</p>`;
-            return;
-        };
         const currency = airport.currency;
         const outboundFlights = airport.trips[1].dates[0].flights.filter(flight => 
             flight.regularFare && flight.regularFare.fares && flight.regularFare.fares.length > 0
@@ -159,13 +158,18 @@ const renderFlights = async () => {
             }
         }
     });
-        
+    if(transports.innerHTML.length === 38){
+        transports.innerHTML =`<p>${translations.noAvailableFlights}</p>`;
+    }
+ 
     // Agregamos listener para "Ver más" de vuelos de ida
     document.addEventListener("click", (event) => {
         if(event.target.matches(".show-more-outbound")){
             const button = event.target;
             const airportIndex = button.getAttribute("data-airport-index");
             const airport = airports[airportIndex];
+            console.log(airportIndex)
+            console.log(airport)
             const outboundFlights = airport.trips[0].dates[0].flights;
             outboundFlights.slice(2).forEach((flight) => {
                 const destination = airport.trips[0].destinationName;

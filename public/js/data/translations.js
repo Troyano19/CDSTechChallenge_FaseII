@@ -100,7 +100,8 @@ window.Translations = {
         destination: "Destino:",
         outboundFlights: "Vuelos de ida",
         returnFlights: "Vuelos de vuelta",
-        noOutboundFlights: "No hay vuelos de ida disponibles."
+        noOutboundFlights: "No hay vuelos de ida disponibles.",
+        noAvailableFlights: "No hay vuelos disponibles.",
       },
       hotels: {
         title: "Alojamientos disponibles",
@@ -772,7 +773,8 @@ window.Translations = {
         destination: "Destination:",
         outboundFlights: "Outbound Flights",
         returnFlights: "Return Flights",
-        noOutboundFlights: "No outbound flights available."
+        noOutboundFlights: "No outbound flights available.",
+        noAvailableFlights: "No available flights.",
       },
       hotels: {
         title: "Available accommodations",
