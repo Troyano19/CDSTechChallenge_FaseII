@@ -21,7 +21,6 @@ const renderFlights = async () => {
     }
     const translations = window.Translations[window.currentLanguage].travel.transport;
     transports.insertAdjacentHTML("afterbegin", `<h2 id="idaParrafo">${translations.outboundFlights}</h2>`);
-    console.log(airports)
     airports.forEach((airport, airportIndex) => {
         const currency = airport.currency;
         const outboundFlights = airport.trips[1].dates[0].flights.filter(flight => 
@@ -168,8 +167,6 @@ const renderFlights = async () => {
             const button = event.target;
             const airportIndex = button.getAttribute("data-airport-index");
             const airport = airports[airportIndex];
-            console.log(airportIndex)
-            console.log(airport)
             const outboundFlights = airport.trips[0].dates[0].flights;
             outboundFlights.slice(2).forEach((flight) => {
                 const destination = airport.trips[0].destinationName;

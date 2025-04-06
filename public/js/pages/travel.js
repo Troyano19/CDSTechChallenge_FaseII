@@ -34,7 +34,6 @@ const searchHandler = async (event) => {
         children,
         countryCode: countryCode
     };
-    console.log(datos);
     const url = `/travel?city=${datos.city}&country=${datos.country}&departureDate=${datos.departureDate}` +
     `&returnDate=${datos.returnDate}&adults=${datos.adults}&children=${datos.children}`;
     window.history.replaceState({}, '', url);

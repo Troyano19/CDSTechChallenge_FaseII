@@ -56,8 +56,8 @@ app.use('/api/config', configRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/transports', transportsRouter);
 app.use('/api/user', userRouter); // Register user routes
-app.use('/api/bussines', bussinessRouter);
-app.use('/api/trails', trailsRouter);
+app.use('/api/business', bussinessRouter);
+app.use('/api/trail', trailsRouter);
 app.use('/api/activity', activityRouter);
 
 // Proxy for Ryanair API

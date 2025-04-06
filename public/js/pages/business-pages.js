@@ -2,24 +2,16 @@
  * Handle business list pages (activities, establishments, trails)
  */
 document.addEventListener('DOMContentLoaded', () => {
-    initializeBusinessPages();
+    // Escuchar el customEvent y renderizar caruseles cuando los datos estén listos
+    window.addEventListener('CarouselDataReady', (event) => {
+        renderBusinessCarousels();
+        if (window.Carousel) {
+            window.Carousel.initBusinessCarousel('.nearby-carousel', '.nearby-prev', '.nearby-next');
+            window.Carousel.initBusinessCarousel('.recommendations-carousel', '.recommendations-prev', '.recommendations-next');
+        }
+        setupEventListeners();
+    });
 });
-
-/**
- * Initialize business page components
- */
-function initializeBusinessPages() {
-    renderBusinessCarousels();
-    
-    // Primero inicializar los carruseles con la funcionalidad de la home page
-    if (window.Carousel) {
-        window.Carousel.initBusinessCarousel('.nearby-carousel', '.nearby-prev', '.nearby-next');
-        window.Carousel.initBusinessCarousel('.recommendations-carousel', '.recommendations-prev', '.recommendations-next');
-    }
-    
-    // Después configurar los event listeners adicionales
-    setupEventListeners();
-}
 
 /**
  * Render all business carousels with data from CarouselData

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const localModel = new mongoose.Schema({
+const bussinessModel = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -65,7 +65,7 @@ const localModel = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-});
+}, { collection: 'business' });
 
-const Bussiness = mongoose.model('Bussiness', localModel);
+const Bussiness = mongoose.model('Business', bussinessModel);
 module.exports = Bussiness;
