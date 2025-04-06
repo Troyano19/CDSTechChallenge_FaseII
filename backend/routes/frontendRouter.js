@@ -32,9 +32,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/admin", (req, res) => {
-  if (!req.session || !req.session.user) {
-    return res.redirect("/");
-  }
+    if (!isLoggedIn(req)) {
+      return res.redirect("/login");
+    }
   renderWithHeaderFooter(getPath("pages.admin"), req, res);
 });
 

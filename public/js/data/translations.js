@@ -17,6 +17,7 @@ window.Translations = {
       profile: "Perfil",
       myTrips: "Mis viajes",
       logout: "Cerrar sesión",
+      business: "Mi negocio",
     },
     // Footer translations
     footer: {
@@ -493,6 +494,42 @@ window.Translations = {
         title: "GreenLake Village -> León, España",
       },
     },
+    // Admin page translations
+    admin: {
+      title: "Administrar mi negocio",
+      images: {
+        title: "Gestión de imágenes",
+        banner: "Imagen de portada",
+        gallery: "Galería de imágenes",
+        change: "Cambiar imagen"
+      },
+      hours: {
+        title: "Horario de apertura"
+      },
+      info: {
+        title: "Información del negocio",
+        name: "Nombre",
+        type: "Tipo de negocio",
+        description: "Descripción",
+        types: {
+          hotel: "Hotel",
+          restaurant: "Restaurante/Bar",
+          store: "Tienda",
+          culture: "Cultura"
+        }
+      },
+      location: {
+        title: "Ubicación",
+        loading: "Cargando mapa...",
+        update: "Actualizar ubicación",
+        help: "Haz clic en el mapa para seleccionar la ubicación de tu negocio"
+      },
+      saveChanges: "Guardar cambios",
+      messages: {
+        saveSuccess: "Cambios guardados correctamente",
+        saveError: "Error al guardar los cambios"
+      }
+    },
   },
   // English translations
   en: {
@@ -507,6 +544,7 @@ window.Translations = {
       profile: "Profile",
       myTrips: "My Trips",
       logout: "Log out",
+      business: "My Business",
     },
     // Footer translations
     footer: {
@@ -977,6 +1015,42 @@ window.Translations = {
       trip2: {
         title: "GreenLake Village -> León, Spain",
       },
+    },
+    // Admin page translations
+    admin: {
+      title: "Manage My Business",
+      images: {
+        title: "Image Management",
+        banner: "Banner Image",
+        gallery: "Image Gallery",
+        change: "Change Image"
+      },
+      hours: {
+        title: "Opening Hours"
+      },
+      info: {
+        title: "Business Information",
+        name: "Name",
+        type: "Business Type",
+        description: "Description",
+        types: {
+          hotel: "Hotel",
+          restaurant: "Restaurant/Bar",
+          store: "Store",
+          culture: "Culture"
+        }
+      },
+      location: {
+        title: "Location",
+        loading: "Loading map...",
+        update: "Update Location",
+        help: "Click on the map to select your business location"
+      },
+      saveChanges: "Save Changes",
+      messages: {
+        saveSuccess: "Changes saved successfully",
+        saveError: "Error saving changes"
+      }
     },
   },
 };
