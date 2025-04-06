@@ -30,7 +30,9 @@ app.use(session({
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: { maxAge: 3600000 }
-  }));
+}));
+
+
 require('../backend/config/passport'); 
 app.use(passport.initialize());
 app.use(passport.session());
