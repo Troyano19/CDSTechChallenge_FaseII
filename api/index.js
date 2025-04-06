@@ -60,6 +60,11 @@ app.use('/api/business', bussinessRouter);
 app.use('/api/trail', trailsRouter);
 app.use('/api/activity', activityRouter);
 
+app.get('/establishments/establishment/:id', (req, res) => {
+    // Se envía la plantilla dinámica para el detalle
+    res.sendFile(path.join(__dirname, '../public/html/pages/info/establishments/dinamicStablishment.html'));
+});
+
 // Proxy for Ryanair API
 app.get('/proxy/ryanair', async (req, res) => {
     const ryanairUrl = req.query.url; // La URL de Ryanair se pasa como parámetro de consulta

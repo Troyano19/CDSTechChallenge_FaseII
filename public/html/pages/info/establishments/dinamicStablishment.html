@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
-        <title>GreenLake Village - Cafetería Ecológica</title>
+        <!--TODO: Rellenar el titulo-->
+        <title></title>
         <!--TODO: Crear un meta name"description" con una pequeña descripción del local-->
         <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
         <meta name="language" content="es, en">
@@ -14,6 +15,7 @@
         <script src="/js/data/translations.js" defer></script>
         <script src="/js/utils/languageSwitcher.js" defer></script>
         <script src="/js/utils/pageLoader.js" defer></script>
+        <script src="/js/info/dinamicStablishment.js" type="module" defer></script>
     </head>
     <body>
         <main class="container">
@@ -26,7 +28,7 @@
                         <div class="business-image-carousel">
                             <div class="carousel-container">
                                 <div id="businessImagesCarousel" class="carousel-slides">
-                                    <div class="carousel-slide active" style="background-image: url('/images/temp/establishment-temp2.jpeg')"></div>
+                                    <div id="foto" class="carousel-slide active"></div>
                                 </div>
                                 <div class="carousel-indicators">
                                     <div class="indicator active" data-slide="0"></div>
@@ -38,18 +40,16 @@
                     <!-- Column 2: Business Information -->
                     <div class="detail-column">
                         <div class="business-info">
-                            <h1 class="business-name" data-translate="establishments.ecoHotel.title">Hotel Ecológico 'GreenLake Platinum Heritage'</h1>
-                            <div class="business-type-tag" data-translate="establishments.ecoHotel.type">Hotel</div>
+                            <h1 class="business-name"></h1>
+                            <div class="business-type-tag" ></div>
                             <div class="business-tags">
-                                <span class="tag accommodation" data-translate="tags.accommodation">Alojamiento</span>
-                                <span class="tag eco" data-translate="tags.eco">Sostenible</span>
-                                <span class="tag nature" data-translate="tags.nature">Naturaleza</span>
-                                <span class="tag relax" data-translate="tags.relax">Relax</span>
+                                <span class="tag eco" >Sostenible</span>
+                                <span class="tag nature" >Naturaleza</span>
+                                <span class="tag relax" >Relax</span>
                             </div>
-                            <div class="business-description" data-translate="establishments.ecoHotel.description">
-                                Un hotel de diseño moderno y sostenible, construido con materiales de bajo impacto ambiental y rodeado de jardines nativos. Cuenta con paneles solares en el techo, grandes ventanales que maximizan la luz natural y cargadores para vehículos eléctricos. Ofrece un ambiente tranquilo con total conexión con la naturaleza y servicios premium respetuosos con el medio ambiente.
+                            <div class="business-description" >
                             </div>
-                            <button class="book-button" data-translate="business.details.bookButton">Reservar</button>
+                            <button class="book-button" >Reservar</button>
                         </div>
                     </div>
                 </div>
