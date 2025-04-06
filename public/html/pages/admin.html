@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLake Village - Admin</title>
+    <meta name="description" content="Administra tu negocio en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/admin.css">
+    <script src="/js/pages/admin.js" defer></script>
+</head>
+<body>
+    <main class="container admin-container">
+        <h1 class="admin-title" data-translate="admin.title">Administrar mi negocio</h1>
+        
+        <div class="admin-dashboard">
+            <div class="admin-left-column">
+                <!-- Image Management Section -->
+                <div class="admin-panel image-panel">
+                    <h2 data-translate="admin.images.title">Gestión de imágenes</h2>
+                    <div class="image-upload-container">
+                        <div class="banner-upload">
+                            <h3 data-translate="admin.images.banner">Imagen de portada</h3>
+                            <div class="banner-preview" id="bannerPreview">
+                                <img src="/images/temp/temp1.jpeg" alt="Banner Preview" id="currentBanner">
+                            </div>
+                            <div class="upload-controls">
+                                <input type="file" id="bannerUpload" accept="image/*" hidden>
+                                <button class="upload-btn" id="bannerUploadBtn" data-translate="admin.images.change">Cambiar imagen</button>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-upload">
+                            <h3 data-translate="admin.images.gallery">Galería de imágenes</h3>
+                            <div class="gallery-preview" id="galleryPreview">
+                                <div class="gallery-item">
+                                    <img src="/images/temp/temp1.jpeg" alt="Gallery Image 1">
+                                    <button class="remove-image" data-index="0">×</button>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/images/temp/temp2.jpeg" alt="Gallery Image 2">
+                                    <button class="remove-image" data-index="1">×</button>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/images/temp/temp3.jpeg" alt="Gallery Image 3">
+                                    <button class="remove-image" data-index="2">×</button>
+                                </div>
+                                <div class="gallery-item add-image-item">
+                                    <div class="add-image-btn" id="addGalleryImage">+</div>
+                                </div>
+                            </div>
+                            <input type="file" id="galleryUpload" accept="image/*" hidden>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hours Management Section -->
+                <div class="admin-panel hours-panel">
+                    <h2 data-translate="admin.hours.title">Horario de apertura</h2>
+                    <form id="hoursForm" class="hours-form">
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.monday">Lunes</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="monday-open-0" id="monday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="monday-close-0" id="monday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="monday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.tuesday">Martes</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="tuesday-open-0" id="tuesday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="tuesday-close-0" id="tuesday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="tuesday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.wednesday">Miércoles</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="wednesday-open-0" id="wednesday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="wednesday-close-0" id="wednesday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="wednesday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.thursday">Jueves</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="thursday-open-0" id="thursday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="thursday-close-0" id="thursday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="thursday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.friday">Viernes</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="friday-open-0" id="friday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="friday-close-0" id="friday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="friday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.saturday">Sábado</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="saturday-open-0" id="saturday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="saturday-close-0" id="saturday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="saturday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-row">
+                            <div class="day-name" data-translate="days.sunday">Domingo</div>
+                            <div class="hours-inputs">
+                                <div class="time-slot">
+                                    <div class="time-inputs">
+                                        <input type="time" name="sunday-open-0" id="sunday-open-0" class="time-input">
+                                        <span class="time-separator">-</span>
+                                        <input type="time" name="sunday-close-0" id="sunday-close-0" class="time-input">
+                                    </div>
+                                    <button type="button" class="add-time-slot" data-day="sunday">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="admin-right-column">
+                <!-- Business Info Management Section -->
+                <div class="admin-panel info-panel">
+                    <h2 data-translate="admin.info.title">Información del negocio</h2>
+                    <form id="infoForm" class="info-form">
+                        <div class="form-group">
+                            <label for="businessName" data-translate="admin.info.name">Nombre</label>
+                            <input type="text" id="businessName" name="businessName" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="businessType" data-translate="admin.info.type">Tipo de negocio</label>
+                            <select id="businessType" name="businessType" class="form-input">
+                                <option value="Hotel" data-translate="admin.info.types.hotel">Hotel</option>
+                                <option value="Restaurante/Bar" data-translate="admin.info.types.restaurant">Restaurante/Bar</option>
+                                <option value="Tienda" data-translate="admin.info.types.store">Tienda</option>
+                                <option value="Cultura" data-translate="admin.info.types.culture">Cultura</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="businessDescription" data-translate="admin.info.description">Descripción</label>
+                            <textarea id="businessDescription" name="businessDescription" class="form-input description-input" rows="6"></textarea>
+                        </div>
+                            <div class="form-group">
+                            <label for="businessDescription">Meta TAGs</label>
+                            <textarea id="businessDescription" name="businessDescription" class="form-input description-input" rows="1"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Location Management Section -->
+        <div class="admin-panel location-panel">
+            <h2 data-translate="admin.location.title">Ubicación</h2>
+            <div class="map-container" id="businessMap">
+                <!-- Map will be loaded here -->
+                <div class="map-placeholder">
+                    <span data-translate="admin.location.loading">Cargando mapa...</span>
+                </div>
+            </div>
+            <div class="location-controls">
+                <button id="updateLocationBtn" class="update-location-btn" data-translate="admin.location.update">Actualizar ubicación</button>
+                <span class="location-help" data-translate="admin.location.help">Haz clic en el mapa para seleccionar la ubicación de tu negocio</span>
+            </div>
+        </div>
+        
+        <!-- Save Button -->
+        <div class="admin-actions">
+            <button id="saveChangesBtn" class="save-btn" data-translate="admin.saveChanges">Guardar cambios</button>
+            <div id="saveStatus" class="save-status"></div>
+        </div>
+    </main>
+    
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>

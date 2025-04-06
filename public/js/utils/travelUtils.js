@@ -78,10 +78,7 @@ function initCityCountryAutocomplete() {
             // Check if this is a country-specific search (first result is a country)
             if (results.length > 0 && results[0].isCountry) {
                 isCountrySearch = true;
-                
-                // Add the country as the first result
                 const country = results[0];
-                addCountryToDropdown(country);
                 
                 // Add heading for cities in this country
                 const citiesHeading = document.createElement('div');
@@ -597,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCityCountryAutocomplete();
     initTravelFormDates();
     initTravelersSelector();
-    initFormFromQueryParams();
+
 });
 
 // Export utilities through window object
@@ -606,5 +603,5 @@ window.TravelUtils = {
     initCountryAutocomplete,
     initTravelFormDates,
     initTravelersSelector,
-    initFormFromQueryParams
+
 };

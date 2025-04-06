@@ -70,6 +70,9 @@ const mercadoEcologicoPage = path.join(establishmentsInfoDir, 'Mercado-Ecologico
 const hotelEcologicoPage = path.join(establishmentsInfoDir, 'Hotel-Ecologico-GreenLake.html');
 const tiendaProductosPage = path.join(establishmentsInfoDir, 'Tienda-de-Productos-Sostenibles.html');
 const cafeteriaEcologicaPage = path.join(establishmentsInfoDir, 'Cafeteria-Ecologica.html');
+const dinamicEstablishmentPage = path.join(establishmentsInfoDir, 'dinamicStablishment.html');
+const dinamicActivityPage = path.join(establishmentsInfoDir, 'dinamicActivity.html');
+const dinamicTrailPage = path.join(establishmentsInfoDir, 'dinamicTrail.html');
 
 // Session pages
 const sessionDir = path.join(pagesDir, 'session');
@@ -90,6 +93,7 @@ const businessPagesCSS = path.join(cssPagesDir, 'business-pages.css');
 const city3DCSS = path.join(cssPagesDir, 'city3D.css');
 const sessionCSS = path.join(cssPagesDir, 'session.css');
 const profileCSS = path.join(cssPagesDir, 'profile.css');
+const adminCSS = path.join(cssPagesDir, 'admin.css');
 const autocompleteCSS = path.join(cssComponentsDir, 'autocomplete.css'); // Add autocomplete CSS
 const toastCSS = path.join(cssComponentsDir, 'toast.css'); // Add toast CSS
 
@@ -112,6 +116,7 @@ const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
 const businessDetailsJs = path.join(jsPagesDir, 'business-details.js');
 const profileJs = path.join(jsPagesDir, 'profile.js');
+const adminJs = path.join(jsPagesDir, 'admin.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
 const city3DJs = path.join(jsCity3DDIR, 'main.js');
@@ -182,7 +187,10 @@ const getPaths = () => {
                     mercadoEcologico: mercadoEcologicoPage,
                     hotelEcologico: hotelEcologicoPage,
                     tiendaProductos: tiendaProductosPage,
-                    cafeteriaEcologica: cafeteriaEcologicaPage
+                    cafeteriaEcologica: cafeteriaEcologicaPage,
+                    dinamicEstablishment: dinamicEstablishmentPage,
+                    dinamicActivity: dinamicActivityPage,
+                    dinamicTrail: dinamicTrailPage
                 }
             },
             session: {
@@ -206,6 +214,7 @@ const getPaths = () => {
             city3D: city3DCSS,
             chatBot: chatBotCSS,
             profile: profileCSS,
+            admin: adminCSS,
             autocomplete: autocompleteCSS, // Add autocomplete CSS path
             toast: toastCSS, // Add toast CSS
             legal: {
@@ -237,6 +246,7 @@ const getPaths = () => {
             chatBot: chatBotJs,
             logout: logoutJs,
             profile: profileJs,
+            admin: adminJs,
             session: sessionJs,
             toastUtils: toastJS, // Add toast utils
         },

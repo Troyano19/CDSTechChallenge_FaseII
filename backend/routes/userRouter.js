@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { updateProfile, deleteAccount, uploadProfileImage } = require('../controllers/userController');
+const { updateProfile, deleteAccount, uploadProfileImage, getCurrentUser } = require('../controllers/userController');
+
+// Get current user route
+router.get('/me', getCurrentUser);
 
 // Profile update route
 router.put('/profile', updateProfile);

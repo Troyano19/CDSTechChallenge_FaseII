@@ -167,18 +167,27 @@
     border-radius: var(--border-radius-md);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
 }
 
 .transport-item:hover,
 .hotel-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.transport-item a,
+.transport-item a:hover {
+    text-decoration: none;
 }
 
 .company-info h3,
 .hotel-info h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
+    color: black;
 }
 
 .rating {
@@ -210,7 +219,7 @@
 
 .label {
     font-size: 0.85rem;
-    color: var(--color-text-gray);
+    color: black;
     display: block;
     margin-bottom: 0.25rem;
 }
@@ -218,6 +227,37 @@
 .time {
     font-size: 1.1rem;
     font-weight: bold;
+    color: black;
+}
+
+/* Enhanced styling to eliminate any text underlining */
+.transport-item,
+.hotel-item,
+.transport-item *,
+.hotel-item * {
+    text-decoration: none !important;
+}
+
+.transport-item:hover,
+.hotel-item:hover,
+.transport-item:hover *,
+.hotel-item:hover * {
+    text-decoration: none !important;
+}
+
+.transport-item a,
+.hotel-item a {
+    text-decoration: none !important;
+}
+
+.transport-item a:hover,
+.hotel-item a:hover {
+    text-decoration: none !important;
+}
+
+.route-info .location {
+    color: black;
+    text-decoration: none !important;
 }
 
 /* Events section */
@@ -398,6 +438,13 @@
 .arrow-down {
     font-size: 0.8rem;
     margin-left: 5px;
+}
+
+/* Add this to the price styling */
+.price .count,
+.price .badge {
+    color: black;
+    text-decoration: none !important;
 }
 
 /* Responsive adjustments */

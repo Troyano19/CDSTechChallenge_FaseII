@@ -21,6 +21,25 @@ const router = express.Router();
 const publicPath = getPath("public");
 
 /**
+ * Middleware para verificar si el usuario tiene un rol que no sea "USER"
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
+const checkBusinessRole = (req, res, next) => {
+  if (!isLoggedIn(req)) {
+    return res.redirect("/login");
+  }
+  
+  if (req.user && req.user.role && req.user.role !== "USER") {
+    next();
+  } else {
+    // Usuario no tiene permiso para acceder a esta página
+    return res.status(403).send("Acceso denegado. No tienes permisos para ver esta página.");
+  }
+};
+
+/**
  * ENDPOINT: GET /
  * HANDLER: express static
  * UTILITY: Show all content from the public/ directory
@@ -31,10 +50,7 @@ router.get("/", (req, res) => {
   renderWithHeaderFooter(getPath("pages.home"), req, res);
 });
 
-router.get("/admin", (req, res) => {
-  if (!req.session || !req.session.user) {
-    return res.redirect("/");
-  }
+router.get("/admin", checkBusinessRole, (req, res) => {
   renderWithHeaderFooter(getPath("pages.admin"), req, res);
 });
 
@@ -159,6 +175,26 @@ router.get("/establishments/establishment/Cafeteria-Ecologica", (req, res) => {
   );
 });
 
+router.get("/establishments/establishment/:id", (req, res) => {
+  renderWithHeaderFooter(getPath("pages.info.establishments.dinamicEstablishment"), req, res);
+});
+
+router.get("/trails/trail/:id", (req, res) => {
+  renderWithHeaderFooter(
+    getPath("pages.info.establishments.dinamicTrail"),
+    req,
+    res
+  );
+});
+
+router.get("/activities/activitie/:id", (req, res) => {
+  renderWithHeaderFooter(
+    getPath("pages.info.establishments.dinamicActivity"),
+    req,
+    res
+  );
+});
+
 // Handle direct visits to travel page
 router.get("/travel", (req, res) => {
   // Get query parameters if they exist
@@ -226,6 +262,17 @@ router.get("/privacy", (req, res) => {
 
 router.get("/cookies", (req, res) => {
   renderWithHeaderFooter(getPath("pages.legal.cookies"), req, res);
+});
+
+router.get("/trails/trail/:id", (req, res) => {
+  renderWithHeaderFooter(
+    path.join(
+      __dirname,
+      "../public/html/pages/info/establishments/dinamicTrail.html"
+    ),
+    req,
+    res
+  );
 });
 
 module.exports = router;

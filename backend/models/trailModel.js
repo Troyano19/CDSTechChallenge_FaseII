@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const trailModel = mongoose.Schema({
+const trailModel = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -38,3 +38,6 @@ const trailModel = mongoose.Schema({
         },
     }
 });
+
+const Trail = mongoose.model('Trail', trailModel);
+module.exports = Trail;

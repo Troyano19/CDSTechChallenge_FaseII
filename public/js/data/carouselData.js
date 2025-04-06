@@ -1,9 +1,67 @@
+import * as activitiesApi from "../modules/rest-api/activityRestApi.mjs";
+import * as establishmentsApi from "../modules/rest-api/bussinessRestApi.mjs";
+import * as trailsApi from "../modules/rest-api/trailRestApi.mjs";
+
 /**
  * Carousel data for all carousel components
  * This file contains sample data for use in carousels throughout the site
  */
 
 // Example data for interest carousel
+
+const allActivities = [];
+const allEstablishments = [];
+const allTrails = [];
+
+const fetchAllActivities = async () => {
+  try {
+    const response = await activitiesApi.getAllActivities();
+    if (response.status === 200) {
+      const data = await response.json();
+      allActivities.push(...data);
+    } else {
+      console.error("Error fetching activities:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching activities:", error);
+  }
+};
+const fetchAllEstablishments = async () => {
+  try {
+    const response = await establishmentsApi.getAllBussiness();
+    if (response.status === 200) {
+      const data = await response.json();
+      allEstablishments.push(...data);
+    } else {
+      console.error("Error fetching establishments:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching establishments:", error);
+  }
+};
+const fetchAllTrails = async () => {
+  try {
+    const response = await trailsApi.getAllTrails();
+    if (response.status === 200) {
+      const data = await response.json();
+      allTrails.push(...data);
+    } else {
+      console.error("Error fetching trails:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching trails:", error);
+  }
+};
+const getRandomElements = (arr, count) => {
+  const shuffled = arr.slice(); // Copia el array
+  let i = arr.length;
+  while (i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, count);
+};
+
 const interestItems = [
   {
     id: "interest1",
@@ -95,114 +153,31 @@ const recommendedActivities = [
         name: "Espacio público junto al lago"
     }
 ];
+const initializeCarouselData = async () => {
+  await Promise.all([
+    fetchAllActivities(),
+    fetchAllEstablishments(),
+    fetchAllTrails()
+  ]);
 
-// Example data for establishments carousels
-const nearbyEstablishments = [
-  {
-    id: "Mercado-Ecologico-Local",
-    image: "/images/temp/establishment-temp1.jpeg",
-    name: "Mercado Ecológico Local",
-  },
-  {
-    id: "Hotel-Ecologico-GreenLake",
-    image: "/images/temp/establishment-temp2.jpeg",
-    name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
-  },
-  {
-    id: "Tienda-de-Productos-Sostenibles",
-    image: "/images/temp/establishment-temp3.jpeg",
-    name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
-  },
-  {
-    id: "Cafeteria-Ecologica",
-    image: "/images/temp/establishment-temp4.jpeg",
-    name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
-  },
-];
-
-const recommendedEstablishments = [
-  {
-    id: "Cafeteria-Ecologica",
-    image: "/images/temp/establishment-temp4.jpeg",
-    name: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
-  },
-  {
-    id: "Tienda-de-Productos-Sostenibles",
-    image: "/images/temp/establishment-temp3.jpeg",
-    name: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
-  },
-  {
-    id: "Hotel-Ecologico-GreenLake",
-    image: "/images/temp/establishment-temp2.jpeg",
-    name: "Hotel Ecológico 'GreenLake Platinum Heritage'",
-  },
-  {
-    id: "Mercado-Ecologico-Local",
-    image: "/images/temp/establishment-temp1.jpeg",
-    name: "Mercado Ecológico Local",
-  },
-];
-
-// Example data for trails carousels
-const nearbyTrails = [
-  {
-    id: "Ruta-de-Senderismo-Ezmeral-Valley",
-    image: "/images/temp/trails-temp1.jpeg",
-    name: "Ruta de Senderismo 'Ezmeral Valley'",
-  },
-  {
-    id: "Ruta-Urbana-Peatonal-Nimble-Peak",
-    image: "/images/temp/trails-temp2.jpeg",
-    name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
-  },
-  {
-    id: "Ruta-de-Observacion-de-Aves",
-    image: "/images/temp/trails-temp3.jpeg",
-    name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
-  },
-  {
-    id: "Carril-Bici-Panoramico",
-    image: "/images/temp/trails-temp4.jpeg",
-    name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
-  },
-];
-
-const recommendedTrails = [
-  {
-    id: "Carril-Bici-Panoramico",
-    image: "/images/temp/trails-temp4.jpeg",
-    name: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
-  },
-  {
-    id: "Ruta-de-Observacion-de-Aves",
-    image: "/images/temp/trails-temp3.jpeg",
-    name: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
-  },
-  {
-    id: "Ruta-Urbana-Peatonal-Nimble-Peak",
-    image: "/images/temp/trails-temp2.jpeg",
-    name: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
-  },
-  {
-    id: "Ruta-de-Senderismo-Ezmeral-Valley",
-    image: "/images/temp/trails-temp1.jpeg",
-    name: "Ruta de Senderismo 'Ezmeral Valley'",
-  },
-];
-
-// Export data through window object
-window.CarouselData = {
+  window.CarouselData = {
     interests: interestItems,
     activities: {
-        nearby: nearbyActivities,
-        recommended: recommendedActivities
+      nearby: getRandomElements(allActivities, 4),
+      recommended: getRandomElements(allActivities, 4)
     },
     establishments: {
-        nearby: nearbyEstablishments,
-        recommended: recommendedEstablishments
+      nearby: getRandomElements(allEstablishments, 4),
+      recommended: getRandomElements(allEstablishments, 4)
     },
     trails: {
-        nearby: nearbyTrails,
-        recommended: recommendedTrails
+      nearby: getRandomElements(allTrails, 4),
+      recommended: getRandomElements(allTrails, 4)
     }
+  };
+  const event = new CustomEvent('CarouselDataReady', { detail: window.CarouselData });
+  window.dispatchEvent(event);
 };
+
+initializeCarouselData();
+

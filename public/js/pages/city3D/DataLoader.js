@@ -20,8 +20,6 @@ class DataLoader {
             const csvText = await response.text();
             this.csvData = this.procesarCSV(csvText);
             this.dataReady = true;
-            
-            console.log(`CSV cargado: ${this.csvData.length} registros procesados`);
             return this.csvData;
         } catch (error) {
             console.error('Error cargando el CSV:', error);

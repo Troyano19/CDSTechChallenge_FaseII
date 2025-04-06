@@ -36,33 +36,33 @@ const searchHandler = async (event) => {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Preload carousel images if possible
-    if (window.CarouselData && window.PageLoader) {
-        const imagesToPreload = window.PageLoader.extractCarouselImages(window.CarouselData);
-        window.PageLoader.preloadImages(imagesToPreload);
-    }
-    
-    // Initialize carousel if present on the page
+    // Inicializamos funcionalidades que no dependen de CarouselData
     window.Carousel.initImageCarousel();
     
-    // Render interest cards and initialize carousel
-    if (window.CarouselData && window.CarouselRenderer) {
-        // Render interest cards
-        window.CarouselRenderer.renderInterestCards(
-            '.interests-carousel.what-to-see',
-            window.CarouselData.interests
-        );
-        
-        // Initialize carousel functionality
-        window.Carousel.initInterestsCarousel();
-    }
-    
-    // Initialize travel form utilities
     if (window.TravelUtils) {
         window.TravelUtils.initCityCountryAutocomplete();
         window.TravelUtils.initTravelFormDates();
     }
-
-    // Add event listener to the travel form
+    
     document.getElementById("travelForm").addEventListener("submit", searchHandler);
+});
+
+// Escuchar el customEvent "CarouselDataReady" para trabajar con datos asíncronos
+window.addEventListener('CarouselDataReady', (event) => {
+    const data = event.detail;
+    
+    if (window.PageLoader) {
+        const imagesToPreload = window.PageLoader.extractCarouselImages(data);
+        window.PageLoader.preloadImages(imagesToPreload);
+    }
+    
+    if (window.CarouselRenderer) {
+        window.CarouselRenderer.renderInterestCards(
+            '.interests-carousel.what-to-see',
+            data.interests
+        );
+    }
+    if (window.Carousel) {
+        window.Carousel.initInterestsCarousel();
+    }
 });

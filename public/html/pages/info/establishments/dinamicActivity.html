@@ -3,18 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
-    <title>GreenLake Village - Cafetería Ecológica</title>
-    <meta name="description" content="Cafetería con productos ecológicos y sostenibles en GreenLake Village">
-    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
-    <meta name="language" content="es, en">
+    <title></title>
     <link rel="icon" href="/images/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/pages/info/business-details.css">
     <script src="/js/data/translations.js" defer></script>
     <script src="/js/utils/languageSwitcher.js" defer></script>
     <script src="/js/utils/pageLoader.js" defer></script>
+    <script src="/js/info/dinamicActivity.js" type="module" defer></script>
 </head>
 
 <body>
@@ -28,7 +26,7 @@
                     <div class="business-image-carousel">
                         <div class="carousel-container">
                             <div id="businessImagesCarousel" class="carousel-slides">
-                                <div class="carousel-slide active" style="background-image: url('/images/temp/establishment-temp4.jpeg')"></div>
+                                <div id="foto" class="carousel-slide active" style="background-image: url('/images/temp/activity-temp2.jpeg')"></div>
                             </div>
                             <div class="carousel-indicators">
                                 <div class="indicator active" data-slide="0"></div>
@@ -40,19 +38,16 @@
                 <!-- Column 2: Business Information -->
                 <div class="detail-column">
                     <div class="business-info">
-                        <h1 class="business-name" data-translate="establishments.ecoCafe.title">Cafetería Ecológica 'Grupo Pascual S.Com.'</h1>
-                        <div class="business-type-tag" data-translate="establishments.ecoCafe.type">Restaurante/Bar</div>
+                        <h1 class="business-name" ></h1>
+                        <div class="business-type-tag" >Deportes</div>
                         <div class="business-tags">
-                            <span class="tag food" data-translate="tags.coffee">Café</span>
-                            <span class="tag eco" data-translate="tags.organic">Orgánico</span>
-                            <span class="tag relax" data-translate="tags.cozy">Acogedor</span>
-                            <span class="tag food" data-translate="tags.veggie">Vegetariano/Vegano</span>
+                            <span class="tag water">Acuático</span>
+                            <span class="tag exercise" >Deporte</span>
+                            <span class="tag eco" >Sostenible</span>
+                            <span class="tag family" >Familiar</span>
                         </div>
-                        <div class="business-description" data-translate="establishments.ecoCafe.description">
-                            Una acogedora cafetería que sirve bebidas y alimentos producidos de forma sostenible y orgánica. 
-                            Ofrecemos café de comercio justo, tés orgánicos, pasteles caseros y opciones de comida vegetariana y vegana. 
-                            Nuestro espacio utiliza muebles reciclados y reducimos al mínimo los desperdicios con prácticas de compostaje 
-                            y envases compostables.
+                        <div class="business-description" >
+                            
                         </div>
                         <button class="book-button" data-translate="business.details.bookButton">Reservar</button>
                     </div>
@@ -67,31 +62,31 @@
                         <div class="hours-container">
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.monday">Lunes</span>
-                                <span class="day-time">8:00 - 20:00</span>
+                                <span class="day-time">10:00 - 19:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.tuesday">Martes</span>
-                                <span class="day-time">8:00 - 20:00</span>
+                                <span class="day-time">10:00 - 19:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.wednesday">Miércoles</span>
-                                <span class="day-time">8:00 - 20:00</span>
+                                <span class="day-time">10:00 - 19:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.thursday">Jueves</span>
-                                <span class="day-time">8:00 - 20:00</span>
+                                <span class="day-time">10:00 - 19:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.friday">Viernes</span>
-                                <span class="day-time">8:00 - 22:00</span>
+                                <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.saturday">Sábado</span>
-                                <span class="day-time">9:00 - 22:00</span>
+                                <span class="day-time">9:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
                                 <span class="day-name" data-translate="days.sunday">Domingo</span>
-                                <span class="day-time">9:00 - 15:00</span>
+                                <span class="day-time">9:00 - 19:00</span>
                             </div>
                         </div>
                     </div>

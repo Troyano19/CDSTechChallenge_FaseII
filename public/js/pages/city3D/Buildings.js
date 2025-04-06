@@ -123,8 +123,6 @@ export class BuildingInteraction {
                 }
             });
             
-            console.log(`Datos cargados: ${hoteles.length} hoteles y ${servicios.length} servicios`);
-            
             // Actualizar los datos
             this.buildingData = {
                 commercial: commercial.length > 0 ? commercial : this.getFallbackData().commercial,
@@ -397,8 +395,6 @@ export class BuildingInteraction {
     prepareBuildings() {
         if (!this.cityModel) return;
         
-        console.log('Preparing buildings for interaction...');
-        
         // 1. First pass: identify all meshes and store their properties
         const allMeshes = [];
         
@@ -471,9 +467,7 @@ export class BuildingInteraction {
                 }
             }
         });
-        
-        console.log(`Found ${allMeshes.length} potential building objects`);
-        
+
         // 2. Second pass: group meshes into buildings
         const buildingGroups = [];
         const processedMeshes = new Set();
@@ -514,8 +508,6 @@ export class BuildingInteraction {
                 buildingGroups.push(building);
             }
         }
-        
-        console.log(`Grouped into ${buildingGroups.length} buildings`);
         
         // 3. Assign information to each building
         this.assignBuildingInfo(buildingGroups);
@@ -583,7 +575,6 @@ export class BuildingInteraction {
             
             // Si tanto la posición como las dimensiones coinciden, hemos encontrado una coincidencia
             if (positionMatch && dimensionsMatch) {
-                console.log(`Edificio identificado como: ${definition.name}`, building);
                 return definition;
             }
         }
@@ -726,8 +717,6 @@ export class BuildingInteraction {
             
             buildingIndex++;
         });
-        
-        console.log(`Información asignada a ${buildingIndex} edificios`);
     }
 
     checkIntersection(mouse) {
@@ -932,7 +921,6 @@ export class BuildingInteraction {
 
     // Método de depuración mejorado
     debugBuildingInfo() {
-        console.log("=== DEPURACIÓN DE EDIFICIOS ===");
         
         // Contar edificios y partes
         let totalParts = 0;
@@ -953,21 +941,6 @@ export class BuildingInteraction {
                     
                     buildingGroups.get(groupId).parts.push(object);
                 }
-            }
-        });
-        
-        console.log(`Estadísticas:
-- Total de partes de edificios: ${totalParts}
-- Total de edificios completos: ${buildingGroups.size}`);
-        
-        // Mostrar detalle de algunos edificios
-        let count = 0;
-        buildingGroups.forEach((building, groupId) => {
-            if (count < 5) { // Mostrar solo los primeros 5
-                console.log(`Edificio ${groupId}:`);
-                console.log(`  - Partes: ${building.parts.length}`);
-                console.log(`  - Información:`, building.info);
-                count++;
             }
         });
     }

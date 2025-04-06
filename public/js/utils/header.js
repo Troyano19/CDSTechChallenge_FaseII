@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     let lastScrollY = window.scrollY;
     
+    // Check user role and show/hide business link
+    checkUserRoleForBusinessLink();
+    
     // Function to handle header visibility on scroll
     window.addEventListener('scroll', function() {
         const currentScrollY = window.scrollY;
@@ -57,3 +60,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+/**
+ * Check the user's role and show/hide the business link accordingly
+ */
+function checkUserRoleForBusinessLink() {
+    const businessLink = document.getElementById('businessLink');
+    
+    if (businessLink) {
+        // Fetch the current user data
+        fetch('/api/user/me', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Failed to fetch user data');
+        })
+        .then(userData => {
+            // Show the business link only if user has a non-USER role
+            if (userData && userData.role && userData.role !== 'USER') {
+                businessLink.style.display = 'flex';
+            } else {
+                businessLink.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking user role:', error);
+            businessLink.style.display = 'none';
+        });
+    }
+}
