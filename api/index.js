@@ -10,9 +10,12 @@ const MongoStore = require("connect-mongo");
 const cookieParser = require('cookie-parser');
 const frontendRouter = require('../backend/routes/frontendRouter');
 const configRouter = require('../backend/routes/configRouter');
-const authRouter = require('../backend/routes/authRoutes');
-const transportsRouter = require('../backend/routes/transportsRoutes');
-const userRouter = require('../backend/routes/userRoutes'); // Add user router
+const authRouter = require('../backend/routes/authRouter');
+const transportsRouter = require('../backend/routes/transportsRouter');
+const userRouter = require('../backend/routes/userRouter'); // Add user router
+const bussinessRouter = require('../backend/routes/bussinesRouter');
+const trailsRouter = require('../backend/routes/trailRouter');
+const activityRouter = require('../backend/routes/activityRouter');
 //Import database connection
 const connectDB = require('../backend/config/database');
 //We configure the use of dotenv for variables
@@ -53,6 +56,9 @@ app.use('/api/config', configRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/transports', transportsRouter);
 app.use('/api/user', userRouter); // Register user routes
+app.use('/api/bussines', bussinessRouter);
+app.use('/api/trails', trailsRouter);
+app.use('/api/activity', activityRouter);
 
 // Proxy for Ryanair API
 app.get('/proxy/ryanair', async (req, res) => {
