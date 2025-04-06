@@ -159,8 +159,38 @@ const uploadProfileImage = async (req, res) => {
     }
 };
 
+/**
+ * Get current user information
+ */
+const getCurrentUser = async (req, res) => {
+    try {
+        // Check if user is authenticated
+        if (!req.isAuthenticated() || !req.user) {
+            return res.status(401).json({ message: 'No estás autenticado' });
+        }
+
+        // Return user information (excluding sensitive data)
+        const userData = {
+            id: req.user._id,
+            username: req.user.username,
+            name: req.user.name,
+            surnames: req.user.surnames,
+            email: req.user.email,
+            role: req.user.role,
+            pfp: req.user.pfp,
+            registrationmethod: req.user.registrationmethod
+        };
+
+        res.status(200).json(userData);
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        res.status(500).json({ message: error.message || 'Error al obtener información del usuario' });
+    }
+};
+
 module.exports = {
     updateProfile,
     deleteAccount,
-    uploadProfileImage
+    uploadProfileImage,
+    getCurrentUser
 };

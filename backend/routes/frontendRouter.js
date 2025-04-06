@@ -21,6 +21,25 @@ const router = express.Router();
 const publicPath = getPath("public");
 
 /**
+ * Middleware para verificar si el usuario tiene un rol que no sea "USER"
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
+const checkBusinessRole = (req, res, next) => {
+  if (!isLoggedIn(req)) {
+    return res.redirect("/login");
+  }
+  
+  if (req.user && req.user.role && req.user.role !== "USER") {
+    next();
+  } else {
+    // Usuario no tiene permiso para acceder a esta página
+    return res.status(403).send("Acceso denegado. No tienes permisos para ver esta página.");
+  }
+};
+
+/**
  * ENDPOINT: GET /
  * HANDLER: express static
  * UTILITY: Show all content from the public/ directory
@@ -31,10 +50,7 @@ router.get("/", (req, res) => {
   renderWithHeaderFooter(getPath("pages.home"), req, res);
 });
 
-router.get("/admin", (req, res) => {
-    if (!isLoggedIn(req)) {
-      return res.redirect("/login");
-    }
+router.get("/admin", checkBusinessRole, (req, res) => {
   renderWithHeaderFooter(getPath("pages.admin"), req, res);
 });
 
