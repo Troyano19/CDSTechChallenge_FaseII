@@ -111,10 +111,6 @@ a {
     transition: all var(--transition-quick);
 }
 
-a:hover {
-    text-decoration: underline;
-    color: var(--color-primary-light);
-}
 
 /* Common button styles */
 .btn, button {

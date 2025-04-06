@@ -6,13 +6,13 @@
 ## Configuración inicial
 
 1. Clona este repositorio:
-   ```
+   ```bash
    git clone https://github.com/Troyano19/CDSTechChallenge_FaseII.git
    cd CDSTechChallenge_FaseII
    ```
 
 2. Instala todas las dependencias:
-   ```
+   ```bash
    npm install
    ```
 
@@ -23,7 +23,7 @@
 ## Ejecución del proyecto
 
 - Para iniciar en modo desarrollo:
-  ```
+  ```bash
   npm run dev
   ```
 

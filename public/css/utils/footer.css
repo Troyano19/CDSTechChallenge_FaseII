@@ -67,6 +67,11 @@ footer .footer-bottom {
     border-top: 1px solid rgba(160, 174, 192, 0.5); /* gray with opacity */
 }
 
+footer .footer-bottom a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     footer .footer-top {
