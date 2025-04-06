@@ -43,11 +43,12 @@ const replaceSecureTokens = (content) => {
 };
 
 /**
- * Renders an HTML file with header and footer
+ * Render an HTML file with header and footer
  * @param {string} filePath - Path to the HTML file
- * @param {object} res - Express response object
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
  */
-const renderWithHeaderFooter = (filePath, req, res) => {
+function renderWithHeaderFooter(filePath, req, res) {
   try {
     // Determine which header to use based on login status
     const headerPath = isLoggedIn(req)
@@ -61,6 +62,9 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     let footerContent = fs.readFileSync(footerPath, "utf8");
     const chatBotContent = fs.readFileSync(chatBotPath, "utf8");
     const content = fs.readFileSync(filePath, "utf8");
+
+    // Check for chatbot script in the content
+    const hasChatBotScript = content.includes('chatBot.js');
 
     // Use regex to find the body tag with any attributes
     const bodyStartRegex = /<body[^>]*>/i;
@@ -85,22 +89,32 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     const bodyContent = content.substring(startIndex, endIndex);
     const afterBody = content.substring(endIndex);
 
+    const processedHeaderContent = replacePaths(headerContent);
+    // Si el usuario está autenticado, sustituye {{USER_PFP}} por el valor de la base de datos
+    let finalHeaderContent = processedHeaderContent;
+    if (req.isAuthenticated() && req.user && req.user.pfp) {
+      finalHeaderContent = processedHeaderContent.replace("{{USER_PFP}}", req.user.pfp);
+    } else {
+      // Si no está autenticado, puedes reemplazarlo por un valor por defecto
+      finalHeaderContent = processedHeaderContent.replace("{{USER_PFP}}", "/images/default-profile.png");
+    }
+
     // Replace path placeholders in all content parts
     const processedBeforeBody = replacePaths(beforeBody);
-    const processedHeaderContent = replacePaths(headerContent);
     const processedBodyContent = replacePaths(bodyContent);
     const processedFooterContent = replacePaths(footerContent);
-    let processedChatBotContent = replacePaths(chatBotContent);
-
-    // Also replace secure tokens in the chatbot content
-    processedChatBotContent = replaceSecureTokens(processedChatBotContent);
+    let processedChatBotContent = '';
+    if (!hasChatBotScript) {
+      processedChatBotContent = replacePaths(chatBotContent);
+      processedChatBotContent = replaceSecureTokens(processedChatBotContent);
+    }
 
     const processedAfterBody = replacePaths(afterBody);
 
     // Combine all parts with header, footer, and chatbot
     const finalHtml =
       processedBeforeBody +
-      processedHeaderContent +
+      finalHeaderContent +
       processedBodyContent +
       processedFooterContent +
       processedChatBotContent +
@@ -111,16 +125,52 @@ const renderWithHeaderFooter = (filePath, req, res) => {
     console.error("Error rendering template:", error);
     res.status(500).send("Error rendering template: " + error.message);
   }
-};
+}
 
-// Verificar si el usuario está logueado
-const isLoggedIn = (req) => {
-  // Verificar si la cookie de inicio de sesión existe
-  console.log(req.isAuthenticated());
+/**
+ * Check if a user is logged in
+ * @param {Object} req - Express request object
+ * @returns {boolean} True if user is logged in
+ */
+function isLoggedIn(req) {
   return req.isAuthenticated();
-};
+}
+
+/**
+ * Replace path placeholders in HTML with real paths
+ * @param {string} content - HTML content
+ * @returns {string} HTML content with replaced paths
+ */
+function replacePathPlaceholders(content) {
+  // Get all path matches
+  const pathMatches = content.match(/{{PATH:[^}]+}}/g) || [];
+
+  // For each match, replace with the actual path
+  pathMatches.forEach((match) => {
+    const pathKey = match.substring(7, match.length - 2); // Extract the path key
+    const realPath = "/" + getPath(pathKey); // Convert to absolute path
+    content = content.replace(
+      new RegExp(match.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+      realPath
+    );
+  });
+
+  return content;
+}
+
+/**
+ * Enforce absolute URLs in HTML content
+ * @param {string} content - HTML content
+ * @returns {string} HTML content with absolute URLs
+ */
+function enforceAbsoluteUrls(content) {
+  // Replace relative URLs in href and src attributes with absolute URLs
+  content = content.replace(/(href|src)="(?!http|\/|#|mailto:|tel:)([^"]+)"/g, '$1="/$2"');
+
+  return content;
+}
 
 module.exports = {
   renderWithHeaderFooter,
-  isLoggedIn
+  isLoggedIn,
 };

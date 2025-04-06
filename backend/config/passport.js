@@ -8,11 +8,45 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: `${process.env.APP_URL}/api/auth/google/callback`
   },
-  function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
-    UserDB.findOrCreate({username: profile.displayName}, {pfp: profile.photos[0].value, registrationmethod:"GOOGLE", googleId: profile.id, username: profile.displayName, email: profile.emails[0].value }, function (err, user) {
-      return cb(err, user);
-    });
+  async function(profile, cb) {
+    try {
+      // Utilizamos el email como identificador único
+      const query = { email: profile.emails[0].value };
+      let user = await UserDB.findOne(query);
+
+      if (user) {
+        // Si el usuario existe, actualizamos pfp y googleId si es necesario
+        let needsUpdate = false;
+
+        if (!user.googleId) {
+          user.googleId = profile.id;
+          needsUpdate = true;
+        }
+        if (user.pfp !== profile.photos[0].value) {
+          user.pfp = profile.photos[0].value;
+          needsUpdate = true;
+        }
+        if (needsUpdate) {
+          await user.save();
+        }
+
+        return cb(null, user);
+      } else {
+        // Si el usuario no existe, se crea uno nuevo
+        const newUser = new UserDB({
+          username: profile.displayName,
+          pfp: profile.photos[0].value,
+          registrationmethod: "GOOGLE",
+          googleId: profile.id,
+          email: profile.emails[0].value
+        });
+
+        await newUser.save();
+        return cb(null, newUser);
+      }
+    } catch (err) {
+      return cb(err);
+    }
   }
 ));
 
@@ -34,7 +68,6 @@ async function(identifier, password, done) {
 
     // Depura el resultado de la autenticación
     const authResult = await user.authenticate(password);
-    console.log("Resultado de user.authenticate:", authResult);
 
     if (!authResult.user) {
       return done(null, false, { message: "Credenciales incorrectas" });

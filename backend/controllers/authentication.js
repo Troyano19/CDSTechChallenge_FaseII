@@ -58,7 +58,6 @@ const login = (req, res, next) => {
 
 const register = (req, res, next) => {
     try {
-        console.log(req.body);
         const { name, surnames, username, email, password, confirmPassword } = req.body;
   
         if (!name || !surnames || !username || !email || !password || !confirmPassword) {

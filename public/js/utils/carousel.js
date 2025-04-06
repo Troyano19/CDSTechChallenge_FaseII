@@ -239,16 +239,32 @@ function initInterestsCarousel(
  * Initialize a business carousel (for activities, establishments, trails)
  */
 function initBusinessCarousel(
-    carouselSelector,
-    prevBtnSelector,
-    nextBtnSelector
+    carouselSelector = '.business-carousel',
+    prevBtnSelector = '.carousel-prev',
+    nextBtnSelector = '.carousel-next'
 ) {
+    // Comprobar si el carrusel y los botones existen
+    const carousel = document.querySelector(carouselSelector);
+    const prevButton = document.querySelector(prevBtnSelector);
+    const nextButton = document.querySelector(nextBtnSelector);
+    
+    if (!carousel || !prevButton || !nextButton) {
+        console.warn(`No se encontró el carrusel o botones para: ${carouselSelector}`);
+        return;
+    }
+    
+    // Usar una inicialización genérica para el carrusel
     initGenericCarousel(
         carouselSelector,
         prevBtnSelector,
         nextBtnSelector,
         '.business-item'
     );
+    
+    // Asegurarse que todos los elementos sean clickeables
+    carousel.querySelectorAll('.business-item').forEach(item => {
+        item.style.pointerEvents = 'auto';
+    });
 }
 
 // Export carousel functions

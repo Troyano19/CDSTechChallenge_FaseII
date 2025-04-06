@@ -47,8 +47,29 @@ const profilePage = path.join(pagesDir, 'profile.html');
 const infoDir = path.join(pagesDir, 'info');
 const trailInfoPage = path.join(infoDir, 'trail.html');
 const establishmentInfoPage = path.join(infoDir, 'establishment.html');
-const activityInfoPage = path.join(infoDir, 'activitie.html');
+const activityInfoPage = path.join(infoDir, 'activity.html');
 const myTripsPage = path.join(infoDir, 'myTrips.html');
+
+// Activities specific pages
+const activitiesInfoDir = path.join(infoDir, 'activities');
+const espacioPublicoLagoPage = path.join(activitiesInfoDir, 'Espacio-publico-junto-al-lago.html');
+const centroActividadesAcuaticasPage = path.join(activitiesInfoDir, 'Centro-de-Actividades-Acuaticas-Sostenibles.html');
+const jardinBotanicoPage = path.join(activitiesInfoDir, 'Jardin-Botanico-Comunitario.html');
+const claseYogaPage = path.join(activitiesInfoDir, 'Clase-de-Yoga-al-Aire-Libre.html');
+
+// Trails specific pages
+const trailsInfoDir = path.join(infoDir, 'trails');
+const rutaSenderismoPage = path.join(trailsInfoDir, 'Ruta-de-Senderismo-Ezmeral-Valley.html');
+const rutaUrbanaPeatonalPage = path.join(trailsInfoDir, 'Ruta-Urbana-Peatonal-Nimble-Peak.html');
+const rutaObservacionAvesPage = path.join(trailsInfoDir, 'Ruta-de-Observacion-de-Aves.html');
+const carrilBiciPanoramicoPage = path.join(trailsInfoDir, 'Carril-Bici-Panoramico.html');
+
+// Establishments specific pages
+const establishmentsInfoDir = path.join(infoDir, 'establishments');
+const mercadoEcologicoPage = path.join(establishmentsInfoDir, 'Mercado-Ecologico-Local.html');
+const hotelEcologicoPage = path.join(establishmentsInfoDir, 'Hotel-Ecologico-GreenLake.html');
+const tiendaProductosPage = path.join(establishmentsInfoDir, 'Tienda-de-Productos-Sostenibles.html');
+const cafeteriaEcologicaPage = path.join(establishmentsInfoDir, 'Cafeteria-Ecologica.html');
 
 // Session pages
 const sessionDir = path.join(pagesDir, 'session');
@@ -83,11 +104,13 @@ const termsCSS = path.join(LegalDirCSS, 'terms.css');
 
 const infoDirCSS = path.join(cssPagesDir, 'info');
 const myTripsCSS = path.join(infoDirCSS, "myTrips.css");
+const businessDetailsCSS = path.join(infoDirCSS, "business-details.css");
 
 // JS files
 const homeJs = path.join(jsPagesDir, 'home.js');
 const travelJs = path.join(jsPagesDir, 'travel.js');
 const businessPagesJs = path.join(jsPagesDir, 'business-pages.js');
+const businessDetailsJs = path.join(jsPagesDir, 'business-details.js');
 const profileJs = path.join(jsPagesDir, 'profile.js');
 const carouselDataJs = path.join(jsDataDir, 'carouselData.js');
 const translationsJs = path.join(jsDataDir, 'translations.js');
@@ -142,7 +165,25 @@ const getPaths = () => {
                 trail: trailInfoPage,
                 establishment: establishmentInfoPage,
                 activity: activityInfoPage,
-                myTrips: myTripsPage
+                myTrips: myTripsPage,
+                activities: {
+                    espacioPublicoLago: espacioPublicoLagoPage,
+                    centroActividadesAcuaticas: centroActividadesAcuaticasPage,
+                    jardinBotanico: jardinBotanicoPage,
+                    claseYoga: claseYogaPage
+                },
+                trails: {
+                    rutaSenderismo: rutaSenderismoPage,
+                    rutaUrbanaPeatonal: rutaUrbanaPeatonalPage,
+                    rutaObservacionAves: rutaObservacionAvesPage,
+                    carrilBiciPanoramico: carrilBiciPanoramicoPage
+                },
+                establishments: {
+                    mercadoEcologico: mercadoEcologicoPage,
+                    hotelEcologico: hotelEcologicoPage,
+                    tiendaProductos: tiendaProductosPage,
+                    cafeteriaEcologica: cafeteriaEcologicaPage
+                }
             },
             session: {
                 login: loginPage,
@@ -173,7 +214,8 @@ const getPaths = () => {
                 terms: termsCSS
             },
             info: {
-                myTrips: myTripsCSS
+                myTrips: myTripsCSS,
+                businessDetails: businessDetailsCSS
             }
         },
         js: {
@@ -184,6 +226,7 @@ const getPaths = () => {
             travelUtils: travelUtilsJs,
             geoNameUtils: geoNameUtilsJs, // Add geoNameUtils JS path
             businessPages: businessPagesJs,
+            businessDetails: businessDetailsJs,
             carouselData: carouselDataJs,
             carouselRenderer: carouselRendererJs,
             access: accessJs,

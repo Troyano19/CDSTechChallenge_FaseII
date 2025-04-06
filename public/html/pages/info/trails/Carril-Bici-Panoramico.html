@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
+    <title>GreenLake Village - Carril Bici Panorámico</title>
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <div class="carousel-slide active" style="background-image: url('/images/temp/trails-temp4.jpeg')"></div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active" data-slide="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 class="business-name" data-translate="trails.bikeLane.title">Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'</h1>
+                        <div class="business-difficulty-tag"><span data-translate="trails.difficulty">Dificultad</span>: <span data-translate="trails.levels.easy">Fácil</span></div>
+                        <div class="business-tags">
+                            <span class="tag exercise" data-translate="tags.exercise">Deporte</span>
+                            <span class="tag city" data-translate="tags.city">Ciudad</span>
+                            <span class="tag family" data-translate="tags.family">Familiar</span>
+                        </div>
+                        <div class="business-description" data-translate="trails.bikeLane.description">
+                            Un carril bici bien señalizado que recorre los puntos más emblemáticos de la ciudad, ofreciendo vistas panorámicas impresionantes. La ruta está adaptada para ciclistas de todos los niveles, con áreas de descanso y estaciones de reparación de bicicletas a lo largo del trayecto. Una forma fantástica de conocer la ciudad de manera sostenible y saludable.
+                        </div>
+                        <button class="book-button" data-translate="business.details.startTrailButton">Iniciar Ruta</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Trail Info (full width) -->
+            <div class="detail-row">
+                <div class="detail-column" style="width: 100%">
+                    <div class="trail-info">
+                        <h2 data-translate="business.details.trailInfoTitle">Información de la Ruta</h2>
+                        <div class="trail-info-container">
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.distance">Distancia:</span>
+                                <span class="info-value">8.5 km</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.duration">Duración estimada:</span>
+                                <span class="info-value">1 hora 15 minutos</span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.elevation">Elevación:</span>
+                                <span class="info-value">25 m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2 data-translate="business.details.routeTitle">Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232812.9882613582!2d-3.844342810697055!3d40.43783728686259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1ses!2ses!4v1743930860841!5m2!1ses!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

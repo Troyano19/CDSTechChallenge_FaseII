@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="{{PATH:css.main}}">
-<link rel="stylesheet" href="{{PATH:css.header}}">
-<script src="{{PATH:js.header}}" defer></script>
-<script src="{{PATH:js.translations}}" defer></script>
-<script src="{{PATH:js.languageSwitcher}}" defer></script>
-<script src="{{PATH:js.logout}}" defer></script>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/utils/header.css">
+<script src="/js/utils/header.js" defer></script>
+<script src="/js/data/translations.js" defer></script>
+<script src="/js/utils/languageSwitcher.js" defer></script>
+<script src="/js/utils/logout.js" defer></script>
 
 <header>
     <div class="container">
@@ -40,7 +40,7 @@
             <div class="profile-selector">
                 <div class="profile-dropdown">
                     <button class="profile-current" id="profileButton" aria-haspopup="true" aria-expanded="false">
-                        <img src="/images/default-profile.png" alt="Profile" width="32" height="32" class="profile-image">
+                        <img id="pfp" src="{{USER_PFP}}" alt="Profile" width="32" height="32" class="profile-image">
                     </button>
                     <div class="profile-dropdown-content">
                         <a href="/profile" class="profile-option" data-translate="header.profile">Perfil</a>

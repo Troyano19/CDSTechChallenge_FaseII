@@ -70,6 +70,22 @@ window.Translations = {
           title: "Gastronomía típica",
           description: "Descripción de los platos más representativos.",
         },
+        tradition3: {
+          title: "Festival de la Cosecha",
+          description: "Celebración anual de la cosecha con mercados de productos locales y ecológicos.",
+        },
+        tradition4: {
+          title: "Artesanía Sostenible",
+          description: "Elaboración tradicional de artesanías con materiales naturales y reciclados.",
+        },
+        tradition5: {
+          title: "Música Verde",
+          description: "Festivales de música que promueven la conciencia ecológica con instrumentos tradicionales.",
+        },
+        tradition6: {
+          title: "Ceremonia del Agua",
+          description: "Ritual ancestral que celebra la importancia del agua como recurso vital en el ecosistema.",
+        },
       },
     },
     // Travel page translations
@@ -121,6 +137,126 @@ window.Translations = {
         nearby: "Rutas cercanas a ti",
         recommended: "Rutas recomendadas",
       },
+      details: {
+        bookButton: "Reservar",
+        startTrailButton: "Iniciar Ruta",
+        hoursTitle: "Horario",
+        reviewsTitle: "Reseñas",
+        locationTitle: "Ubicación",
+        routeTitle: "Recorrido de la Ruta",
+        trailInfoTitle: "Información de la Ruta",
+        distance: "Distancia:",
+        duration: "Duración estimada:",
+        elevation: "Elevación:",
+        reviews: "reseñas",
+        noReviews: "No hay reseñas disponibles"
+      }
+    },
+    // Activities pages
+    activities: {
+      waterActivities: {
+        title: "Centro de Actividades Acuáticas Sostenibles",
+        type: "Deportes",
+        description: "Un centro ubicado a orillas del lago que ofrece alquiler de kayaks, paddleboards y pequeñas embarcaciones eléctricas. El edificio está construido con materiales sostenibles e integrado con el entorno natural. Ofrecemos clases de iniciación y rutas guiadas para promover el disfrute responsable del lago. Todo nuestro equipamiento es ecológico y de bajo impacto ambiental."
+      },
+      yoga: {
+        title: "Clase de Yoga al Aire Libre en un Parque",
+        type: "Relax",
+        description: "Clases de yoga en armonía con la naturaleza, impartidas en un entorno tranquilo y verde. Ofrecemos sesiones para todos los niveles, desde principiantes hasta avanzados, con variantes como yoga restaurativo, hatha yoga y vinyasa flow. Nuestros instructores están certificados y se enfocan en técnicas de respiración, alineación corporal y mindfulness. Trae tu esterilla o utiliza una de nuestras esterillas ecológicas."
+      },
+      botanicGarden: {
+        title: "Jardín Botánico Comunitario",
+        type: "Aire libre",
+        description: "Un espacio verde gestionado por la comunidad que alberga una amplia colección de plantas autóctonas y especies de importancia ecológica. El jardín incluye huertos urbanos, invernaderos sostenibles y espacios educativos donde se realizan talleres sobre cultivo orgánico, biodiversidad y conservación. Visítanos y aprende sobre la flora local mientras disfrutas de un entorno tranquilo y reconfortante."
+      },
+      lakeSide: {
+        title: "Espacio público junto al lago",
+        type: "Aire libre",
+        description: "Un área vibrante cerca del lago con espacios diseñados para disfrutar de actividades al aire libre. Cuenta con parques con áreas de picnic, senderos para caminar y andar en bicicleta, y un embarcadero con pequeñas embarcaciones eléctricas. La calidad del agua es prístina y se han implementado medidas para proteger la biodiversidad local. Ideal para familias y amantes de la naturaleza."
+      }
+    },
+    // Establishments pages
+    establishments: {
+      sustainableStore: {
+        title: "Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'",
+        type: "Tienda",
+        description: "Una tienda especializada en productos sostenibles para el hogar y el cuidado personal. Ofrecemos alternativas ecológicas a productos cotidianos, desde artículos de limpieza biodegradables hasta cosméticos naturales. Todos nuestros productos están libres de plásticos y tienen certificaciones que avalan su compromiso con el medio ambiente."
+      },
+      ecoMarket: {
+        title: "Mercado Ecológico Local",
+        type: "Mercado",
+        description: "Una plaza animada donde productores locales venden frutas, verduras orgánicas, artesanías y productos sostenibles. Los puestos coloridos y toldos están hechos con materiales naturales. El ambiente es festivo y promueve la economía local y la alimentación saludable, con un enfoque en productos de kilómetro cero y sin envasados plásticos."
+      },
+      ecoHotel: {
+        title: "Hotel Ecológico 'GreenLake Platinum Heritage'",
+        type: "Hotel",
+        description: "Un hotel de diseño moderno y sostenible, construido con materiales de bajo impacto ambiental y rodeado de jardines nativos. Cuenta con paneles solares en el techo, grandes ventanales que maximizan la luz natural y cargadores para vehículos eléctricos. Ofrece un ambiente tranquilo con total conexión con la naturaleza y servicios premium respetuosos con el medio ambiente."
+      },
+      ecoCafe: {
+        title: "Cafetería Ecológica 'Grupo Pascual S.Com.'",
+        type: "Restaurante/Bar",
+        description: "Una acogedora cafetería que sirve bebidas y alimentos producidos de forma sostenible y orgánica. Ofrecemos café de comercio justo, tés orgánicos, pasteles caseros y opciones de comida vegetariana y vegana. Nuestro espacio utiliza muebles reciclados y reducimos al mínimo los desperdicios con prácticas de compostaje y envases compostables."
+      }
+    },
+    // Trails pages
+    trails: {
+      difficulty: "Dificultad",
+      levels: {
+        easy: "Fácil",
+        medium: "Media",
+        hard: "Difícil",
+        mediumLow: "Media-Baja"
+      },
+      urbanTrail: {
+        title: "Ruta Urbana Peatonal 'Nimble Peak - GreenLake Shores'",
+        description: "Una calle peatonal adoquinada y llena de vegetación que conecta parques y plazas importantes de la ciudad. A lo largo del recorrido encontrarás bancos para descansar, fuentes de agua potable y señalización que indica puntos de interés histórico y cultural. Perfecta para pasear, conocer tiendas locales y relajarse en un ambiente urbano tranquilo."
+      },
+      hikingTrail: {
+        title: "Ruta de Senderismo 'Ezmeral Valley'",
+        description: "Un sendero natural que atraviesa bosques autóctonos y bordea un arroyo de aguas cristalinas. A lo largo del camino encontrarás diversos puntos panorámicos con vistas espectaculares del valle y las montañas circundantes. La ruta está bien señalizada y cuenta con áreas de descanso estratégicamente ubicadas."
+      },
+      birdwatching: {
+        title: "Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'",
+        description: "Un sendero tranquilo diseñado para la observación de aves locales y migratorias. La ruta cuenta con varios puntos de observación estratégicamente ubicados y paneles informativos sobre las especies que se pueden avistar en cada temporada. Ideal para amantes de la naturaleza y fotógrafos de vida salvaje. Se recomienda traer prismáticos."
+      },
+      bikeLane: {
+        title: "Carril Bici Panorámico 'HPE Innovation Hub - Apollo Heights'",
+        description: "Un carril bici bien señalizado que recorre los puntos más emblemáticos de la ciudad, ofreciendo vistas panorámicas impresionantes. La ruta está adaptada para ciclistas de todos los niveles, con áreas de descanso y estaciones de reparación de bicicletas a lo largo del trayecto. Una forma fantástica de conocer la ciudad de manera sostenible y saludable."
+      }
+    },
+    // Tags
+    tags: {
+      // Categories
+      water: "Acuático",
+      exercise: "Deporte",
+      eco: "Sostenible",
+      family: "Familiar",
+      yoga: "Yoga",
+      outdoor: "Aire libre",
+      wellness: "Bienestar",
+      mindfulness: "Mindfulness",
+      shopping: "Compras",
+      zeroWaste: "Zero waste",
+      naturalProducts: "Productos naturales",
+      crafts: "Artesanal",
+      city: "City",
+      walk: "walk",
+      nature: "nature",
+      coffee: "Café",
+      organic: "Orgánico",
+      cozy: "Acogedor",
+      veggie: "Vegetariano/Vegano"
+    },
+    // Days of the week
+    days: {
+      monday: "Lunes",
+      tuesday: "Martes",
+      wednesday: "Miércoles",
+      thursday: "Jueves",
+      friday: "Viernes",
+      saturday: "Sábado",
+      sunday: "Domingo",
+      closed: "Cerrado"
     },
     // Login & Register translations
     session: {
@@ -133,7 +269,6 @@ window.Translations = {
         noAccount: "¿No tienes cuenta?",
         createAccount: "Crear una cuenta",
         withGoogle: "Iniciar con Google",
-        withDiscord: "Iniciar con Discord",
       },
       register: {
         title: "Registro",
@@ -423,6 +558,22 @@ window.Translations = {
           title: "Typical Gastronomy",
           description: "Description of the most representative dishes.",
         },
+        tradition3: {
+          title: "Harvest Festival",
+          description: "Annual harvest celebration with markets featuring local and organic products.",
+        },
+        tradition4: {
+          title: "Sustainable Craftsmanship",
+          description: "Traditional crafting using natural and recycled materials.",
+        },
+        tradition5: {
+          title: "Green Music",
+          description: "Music festivals that promote ecological awareness with traditional instruments.",
+        },
+        tradition6: {
+          title: "Water Ceremony",
+          description: "Ancestral ritual that celebrates the importance of water as a vital resource in the ecosystem.",
+        },
       },
     },
     // Business pages translations
@@ -442,6 +593,126 @@ window.Translations = {
         nearby: "Trails near you",
         recommended: "Recommended trails",
       },
+      details: {
+        bookButton: "Book Now",
+        startTrailButton: "Start Trail",
+        hoursTitle: "Hours",
+        reviewsTitle: "Reviews",
+        locationTitle: "Location",
+        routeTitle: "Trail Route",
+        trailInfoTitle: "Trail Information",
+        distance: "Distance:",
+        duration: "Estimated duration:",
+        elevation: "Elevation:",
+        reviews: "reviews",
+        noReviews: "No reviews available"
+      }
+    },
+    // Activities pages
+    activities: {
+      waterActivities: {
+        title: "Sustainable Water Activities Center",
+        type: "Sports",
+        description: "A center located on the shores of the lake offering kayaks, paddleboards, and small electric boat rentals. The building is constructed with sustainable materials and integrated with the natural environment. We offer introductory classes and guided routes to promote responsible enjoyment of the lake. All our equipment is ecological and has a low environmental impact."
+      },
+      yoga: {
+        title: "Outdoor Yoga Class in the Park",
+        type: "Relax",
+        description: "Yoga classes in harmony with nature, taught in a peaceful and green setting. We offer sessions for all levels, from beginners to advanced practitioners, with variations such as restorative yoga, hatha yoga, and vinyasa flow. Our instructors are certified and focus on breathing techniques, body alignment, and mindfulness. Bring your own mat or use one of our eco-friendly mats."
+      },
+      botanicGarden: {
+        title: "Community Botanical Garden",
+        type: "Outdoors",
+        description: "A green space managed by the community that houses a wide collection of native plants and species of ecological importance. The garden includes urban orchards, sustainable greenhouses, and educational spaces where workshops on organic cultivation, biodiversity, and conservation are held. Visit us and learn about local flora while enjoying a peaceful and comforting environment."
+      },
+      lakeSide: {
+        title: "Public space by the lake",
+        type: "Outdoors",
+        description: "A vibrant area near the lake with spaces designed for outdoor activities. It features parks with picnic areas, walking and cycling trails, and a dock with small electric boats. The water quality is pristine, and measures have been implemented to protect local biodiversity. Ideal for families and nature lovers."
+      }
+    },
+    // Establishments pages
+    establishments: {
+      sustainableStore: {
+        title: "Sustainable Products Store 'Perea y Ríos S.L.N.E'",
+        type: "Store",
+        description: "A store specializing in sustainable products for home and personal care. We offer ecological alternatives to everyday products, from biodegradable cleaning items to natural cosmetics. All our products are plastic-free and have certifications that guarantee their commitment to the environment."
+      },
+      ecoMarket: {
+        title: "Local Ecological Market",
+        type: "Market",
+        description: "A lively plaza where local producers sell organic fruits, vegetables, crafts, and sustainable products. The colorful stalls and canopies are made with natural materials. The atmosphere is festive and promotes the local economy and healthy eating, focusing on zero-mile products without plastic packaging."
+      },
+      ecoHotel: {
+        title: "Ecological Hotel 'GreenLake Platinum Heritage'",
+        type: "Hotel",
+        description: "A modern and sustainable design hotel, built with low environmental impact materials and surrounded by native gardens. It features solar panels on the roof, large windows that maximize natural light, and electric vehicle charging stations. It offers a peaceful environment with a total connection to nature and environmentally friendly premium services."
+      },
+      ecoCafe: {
+        title: "Ecological Cafe 'Grupo Pascual S.Com.'",
+        type: "Restaurant/Bar",
+        description: "A cozy cafe serving sustainably and organically produced food and beverages. We offer fair trade coffee, organic teas, homemade cakes, and vegetarian and vegan food options. Our space uses recycled furniture, and we minimize waste with composting practices and compostable packaging."
+      }
+    },
+    // Trails pages
+    trails: {
+      difficulty: "Difficulty",
+      levels: {
+        easy: "Easy",
+        medium: "Medium",
+        hard: "Hard",
+        mediumLow: "Medium-Low"
+      },
+      urbanTrail: {
+        title: "Urban Pedestrian Route 'Nimble Peak - GreenLake Shores'",
+        description: "A cobblestone pedestrian street full of vegetation that connects important parks and squares in the city. Along the route, you will find benches to rest, drinking water fountains, and signage indicating historical and cultural points of interest. Perfect for walking, discovering local shops, and relaxing in a quiet urban environment."
+      },
+      hikingTrail: {
+        title: "Hiking Trail 'Ezmeral Valley'",
+        description: "A natural trail that crosses native forests and borders a crystal-clear stream. Along the way, you will find various scenic viewpoints with spectacular views of the valley and surrounding mountains. The route is well-marked and has strategically located rest areas."
+      },
+      birdwatching: {
+        title: "Birdwatching Route 'Composable Cloud - Apollo Heights'",
+        description: "A quiet trail designed for observing local and migratory birds. The route has several strategically located observation points and information panels about the species that can be spotted in each season. Ideal for nature lovers and wildlife photographers. Binoculars are recommended."
+      },
+      bikeLane: {
+        title: "Panoramic Bike Lane 'HPE Innovation Hub - Apollo Heights'",
+        description: "A well-marked bike lane that runs through the most emblematic points of the city, offering impressive panoramic views. The route is adapted for cyclists of all levels, with rest areas and bicycle repair stations along the way. A fantastic way to explore the city in a sustainable and healthy manner."
+      }
+    },
+    // Tags
+    tags: {
+      // Categories
+      water: "Aquatic",
+      exercise: "Sport",
+      eco: "Sustainable",
+      family: "Family-friendly",
+      yoga: "Yoga",
+      outdoor: "Outdoor",
+      wellness: "Wellness",
+      mindfulness: "Mindfulness",
+      shopping: "Shopping",
+      zeroWaste: "Zero waste",
+      naturalProducts: "Natural products",
+      crafts: "Handcrafted",
+      city: "City",
+      walk: "Walk",
+      nature: "Nature",
+      coffee: "Coffee",
+      organic: "Organic",
+      cozy: "Cozy",
+      veggie: "Vegetarian/Vegan"
+    },
+    // Days of the week
+    days: {
+      monday: "Monday",
+      tuesday: "Tuesday",
+      wednesday: "Wednesday",
+      thursday: "Thursday",
+      friday: "Friday",
+      saturday: "Saturday",
+      sunday: "Sunday",
+      closed: "Closed"
     },
     // Login & Register translations
     session: {
@@ -454,7 +725,6 @@ window.Translations = {
         noAccount: "Don't have an account?",
         createAccount: "Create an account",
         withGoogle: "Sign in with Google",
-        withDiscord: "Sign in with Discord",
       },
       register: {
         title: "Register",

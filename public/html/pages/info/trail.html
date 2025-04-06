@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <title>GreenLake Village - Detalles de Ruta</title>
+    <meta name="description" content="Información detallada sobre esta ruta en GreenLake Village">
+    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
+    <meta name="language" content="es, en">
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
+    <script src="/js/pages/business-details.js" defer></script>
+    <script src="/js/utils/mapInitializer.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- Business Detail Container -->
+        <div class="business-detail-container">
+            <!-- Row 1: Images and Business Info -->
+            <div class="detail-row">
+                <!-- Column 1: Image Carousel -->
+                <div class="detail-column">
+                    <div class="business-image-carousel">
+                        <div class="carousel-container">
+                            <div id="businessImagesCarousel" class="carousel-slides">
+                                <!-- Images will be added here by JS -->
+                            </div>
+                            <button class="carousel-btn prev-btn" aria-label="Imagen anterior">
+                                <span aria-hidden="true">❮</span>
+                            </button>
+                            <button class="carousel-btn next-btn" aria-label="Imagen siguiente">
+                                <span aria-hidden="true">❯</span>
+                            </button>
+                            <div class="carousel-indicators">
+                                <!-- Indicators will be added here by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Business Information -->
+                <div class="detail-column">
+                    <div class="business-info">
+                        <h1 id="businessName" class="business-name"></h1>
+                        <div class="business-difficulty-tag" id="businessDifficulty"></div>
+                        <div class="business-tags" id="businessTags"></div>
+                        <div id="businessDescription" class="business-description"></div>
+                        <button id="startTrailButton" class="book-button" data-translate="business.details.startTrailButton">Iniciar Ruta</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2: Info and Reviews (modified for trails) -->
+            <div class="detail-row">
+                <!-- Column 1: Trail Info (instead of hours) -->
+                <div class="detail-column">
+                    <div class="trail-info">
+                        <h2 data-translate="business.details.trailInfoTitle">Información de la Ruta</h2>
+                        <div id="trailInfo" class="trail-info-container">
+                            <!-- Trail info will be added here by JS -->
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.distance">Distancia:</span>
+                                <span id="trailDistance" class="info-value"></span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.duration">Duración estimada:</span>
+                                <span id="trailDuration" class="info-value"></span>
+                            </div>
+                            <div class="trail-info-item">
+                                <span class="info-label" data-translate="business.details.elevation">Elevación:</span>
+                                <span id="trailElevation" class="info-value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Reviews -->
+                <div class="detail-column">
+                    <div class="business-reviews">
+                        <h2 data-translate="business.details.reviewsTitle">Reseñas</h2>
+                        <div class="overall-rating">
+                            <div class="rating-stars" id="overallRatingStars"></div>
+                            <span class="rating-number" id="overallRatingNumber"></span>
+                            <span class="total-reviews" id="totalReviews"></span>
+                        </div>
+                        <div id="reviewsList" class="reviews-list">
+                            <!-- Reviews will be added here by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 3: Location Map (Full Width) -->
+            <div class="detail-row full-width">
+                <div class="business-location">
+                    <h2 data-translate="business.details.routeTitle">Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Google Maps Script -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+</body>
+
+</html>

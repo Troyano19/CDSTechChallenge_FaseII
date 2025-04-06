@@ -1,0 +1,514 @@
+/* Business Detail Page Styles */
+
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.business-detail-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Row and column structure */
+.detail-row {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.detail-column {
+    flex: 1;
+    min-width: 0; /* Prevent flex items from overflowing */
+}
+
+.full-width {
+    flex-direction: column;
+}
+
+/* Image Carousel */
+.business-image-carousel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.carousel-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-position: center;
+    background-size: cover;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.carousel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: var(--color-primary);
+}
+
+/* Business Information */
+.business-info {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.business-name {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin: 0 0 1rem;
+}
+
+.business-type-tag, .business-difficulty-tag {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.business-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    display: inline-block;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tag colors by category */
+.tag.nature {
+    background-color: #4CAF50;
+}
+
+.tag.water {
+    background-color: #03A9F4;
+}
+
+.tag.food {
+    background-color: #FF9800;
+}
+
+.tag.relax {
+    background-color: #9C27B0;
+}
+
+.tag.shopping {
+    background-color: #E91E63;
+}
+
+.tag.accommodation {
+    background-color: #3F51B5;
+}
+
+.tag.exercise {
+    background-color: #FF5722;
+}
+
+.tag.family {
+    background-color: #00BCD4;
+}
+
+.tag.culture {
+    background-color: #795548;
+}
+
+.tag.eco {
+    background-color: #8BC34A;
+}
+
+.business-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.business-tag {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+}
+
+.business-description {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.book-button {
+    align-self: center;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+    width: 80%;
+}
+
+.book-button:hover {
+    background-color: var(--color-primary-light);
+}
+
+/* Business Hours */
+.business-hours {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.business-hours h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.hours-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.day-hours {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.day-name {
+    font-weight: 600;
+}
+
+.day-time {
+    color: var(--color-text);
+}
+
+/* Trail Info */
+.trail-info {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.trail-info h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.trail-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trail-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.info-label {
+    font-weight: 600;
+}
+
+.info-value {
+    color: var(--color-text);
+}
+
+/* Reviews */
+.business-reviews {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow-y: auto;
+}
+
+.business-reviews h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.overall-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+}
+
+.rating-stars {
+    display: flex;
+    color: var(--color-star);
+    font-size: 1.2rem;
+}
+
+.rating-number {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.total-reviews {
+    color: var(--color-text-light);
+    margin-left: 0.5rem;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.review-item {
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-bg-light);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.review-user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.review-user-name {
+    font-weight: 600;
+    margin-right: auto;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+}
+
+.review-rating-stars {
+    color: var(--color-star);
+    font-size: 1rem;
+}
+
+.review-rating-number {
+    margin-left: 0.3rem;
+    color: var(--color-text-light);
+}
+
+.review-content {
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+/* Map */
+.business-location {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.business-location h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+/* Error message */
+.error-message {
+    text-align: center;
+    color: var(--color-error);
+    padding: 2rem;
+    background-color: var(--color-error-light);
+    border-radius: var(--border-radius-md);
+    margin: 2rem auto;
+    max-width: 80%;
+    border: 1px solid var(--color-error-border);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .detail-row {
+        flex-direction: column;
+    }
+    
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* Variables */
+:root {
+    --color-star: #ffc107;
+    --color-border: #e0e0e0;
+    --color-text-light: #6c757d;
+    --color-bg-light: #f8f9fa;
+    --color-error: #dc3545;
+    --color-error-light: #f8d7da;
+    --color-error-border: #f5c6cb;
+}
+
+/* Star ratings using CSS instead of relying on specific fonts */
+.star {
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 1.2em;
+    height: 1.2em;
+    position: relative;
+    margin-right: 2px;
+}
+
+.star.full::before {
+    content: "★";
+    color: var(--color-star);
+}
+
+.star.half::before {
+    content: "★";
+    color: var(--color-star);
+    position: absolute;
+    width: 50%;
+    overflow: hidden;
+}
+
+.star.half::after {
+    content: "☆";
+    color: var(--color-text-light);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.star.empty::before {
+    content: "☆";
+    color: var(--color-text-light);
+}
