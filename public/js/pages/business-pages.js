@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initializeBusinessPages() {
     renderBusinessCarousels();
+    
+    // Primero inicializar los carruseles con la funcionalidad de la home page
+    if (window.Carousel) {
+        window.Carousel.initBusinessCarousel('.nearby-carousel', '.nearby-prev', '.nearby-next');
+        window.Carousel.initBusinessCarousel('.recommendations-carousel', '.recommendations-prev', '.recommendations-next');
+    }
+    
+    // Después configurar los event listeners adicionales
     setupEventListeners();
 }
 
@@ -110,7 +118,7 @@ function setupEventListeners() {
  */
 function navigateCarousel(carousel, direction) {
     const scrollAmount = carousel.clientWidth * 0.8; // 80% of visible width
-    const scrollPosition = direction === 'prev' 
+    const scrollPosition = direction === 'prev'
         ? carousel.scrollLeft - scrollAmount
         : carousel.scrollLeft + scrollAmount;
     
@@ -127,7 +135,7 @@ function navigateCarousel(carousel, direction) {
  * @param {HTMLElement} nextBtn - The next button
  */
 function updateCarouselNavButtons(carousel, prevBtn, nextBtn) {
-    // Enable/disable previous button
+    // Enable/disable previous button based on scroll position
     if (carousel.scrollLeft <= 0) {
         prevBtn.classList.add('disabled');
         prevBtn.setAttribute('disabled', 'disabled');
@@ -151,12 +159,10 @@ function updateCarouselNavButtons(carousel, prevBtn, nextBtn) {
  * @returns {string|null} The page type ('activities', 'establishments', 'trails') or null
  */
 function getPageType() {
-    const path = window.location.pathname.toLowerCase();
-    
-    if (path.includes('activities')) return 'activities';
-    if (path.includes('establishments')) return 'establishments';
-    if (path.includes('trails')) return 'trails';
-    
+    const path = window.location.pathname;
+    if (path.includes('/activities')) return 'activities';
+    if (path.includes('/establishments')) return 'establishments';
+    if (path.includes('/trails')) return 'trails';
     return null;
 }
 
@@ -166,21 +172,8 @@ function getPageType() {
  * @param {string} id - The ID of the specific business
  */
 function navigateToDetail(type, id) {
-    let url;
-    
-    switch(type) {
-        case 'activity':
-            url = `/activities/activity/${id}`;
-            break;
-        case 'establishment':
-            url = `/establishments/establishment/${id}`;
-            break;
-        case 'trail':
-            url = `/trails/trail/${id}`;
-            break;
-        default:
-            return;
-    }
-    
-    window.location.href = url;
+    // Fix for activities navigation - 'activity' instead of 'activitie'
+    let urlPrefix = type;
+    // Use consistent URL structure
+    window.location.href = `/${type === 'activity' ? 'activities' : type + 's'}/${urlPrefix}/${id}`;
 }

@@ -3,18 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
     <title>GreenLake Village - Jardín Botánico Comunitario</title>
-    <meta name="description" content="Jardín botánico con especies locales en GreenLake Village">
-    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
-    <meta name="language" content="es, en">
-    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{PATH:css.main}}">
-    <link rel="stylesheet" href="{{PATH:css.info.businessDetails}}">
-    <script src="{{PATH:js.translations}}" defer></script>
-    <script src="{{PATH:js.languageSwitcher}}" defer></script>
-    <script src="{{PATH:js.pageLoader}}" defer></script>
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
 </head>
 
 <body>
@@ -28,7 +25,7 @@
                     <div class="business-image-carousel">
                         <div class="carousel-container">
                             <div id="businessImagesCarousel" class="carousel-slides">
-                                <div class="carousel-slide active" style="background-image: url('../../images/temp/activity-temp3.jpeg')"></div>
+                                <div class="carousel-slide active" style="background-image: url('/images/temp/activity-temp3.jpeg')"></div>
                             </div>
                             <div class="carousel-indicators">
                                 <div class="indicator active" data-slide="0"></div>
@@ -40,15 +37,18 @@
                 <!-- Column 2: Business Information -->
                 <div class="detail-column">
                     <div class="business-info">
-                        <h1 class="business-name">Jardín Botánico Comunitario</h1>
-                        <div class="business-type-tag">Aire libre</div>
-                        <div class="business-description">
-                            Un espacio verde gestionado por la comunidad que alberga una amplia colección de plantas autóctonas 
-                            y especies de importancia ecológica. El jardín incluye huertos urbanos, invernaderos sostenibles y 
-                            espacios educativos donde se realizan talleres sobre cultivo orgánico, biodiversidad y conservación. 
-                            Visítanos y aprende sobre la flora local mientras disfrutas de un entorno tranquilo y reconfortante.
+                        <h1 class="business-name" data-translate="activities.botanicGarden.title">Jardín Botánico Comunitario</h1>
+                        <div class="business-type-tag" data-translate="activities.botanicGarden.type">Aire libre</div>
+                        <div class="business-tags">
+                            <span class="tag nature" data-translate="tags.nature">Naturaleza</span>
+                            <span class="tag eco" data-translate="tags.eco">Sostenible</span>
+                            <span class="tag family" data-translate="tags.family">Familiar</span>
+                            <span class="tag culture" data-translate="tags.outdoor">Aire libre</span>
                         </div>
-                        <button class="book-button">Reservar</button>
+                        <div class="business-description" data-translate="activities.botanicGarden.description">
+                            Un espacio verde gestionado por la comunidad que alberga una amplia colección de plantas autóctonas y especies de importancia ecológica. El jardín incluye huertos urbanos, invernaderos sostenibles y espacios educativos donde se realizan talleres sobre cultivo orgánico, biodiversidad y conservación. Visítanos y aprende sobre la flora local mientras disfrutas de un entorno tranquilo y reconfortante.
+                        </div>
+                        <button class="book-button" data-translate="business.details.bookButton">Reservar</button>
                     </div>
                 </div>
             </div>
@@ -57,34 +57,34 @@
             <div class="detail-row">
                 <div class="detail-column" style="width: 100%">
                     <div class="business-hours">
-                        <h2>Horario</h2>
+                        <h2 data-translate="business.details.hoursTitle">Horario</h2>
                         <div class="hours-container">
                             <div class="day-hours">
-                                <span class="day-name">Lunes</span>
-                                <span class="day-time">9:00 - 19:00</span>
+                                <span class="day-name" data-translate="days.monday">Lunes</span>
+                                <span class="day-time">9:00 - 18:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Martes</span>
-                                <span class="day-time">9:00 - 19:00</span>
+                                <span class="day-name" data-translate="days.tuesday">Martes</span>
+                                <span class="day-time">9:00 - 18:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Miércoles</span>
-                                <span class="day-time">9:00 - 19:00</span>
+                                <span class="day-name" data-translate="days.wednesday">Miércoles</span>
+                                <span class="day-time">9:00 - 18:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Jueves</span>
-                                <span class="day-time">9:00 - 19:00</span>
+                                <span class="day-name" data-translate="days.thursday">Jueves</span>
+                                <span class="day-time">9:00 - 18:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Viernes</span>
+                                <span class="day-name" data-translate="days.friday">Viernes</span>
                                 <span class="day-time">9:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Sábado</span>
+                                <span class="day-name" data-translate="days.saturday">Sábado</span>
                                 <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Domingo</span>
+                                <span class="day-name" data-translate="days.sunday">Domingo</span>
                                 <span class="day-time">10:00 - 18:00</span>
                             </div>
                         </div>
@@ -95,74 +95,14 @@
             <!-- Row 3: Location Map (Full Width) -->
             <div class="detail-row full-width">
                 <div class="business-location">
-                    <h2>Ubicación</h2>
-                    <div id="map" class="map-container"></div>
+                    <h2 data-translate="business.details.locationTitle">Ubicación</h2>
+                    <div id="map" class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232812.9882613582!2d-3.844342810697055!3d40.43783728686259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1ses!2ses!4v1743930860841!5m2!1ses!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    
-    <!-- Google Maps Script -->
-    <script>
-        function initMap() {
-            const location = { lat: 40.410971, lng: -3.689716 }; // Real Jardín Botánico, Madrid
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 17,
-                mapTypeId: 'satellite'
-            });
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: 'Jardín Botánico Comunitario'
-            });
-            
-            // Garden perimeter
-            const gardenBoundary = [
-                { lat: 40.411971, lng: -3.690716 },
-                { lat: 40.411971, lng: -3.688716 },
-                { lat: 40.409971, lng: -3.688716 },
-                { lat: 40.409971, lng: -3.690716 },
-                { lat: 40.411971, lng: -3.690716 }
-            ];
-            
-            const gardenPolygon = new google.maps.Polygon({
-                paths: gardenBoundary,
-                strokeColor: '#4CAF50',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#4CAF50',
-                fillOpacity: 0.35
-            });
-            
-            gardenPolygon.setMap(map);
-            
-            // Points of interest within the garden
-            const gardenPOIs = [
-                { lat: 40.411271, lng: -3.689916, title: 'Invernaderos' },
-                { lat: 40.410771, lng: -3.689416, title: 'Centro de visitantes' },
-                { lat: 40.410471, lng: -3.690016, title: 'Huertos urbanos' }
-            ];
-            
-            gardenPOIs.forEach(poi => {
-                new google.maps.Marker({
-                    position: poi,
-                    map: map,
-                    title: poi.title,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#4CAF50',
-                        fillOpacity: 1,
-                        strokeWeight: 1,
-                        scale: 8
-                    }
-                });
-            });
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
-    </script>
 </body>
 
 </html>

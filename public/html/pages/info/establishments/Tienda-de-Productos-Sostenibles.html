@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
     <title>GreenLake Village - Tienda de Productos Sostenibles</title>
     <meta name="description" content="Tienda especializada en productos sostenibles y ecológicos en GreenLake Village">
     <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
@@ -40,15 +40,21 @@
                 <!-- Column 2: Business Information -->
                 <div class="detail-column">
                     <div class="business-info">
-                        <h1 class="business-name">Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'</h1>
-                        <div class="business-type-tag">Tienda</div>
-                        <div class="business-description">
+                        <h1 class="business-name" data-translate="establishments.sustainableStore.title">Tienda de Productos Sostenibles 'Perea y Ríos S.L.N.E'</h1>
+                        <div class="business-type-tag" data-translate="establishments.sustainableStore.type">Tienda</div>
+                        <div class="business-tags">
+                            <span class="tag shopping" data-translate="tags.shopping">Compras</span>
+                            <span class="tag eco" data-translate="tags.zeroWaste">Zero waste</span>
+                            <span class="tag nature" data-translate="tags.naturalProducts">Productos naturales</span>
+                            <span class="tag culture" data-translate="tags.crafts">Artesanal</span>
+                        </div>
+                        <div class="business-description" data-translate="establishments.sustainableStore.description">
                             Una tienda especializada en productos sostenibles para el hogar y el cuidado personal. 
                             Ofrecemos alternativas ecológicas a productos cotidianos, desde artículos de limpieza 
                             biodegradables hasta cosméticos naturales. Todos nuestros productos están libres de 
                             plásticos y tienen certificaciones que avalan su compromiso con el medio ambiente.
                         </div>
-                        <button class="book-button">Reservar</button>
+                        <button class="book-button" data-translate="business.details.bookButton">Reservar</button>
                     </div>
                 </div>
             </div>
@@ -57,35 +63,35 @@
             <div class="detail-row">
                 <div class="detail-column" style="width: 100%">
                     <div class="business-hours">
-                        <h2>Horario</h2>
+                        <h2 data-translate="business.details.hoursTitle">Horario</h2>
                         <div class="hours-container">
                             <div class="day-hours">
-                                <span class="day-name">Lunes</span>
+                                <span class="day-name" data-translate="days.monday">Lunes</span>
                                 <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Martes</span>
+                                <span class="day-name" data-translate="days.tuesday">Martes</span>
                                 <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Miércoles</span>
+                                <span class="day-name" data-translate="days.wednesday">Miércoles</span>
                                 <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Jueves</span>
+                                <span class="day-name" data-translate="days.thursday">Jueves</span>
                                 <span class="day-time">10:00 - 20:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Viernes</span>
+                                <span class="day-name" data-translate="days.friday">Viernes</span>
                                 <span class="day-time">10:00 - 21:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Sábado</span>
+                                <span class="day-name" data-translate="days.saturday">Sábado</span>
                                 <span class="day-time">10:00 - 21:00</span>
                             </div>
                             <div class="day-hours">
-                                <span class="day-name">Domingo</span>
-                                <span class="day-time">Cerrado</span>
+                                <span class="day-name" data-translate="days.sunday">Domingo</span>
+                                <span class="day-time" data-translate="days.closed">Cerrado</span>
                             </div>
                         </div>
                     </div>
@@ -95,31 +101,14 @@
             <!-- Row 3: Location Map (Full Width) -->
             <div class="detail-row full-width">
                 <div class="business-location">
-                    <h2>Ubicación</h2>
-                    <div id="map" class="map-container"></div>
+                    <h2 data-translate="business.details.locationTitle">Ubicación</h2>
+                    <div id="map" class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232812.9882613582!2d-3.844342810697055!3d40.43783728686259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1ses!2ses!4v1743930860841!5m2!1ses!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    
-    <!-- Google Maps Script -->
-    <script>
-        function initMap() {
-            const location = { lat: 40.429785, lng: -3.702277 }; // Tienda en Madrid
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 16,
-            });
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: 'Tienda de Productos Sostenibles'
-            });
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
-    </script>
 </body>
 
 </html>

@@ -151,6 +151,71 @@
     margin-bottom: 1rem;
 }
 
+.tag {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    display: inline-block;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tag colors by category */
+.tag.nature {
+    background-color: #4CAF50;
+}
+
+.tag.water {
+    background-color: #03A9F4;
+}
+
+.tag.food {
+    background-color: #FF9800;
+}
+
+.tag.relax {
+    background-color: #9C27B0;
+}
+
+.tag.shopping {
+    background-color: #E91E63;
+}
+
+.tag.accommodation {
+    background-color: #3F51B5;
+}
+
+.tag.exercise {
+    background-color: #FF5722;
+}
+
+.tag.family {
+    background-color: #00BCD4;
+}
+
+.tag.culture {
+    background-color: #795548;
+}
+
+.tag.eco {
+    background-color: #8BC34A;
+}
+
+.business-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
 .business-tag {
     background-color: var(--color-accent);
     color: white;

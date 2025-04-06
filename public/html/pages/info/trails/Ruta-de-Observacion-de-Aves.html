@@ -3,18 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data: *; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com *; script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' *; connect-src 'self' https://*.googleapis.com; frame-src https://www.google.com https://*.google.com https://*.gstatic.com;">
     <title>GreenLake Village - Ruta de Observación de Aves</title>
-    <meta name="description" content="Ruta para observación de aves en GreenLake Village">
-    <meta name="author" content="Javier Troyano Torrado, José Gallardo Caballero">
-    <meta name="language" content="es, en">
-    <link rel="icon" href="{{PATH:images.favicon}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{PATH:css.main}}">
-    <link rel="stylesheet" href="{{PATH:css.info.businessDetails}}">
-    <script src="{{PATH:js.translations}}" defer></script>
-    <script src="{{PATH:js.languageSwitcher}}" defer></script>
-    <script src="{{PATH:js.pageLoader}}" defer></script>
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/info/business-details.css">
+    <script src="/js/data/translations.js" defer></script>
+    <script src="/js/utils/languageSwitcher.js" defer></script>
+    <script src="/js/utils/pageLoader.js" defer></script>
 </head>
 
 <body>
@@ -28,7 +25,7 @@
                     <div class="business-image-carousel">
                         <div class="carousel-container">
                             <div id="businessImagesCarousel" class="carousel-slides">
-                                <div class="carousel-slide active" style="background-image: url('../../images/temp/trails-temp3.jpeg')"></div>
+                                <div class="carousel-slide active" style="background-image: url('/images/temp/trails-temp3.jpeg')"></div>
                             </div>
                             <div class="carousel-indicators">
                                 <div class="indicator active" data-slide="0"></div>
@@ -40,19 +37,19 @@
                 <!-- Column 2: Business Information -->
                 <div class="detail-column">
                     <div class="business-info">
-                        <h1 class="business-name">Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'</h1>
-                        <div class="business-difficulty-tag">Dificultad: Media-Baja</div>
+                        <h1 class="business-name" data-translate="trails.birdwatching.title">Ruta de Observación de Aves 'Composable Cloud - Apollo Heights'</h1>
+                        <div class="business-difficulty-tag"><span data-translate="trails.difficulty">Dificultad</span>: <span data-translate="trails.levels.mediumLow">Media-Baja</span></div>
                         <div class="business-tags">
-                            <span class="tag">walk</span>
-                            <span class="tag">nature</span>
+                            <span class="tag exercise" data-translate="tags.walk">walk</span>
+                            <span class="tag nature" data-translate="tags.nature">nature</span>
                         </div>
-                        <div class="business-description">
+                        <div class="business-description" data-translate="trails.birdwatching.description">
                             Un sendero tranquilo diseñado para la observación de aves locales y migratorias. La ruta cuenta con
                             varios puntos de observación estratégicamente ubicados y paneles informativos sobre las especies
                             que se pueden avistar en cada temporada. Ideal para amantes de la naturaleza y fotógrafos de vida salvaje.
                             Se recomienda traer prismáticos.
                         </div>
-                        <button class="book-button">Iniciar Ruta</button>
+                        <button class="book-button" data-translate="business.details.startTrailButton">Iniciar Ruta</button>
                     </div>
                 </div>
             </div>
@@ -61,18 +58,18 @@
             <div class="detail-row">
                 <div class="detail-column" style="width: 100%">
                     <div class="trail-info">
-                        <h2>Información de la Ruta</h2>
+                        <h2 data-translate="business.details.trailInfoTitle">Información de la Ruta</h2>
                         <div class="trail-info-container">
                             <div class="trail-info-item">
-                                <span class="info-label">Distancia:</span>
+                                <span class="info-label" data-translate="business.details.distance">Distancia:</span>
                                 <span class="info-value">3.6 km</span>
                             </div>
                             <div class="trail-info-item">
-                                <span class="info-label">Duración estimada:</span>
+                                <span class="info-label" data-translate="business.details.duration">Duración estimada:</span>
                                 <span class="info-value">1 hora 30 minutos</span>
                             </div>
                             <div class="trail-info-item">
-                                <span class="info-label">Elevación:</span>
+                                <span class="info-label" data-translate="business.details.elevation">Elevación:</span>
                                 <span class="info-value">40 m</span>
                             </div>
                         </div>
@@ -83,100 +80,14 @@
             <!-- Row 3: Location Map (Full Width) -->
             <div class="detail-row full-width">
                 <div class="business-location">
-                    <h2>Recorrido de la Ruta</h2>
-                    <div id="map" class="map-container"></div>
+                    <h2 data-translate="business.details.routeTitle">Recorrido de la Ruta</h2>
+                    <div id="map" class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232812.9882613582!2d-3.844342810697055!3d40.43783728686259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1ses!2ses!4v1743930860841!5m2!1ses!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    
-    <!-- Google Maps Script -->
-    <script>
-        function initMap() {
-            // Bird watching trail in El Retiro Park, Madrid
-            const trailCoordinates = [
-                { lat: 40.417632, lng: -3.687414 },
-                { lat: 40.416689, lng: -3.684431 },
-                { lat: 40.414633, lng: -3.682543 },
-                { lat: 40.413689, lng: -3.683659 },
-                { lat: 40.414339, lng: -3.687607 },
-                { lat: 40.416388, lng: -3.688208 }
-            ];
-            
-            // Create map centered on start point
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: trailCoordinates[0],
-                zoom: 15,
-                mapTypeId: 'satellite'
-            });
-            
-            // Create a polyline for the trail
-            const trailPath = new google.maps.Polyline({
-                path: trailCoordinates,
-                geodesic: true,
-                strokeColor: '#ffc107',
-                strokeOpacity: 1.0,
-                strokeWeight: 4
-            });
-            
-            // Add trail to map
-            trailPath.setMap(map);
-            
-            // Add start marker
-            new google.maps.Marker({
-                position: trailCoordinates[0],
-                map: map,
-                title: 'Inicio',
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#28a745',
-                    fillOpacity: 1,
-                    strokeWeight: 0,
-                    scale: 10
-                }
-            });
-            
-            // Add end marker (which is the same as start for this loop trail)
-            new google.maps.Marker({
-                position: trailCoordinates[trailCoordinates.length - 1],
-                map: map,
-                title: 'Fin',
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#dc3545',
-                    fillOpacity: 1,
-                    strokeWeight: 0,
-                    scale: 10
-                }
-            });
-            
-            // Add bird watching points
-            const birdWatchingPoints = [
-                { lat: 40.416689, lng: -3.684431 },
-                { lat: 40.414633, lng: -3.682543 },
-                { lat: 40.414339, lng: -3.687607 }
-            ];
-            
-            birdWatchingPoints.forEach((point, index) => {
-                new google.maps.Marker({
-                    position: point,
-                    map: map,
-                    title: `Punto de observación ${index + 1}`,
-                    icon: {
-                        url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-                    }
-                });
-            });
-            
-            // Fit map to trail bounds
-            const bounds = new google.maps.LatLngBounds();
-            trailCoordinates.forEach(point => bounds.extend(point));
-            map.fitBounds(bounds);
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMSUunqm_4q7pWuQnPT0dCwQVTQ&callback=initMap">
-    </script>
 </body>
 
 </html>
